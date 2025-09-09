@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // JavaScript moderno
+    "module": "ES6", // Para usar import/export se quiser
+    "outDir": "./dist", // Pasta onde o JS compilado vai para o navegador
+    "rootDir": "./src", // Onde ficam seus arquivos TS
+    "strict": true, // Ativa checagem rigorosa de tipos
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}
