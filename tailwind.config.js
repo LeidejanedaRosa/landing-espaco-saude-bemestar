@@ -17,7 +17,7 @@ export default {
         primary: {
           orange: '#d08d2f', // Laranja apagado
           blue: '#489ec9', // Azul
-          green: '#6eb645' // Verde
+          green: '#0A988B' // Verde
         },
         // Cores antigas mantidas para compatibilidade
         health: {
