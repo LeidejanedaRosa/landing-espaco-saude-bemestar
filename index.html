@@ -28,7 +28,7 @@
     }
 
     .font-logo-sans {
-      font-family: 'Lato', sans-serif;
+      font-family: 'Poppins', sans-serif !important;
     }
 
     .text-logo-pink {
@@ -101,6 +101,34 @@
       width: 380px;
     }
 
+    .card-services {
+      /*
+    Degradê vertical que cria o efeito de bordas suaves:
+    - Começa transparente
+    - Passa para branco/80
+    - Transiciona para #d19400
+    - Termina transparente
+  */
+      background: linear-gradient(to bottom,
+          transparent,
+          rgba(255, 255, 255, 0.8) 50%,
+          #d19400 90%,
+          transparent);
+      padding: 1.5rem;
+      text-align: center;
+      /* A cor do texto pode precisar de ajuste para garantir a legibilidade */
+      color: #333;
+      /* Sugestão: cor escura para bom contraste */
+
+      /* padding: 30px; */
+      /* border-radius: 20px; */
+      /* Cantos arredondados ainda funcionam bem */
+      /* width: 380px; */
+
+      /* REMOVA o box-shadow para que não haja bordas definidas */
+      /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    }
+
     /* Styling for the card title */
     .card-title {
       font-size: 24px;
@@ -129,8 +157,6 @@
   <!-- Header -->
   <header class="fixed top-0 left-0 w-full z-50 p-4 transition-all duration-300 header-bg shadow-lg">
     <nav class="container mx-auto flex items-center justify-between flex-wrap">
-      <!-- <h1 class="font-script text-4xl ml-4">Acredite!</h1>
-            <h2 class="font-serif text-3xl ml-4"> O movimento cura</h2> -->
       <a href="#hero" class="flex items-center flex-shrink-0 text-white mr-6">
         <span
           class="inline-flex items-center justify-center w-24 h-24 mr-4 bg-white rounded-full border border-gray-200 shadow-xl">
@@ -181,15 +207,31 @@
         <img src="/src/assets/images/movimento-cura-sem-bg.png" alt="Ilustração de uma pessoa se exercitando"
           class="w-screen" />
       </div>
-
-
+      <div class="flex w-full gap-4">
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white ">Fisioterapia</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white text-wrap">Pilates Clínicoe Funcional</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white">Treinamento Funcional</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white">Massoterapia</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white">Serviço Médico</h2>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id=" sobre-mim" class="container mx-auto section-container">
-      <div class="flex flex-col lg:flex-row items-center justify-center lg:gap-16">
+      <div class="flex flex-row items-center justify-center gap-16">
         <div class="lg:w-1/2 flex justify-center mb-8 lg:mb-0">
-          <img src="src/assets/images/Luiza.png" alt="Imagem da Luiza, fisioterapeuta" class="rounded-lg shadow-lg" />
+          <img src="src/assets/images/Luiza.png" alt="Imagem da Luiza, fisioterapeuta"
+            class="rounded-lg shadow-lg object-cover w-full h-[400px]" />
         </div>
         <div class="lg:w-1/2 text-center lg:text-left">
           <h2 class="text-4xl font-bold text-salmon mb-4">Sobre a Luiza</h2>
@@ -202,92 +244,123 @@
             Minha prática une conhecimento científico atualizado e técnicas especializadas para oferecer atendimento
             individualizado, com foco na reabilitação, na prevenção de lesões e na melhora da qualidade de vida.
           </p>
-          <div class="mt-8 flex flex-col md:flex-row gap-6 justify-center">
-            <!-- Especialidades -->
-            <div class="bg-[#f7fcf9] border border-[#cfe3d6] rounded-xl p-6 w-full md:w-1/2">
-              <h3 class="font-bold text-xl mb-2 text-[#23423a]">Especialidades</h3>
-              <ul class="pl-0 text-[#23423a] space-y-2">
-                <li class="flex items-center gap-2">
-                  <!-- Pilates -->
-                  <span class="inline-block w-5 h-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0a988b"
-                      class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 4v4m0 8v4m4-4h4m-8 0H4m12-8l2.5-2.5M6 6l2.5 2.5M6 18l2.5-2.5M18 18l-2.5-2.5" />
-                    </svg>
-                  </span>
-                  Pilates Clínico e Funcional
-                </li>
-                <li class="flex items-center gap-2">
-                  <!-- Fisioterapia Aquática -->
-                  <span class="inline-block w-5 h-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0a988b"
-                      class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 4c4 4 8 8 0 16-8-8-4-12 0-16z" />
-                    </svg>
-                  </span>
-                  Fisioterapia Aquática
-                </li>
-                <li class="flex items-center gap-2">
-                  <!-- Terapia Manual -->
-                  <span class="inline-block w-5 h-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0a988b"
-                      class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M7 11l1-7 2 5 1-5 2 5 1-4 2 6M5 15c1 2 3 4 7 4s6-2 7-4" />
-                    </svg>
-                  </span>
-                  Terapia Manual
-                </li>
-              </ul>
-            </div>
-
-            <!-- Formação Avançada -->
-            <div class="bg-[#f7fcf9] border border-[#cfe3d6] rounded-xl p-6 w-full md:w-1/2">
-              <h3 class="font-bold text-xl mb-2 text-[#23423a]">Formação Avançada</h3>
-              <ul class="pl-0 text-[#23423a] space-y-2">
-                <li class="flex items-center gap-2">
-                  <!-- Raciocínio Clínico -->
-                  <span class="inline-block w-5 h-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0a988b"
-                      class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 9a3 3 0 016 0c0 1.5-1.5 2.5-3 3s-3 1.5-3 3c0 1 .5 2 1.5 2.5M12 3v1m0 16v1m9-9h-1M4 12H3m16.5-6.5l-.7.7M6.2 17.8l-.7.7M17.8 17.8l-.7-.7M6.2 6.2l-.7-.7" />
-                    </svg>
-                  </span>
-                  Raciocínio Clínico Avançado
-                </li>
-                <li class="flex items-center gap-2">
-                  <!-- Liberação Miofascial -->
-                  <span class="inline-block w-5 h-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0a988b"
-                      class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 12c2-4 6-4 8 0s6 4 8 0" />
-                    </svg>
-                  </span>
-                  Liberação Miofascial
-                </li>
-                <li class="flex items-center gap-2">
-                  <!-- Massoterapia -->
-                  <span class="inline-block w-5 h-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#0a988b"
-                      class="w-5 h-5">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 14s1.5 2 4 2 4-2 4-2M9 9a3 3 0 116 0 3 3 0 01-6 0z" />
-                    </svg>
-                  </span>
-                  Massoterapia
-                </li>
-              </ul>
-            </div>
-          </div>
-
-
         </div>
       </div>
     </section>
+
+    <section id="certificacoes" class="container mx-auto my-12 bg-[#4a634e] rounded-3xl shadow-xl">
+      <div class="container mx-auto p-12 ">
+        <div class="bg-white/80 rounded-3xl shadow-xl p-8 md:p-12">
+
+          <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-salmon mb-3">
+              Certificações e Qualificações
+            </h2>
+            <p class="text-lg text-black">
+              Minhas especializações garantem o melhor e mais completo atendimento para você:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-[#4a634e]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                  <path
+                    d="M10.394 2.08a1 1 0 00-.788 0l-7 3.5a1 1 0 00.028 1.838L10 10l7.364-2.582a1 1 0 00.028-1.838l-7-3.5z" />
+                  <path
+                    d="M10 12l-7.364 2.582a1 1 0 00-.028 1.838l7 3.5a1 1 0 00.788 0l7-3.5a1 1 0 00-.028-1.838L10 12z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Fisioterapia</h4>
+                <p class="text-black mt-1">Graduação completa com 10 anos de experiência prática no atendimento
+                  especializado.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-[#4a634e]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Disfunções Musculoesqueléticas</h4>
+                <p class="text-black mt-1">Pós-graduação focada no tratamento de problemas de coluna, articulações e
+                  musculatura.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-[#4a634e]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Pilates Clínico e Funcional</h4>
+                <p class="text-black mt-1">Formação completa para reabilitação, prevenção de lesões e melhora da
+                  qualidade de vida.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-[#4a634e]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8.25 6.75h7.5M8.25 12h7.5m-7.5 5.25h7.5M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M18.75 21l-5.25-5.25m0 0L11.25 12l2.25 2.25 5.25 5.25z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Hidroterapia e Fisiologia</h4>
+                <p class="text-black mt-1">Pós-graduação em Fisiologia do Exercício e especialização em fisioterapia
+                  aquática.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-[#4a634e]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Terapias Manuais Avançadas</h4>
+                <p class="text-black mt-1">Técnicas especializadas para coluna, hérnia de disco, liberação miofascial
+                  e massoterapia.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-[#4a634e]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311a15.045 15.045 0 01-7.5 0C4.505 20.995 2.25 18.284 2.25 15c0-1.655.39-3.238 1.125-4.661m17.25 4.661c.735 1.423 1.125 3.006 1.125 4.661 0 3.284-2.255 5.995-5.007 6.637m-5.25 0A15.045 15.045 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Raciocínio Clínico Avançado</h4>
+                <p class="text-black mt-1">Formação contínua (RCA) para um diagnóstico preciso e um tratamento mais
+                  eficaz.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section id="equipamentos-pilates" class="container mx-auto my-12 flex flex-col items-stretch overflow-hidden">
       <div class="flex flex-col w-full pr-6">
@@ -533,7 +606,7 @@
           </div>
         </div>
         <div class="grid col-span-1">
-          <img src="/src/assets/images/beneficios-removebg-preview.png" alt="Benefícios do Pilates"
+          <img src="/src/assets/images/beneficios-sem-fundo (cópia).png" alt="Benefícios do Pilates"
             class="w-full h-full object-cover" />
         </div>
       </div>
@@ -541,77 +614,193 @@
 
 
     <!-- Treatments Section -->
-    <section id="tratamentos" class="container mx-auto section-container">
-      <h2 class="text-4xl font-bold text-salmon text-center mb-8">
-        Tratamentos e Metodologia
+    <section id="tratamentos" class="container mx-auto">
+      <h2 class="text-4xl font-bold text-white text-center mb-8">
+        O que <span class="font-logo-script text-logo-pink text-7xl leading-tight text-center"
+          style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7)">Luiza</span>
+        <span class="font-logo-sans text-logo-pink text-3xl -mt-1 text-center"
+          style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7)">Espaço Saúde e bem estar</span> oferece?
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="card">
-          <div class="flex justify-center mb-4">
-            <img
-              src="__file_access_path__ChatGPT Image 30 de ago. de 2025, 14_50_47.jpg-3ff23cfd-686f-4d53-ac90-a5f973c727a7"
-              alt="Tratamento de Fisioterapia" class="w-24 h-24 object-cover rounded-full mx-auto mb-4" />
+
+      <div class="grid grid-cols-5 items-center justify-center gap-8">
+        <!-- Fisioterapia -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="src/assets/images/fisioterapia.png" alt="Tratamento de Fisioterapia"
+              class="w-full h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">Fisioterapia</h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Avaliação detalhada para entender dores, limitações e necessidades específicas.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Tratamentos para lesões musculoesqueléticas, hérnia de disco, dores articulares e problemas de
+                  postura.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Técnicas como terapia manual e liberação miofascial, sempre com foco na recuperação funcional e
+                  alívio da dor.</span>
+              </li>
+            </ul>
+
           </div>
-          <h3 class="text-2xl font-semibold text-gray-800">Fisioterapia</h3>
-          <p class="text-gray-600 mt-2">
-            Avaliação detalhada para entender dores, limitações e necessidades
-            específicas. Tratamentos para lesões musculoesqueléticas, hérnia
-            de disco, dores articulares e problemas de postura. Técnicas como
-            terapia manual e liberação miofascial, sempre com foco na
-            recuperação funcional e alívio da dor.
-          </p>
         </div>
-        <div class="card">
-          <div class="flex justify-center mb-4">
-            <img
-              src="__file_access_path__Generated Image August 30, 2025 - 3_25PM.jpeg-d6f688a6-e169-451f-9dde-c2e32322e4fb"
-              alt="Estúdio de Pilates" class="w-24 h-24 object-cover rounded-full mx-auto mb-4" />
+        <!-- Pilates Clínico e Funcional -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="src/assets/images/pilates-sem-fundo (cópia).png" alt="Estúdio de Pilates"
+              class="w-full h-60 object-contain" />
+
+            <h3 class="text-2xl font-semibold text-salmon">
+              Pilates Clínico e Funcional
+            </h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Exercícios realizados nos equipamentos (Reformer, Cadillac, Barrel e Chair) e no solo.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Trabalha força, flexibilidade, equilíbrio e postura.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Indicado para reabilitação, prevenção de lesões, melhora da mobilidade e qualidade de vida,
+                  especialmente na terceira idade.</span>
+              </li>
+            </ul>
+
           </div>
-          <h3 class="text-2xl font-semibold text-gray-800">
-            Pilates Clínico e Funcional
-          </h3>
-          <p class="text-gray-600 mt-2">
-            Exercícios realizados nos equipamentos (Reformer, Cadillac, Barrel
-            e Chair) e no solo. Trabalha força, flexibilidade, equilíbrio e
-            postura. Indicado para reabilitação, prevenção de lesões, melhora
-            da mobilidade e qualidade de vida, especialmente na terceira
-            idade.
-          </p>
         </div>
-        <div class="card">
-          <div class="flex justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-              class="w-24 h-24 text-salmon">
-              <path fill-rule="evenodd"
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM9.75 6.75a.75.75 0 0 0-.75.75v10.5a.75.75 0 0 0 .75.75h4.5a.75.75 0 0 0 .75-.75V7.5a.75.75 0 0 0-.75-.75h-4.5Z"
-                clip-rule="evenodd" />
-            </svg>
+        <!-- Treinamento Funcional -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="src/assets/images/funcional.png" alt="Treinamento Funcional" class="w-full h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">
+              Treinamento Funcional
+            </h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Exercícios que simulam movimentos do dia a dia, fortalecendo todo o corpo.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Foco na melhora da resistência, do equilíbrio e da coordenação.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Excelente para aumentar disposição, prevenir quedas e tornar atividades cotidianas mais fáceis e
+                  seguras.</span>
+              </li>
+            </ul>
+
           </div>
-          <h3 class="text-2xl font-semibold text-gray-800">
-            Treinamento Funcional
-          </h3>
-          <p class="text-gray-600 mt-2">
-            Exercícios que simulam movimentos do dia a dia, fortalecendo todo
-            o corpo. Foco na melhora da resistência, do equilíbrio e da
-            coordenação. Excelente para aumentar disposição, prevenir quedas e
-            tornar atividades cotidianas mais fáceis e seguras.
-          </p>
         </div>
-        <div class="card">
-          <div class="flex justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-              class="w-24 h-24 text-salmon">
-              <path
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm0 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-            </svg>
+        <!-- Massoterapia -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="src/assets/images/massoterapia-sem-fundo.png" alt="Massoterapia"
+              class="w-full h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">Massoterapia</h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Técnicas de massagem terapêutica para relaxamento e alívio das tensões musculares.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Auxilia na circulação sanguínea, reduz estresse e contribui para o bem-estar geral.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Pode ser combinada com outros tratamentos para melhores resultados.</span>
+              </li>
+            </ul>
+
           </div>
-          <h3 class="text-2xl font-semibold text-gray-800">Massoterapia</h3>
-          <p class="text-gray-600 mt-2">
-            Técnicas de massagem terapêutica para relaxamento e alívio das
-            tensões musculares. Auxilia na circulação sanguínea, reduz
-            estresse e contribui para o bem-estar geral. Pode ser combinada
-            com outros tratamentos para melhores resultados.
-          </p>
+        </div>
+        <!-- Atendimento Médico -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="src/assets/images/atendimento-medico-sem-fundo.png" alt="Atendimento Médico"
+              class="w-full h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">Atendimento Médico</h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Técnicas de massagem terapêutica para relaxamento e alívio das tensões musculares..</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Auxilia na circulação sanguínea, reduz estresse e contribui para o bem-estar geral.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Pode ser combinada com outros tratamentos para melhores resultados.</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
