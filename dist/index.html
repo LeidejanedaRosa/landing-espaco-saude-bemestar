@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luiza Fisioterapeuta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Great+Vibes:wght@400&family=Lato:wght@300;400;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #0a988b, #d98f0f);
+      color: #1a202c;
+    }
+
+    .font-script {
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-logo-script {
+      font-family: 'Great Vibes', cursive;
+    }
+
+    .font-logo-sans {
+      font-family: 'Poppins', sans-serif !important;
+    }
+
+    .text-logo-pink {
+      color: #e8a5c0;
+    }
+
+    .bg-logo-pink {
+      background-color: #e8a5c0;
+    }
+
+    .header-bg {
+      background-color: #0a988b;
+    }
+
+    .text-salmon {
+      color: #d98f0f;
+    }
+
+    .bg-salmon {
+      background-color: #d98f0f;
+    }
+
+    .section-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styling for the main container */
+
+    .card-container {
+      display: flex;
+      /* Arranges the cards in a row */
+      justify-content: center;
+      /* Centers the cards horizontally */
+      gap: 20px;
+      /* Adds space between the cards */
+      /* background-color: #008080; */
+      /* Teal background color */
+      padding: 50px;
+      /* Spacing around the cards */
+    }
+
+    /* Styling for each individual card */
+
+    .card {
+      background-color: #d19400;
+      /* Orange-yellow background */
+      color: white;
+      /* White text color */
+      /* padding: 30px; */
+      border-radius: 20px;
+      /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      /* A subtle shadow for depth */
+      width: 380px;
+    }
+
+    .card-services {
+      /*
+    Degradê vertical que cria o efeito de bordas suaves:
+    - Começa transparente
+    - Passa para branco/80
+    - Transiciona para #d19400
+    - Termina transparente
+  */
+      background: linear-gradient(to bottom,
+          transparent,
+          rgba(255, 255, 255, 0.8) 50%,
+          #d19400 90%);
+      padding: 1.5rem;
+      text-align: center;
+      /* A cor do texto pode precisar de ajuste para garantir a legibilidade */
+      color: #333;
+      /* Sugestão: cor escura para bom contraste */
+      height: 900px;
+      padding: 30px;
+      border-radius: 20px;
+      /* Cantos arredondados ainda funcionam bem */
+      /* width: 380px; */
+
+      /* REMOVA o box-shadow para que não haja bordas definidas */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Styling for the card title */
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Styling for the card description */
+
+    .card-description {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* To handle the floating dot from the image */
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      background-color: #008080;
+      /* Match the container background */
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-50 p-4 transition-all duration-300 header-bg shadow-lg">
+    <nav class="container mx-auto flex items-center justify-between flex-wrap">
+      <a href="#hero" class="flex items-center flex-shrink-0 text-white mr-6">
+        <span
+          class="inline-flex items-center justify-center w-24 h-24 mr-4 bg-white rounded-full border border-gray-200 shadow-xl">
+          <img src="/assets/logo-espaco-sem-texto-hTpbWrlh.png" alt="Logo Luiza Fisioterapeuta"
+            class="w-24 h-24 object-contain" />
+        </span>
+        <div class="flex flex-col items-center justify-center">
+          <span class="font-logo-script text-logo-pink text-5xl leading-tight text-center"
+            style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7)">Luiza</span>
+          <span class="font-logo-sans text-logo-pink text-xl -mt-1 text-center"
+            style="text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7)">Espaço Saúde e bem estar</span>
+        </div>
+      </a>
+      <div class="block lg:hidden">
+        <button id="nav-toggle"
+          class="flex items-center px-3 py-2 border rounded text-white border-white hover:text-gray-300 hover:border-gray-300">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div id="nav-content" class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden">
+        <div class="text-xl lg:flex-grow lg:text-center">
+          <a href="#sobre-mim"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-8 transition-colors duration-300">Sobre
+            Mim</a>
+          <a href="#equipamentos"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-8 transition-colors duration-300">Equipamentos</a>
+          <a href="#beneficios"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-8 transition-colors duration-300">Benefícios</a>
+          <a href="#tratamentos"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-8 transition-colors duration-300">Tratamentos</a>
+          <a href="#depoimentos"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 transition-colors duration-300">Depoimentos</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-24 md:pt-32 px-4">
+    <!-- Hero Section -->
+    <section id="hero"
+      class="container mx-auto flex flex-col items-center justify-center p-8 lg:gap-0 lg:mt-2 md:p-16 lg:pt-4 text-center lg:text-left section-container">
+      <div class="flex justify-center">
+        <!-- <img src="/src/assets/images/logo-espaco-sem-fundo.png" alt="Logo Luiza Fisioterapeuta"
+            class="w-88 object-contain"> -->
+        <img src="/assets/movimento-cura-sem-bg-D4qmhI1_.png" alt="Ilustração de uma pessoa se exercitando"
+          class="w-screen" />
+      </div>
+
+      <div class="flex w-full gap-4">
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white ">Fisioterapia</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white text-wrap">Pilates Clínico e Funcional</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white">Treinamento Funcional</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white">Massoterapia</h2>
+        </div>
+        <div class="card flex items-center justify-center">
+          <h2 class="text-2xl font-bold text-white">Serviço Médico</h2>
+        </div>
+      </div>
+      <p class="text-xl text-gray-700 leading-relaxed border-l-4 border-green-600 pl-8 mt-8">
+        O espaço foi pensado para oferecer um atendimento completo e individualizado, unindo saúde, movimento e
+        bem-estar. Aqui, cada pessoa é acompanhada de forma personalizada, respeitando suas necessidades, limitações e
+        objetivos.
+      </p>
+    </section>
+
+    <!-- About Section -->
+    <section id=" sobre-mim" class="container mx-auto section-container">
+      <div class="flex flex-row items-center justify-center gap-16">
+        <div class="lg:w-1/2 flex justify-center mb-8 lg:mb-0">
+          <img src="/assets/Luiza-D-NYAHJa.png" alt="Imagem da Luiza, fisioterapeuta"
+            class="rounded-lg shadow-lg object-cover w-full h-[400px]" />
+        </div>
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <h2 class="text-4xl font-bold text-salmon mb-4">Sobre a Luiza</h2>
+          <p class="text-xl text-gray-700 leading-relaxed">
+            Sou a Luiza, formada em Fisioterapia há 10 anos, com pós-graduação em Fisiologia e Prescrição de Exercícios
+            e em Fisioterapia nas Disfunções Musculoesqueléticas.
+            Tenho formação em Pilates clínico e funcional, fisioterapia aquática (hidroterapia), terapia manual para
+            coluna vertebral, tratamento de hérnia de disco, liberação miofascial e massoterapia, além de formação
+            contínua em Raciocínio Clínico Avançado (RCA).
+            Minha prática une conhecimento científico atualizado e técnicas especializadas para oferecer atendimento
+            individualizado, com foco na reabilitação, na prevenção de lesões e na melhora da qualidade de vida.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certificacoes" class="container mx-auto my-12 bg-[#4a634e] rounded-3xl shadow-xl">
+      <div class="container mx-auto p-12 ">
+        <div class="bg-white/80 rounded-3xl shadow-xl p-8 md:p-12">
+
+          <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-salmon mb-3">
+              Certificações e Qualificações
+            </h2>
+            <p class="text-lg text-black">
+              Minhas especializações garantem o melhor e mais completo atendimento para você:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-green-500">
+                <!-- Ícone de fisioterapia: Caduceu -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-activity h-8 w-8">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Fisioterapia</h4>
+                <p class="text-black mt-1">Graduação completa com 10 anos de experiência prática no atendimento
+                  especializado.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-green-500">
+                <!-- Ícone de coluna vertebral para Disfunções Musculoesqueléticas -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 3c1.5 0 2 .5 2 2s-.5 2-2 2-2-.5-2-2 .5-2 2-2zm0 4v2m0 2c1.5 0 2 .5 2 2s-.5 2-2 2-2-.5-2-2 .5-2 2-2zm0 4v2m0 2c1.5 0 2 .5 2 2s-.5 2-2 2-2-.5-2-2 .5-2 2-2z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Disfunções Musculoesqueléticas</h4>
+                <p class="text-black mt-1">Pós-graduação focada no tratamento de problemas de coluna, articulações e
+                  musculatura.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-green-500">
+                <!-- Ícone de bola de pilates para Pilates Clínico e Funcional -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="2" fill="none" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 12a4 4 0 018 0" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Pilates Clínico e Funcional</h4>
+                <p class="text-black mt-1">Formação completa para reabilitação, prevenção de lesões e melhora da
+                  qualidade de vida.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-green-500">
+                <!-- Ícone de água para Hidroterapia e Fisiologia -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 3c0 6-7 9-7 13a7 7 0 0014 0c0-4-7-7-7-13z" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Hidroterapia e Fisiologia</h4>
+                <p class="text-black mt-1">Pós-graduação em Fisiologia do Exercício e especialização em fisioterapia
+                  aquática.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-green-500">
+                <!-- Ícone de mão para Terapias Manuais Avançadas -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M7 11V7a2 2 0 114 0v4m0 0V5a2 2 0 114 0v6m0 0v2a5 5 0 01-10 0v-2" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Terapias Manuais Avançadas</h4>
+                <p class="text-black mt-1">Técnicas especializadas para coluna, hérnia de disco, liberação miofascial
+                  e massoterapia.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 text-green-500">
+                <!-- Ícone de cérebro para Raciocínio Clínico Avançado -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8 12a4 4 0 018 0m-8 0a4 4 0 018 0m-8 0v2a4 4 0 008 0v-2" />
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none" />
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xl font-semibold text-[#4a634e]">Raciocínio Clínico Avançado</h4>
+                <p class="text-black mt-1">Formação contínua (RCA) para um diagnóstico preciso e um tratamento mais
+                  eficaz.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Treatments Section -->
+    <section id="tratamentos" class="container mx-auto">
+      <h2 class="text-4xl font-bold text-white text-center mb-8">
+        O que <span class="font-logo-script text-logo-pink text-7xl leading-tight text-center"
+          style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7)">Luiza</span>
+        <span class="font-logo-sans text-logo-pink text-3xl -mt-1 text-center"
+          style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7)">Espaço Saúde e bem estar</span> oferece?
+      </h2>
+
+
+      <div class="grid grid-cols-5 items-center justify-center gap-8">
+        <!-- Fisioterapia -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="/assets/fisioterapia-UGue4pkf.png" alt="Tratamento de Fisioterapia"
+              class="w-full h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">Fisioterapia</h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+
+                <span>Avaliação detalhada para entender dores, limitações e necessidades específicas.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Tratamentos para lesões musculoesqueléticas, hérnia de disco, dores articulares e problemas de
+                  postura.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Técnicas como terapia manual e liberação miofascial, sempre com foco na recuperação funcional e
+                  alívio da dor.</span>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- Pilates Clínico e Funcional -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="/assets/pilates-sem-fundo-copia-DyE5ciqB.png" alt="Estúdio de Pilates"
+              class="w-full h-60 object-contain" />
+
+            <h3 class="text-2xl font-semibold text-salmon">
+              Pilates Clínico e Funcional
+            </h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Exercícios realizados nos equipamentos (Reformer, Cadillac, Barrel e Chair) e no solo.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Trabalha força, flexibilidade, equilíbrio e postura.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Indicado para reabilitação, prevenção de lesões, melhora da mobilidade e qualidade de vida,
+                  especialmente na terceira idade.</span>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- Treinamento Funcional -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="/assets/funcional-guLETgS8.png" alt="Treinamento Funcional" class="w-fit h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">
+              Treinamento Funcional
+            </h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Exercícios que simulam movimentos do dia a dia, fortalecendo todo o corpo.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Foco na melhora da resistência, do equilíbrio e da coordenação.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Excelente para aumentar disposição, prevenir quedas e tornar atividades cotidianas mais fáceis e
+                  seguras.</span>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- Massoterapia -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="/assets/massoterapia-sem-fundo-Dms0JjNh.png" alt="Massoterapia"
+              class="w-full h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">Massoterapia</h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Técnicas de massagem terapêutica para relaxamento e alívio das tensões musculares.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Auxilia na circulação sanguínea, reduz estresse e contribui para o bem-estar geral.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Pode ser combinada com outros tratamentos para melhores resultados.</span>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+        <!-- Atendimento Médico -->
+        <div class="flex flex-col items-center justify-center">
+          <div class="flex flex-col gap-8 card-services">
+            <img src="/assets/atendimento-medico-sem-fundo-DJ64uqrU.png" alt="Atendimento Médico"
+              class="w-full h-60 object-cover" />
+
+            <h3 class="text-2xl font-semibold text-salmon">Atendimento Médico</h3>
+            <ul class="text-black mt-4 space-y-3 text-start">
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Técnicas de massagem terapêutica para relaxamento e alívio das tensões musculares..</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Auxilia na circulação sanguínea, reduz estresse e contribui para o bem-estar geral.</span>
+              </li>
+
+              <li class="flex items-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600 flex-shrink-0" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Pode ser combinada com outros tratamentos para melhores resultados.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 p-6 rounded-lg bg-green-100 border-l-4 border-green-800 flex items-start space-x-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 flex-shrink-0" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="text-gray-700">
+          <span class="font-bold">Nosso objetivo:</span> O objetivo é promover mais saúde, movimento e
+          qualidade de vida, com um ambiente acolhedor e profissionais
+          qualificados, onde cada paciente se sente cuidado de forma única.
+        </p>
+      </div>
+    </section>
+
+    <!--  Recommended Section -->
+    <section id="recomendado" class="container mx-auto section-container py-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-salmon mb-10">Para quem o pilates é indicado?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div class="bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center p-8">
+          <svg xmlns="http://www.w3.org/2000/svg" style="fill: #6D934F" width="50%" height="50%"
+            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <path
+              d="M328 32C358.9 32 384 57.1 384 88C384 118.9 358.9 144 328 144C297.1 144 272 118.9 272 88C272 57.1 297.1 32 328 32zM240 300.7L193.7 363.1C183.2 377.3 163.1 380.3 148.9 369.7C134.7 359.1 131.7 339.1 142.3 324.9L212.8 229.9C238 196 277.7 176 320 176C362.3 176 402 196 427.2 229.9L497.7 324.9C508.2 339.1 505.3 359.1 491.1 369.7C476.9 380.3 456.9 377.3 446.3 363.1L400 300.7L400 576C400 593.7 385.7 608 368 608C350.3 608 336 593.7 336 576L336 416C336 407.2 328.8 400 320 400C311.2 400 304 407.2 304 416L304 576C304 593.7 289.7 608 272 608C254.3 608 240 593.7 240 576L240 300.7zM488 448C483.6 448 480 451.6 480 456C480 469.3 469.3 480 456 480C442.7 480 432 469.3 432 456C432 425.1 457.1 400 488 400C518.9 400 544 425.1 544 456L544 584C544 597.3 533.3 608 520 608C506.7 608 496 597.3 496 584L496 456C496 451.6 492.4 448 488 448z" />
+          </svg>
+          <!-- <i class="fa-solid fa-person-cane text-9xl mb-4" style="color: #6D934F;"></i> -->
+          <button class="bg-[#6D934F] text-white font-semibold rounded-lg px-8 py-3 mt-2">Idosos</button>
+        </div>
+        <div class="bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center p-8">
+          <i class="fa-solid fa-dumbbell text-9xl mb-4" style="color: #6D934F;"></i>
+          <button class="bg-[#6D934F] text-white font-semibold rounded-lg px-8 py-3 mt-2">Adultos em geral</button>
+        </div>
+        <div class="bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center p-8">
+          <svg xmlns="http://www.w3.org/2000/svg" style="fill: #6D934F" width="50%" height="50%"
+            viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+            <path
+              d="M320 144C350.9 144 376 118.9 376 88C376 57.1 350.9 32 320 32C289.1 32 264 57.1 264 88C264 118.9 289.1 144 320 144zM400 465.2C408.6 460.7 416.8 455.2 424.3 448.7L428.3 445.3C450.9 425.9 464 397.6 464 367.7C464 331.8 445.2 298.6 414.4 280.1L384 261.9L384 260.1C384 213.6 346.3 176 299.9 176C271.8 176 245.5 190.1 229.9 213.5L149.4 334.2C139.6 348.9 143.6 368.8 158.3 378.6C173 388.4 192.9 384.4 202.7 369.7L231.7 326.2L201.2 439.7C198.6 449.3 200.6 459.6 206.7 467.5C212.8 475.4 222 480 232 480L240 480L240 576C240 593.7 254.3 608 272 608C289.7 608 304 593.7 304 576L304 480L336 480L336 576C336 593.7 350.3 608 368 608C385.7 608 400 593.7 400 576L400 465.2z" />
+          </svg>
+          <i class="fa-solid fa-person-pregnant text-9xl mb-4" style="color: #6D934F;"></i>
+          <button class="bg-[#6D934F] text-white font-semibold rounded-lg px-8 py-3 mt-2">Gestantes</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center p-8">
+          <i class="fa-solid fa-wheelchair text-9xl mb-4" style="color: #6D934F;"></i>
+          <button class="bg-[#6D934F] text-white font-semibold rounded-lg px-8 py-3 mt-2">Pessoas em
+            reabilitação</button>
+        </div>
+        <div class="bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center p-8">
+          <i class="fa-solid fa-person-running text-9xl mb-4" style="color: #6D934F;"></i>
+          <button class="bg-[#6D934F] text-white font-semibold rounded-lg px-8 py-3 mt-2">Atletas</button>
+        </div>
+        <div class="bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center p-8">
+          <i class="fa-solid fa-heart-pulse text-9xl mb-4" style="color: #6D934F;"></i>
+          <button class="bg-[#6D934F] text-white font-semibold rounded-lg px-8 py-3 mt-2">Praticantes de atividade
+            física</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pilates Equipment Section -->
+    <section id="equipamentos-pilates" class="container mx-auto my-12 flex flex-col items-stretch overflow-hidden ">
+      <div class="flex flex-col w-full pr-6">
+        <h2 class="text-4xl font-bold text-white text-center mb-12 drop-shadow-md">Equipamentos</h2>
+        <div class="flex flex-wrap gap-12 justify-center">
+          <!-- Bicicleta -->
+          <div class="equipamento-item group relative w-full md:w-[calc(33.333%-32px)] mb-12">
+
+            <div
+              class="image-card z-20 bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center justify-center p-6 w-full flex-shrink-0 transition-opacity duration-500 ease-in-out group-[.is-open]:opacity-0 absolute">
+              <img src="/assets/pilates-bicicleta-C6osIG9b.png" alt="Bicicleta"
+                class="w-full h-[300px] object-contain" />
+              <h3 class="font-extrabold text-3xl text-[#17936b]">Bicicleta</h3>
+            </div>
+
+            <div
+              class="info-card relative z-10 bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-center h-[385px] w-full transition-opacity duration-500 ease-in-out opacity-0 group-[.is-open]:opacity-100">
+              <div class="pl-8">
+                <h3 class="font-extrabold text-xl text-[#17936b] mb-2">Bicicleta</h3>
+                <p class="text-gray-700 text-base font-light mb-4">
+                  A bicicleta ergométrica horizontal é uma forma segura, confortável e eficiente de se exercitar,
+                  ajudando a:
+                </p>
+                <ul class="text-gray-700 text-base font-light space-y-2 flex-grow">
+                  <li><span class="font-semibold">Fortalece pernas</span> e articulações</li>
+                  <li><span class="font-semibold">Melhora a mobilidade</span> e postura</li>
+                  <li><span class="font-semibold">Cuida do coração</span> e circulação</li>
+                  <li><span class="font-semibold">Mais energia</span> para o dia a dia</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="toggle-info absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-30 bg-salmon text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-salmon-dark">
+              <svg class="w-6 h-6 group-[.is-open]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <svg class="w-6 h-6 hidden group-[.is-open]:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+          </div>
+          <!-- Reformer -->
+          <div class="equipamento-item group relative w-full md:w-[calc(33.333%-32px)] mb-12">
+
+            <div
+              class="image-card z-20 bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center justify-center p-6 w-full flex-shrink-0 transition-opacity duration-500 ease-in-out group-[.is-open]:opacity-0 absolute">
+              <img src="/assets/pilates-reformer-G6sVm7_H.jpg" alt="Reformer"
+                class="w-full h-[300px] object-contain" />
+              <h3 class="font-extrabold text-3xl text-[#17936b]">Reformer</h3>
+            </div>
+
+            <div
+              class="info-card relative z-10 bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-center h-[385px] w-full transition-opacity duration-500 ease-in-out opacity-0 group-[.is-open]:opacity-100">
+              <div class="pl-8">
+                <h3 class="font-extrabold text-xl text-[#17936b] mb-2">Reformer</h3>
+                <p class="text-gray-700 text-base font-light mb-4">
+                  É um dos equipamentos mais conhecidos do pilates. Possui uma estrutura com molas, carrinho deslizante
+                  e barras que permitem centenas de variações de exercícios.
+                </p>
+                <ul class="text-gray-700 text-base font-light space-y-2 list-none flex-grow">
+                  <li><span class="font-semibold">Trabalha o corpo todo </span>em diferentes posições (deitado, sentado,
+                    em pé)</li>
+                  <li><span class="font-semibold">Proporciona fortalecimento muscular </span>com baixo impacto</li>
+                  <li><span class="font-semibold">Ajuda na reabilitação </span>e no ganho de mobilidade</li>
+                  <li><span class="font-semibold">Permite ajustar a resistência </span>conforme a necessidade de cada
+                    aluno/paciente</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="toggle-info absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-30 bg-salmon text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-salmon-dark">
+              <svg class="w-6 h-6 group-[.is-open]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <svg class="w-6 h-6 hidden group-[.is-open]:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+          </div>
+          <!-- Cadillac -->
+          <div class="equipamento-item group relative w-full md:w-[calc(33.333%-32px)] mb-12">
+
+            <div
+              class="image-card z-20 bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center justify-center p-6 w-full flex-shrink-0 transition-opacity duration-500 ease-in-out group-[.is-open]:opacity-0 absolute">
+              <img src="/assets/pilates-cadillac-DPsagOup.png" alt="Cadillac"
+                class="w-full h-[300px] object-contain" />
+              <h3 class="font-extrabold text-3xl text-[#17936b]">Cadillac</h3>
+            </div>
+
+            <div
+              class="info-card relative z-10 bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-center h-[385px] w-full transition-opacity duration-500 ease-in-out opacity-0 group-[.is-open]:opacity-100">
+              <div class="pl-8">
+                <h3 class="font-extrabold text-xl text-[#17936b] mb-2">Cadillac</h3>
+                <p class="text-gray-700 text-base font-light mb-4">
+                  Também chamado de “trapézio”, é uma grande estrutura com barras e molas.
+                </p>
+                <ul class="text-gray-700 text-base font-light space-y-2 list-none flex-grow">
+                  <li><span class="font-semibold">Excelente para alongamentos, </span>fortalecimentos e mobilidade </li>
+                  <li><span class="font-semibold">Oferece suporte e segurança </span> para idosos ou pessoas em
+                    reabilitação</li>
+                  <li><span class="font-semibold">Permite exercícios avançados </span> e desafiadores para praticantes
+                    experientes</li>
+                  <li><span class="font-semibold">Trabalha muito a estabilidade </span> e o controle postural</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="toggle-info absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-30 bg-salmon text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-salmon-dark">
+              <svg class="w-6 h-6 group-[.is-open]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <svg class="w-6 h-6 hidden group-[.is-open]:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+          </div>
+          <!-- Barrel -->
+          <div class="equipamento-item group relative w-full md:w-[calc(33.333%-32px)] mb-12">
+
+            <div
+              class="image-card z-20 bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center justify-center p-6 w-full flex-shrink-0 transition-opacity duration-500 ease-in-out group-[.is-open]:opacity-0 absolute">
+              <img src="/assets/barrel-se-bg-BoDqprM5.png" alt="Barrel" class="w-full h-[300px] object-contain" />
+              <h3 class="font-extrabold text-3xl text-[#17936b]">Barrel</h3>
+            </div>
+
+            <div
+              class="info-card relative z-10 bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-center h-[385px] w-full transition-opacity duration-500 ease-in-out opacity-0 group-[.is-open]:opacity-100">
+              <div class="pl-8">
+                <h3 class="font-extrabold text-xl text-[#17936b] mb-2">Barrel</h3>
+                <p class="text-gray-700 text-base font-light mb-4">
+                  Conhecido como “barril”, é usado principalmente para alongamentos e exercícios de flexibilidade.
+                </p>
+                <ul class="text-gray-700 text-base font-light space-y-2 list-none flex-grow">
+                  <li><span class="font-semibold">Alongamento profundo da coluna </span>e cadeia posterior</li>
+                  <li><span class="font-semibold">Melhora da postura </span>e da consciência corporal</li>
+                  <li><span class="font-semibold">Fortalecimento do core </span>e mobilidade de quadril e ombros</li>
+                  <li><span class="font-semibold">Muito utilizado para liberar </span> tensões musculares</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="toggle-info absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-30 bg-salmon text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-salmon-dark">
+              <svg class="w-6 h-6 group-[.is-open]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <svg class="w-6 h-6 hidden group-[.is-open]:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+          </div>
+          <!-- Chair -->
+          <div class="equipamento-item group relative w-full md:w-[calc(33.333%-32px)] mb-12">
+
+            <div
+              class="image-card z-20 bg-[#e6f6ef] rounded-2xl shadow-lg flex flex-col items-center justify-center p-6 w-full flex-shrink-0 transition-opacity duration-500 ease-in-out group-[.is-open]:opacity-0 absolute">
+              <img src="/assets/chair-sem-bg-B2WTwQrE.png" alt="Chair" class="w-full h-[300px] object-contain" />
+              <h3 class="font-extrabold text-3xl text-[#17936b]">Chair</h3>
+            </div>
+
+            <div
+              class="info-card relative z-10 bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-center h-[385px] w-full transition-opacity duration-500 ease-in-out opacity-0 group-[.is-open]:opacity-100">
+              <div class="pl-8">
+                <h3 class="font-extrabold text-xl text-[#17936b] mb-2">Chair</h3>
+                <p class="text-gray-700 text-base font-light mb-4">
+                  Uma espécie de cadeira com pedais e molas reguláveis, bastante versátil.
+                </p>
+                <ul class="text-gray-700 text-base font-light space-y-2 list-none flex-grow">
+                  <li><span class="font-semibold">Fortalecimento intenso, </span> especialmente de pernas e glúteos</li>
+                  <li><span class="font-semibold">Melhora o equilíbrio </span>e a coordenação motora</li>
+                  <li><span class="font-semibold">Excelente para treinos de força </span> em pouco espaço</li>
+                  <li><span class="font-semibold">Pode ser adaptada </span>tanto para iniciantes quanto para exercícios
+                    avançados</li>
+                </ul>
+              </div>
+            </div>
+
+            <button
+              class="toggle-info absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 z-30 bg-salmon text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md focus:outline-none focus:ring-2 focus:ring-salmon-dark">
+              <svg class="w-6 h-6 group-[.is-open]:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+              <svg class="w-6 h-6 hidden group-[.is-open]:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.querySelectorAll('.toggle-info').forEach(button => {
+        button.addEventListener('click', () => {
+          const parentCard = button.closest('.equipamento-item');
+          parentCard.classList.toggle('is-open');
+        });
+      });
+    </script>
+
+
+    <!-- Metodologia Section -->
+    <section id="metodologia" class="container mx-auto section-container py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div class="flex justify-center">
+          <img src="/assets/metodologia-5nRxoakE.png" alt="Profissional auxiliando paciente idoso sentado"
+            class="w-full h-[800px] rounded-xl shadow-lg" />
+        </div>
+        <div class="flex flex-col h-[800px] justify-between">
+          <h2 class="text-4xl font-bold text-salmon mb-8">Nossa Metodologia</h2>
+          <ol class="relative border-s-4 border-[#4a634e] ps-0 space-y-16 ">
+            <li class="relative">
+              <span
+                class="absolute flex items-center justify-center w-12 h-12 -left-6 top-0 bg-[#4a634e] rounded-2xl text-white text-lg font-bold">1</span>
+              <div class="ps-20 relative">
+                <span class="absolute top-6 left-1 w-16 h-1 bg-[#4a634e] -mt-px transform -translate-y-1/2"></span>
+                <span class="font-bold inline-block mt-1 text-2xl text-gray-800">Avaliação Inicial</span><br>
+                <span class="text-gray-600 text-base">Análise completa do histórico médico, avaliação postural, testes
+                  de força, flexibilidade e equilíbrio para entender suas necessidades específicas.</span>
+              </div>
+            </li>
+            <li class="relative ">
+              <span
+                class="absolute flex items-center justify-center w-12 h-12 -left-6 top-0 bg-[#4a634e] rounded-2xl text-white text-lg font-bold">2</span>
+              <div class="ps-20 relative">
+                <span class="absolute top-6 left-1 w-16 h-1 bg-[#4a634e] -mt-px transform -translate-y-1/2"></span>
+                <span class="font-bold inline-block mt-1 text-2xl text-gray-800">Plano Personalizado</span><br>
+                <span class="text-gray-600 text-base">Desenvolvimento de um programa individual baseado em seus
+                  objetivos, limitações e preferências. Cada exercício é escolhido especialmente para você.</span>
+              </div>
+            </li>
+            <li class="relative">
+              <span
+                class="absolute flex items-center justify-center w-12 h-12 -left-6 top-0 bg-[#4a634e] rounded-2xl text-white text-lg font-bold">3</span>
+              <div class="ps-20 relative">
+                <span class="absolute top-6 left-1 w-16 h-1 bg-[#4a634e] -mt-px transform -translate-y-1/2"></span>
+                <span class="font-bold inline-block mt-1 text-2xl text-gray-800">Acompanhamento Próximo</span><br>
+                <span class="text-gray-600 text-base">Supervisão constante durante os exercícios, ajustes conforme sua
+                  evolução e orientações para atividades em casa.</span>
+              </div>
+            </li>
+            <li class="relative">
+              <span
+                class="absolute flex items-center justify-center w-12 h-12 -left-6 top-0 bg-[#4a634e] rounded-2xl text-white text-lg font-bold">4</span>
+              <div class="ps-20 relative">
+                <span class="absolute top-6 left-1 w-16 h-1 bg-[#4a634e] -mt-px transform -translate-y-1/2"></span>
+                <span class="font-bold inline-block mt-1 text-2xl text-gray-800">Reavaliação Contínua</span><br>
+                <span class="text-gray-600 text-base">Monitoramento regular dos progressos com ajustes no plano de
+                  tratamento para garantir resultados otimizados e duradouros.</span>
+              </div>
+            </li>
+          </ol>
+          <div class="mt-8 p-6 rounded-lg bg-green-100 border-l-4 border-green-600 flex items-start space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 flex-shrink-0" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-gray-700">
+              <span class="font-bold">Compromisso com a excelência:</span> Nossa abordagem combina técnica científica
+              com cuidado humano, garantindo que cada sessão seja produtiva e agradável.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="depoimentos" class="container mx-auto section-container">
+      <h2 class="text-4xl font-bold text-salmon text-center mb-8">
+        O que dizem sobre nós
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card">
+          <img class="w-24 h-32 rounded-full mx-auto mb-4 object-cover" src="/assets/Leidejane_da_Rosa-QphDDmQN.png"
+            alt="Foto de Paciente 1" />
+          <p class="text-lg italic text-gray-700">
+            "Sinto uma grande melhora na minha postura e nas dores. A Luiza é
+            uma profissional incrível e atenciosa..."
+          </p>
+          <a href="https://share.google/iis78GJjcBJA86a6h" class="text-white hover:underline">Leia mais</a>
+          <p class="font-bold text-gray-800 mt-2">- Maria, 72 anos</p>
+        </div>
+        <div class="card">
+          <img class="w-24 h-32 rounded-full mx-auto mb-4 object-cover" src="/assets/Leidejane_da_Rosa-QphDDmQN.png"
+            alt="Foto de Paciente 2" />
+          <p class="text-lg italic text-gray-700">
+            "Não tenho mais medo de cair. Ganhei muito mais equilíbrio e
+            força. Recomendo a todos ..."
+          </p>
+          <a href="https://share.google/iis78GJjcBJA86a6h" class="text-white hover:underline">Leia mais</a>
+          <p class="font-bold text-gray-800 mt-2">- João, 68 anos</p>
+        </div>
+        <div class="card">
+          <img class="w-24 h-32 rounded-full mx-auto mb-4 object-cover" src="/assets/Leidejane_da_Rosa-QphDDmQN.png"
+            alt="Foto de Paciente 3" />
+          <p class="text-lg italic text-gray-700">
+            "O pilates mudou a minha vida. Sinto mais energia e disposição para o dia a dia. Excelente atendimento ..."
+          </p>
+          <a href="https://share.google/iis78GJjcBJA86a6h" class="text-white hover:underline">Leia mais</a>
+          <p class="font-bold text-gray-800 mt-2">- Ana, 75 anos</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-salmon text-white p-8 md:p-12 mt-8 rounded-t-3xl">
+    <div class="container mx-auto text-center md:flex md:justify-around items-center">
+      <div class="mb-6 md:mb-0">
+        <h3 class="text-2xl font-bold mb-2">Contato</h3>
+        <p class="text-lg">
+          <a href="https://maps.google.com/?q=Rua+Exemplo,+123+-+Cidade,+Estado" target="_blank"
+            class="flex items-center justify-center md:justify-start mb-2"><svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2">
+              <path fill-rule="evenodd"
+                d="m11.54 22.351.07.07.067.067a.75.75 0 0 0 1.06 0l.067-.067.07-.07a8.736 8.736 0 0 0 2.458-1.52c1.76-1.574 2.706-3.795 2.706-6.173a8.75 8.75 0 0 0-17.5 0c0 2.378.945 4.6 2.706 6.174a8.736 8.736 0 0 0 2.458 1.52ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+                clip-rule="evenodd" />
+            </svg>Rua Exemplo, 123 - Cidade, Estado</a>
+          <a href="tel:+5521999999999" class="flex items-center justify-center md:justify-start mb-2"><svg
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2">
+              <path fill-rule="evenodd"
+                d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.583 1.844 1.397l1.723 6.336a.75.75 0 0 1-.417.97l-5.127 2.784a1.8 1.8 0 0 0-.964 1.638l.05.353a.75.75 0 0 1-.225.596l-1.602 1.602a.75.75 0 0 1-1.06 0L1.5 16.5a.75.75 0 0 1 0-1.06l1.602-1.602a.75.75 0 0 1 .596-.225l.353.05a1.8 1.8 0 0 0 1.638-.964l2.784-5.127a.75.75 0 0 1 .97-.417l6.336 1.723c.814.234 1.397 1.012 1.397 1.844V20.25c0 .86.583 1.61 1.397 1.844l6.336 1.723a.75.75 0 0 1 .97-.417l2.784-5.127a.75.75 0 0 1-.417-.97l-5.127-2.784a1.8 1.8 0 0 0-.964-1.638l.05-.353a.75.75 0 0 1-.225-.596l-1.602-1.602a.75.75 0 0 1 0-1.06L16.5 7.5a.75.75 0 0 1-1.06 0L13.838 5.898a1.8 1.8 0 0 0-1.638-.964l-.353.05a.75.75 0 0 1-.596-.225L10.27 3.336a.75.75 0 0 1-.417-.97l-6.336-1.723a.75.75 0 0 1-.97.417l-2.784 5.127a.75.75 0 0 1 .417.97l5.127 2.784a1.8 1.8 0 0 0 .964 1.638Z"
+                clip-rule="evenodd" />
+            </svg>(XX) XXXXX-XXXX</a>
+          <a href="mailto:contato@luiza.com.br" class="flex items-center justify-center md:justify-start"><svg
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2">
+              <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.625 5.25a3 3 0 0 1-3.35 0L1.5 8.67Z" />
+              <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.75 5.929a3 3 0 0 0 3 0L22.5 6.908Z" />
+            </svg>contato@luiza.com.br</a>
+        </p>
+      </div>
+      <div class="flex flex-col items-center">
+        <h3 class="text-2xl font-bold mb-2">Siga-nos</h3>
+        <div class="flex space-x-4">
+          <a href="#" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+              class="w-8 h-8 hover:text-gray-300 transition-colors duration-300">
+              <path fill-rule="evenodd"
+                d="M12.315 2c2.43 0 2.784.01 3.204.067l.175.012c.712.043 1.096.177 1.403.388.42.27.747.6.963 1.02a2.087 2.087 0 0 0 .388 1.403l.012.175c.058.42.068.774.068 3.204v2.835c0 2.43-.01 2.784-.068 3.204l-.012.175a2.087 2.087 0 0 1-.388 1.403 2.087 2.087 0 0 1-1.02.963l-.175.012c-.42.058-.774.068-3.204.068h-2.835c-2.43 0-2.784-.01-3.204-.068l-.175-.012a2.087 2.087 0 0 1-1.403-.388 2.087 2.087 0 0 1-.963-1.02l-.012-.175c-.058-.42-.068-.774-.068-3.204v-2.835c0-2.43.01-2.784.068-3.204l.012-.175a2.087 2.087 0 0 1 .388-1.403 2.087 2.087 0 0 1 1.02-.963l.175-.012C9.552 2.01 9.906 2 12.336 2h2.835ZM12 6.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM17.5 7.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+                clip-rule="evenodd" />
+              <path d="M13.444 14.5a2.5 2.5 0 1 0-3.468-3.468 2.5 2.5 0 0 0 3.468 3.468Z" />
+            </svg></a>
+          <a href="#" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+              class="w-8 h-8 hover:text-gray-300 transition-colors duration-300">
+              <path
+                d="M.5 1.5A.5.5 0 0 0 0 2v10a2 2 0 0 0 2 2h4.5a.5.5 0 0 0 .5-.5V12a.5.5 0 0 0-.5-.5H3a.5.5 0 0 0 0 1h1a.5.5 0 0 1 .5.5v2h-2A1.5 1.5 0 0 1 .5 14.5v-13A1.5 1.5 0 0 1 2 0h12a.5.5 0 0 0 0-1h-12A2.5 2.5 0 0 0-.5 1.5Z" />
+              <path
+                d="M2.5 1.5a.5.5 0 0 1 .5-.5h18a2.5 2.5 0 0 1 2.5 2.5v10.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5V12a.5.5 0 0 0-.5-.5H3a.5.5 0 0 1-.5-.5V1.5Z" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-6">
+      <p class="text-sm">
+        &copy; 2025 Luiza Fisioterapeuta. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+
+
+
+
+
+</body>
+
+</html>
