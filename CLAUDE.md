@@ -145,9 +145,14 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
 - **Degradê da página:** `cream` no topo → `blush` → `olive-deep` no footer. No footer o texto é
   claro (`cream`).
 - **Fontes:** Playfair Display nos títulos, Poppins no texto e Great
-  Vibes só em palavras de destaque. Servir as fontes pelo próprio site, não por CDN.
-- Os tokens ainda precisam ser registrados no tema do Tailwind (`src/styles/main.css`), em
-  branch própria, antes da primeira seção.
+  Vibes só em palavras de destaque. As fontes são servidas pelo próprio site (pacotes
+  `@fontsource`), nunca por CDN.
+- Os tokens vivem no tema do Tailwind, em `src/styles/main.css`. A paleta padrão do Tailwind
+  foi removida de propósito: classe de cor fora da tabela acima (ex.: `text-blue-500`) não gera
+  CSS. Cor nova entra primeiro na tabela e no tema, com o contraste medido.
+- Classes de fonte: `font-sans` (Poppins, padrão do `body`), `font-display` (Playfair Display,
+  padrão de `h1`–`h3`) e `font-script` (Great Vibes). Peso novo de fonte exige importar o
+  arquivo correspondente em `main.css`.
 - Cores só por token do tema; nenhum valor hexadecimal solto em componente.
 - **As cores médias da marca não servem para texto pequeno.** Medido sobre o creme `#F7EAE2`:
   rosa `#B87A74` dá 2,9:1, oliva `#737B5B` dá 3,8:1 e verde-água `#688F90` dá 3,3:1, todos

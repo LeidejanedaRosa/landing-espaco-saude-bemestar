@@ -1,1 +1,43 @@
 @import 'tailwindcss';
+
+/* Só o subconjunto latin (cobre o português) e só os pesos usados: cada arquivo a mais é
+   download a mais para o visitante. */
+@import '@fontsource/poppins/latin-400.css';
+@import '@fontsource/poppins/latin-500.css';
+@import '@fontsource/poppins/latin-600.css';
+@import '@fontsource/playfair-display/latin-500.css';
+@import '@fontsource/playfair-display/latin-600.css';
+@import '@fontsource/great-vibes/latin-400.css';
+
+@theme {
+  /* Remove a paleta padrão do Tailwind: só existem as cores da marca, então classe como
+     `text-blue-500` nem compila. Regras de uso e contraste de cada token: CLAUDE.md. */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-cream: #f9ede6;
+  --color-blush: #f2d5cd;
+  --color-rose: #cb847c;
+  --color-rose-deep: #9a4f4a;
+  --color-teal: #688f90;
+  --color-teal-deep: #3f6b6c;
+  --color-olive: #737b5b;
+  --color-olive-deep: #565e42;
+  --color-gold: #dbb67b;
+  --color-ink: #3f3532;
+
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}

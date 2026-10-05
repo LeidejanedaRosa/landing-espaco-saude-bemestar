@@ -26,4 +26,21 @@ test.describe('página inicial', () => {
 
     expect(violations).toEqual([]);
   });
+
+  test('aplica a tipografia da marca com fontes servidas pelo próprio site', async ({ page }) => {
+    const fontHosts = new Set<string>();
+    page.on('request', (request) => {
+      if (request.resourceType() === 'font') fontHosts.add(new URL(request.url()).host);
+    });
+
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+
+    const fontFamilyOf = (selector: string) =>
+      page.locator(selector).evaluate((element) => getComputedStyle(element).fontFamily);
+
+    expect(await fontFamilyOf('h1')).toContain('Playfair Display');
+    expect(await fontFamilyOf('p')).toContain('Poppins');
+    expect([...fontHosts]).toEqual([new URL(page.url()).host]);
+  });
 });
