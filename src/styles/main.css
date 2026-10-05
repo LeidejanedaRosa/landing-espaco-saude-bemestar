@@ -28,6 +28,11 @@
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Playfair Display', ui-serif, Georgia, serif;
   --font-script: 'Great Vibes', cursive;
+
+  /* 90rem = 1440px no tamanho de fonte padrão; em rem acompanha a preferência do visitante. */
+  --container-page: 90rem;
+  /* Respiro lateral fluido: 1rem no celular, cresce com a tela, para em 4rem. */
+  --spacing-gutter: clamp(1rem, 5vw, 4rem);
 }
 
 @layer base {
