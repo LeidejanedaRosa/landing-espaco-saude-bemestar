@@ -3,6 +3,7 @@ node_modules
 
 # build (derivado do código-fonte — a Vercel gera no deploy)
 dist
+dist-ssr
 
 # variáveis de ambiente reais; só o .env.example é versionado
 .env
