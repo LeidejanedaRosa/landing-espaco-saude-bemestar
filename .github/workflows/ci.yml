@@ -1,7 +1,11 @@
 name: CI
 
+# pull_request valida a sub-branch ANTES do merge; push valida o que já entrou nas branches de
+# integração. Rodar em todo push de toda branch duplicaria cada execução de PR.
 on:
+  pull_request:
   push:
+    branches: [main, feat/landing]
   workflow_dispatch:
 
 # Um push novo na mesma branch cancela a execução anterior, que já ficou obsoleta.
@@ -11,6 +15,8 @@ concurrency:
 
 permissions:
   contents: read
+  # O gitleaks lista os commits do PR pela API para varrer só o que o PR traz.
+  pull-requests: read
 
 env:
   HUSKY: 0
