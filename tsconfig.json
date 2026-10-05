@@ -1,13 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES6", // JavaScript moderno
-    "module": "ES6", // Para usar import/export se quiser
-    "outDir": "./dist", // Pasta onde o JS compilado vai para o navegador
-    "rootDir": "./src", // Onde ficam seus arquivos TS
-    "strict": true, // Ativa checagem rigorosa de tipos
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "types": ["vite/client", "node"],
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "noEmit": true
   },
-  "include": ["src/**/*"]
+  "include": ["src", "*.config.ts"]
 }
