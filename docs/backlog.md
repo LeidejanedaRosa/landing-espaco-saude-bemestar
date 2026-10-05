@@ -43,6 +43,8 @@
 - [ ] Dados estruturados (schema.org `LocalBusiness`/`MedicalBusiness`)
 - [ ] `robots.txt`, `sitemap.xml` e favicon
 - [ ] Variáveis de ambiente configuradas na Vercel
+- [ ] Decidir o que fazer com o GitHub Pages: ele serve a raiz da `main` sem build e vai
+      quebrar quando a versão React chegar lá (desligar ou trocar para o build)
 - [ ] Auditoria manual de a11y (teclado e leitor de tela) antes de publicar
 
 ## Pendências técnicas
