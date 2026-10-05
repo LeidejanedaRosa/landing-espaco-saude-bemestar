@@ -11,10 +11,10 @@
 - [x] Documentação base
 - [x] `CLAUDE.md` do projeto
 - [x] Identidade visual: tokens de cor e fontes no tema do Tailwind
+- [x] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
 
 ## Próximos passos
 
-- [ ] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
 - [ ] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [ ] Transição do degradê para `olive-deep` no footer (o trecho claro já está aplicado)
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
