@@ -12,15 +12,15 @@ deste projeto. Onde houver conflito, vale este.
 ## Fluxo de trabalho
 
 - **`feat/landing` é a branch guarda-chuva do projeto.** Toda branch nasce dela e volta para
-  ela com `git merge --no-ff`. Ela só entra na `main` quando a landing estiver pronta, porque a
+  ela por pull request. Ela só entra na `main` quando a landing estiver pronta, porque a
   Vercel publica a `main`.
 
   ```
   main ─────────────────────────────────────────────► (só no final)
     └─ feat/landing ──●────────●────────●──────────►
-                      ├─ feat/landing-hero ──┘
-                      ├─ fix/...  ───────────┘
-                      └─ docs/... ───────────┘
+                      ├─ feat/landing-hero ──PR──┘
+                      ├─ fix/...  ───────────PR──┘
+                      └─ docs/... ───────────PR──┘
   ```
 
 - **Cada implementação em uma branch própria** (uma seção, um componente do design system,
@@ -39,6 +39,27 @@ deste projeto. Onde houver conflito, vale este.
 
   Número + mensagem (semântica, curta, em inglês) e, na linha de baixo, o `git add` com os
   arquivos exatos daquele commit. Nada é commitado antes da aprovação do plano.
+
+### Pull requests
+
+Cada sub-branch entra na `feat/landing` por PR, nunca por merge local.
+
+1. Plano de commits aprovado → commits → `git push -u origin <branch>` (o `-u` só na primeira
+   vez; sem ele o push de uma branch nova falha com "no upstream branch").
+2. O PR é aberto pelo terminal, com `gh pr create --base feat/landing`, já com o título e o
+   template preenchidos. Não usar o botão "Compare & pull request" do GitHub: ele sugere a
+   `main` como destino e abre o formulário vazio, porque o GitHub só carrega o template de PR
+   que está na branch padrão.
+3. **Título** em minúsculas, `tipo: assunto` (ex.: `feat: theme`). **Descrição:** o template
+   de `.github/pull_request_template.md` inteiro; seção que não se aplica fica com `N/A`.
+4. Só marcar no template o que foi de fato verificado. Mudança visual pede captura de tela,
+   tirada do preview que a Vercel publica no próprio PR.
+5. Merge só com o CI verde, pelo GitHub, com **"Create a merge commit"** (nunca squash nem
+   rebase: os commits da branch continuam visíveis no histórico).
+6. Depois do merge: `git switch feat/landing && git pull`, e só então criar a próxima branch.
+
+O CI roda em todo `pull_request` e em `push` na `main` e na `feat/landing`. Push em sub-branch
+sem PR aberto não dispara CI; nesse momento a verificação é a do hook local de pre-push.
 
 ## Layout
 
