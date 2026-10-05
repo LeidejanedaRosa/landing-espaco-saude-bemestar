@@ -11,5 +11,10 @@ if (!template.includes(PLACEHOLDER)) {
   throw new Error(`Marcador ${PLACEHOLDER} não encontrado em dist/index.html`);
 }
 
-await writeFile(htmlPath, template.replace(PLACEHOLDER, render()));
+// Função em vez de string: numa string, o replace interpreta `$&`, `$'` e `$$` como padrões
+// especiais e corromperia qualquer texto da página que contenha essas sequências.
+await writeFile(
+  htmlPath,
+  template.replace(PLACEHOLDER, () => render())
+);
 await rm(ssrDir, { recursive: true });
