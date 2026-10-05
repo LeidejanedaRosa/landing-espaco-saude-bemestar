@@ -4,15 +4,39 @@ Textos preservados da landing antiga (o `index.html` anterior continua no histó
 `main` até o commit `a9f13b9`) e da versão de referência feita na Emergent. É a fonte dos textos
 para as seções novas.
 
+## Dados confirmados pela cliente (2026-10-05)
+
+- **WhatsApp:** +55 35 98896-0886
+- **Instagram:** https://www.instagram.com/lufisio.pilates/
+- **Endereço:** Av. Comendador Costa, 505, Centro, São Lourenço, Minas Gerais, CEP 37470-000
+- **Fisioterapeuta:** Drª Luiza Rafaela de Castro Dolabella — CREFITO 4 MG 213042-F
+- **Médica:** Dra. Veronika Baptista — CRM MG 98407
+
+A publicação dos nomes e registros profissionais foi autorizada. No código, WhatsApp e Instagram
+vêm das variáveis de ambiente (`.env`), nunca escritos direto nos componentes.
+
+## Decisões de conteúdo
+
+- Não haverá formulário de contato: todas as chamadas levam ao WhatsApp.
+
 ## Pendências de conteúdo
 
-- **Contato:** as duas versões só têm dados de exemplo (`(XX) XXXXX-XXXX`, `Rua Exemplo, 123`,
-  `contato@luiza.com.br`, `(31) 99999-9999`). Faltam WhatsApp, endereço e e-mail reais.
-- **Instagram:** a versão da Emergent usa `@lufisio.pilates` — confirmar.
-- **Depoimentos:** os nomes diferem entre as versões e parecem fictícios. Usar apenas
-  depoimentos reais e autorizados.
-- **Atendimento médico:** na landing antiga o texto era cópia do de Massoterapia. A versão da
-  Emergent traz Dra. Veronika Baptista, CRM MG 98407 — confirmar nome, CRM e especialidades.
+Ficam para depois da primeira entrega para aprovação da cliente:
+
+- **Texto das especialidades médicas:** os nomes (ortomolecular, reumatologia, endocrinologia)
+  vêm do post da cliente; a descrição de cada uma veio da versão da Emergent e precisa da
+  revisão da Dra. Veronika. Até lá, o site usa o texto atual.
+- **E-mail:** sem e-mail confirmado, o site não exibe e-mail.
+
+## Depoimentos
+
+- **Fonte:** avaliações do perfil do studio no Google. Os depoimentos das versões antigas eram
+  fictícios e não devem ser usados.
+- **Ainda falta:** a cliente escolher as avaliações e os textos serem copiados para cá. O link
+  do perfil que estava na landing antiga é `https://share.google/iis78GJjcBJA86a6h` (confirmar).
+- **Cuidado (LGPD):** relato de tratamento com o nome da pessoa é dado de saúde. Exibir só
+  primeiro nome e inicial, e com o consentimento de quem escreveu.
+- A seção traz um link "Ver todas as avaliações no Google".
 
 ## Marca
 
@@ -74,7 +98,7 @@ prevenção de lesões e na melhora da qualidade de vida.
 - Auxilia na circulação sanguínea, reduz estresse e contribui para o bem-estar geral.
 - Pode ser combinada com outros tratamentos para melhores resultados.
 
-### Atendimento Médico (texto da versão da Emergent — a confirmar)
+### Atendimento Médico — Dra. Veronika Baptista (CRM MG 98407)
 
 Consultas integrativas com atendimento humanizado e tratamento integrado.
 
@@ -168,4 +192,3 @@ garantindo que cada sessão seja produtiva e agradável.
 - Chamada final: "Priorize o que realmente importa: Você! Agende sua consulta ou aula
   experimental e sinta a diferença de um cuidado verdadeiramente individualizado."
 - Rodapé: "Movimento consciente, reabilitação especializada e cuidado integrado."
-- Formulário de contato: nome, WhatsApp, serviço de interesse, mensagem (opcional)

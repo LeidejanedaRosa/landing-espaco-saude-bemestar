@@ -9,16 +9,21 @@
 - [x] Husky (pre-commit e pre-push), lint-staged e gitleaks
 - [x] CI no GitHub Actions com Lighthouse
 - [x] Documentação base
+- [x] `CLAUDE.md` do projeto
 
 ## Próximos passos
 
-- [ ] `CLAUDE.md` do projeto (identidade visual, regras de conteúdo, convenções)
-- [ ] Definir identidade visual: paleta, tipografia e tokens no Tailwind
-- [ ] Definir e produzir as imagens novas; limpar `src/assets/images` (21 MB, nomes soltos)
-- [ ] Levantar dados reais: WhatsApp, Instagram, endereço, depoimentos autorizados
+- [ ] Identidade visual: registrar no tema do Tailwind os tokens de cor e as fontes aprovadas
+- [ ] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
+- [ ] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
+- [ ] Fundo único da página em degradê (claro no topo, escuro no footer)
+- [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
+- [ ] Prompts e especificações das imagens (desenhos em traço por seção e fotos)
+- [ ] Tratamento de imagens: vetorizar desenhos para SVG, fotos em AVIF/WebP
+- [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
 
-## Seções da landing (uma branch por seção, sob `feat/landing`)
+## Seções da landing (uma branch por seção, a partir de `feat/landing`)
 
 - [ ] Header e navegação (com menu mobile acessível)
 - [ ] Hero
@@ -28,8 +33,8 @@
 - [ ] Atendimento médico
 - [ ] Metodologia
 - [ ] Para quem é indicado
-- [ ] Depoimentos
-- [ ] Contato
+- [ ] Depoimentos (avaliações reais do Google, escolhidas pela cliente)
+- [ ] Contato (sem formulário: tudo leva ao WhatsApp)
 - [ ] Footer
 
 ## SEO e publicação
