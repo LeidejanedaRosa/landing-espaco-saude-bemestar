@@ -1,1 +1,21 @@
+# dependências
 node_modules
+
+# build (derivado do código-fonte — a Vercel gera no deploy)
+dist
+
+# variáveis de ambiente reais; só o .env.example é versionado
+.env
+.env.*
+!.env.example
+
+# relatórios de teste e auditoria
+coverage
+playwright-report
+test-results
+.lighthouseci
+
+# sistema / ferramentas
+*.log
+.DS_Store
+.vercel
