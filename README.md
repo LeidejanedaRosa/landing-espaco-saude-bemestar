@@ -53,7 +53,9 @@ docs/             backlog, decisões, aprendizados e conteúdo
 - **Local (Husky):** `pre-commit` roda lint-staged + gitleaks; `pre-push` roda lint, tipos,
   testes com cobertura e e2e.
 - **CI (GitHub Actions):** lint, formatação, tipos, testes, build, e2e nos três motores,
-  `npm audit`, gitleaks e Lighthouse (mínimo 90 em cada categoria).
+  `npm audit`, gitleaks e Lighthouse (mínimo 90 em cada categoria). Roda em todo pull request
+  e em push na `main` e na `feat/landing`.
+- **Fluxo:** cada mudança em uma branch própria, que entra na `feat/landing` por pull request.
 - **Deploy:** a Vercel publica a `main` e gera um preview para cada branch.
 
 ## Documentação
