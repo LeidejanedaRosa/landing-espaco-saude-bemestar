@@ -85,6 +85,9 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
   `rem`, `%`, `fr`, `dvh`, `clamp()`, `min()`/`max()` e `aspect-ratio`. Exceção: detalhes de
   1px, como bordas.
 - Espaçamento lateral do Container é fluido (cresce com a tela), nunca um número fixo.
+- No código: `<Container>` aplica `max-w-page` (token `--container-page: 90rem`) e `px-gutter`
+  (token `--spacing-gutter: clamp(1rem, 5vw, 4rem)`). Classes extras (`flex`, `grid`...) entram
+  por `className`; largura e respiro lateral nunca são sobrescritos por quem usa.
 - Mobile first: o estilo base é o do celular; breakpoints só acrescentam.
 
 ### Fundo da página
