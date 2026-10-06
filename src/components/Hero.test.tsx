@@ -66,12 +66,23 @@ describe('Hero', () => {
   it('o desenho é decorativo, carrega na hora e é a única imagem com prioridade alta', () => {
     const { container } = render(<Hero />);
 
-    const drawing = container.querySelector('img[src*="guerreira"]') as HTMLImageElement;
+    const drawing = container.querySelector('picture > img') as HTMLImageElement;
     const highPriority = [...container.querySelectorAll('img[fetchpriority="high"]')];
 
     expect(drawing).toHaveAttribute('alt', '');
     expect(drawing).toHaveAttribute('loading', 'eager');
     expect(highPriority).toEqual([drawing]);
+  });
+
+  it('usa a faixa das três bonecas nas telas menores e a boneca da recepção no desktop', () => {
+    const { container } = render(<Hero />);
+
+    const source = container.querySelector('picture > source');
+    const fallback = container.querySelector('picture > img');
+
+    expect(fallback?.getAttribute('src')).toContain('trio');
+    expect(source?.getAttribute('srcset')).toContain('guerreira');
+    expect(source).toHaveAttribute('media', '(min-width: 64rem)');
   });
 
   it('as folhagens são só enfeite: nenhuma imagem do hero tem texto alternativo', () => {
