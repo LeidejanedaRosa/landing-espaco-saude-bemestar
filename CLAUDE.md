@@ -131,6 +131,11 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
 - Imagens novas são geradas por IA a partir de prompts. Cada pedido de prompt vem com a
   especificação exata: proporção, dimensões, fundo, formato de entrega e onde será usada.
 - Nomes de arquivo em kebab-case, descritivos, sem espaços nem acentos.
+- Arquivos originais (PNG gerados, antes de tratar) ficam em `design/originais/`, fora de
+  `src`, para o build não os publicar. Só a versão tratada (SVG, AVIF, WebP) entra em
+  `src/assets`.
+- Prompts e especificações dos desenhos em traço:
+  [docs/identidade/prompts-desenhos.md](docs/identidade/prompts-desenhos.md).
 
 ## Resiliência
 
