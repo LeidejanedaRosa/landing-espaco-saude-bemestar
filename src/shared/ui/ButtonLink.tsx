@@ -6,15 +6,21 @@ interface ButtonLinkProps {
   /** Link para fora do site: abre em nova aba e avisa disso ao leitor de tela. */
   external?: boolean;
   size?: 'sm' | 'md';
+  variant?: 'primary' | 'secondary';
   className?: string;
 }
 
 const BASE_CLASSES =
-  'bg-olive-deep text-cream hover:bg-ink focus-visible:outline-olive-deep inline-flex min-h-11 items-center justify-center rounded-full font-medium focus-visible:outline-2 focus-visible:outline-offset-2';
+  'focus-visible:outline-olive-deep inline-flex min-h-11 items-center justify-center rounded-full font-medium focus-visible:outline-2 focus-visible:outline-offset-2';
+
+const VARIANT_CLASSES = {
+  primary: 'bg-olive-deep text-cream hover:bg-ink',
+  secondary: 'border-olive-deep text-olive-deep hover:bg-olive-deep hover:text-cream border'
+};
 
 const SIZE_CLASSES = {
   sm: 'px-4 text-sm',
-  md: 'px-6'
+  md: 'px-5'
 };
 
 export function ButtonLink({
@@ -22,9 +28,12 @@ export function ButtonLink({
   children,
   external = false,
   size = 'md',
+  variant = 'primary',
   className
 }: ButtonLinkProps) {
-  const classes = [BASE_CLASSES, SIZE_CLASSES[size], className].filter(Boolean).join(' ');
+  const classes = [BASE_CLASSES, VARIANT_CLASSES[variant], SIZE_CLASSES[size], className]
+    .filter(Boolean)
+    .join(' ');
   const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
