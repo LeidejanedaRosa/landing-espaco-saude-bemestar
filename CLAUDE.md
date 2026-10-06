@@ -95,6 +95,8 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
 - **Uma única cor de fundo para a página inteira**, em degradê vertical: a cor mais clara no
   topo, a mais escura no footer. Fica no elemento raiz da página, não nas seções.
 - **Seções têm fundo transparente** e não definem `background-color`.
+- No código: o degradê vive só em `PageBackground` (`src/shared/ui`), usado pela página e
+  pela tela de erro. Não repetir as classes do degradê em outro lugar.
 - Como o fundo escurece ao longo da página, conferir o contraste do texto (WCAG AA, 4.5:1) em
   cada seção, principalmente nas últimas e no footer.
 
@@ -136,6 +138,9 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
   amigável com o link do WhatsApp, e não uma tela em branco.
 - Um Error Boundary não captura erro em handler de evento nem em código assíncrono; esses
   casos são tratados onde acontecem.
+- No código: `ErrorBoundary` (`src/shared/ui`) é genérico e recebe a tela de erro pela prop
+  `fallback`; a tela em si é `ErrorFallback` (`src/components`). Durante o build o Error
+  Boundary não atua: erro na renderização quebra o `npm run build`, o que é o desejado.
 
 ## Contato
 
@@ -143,6 +148,11 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
   (`https://wa.me/<número>?text=<mensagem>`), com mensagem já preenchida conforme o contexto
   do botão (avaliação, consulta médica, dúvida).
 - Número e links vêm de variável de ambiente (`.env.example`), nunca escritos no código.
+- Todo link de WhatsApp é montado por `buildWhatsAppUrl(mensagem)`, em
+  `src/shared/utils/whatsapp.ts`. Não montar a URL à mão em componente.
+- **Sem as variáveis obrigatórias, `dev` e `build` falham de propósito**
+  ([decisão 0005](docs/decisoes/0005-variaveis-de-ambiente-obrigatorias.md)). Em teste
+  unitário, definir a variável com `vi.stubEnv`.
 - Links externos abrem em nova aba com `rel="noopener noreferrer"`.
 
 ## Identidade visual

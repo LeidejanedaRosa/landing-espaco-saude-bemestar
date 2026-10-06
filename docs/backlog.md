@@ -11,11 +11,11 @@
 - [x] Documentação base
 - [x] `CLAUDE.md` do projeto
 - [x] Identidade visual: tokens de cor e fontes no tema do Tailwind
+- [x] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [x] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
 
 ## Próximos passos
 
-- [ ] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [ ] Transição do degradê para `olive-deep` no footer (o trecho claro já está aplicado)
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
 - [ ] Prompts e especificações das imagens (desenhos em traço por seção e fotos)
@@ -42,7 +42,8 @@
 - [ ] Canonical, Open Graph e imagem de compartilhamento
 - [ ] Dados estruturados (schema.org `LocalBusiness`/`MedicalBusiness`)
 - [ ] `robots.txt`, `sitemap.xml` e favicon
-- [ ] Variáveis de ambiente configuradas na Vercel
+- [ ] Variáveis de ambiente configuradas na Vercel (Production e Preview) — sem elas o build
+      da Vercel falha
 - [ ] Decidir o que fazer com o GitHub Pages: ele serve a raiz da `main` sem build e vai
       quebrar quando a versão React chegar lá (desligar ou trocar para o build)
 - [ ] Auditoria manual de a11y (teclado e leitor de tela) antes de publicar
