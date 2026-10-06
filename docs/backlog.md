@@ -54,8 +54,9 @@
 - [ ] Decidir o que fazer com o GitHub Pages: ele serve a raiz da `main` sem build e vai
       quebrar quando a versão React chegar lá (desligar ou trocar para o build)
 - [ ] Auditoria manual de a11y (teclado e leitor de tela) antes de publicar
-- [ ] Teste e2e: todo link do menu aponta para uma seção que existe (hoje os destinos ainda
-      não foram construídos)
+- [ ] Esvaziar a lista `PENDING_SECTIONS` de `e2e/navigation.spec.ts`: cada seção construída
+      sai da lista, e a landing só vai para a `main` com ela vazia (hoje o menu e o botão
+      "Conhecer o studio" apontam para seções que ainda não existem)
 
 ## Pendências técnicas
 

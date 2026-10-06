@@ -130,6 +130,9 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra
   com o `id` igual ao `href` do seu item**; sem isso o link do menu não leva a lugar nenhum.
+- Os destinos ainda não construídos estão declarados em `PENDING_SECTIONS`
+  (`e2e/navigation.spec.ts`). **Ao construir uma seção, tirar o destino dela dessa lista**; o
+  teste falha se ficar. Link interno novo para um destino que não existe também falha.
 - O header é fixo no topo (`sticky`) e a altura dele é o token `--spacing-header`
   (`src/styles/main.css`), usado em três lugares: no próprio header (`h-header`), na folga de
   rolagem (`scroll-padding-top`) e nas seções de tela cheia. Mudou a altura, muda só o token.
@@ -285,11 +288,22 @@ traço. A frase é texto, em `font-script`.
   frase exige medir de novo.
 - A frase é ancorada pela direita, a uma fração da altura do desenho (variável `--art-h`),
   para acompanhar o braço em qualquer tamanho de tela sem encostar nele.
-- **Duas colunas a partir do tablet (`md`, 768px):** texto à esquerda, parede à direita. A
-  coluna da direita é um container de tamanho (`container-type: size`): o desenho cresce até a
-  altura disponível (`cqh`) e para quando a largura da coluna não comporta mais a frase à
-  esquerda do braço (`cqw`). Em tablet em pé a coluna é estreita e alta, então o limite é a
-  largura e sobra espaço acima e abaixo do desenho.
+- **Três arranjos, conforme a largura:**
+
+  | Tela                               | Arranjo                                                                                                   |
+  | ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
+  | celular (até 767px)                | parede no topo, frase ancorada rente ao braço; texto embaixo                                              |
+  | tablet em pé (768 a 1023px)        | no topo, frase à esquerda e figura à direita, centradas; a figura ocupa a altura que sobra acima do texto |
+  | tablet deitado e desktop (1024px+) | duas colunas lado a lado: texto à esquerda, parede à direita                                              |
+
+- **O tamanho da frase é sempre uma fração da altura do desenho**, nunca um valor próprio.
+  Quando eram independentes, numa janela baixa o desenho encolhia, a frase não, e "Acredite!"
+  subia para trás do header.
+- Em duas colunas, a coluna da direita é um container de tamanho (`container-type: size`): o
+  desenho cresce até a altura disponível (`cqh`) e para quando a largura da coluna não comporta
+  mais a frase à esquerda do braço (`cqw`).
+- Duas colunas lado a lado só a partir de 1024px: abaixo disso as colunas ficam estreitas
+  demais, o título quebra em muitas linhas e a figura encolhe.
 - No celular a composição é a mesma, com a figura nítida, e vem no topo, antes do título
   (só na ordem visual; no HTML o título continua primeiro). Ali o hero
   fica mais alto que a tela e a pessoa rola: texto e figura não cabem juntos num celular, e a
