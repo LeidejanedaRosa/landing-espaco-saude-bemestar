@@ -45,6 +45,7 @@ src/
   entry-server.tsx   ponto de entrada do prerender (roda no Node, só no build)
 e2e/              testes Playwright
 scripts/          scripts de build
+design/originais/ imagens originais (PNG); o build gera AVIF/WebP a partir delas
 docs/             backlog, decisões, aprendizados e conteúdo
 ```
 

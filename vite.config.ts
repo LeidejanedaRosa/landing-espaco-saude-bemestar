@@ -1,6 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { loadEnv } from 'vite';
+import { imagetools } from 'vite-imagetools';
 import { defineConfig } from 'vitest/config';
 
 const REQUIRED_ENV = ['VITE_SITE_URL', 'VITE_WHATSAPP_NUMBER', 'VITE_INSTAGRAM_URL'];
@@ -22,7 +23,7 @@ export default defineConfig(({ mode }) => {
   if (mode !== 'test') assertRequiredEnv(mode);
 
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), imagetools()],
     test: {
       environment: 'jsdom',
       setupFiles: ['src/test/setup.ts'],
