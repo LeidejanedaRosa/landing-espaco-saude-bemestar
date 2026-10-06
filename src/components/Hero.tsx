@@ -47,7 +47,7 @@ export function Hero() {
         className="absolute top-2 -right-6 -z-10 hidden h-56 w-auto rotate-[200deg] opacity-35 min-[90rem]:block"
       />
 
-      <Container className="grid gap-6 py-[clamp(0.75rem,3.5dvh,2rem)] md:grid-cols-[5fr_6fr] md:gap-10">
+      <Container className="grid gap-6 py-[clamp(0.75rem,3.5dvh,2rem)] md:max-lg:grid-rows-[1fr_auto] lg:grid-cols-[5fr_6fr] lg:gap-10">
         <div className="flex flex-col items-start gap-[clamp(0.5rem,2.2dvh,1.25rem)] self-center">
           <h1
             id="hero-titulo"
@@ -88,15 +88,18 @@ export function Hero() {
         </div>
 
         {/* Reproduz a parede da recepção: "O movimento cura" começa embaixo do "!" de
-            "Acredite!", e a frase termina rente ao braço erguido da figura. Por isso ela é
-            ancorada pela direita, a uma fração da altura do desenho (--art-h).
+            "Acredite!". O tamanho da frase é sempre uma fração da altura do desenho (--art-h),
+            para os dois crescerem e encolherem juntos. Três arranjos:
+            - celular: no topo; a frase é ancorada pela direita e termina rente ao braço erguido;
+            - tablet em pé (md a lg): no topo, ocupando toda a altura que sobra acima do texto
+              (linha 1fr da grade); frase à esquerda e figura à direita, lado a lado, centradas;
+            - desktop (lg): coluna da direita, frase ancorada rente ao braço.
             A coluna é um container de tamanho: o desenho cresce até a altura disponível (cqh),
-            limitado pela largura que sobra para a frase caber à esquerda do braço (cqw).
-            No celular ela vem antes do texto (order-first); no código, o título continua
-            primeiro, que é a ordem lida por leitor de tela e buscador. */}
-        <div className="[container-type:size] relative order-first flex h-[calc(clamp(14rem,70vw,20rem)+1rem)] items-center justify-end [--art-h:min(100cqh,91cqw)] [--phrase:clamp(1.5rem,calc(var(--art-h)*0.085),3.25rem)] md:order-none md:h-auto md:self-stretch">
-          <div className="relative">
-            <p className="font-script text-rose-deep absolute top-0 right-[calc(var(--art-h)*0.42)] text-[length:var(--phrase)] leading-[1.1] whitespace-nowrap">
+            limitado pela largura necessária para a frase caber (cqw).
+            No HTML o título continua primeiro; só a ordem visual muda (order-first). */}
+        <div className="[container-type:size] relative order-first flex h-[calc(clamp(14rem,70vw,20rem)+1rem)] items-center justify-end [--art-h:min(100cqh,91cqw)] [--phrase:clamp(1.5rem,calc(var(--art-h)*0.085),3.25rem)] md:max-lg:h-auto md:max-lg:min-h-60 md:max-lg:justify-center md:max-lg:[--art-h:min(100cqh,52cqw)] md:max-lg:[--phrase:clamp(1.25rem,calc(var(--art-h)*0.13),3rem)] lg:order-none lg:h-auto lg:self-stretch">
+          <div className="relative md:max-lg:flex md:max-lg:items-center md:max-lg:gap-6">
+            <p className="font-script text-rose-deep absolute top-0 right-[calc(var(--art-h)*0.42)] text-[length:var(--phrase)] leading-[1.1] whitespace-nowrap md:max-lg:static">
               <span className="block w-fit">Acredite!</span>{' '}
               <span className="ml-[2.57em] block w-fit">O movimento cura</span>
             </p>
@@ -106,7 +109,7 @@ export function Hero() {
               height={1666}
               priority
               fetchPriority="high"
-              className="mt-[max(0rem,calc(var(--phrase)*2.2-var(--art-h)*0.2))] h-[var(--art-h)] w-auto max-w-none"
+              className="mt-[max(0rem,calc(var(--phrase)*2.2-var(--art-h)*0.2))] h-[var(--art-h)] w-auto max-w-none md:max-lg:mt-0"
             />
           </div>
         </div>
