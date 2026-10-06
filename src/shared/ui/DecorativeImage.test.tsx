@@ -47,4 +47,31 @@ describe('DecorativeImage', () => {
     expect(img).toHaveAttribute('fetchpriority', 'high');
     expect(img).toHaveAttribute('loading', 'lazy');
   });
+
+  it('sem desenho alternativo, não cria o elemento picture', () => {
+    const { container } = render(<DecorativeImage src="/traco.svg" width={300} height={400} />);
+
+    expect(container.querySelector('picture')).toBeNull();
+  });
+
+  it('com desenho alternativo, oferece cada um à tela certa, com as próprias dimensões', () => {
+    const { container } = render(
+      <DecorativeImage
+        src="/faixa.svg"
+        width={900}
+        height={300}
+        alternate={{ media: '(min-width: 64rem)', src: '/figura.svg', width: 300, height: 400 }}
+      />
+    );
+
+    const source = container.querySelector('picture > source');
+    const img = container.querySelector('picture > img');
+
+    expect(source).toHaveAttribute('media', '(min-width: 64rem)');
+    expect(source).toHaveAttribute('srcset', '/figura.svg');
+    expect(source).toHaveAttribute('width', '300');
+    expect(img).toHaveAttribute('src', '/faixa.svg');
+    expect(img).toHaveAttribute('width', '900');
+    expect(img).toHaveAttribute('alt', '');
+  });
 });
