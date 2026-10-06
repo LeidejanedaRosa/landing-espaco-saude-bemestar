@@ -324,39 +324,33 @@ Toda seção depois do hero segue a mesma estrutura:
 ### A parede da recepção no hero
 
 O hero reproduz a parede da recepção do studio: "Acredite!" na primeira linha e "O movimento
-cura" na segunda, começando embaixo do "!" e terminando rente ao braço erguido da figura em
-traço. A frase é texto, em `font-script`.
+cura" na segunda, começando embaixo do "!". A frase é texto, em `font-script`. O recuo da
+segunda linha é `2.57em`, a largura de "Acredite" nessa fonte; trocar a fonte exige medir de novo.
 
-- O recuo da segunda linha é `2.57em`, a largura de "Acredite" nessa fonte. Trocar a fonte da
-  frase exige medir de novo.
-- A frase é ancorada pela direita, a uma fração da altura do desenho (variável `--art-h`),
-  para acompanhar o braço em qualquer tamanho de tela sem encostar nele.
-- **Três arranjos, conforme a largura:**
+Há dois desenhos, e o navegador baixa só o que a tela usa (`DecorativeImage` com `alternate`):
 
-  | Tela                               | Arranjo                                                                                                   |
-  | ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
-  | celular (até 767px)                | parede no topo, frase ancorada rente ao braço; texto embaixo                                              |
-  | tablet em pé (768 a 1023px)        | no topo, frase à esquerda e figura à direita, centradas; a figura ocupa a altura que sobra acima do texto |
-  | tablet deitado e desktop (1024px+) | duas colunas lado a lado: texto à esquerda, parede à direita                                              |
+| Tela                                | Desenho                               | Arranjo                                                                                           |
+| ----------------------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| celular e tablet em pé (até 1023px) | `trio.svg`: três bonecas lado a lado  | faixa no topo, antes do título; frase no canto superior esquerdo, sobre o espaço vazio do desenho |
+| tablet deitado e desktop (1024px+)  | `guerreira.svg`: a boneca da recepção | coluna da direita; frase ancorada, terminando rente ao braço erguido                              |
 
-- **O tamanho da frase é sempre uma fração da altura do desenho**, nunca um valor próprio.
-  Quando eram independentes, numa janela baixa o desenho encolhia, a frase não, e "Acredite!"
-  subia para trás do header.
-- Em duas colunas, a coluna da direita é um container de tamanho (`container-type: size`): o
-  desenho cresce até a altura disponível (`cqh`) e para quando a largura da coluna não comporta
-  mais a frase à esquerda do braço (`cqw`).
+- **A frase nunca tem tamanho próprio:** é sempre uma fração do desenho (da largura da faixa,
+  em `cqw`, ou da altura da boneca, `--art-h`). Quando eram independentes, numa janela baixa o
+  desenho encolhia, a frase não, e "Acredite!" subia para trás do header.
+- No desktop a coluna da direita é um container de tamanho (`container-type: size`): o desenho
+  cresce até a altura disponível (`cqh`) e para quando a largura da coluna não comporta mais a
+  frase à esquerda do braço (`cqw`).
 - Duas colunas lado a lado só a partir de 1024px: abaixo disso as colunas ficam estreitas
   demais, o título quebra em muitas linhas e a figura encolhe.
-- No celular a composição é a mesma, com a figura nítida, e vem no topo, antes do título
-  (só na ordem visual; no HTML o título continua primeiro). Ali o hero
-  fica mais alto que a tela e a pessoa rola: texto e figura não cabem juntos num celular, e a
-  figura visível tem prioridade sobre caber em uma tela só.
+- No celular e no tablet a faixa vem no topo só na ordem visual; no HTML o título continua
+  primeiro. No celular o hero fica mais alto que a tela e a pessoa rola.
 
 ### Desenhos em traço
 
-Já vetorizados, em `src/assets/tracos/`: `guerreira.svg` (a da recepção, no hero),
-`alongamento.svg` (sentada, tronco à frente) e `crianca.svg` (postura da criança), estes dois
-na seção Studio.
+Já vetorizados, em `src/assets/tracos/`: `guerreira.svg` (a da recepção), `alongamento.svg`
+(sentada, tronco à frente), `crianca.svg` (postura da criança) e `trio.svg` (três bonecas lado
+a lado, sobre uma linha de chão contínua, da faixa que a landing antiga usava). As três
+primeiras compõem o papel de parede.
 
 Referência escolhida: o traço da parede da recepção do studio, "Acredite! O movimento cura"
 (`src/assets/images/movimento-cura-centralizado.png`). Características a manter em todos os
