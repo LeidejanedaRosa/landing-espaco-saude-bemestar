@@ -36,6 +36,17 @@
 }
 
 @layer base {
+  html {
+    /* O header é fixo no topo: sem esta folga ele cobriria o início da seção de destino. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     @apply bg-cream text-ink font-sans antialiased;
   }
