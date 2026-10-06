@@ -4,7 +4,7 @@ test.describe('imagens', () => {
   test('o logo é servido em formato moderno e carrega de verdade', async ({ page }) => {
     await page.goto('/');
 
-    const logo = page.locator('main picture img');
+    const logo = page.locator('header picture img');
     await expect(logo).toBeVisible();
 
     const { currentSrc, naturalWidth } = await logo.evaluate((img: HTMLImageElement) => ({
