@@ -61,9 +61,9 @@ export function Hero() {
           </h1>
 
           <p className="max-w-prose text-[clamp(1rem,2.6dvh,1.125rem)]">
-            Cuide da sua saúde com a atenção e o acolhimento que você merece. Fisioterapia, Pilates
-            Clínico, Treinamento Funcional, Massoterapia e Atendimento Médico — com acompanhamento
-            próximo e humanizado.
+            O espaço foi pensado para oferecer um atendimento completo e individualizado, unindo
+            saúde, movimento e bem-estar. Aqui, cada pessoa é acompanhada de forma personalizada,
+            respeitando suas necessidades, limitações e objetivos.
           </p>
 
           <div className="flex flex-wrap gap-2">

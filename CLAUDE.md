@@ -6,7 +6,9 @@ deste projeto. Onde houver conflito, vale este.
 
 - **Tier 1** · React 19 · Vite 8 · TypeScript 6 · Tailwind CSS 4
 - Estrutura: `src/pages` (páginas) · `src/components` (seções) · `src/shared/ui` (design system)
-- Textos da landing: [docs/conteudo.md](docs/conteudo.md) — não inventar texto, usar o que está lá
+- Textos da landing: [docs/conteudo.md](docs/conteudo.md) — não inventar texto. **Os textos da
+  landing antiga (branch `main`) foram aprovados pela cliente e têm prioridade**; os da versão
+  da Emergent só entram onde a `main` não tem texto, e ficam marcados para revisão
 - Decisões: [docs/decisoes/](docs/decisoes/) · Backlog: [docs/backlog.md](docs/backlog.md)
 
 ## Fluxo de trabalho
@@ -114,17 +116,58 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
 - Como o fundo escurece ao longo da página, conferir o contraste do texto (WCAG AA, 4.5:1) em
   cada seção, principalmente nas últimas e no footer.
 
-### Imagem decorativa de fundo das seções
+### Papel de parede: bonecas em traço e folhagens
 
-Cada seção tem um desenho de fundo: uma figura feminina em movimento, em traço contínuo fino,
-como feito a lápis, no estilo do desenho "O movimento cura" da recepção do studio
-(`src/assets/images/movimento-cura-centralizado.png`). Só o desenho, sem frase.
+A página inteira tem um papel de parede discreto com as bonecas em traço e as folhagens, no
+espírito do fundo ilustrado do projeto `portfolio`. É onde a identidade da recepção aparece em
+todas as seções, e é para "abusar": o efeito é mais forte nas telas grandes.
 
-- Implementar como `<img alt="" aria-hidden="true">` posicionada atrás do conteúdo, e não como
-  `background-image` no CSS: o navegador não adia o carregamento de `background-image`, e de
-  `<img>` sim. É o mesmo padrão do `ThemedBackgroundImage` do projeto `portfolio`.
-- A imagem é posicionada em relação à seção (largura total), não ao Container.
-- `pointer-events-none`, atrás do conteúdo, discreta o bastante para não atrapalhar a leitura.
+- Vive em `PageBackground` (`src/shared/ui`), junto do degradê: um único fundo para a página,
+  nenhuma seção define o seu.
+- É um mosaico: o arquivo `src/assets/fundos/bonecas-folhagens.svg` se repete em toda a página,
+  sempre no mesmo tamanho (`110rem` de largura), em qualquer tela.
+- **Poucas figuras, grandes e bem visíveis**, e não muitas pequenas: a referência é o fundo do
+  `portfolio`, com ilustrações em escala grande. Miúdo e repetido, vira estampa de papel de
+  presente.
+- **Aparece inteiro nas margens laterais e quase some atrás do conteúdo** (máscara em
+  `PageBackground`), para não disputar com o texto. Como o conteúdo tem no máximo 80rem, as
+  margens só existem em telas mais largas que isso.
+- **Exceção à regra de usar `<img>`:** aqui é `background-image`. É um arquivo só, pequeno
+  (cerca de 12 KB comprimido), repetido; não há o que adiar, e `<img>` não repete.
+- O mosaico é montado a partir dos SVGs de `src/assets/tracos/`. Boneca nova entra no
+  mosaico regerando o arquivo; nenhum elemento pode cruzar a borda, senão a emenda aparece.
+- Desenho decorativo avulso, fora do mosaico (como as folhagens grandes dos cantos do hero),
+  usa `DecorativeImage`, com `pointer-events-none`, atrás do conteúdo.
+
+## Seções
+
+Toda seção depois do hero segue a mesma estrutura:
+
+```tsx
+<section id="studio" aria-labelledby="studio-titulo">
+  <Container className="flex flex-col gap-10 py-16 lg:py-24">
+    <SectionHeading id="studio-titulo" eyebrow="Nosso studio" title="Aparelhos de alta..." />
+    {/* conteúdo */}
+  </Container>
+</section>
+```
+
+- O `id` da seção é o destino do link do menu; o `id` do título é o que `aria-labelledby` usa.
+- **Cabeçalho de seção: o nome da seção (rótulo pequeno, em maiúsculas) e uma frase de
+  destaque (`h2`).** Só isso; sem parágrafo de apoio. É o `SectionHeading` (`src/shared/ui`).
+- **Cartão com rótulo acima do nome**, no mesmo estilo do rótulo da seção.
+- **Imagem de cartão amplia de leve ao passar o mouse** (`group-hover:scale-110`), dentro de um
+  painel com `overflow-hidden`, e não se mexe para quem pediu redução de movimento
+  (`motion-reduce`).
+- Os dados de uma seção com vários itens ficam em um arquivo próprio ao lado do componente
+  (ex.: `studioEquipment.ts`), com os textos de `docs/conteudo.md`; o componente só monta.
+- **Cartões:** fundo `cream` semitransparente, borda `blush`, cantos bem arredondados. Lista de
+  itens usa `<ul>`/`<li>`, para o leitor de tela anunciar quantos são.
+- **Grade com última linha incompleta fica centralizada:** `flex flex-wrap justify-center`, com
+  a largura de cada cartão calculada pelo número de colunas, em vez de `grid` (que deixaria a
+  última linha encostada à esquerda, com um vazio ao lado).
+- **Imagens de formatos diferentes em cartões iguais:** painel de proporção fixa com a imagem
+  em `object-contain`. Todas ocupam a mesma área, inteiras e sem distorcer.
 
 ## Navegação
 
@@ -310,6 +353,10 @@ traço. A frase é texto, em `font-script`.
   figura visível tem prioridade sobre caber em uma tela só.
 
 ### Desenhos em traço
+
+Já vetorizados, em `src/assets/tracos/`: `guerreira.svg` (a da recepção, no hero),
+`alongamento.svg` (sentada, tronco à frente) e `crianca.svg` (postura da criança), estes dois
+na seção Studio.
 
 Referência escolhida: o traço da parede da recepção do studio, "Acredite! O movimento cura"
 (`src/assets/images/movimento-cura-centralizado.png`). Características a manter em todos os

@@ -1,6 +1,7 @@
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { NAV_ITEMS } from '../components/navigation';
+import { Studio } from '../components/Studio';
 import { PageBackground } from '../shared/ui/PageBackground';
 
 const CONTENT_ID = 'inicio';
@@ -11,6 +12,7 @@ export function HomePage() {
       <Header navItems={NAV_ITEMS} contentId={CONTENT_ID} />
       <main id={CONTENT_ID}>
         <Hero />
+        <Studio />
       </main>
     </PageBackground>
   );
