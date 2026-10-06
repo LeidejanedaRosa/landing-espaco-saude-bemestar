@@ -23,6 +23,9 @@ deste projeto. Onde houver conflito, vale este.
                       └─ docs/... ───────────PR──┘
   ```
 
+- **A branch padrão do GitHub é a `feat/landing`, temporariamente**
+  ([decisão 0007](docs/decisoes/0007-branch-padrao-temporaria.md)), para Dependabot, CodeQL,
+  CodeRabbit e o template de PR analisarem o código novo. Volta para a `main` na entrega.
 - **Cada implementação em uma branch própria** (uma seção, um componente do design system,
   uma correção, um documento).
 - Nome de sub-branch com hífen (`feat/landing-hero`), nunca `feat/landing/hero`: o git não
@@ -57,6 +60,13 @@ Cada sub-branch entra na `feat/landing` por PR, nunca por merge local.
 5. Merge só com o CI verde, pelo GitHub, com **"Create a merge commit"** (nunca squash nem
    rebase: os commits da branch continuam visíveis no histórico).
 6. Depois do merge: `git switch feat/landing && git pull`, e só então criar a próxima branch.
+
+A `main` e a `feat/landing` são protegidas por ruleset: sem push direto, merge só por PR,
+só por merge commit e só com os quatro jobs do CI e a Vercel em verde. Job novo ou renomeado
+no CI exige rodar de novo o script `setup-github.mjs` do `react-vite-template`.
+
+O SonarCloud roda dentro do job "Lint, tipos, testes e build" e reprova o CI se o quality gate
+falhar. Sem o segredo `SONAR_TOKEN`, a análise é pulada.
 
 O CI roda em todo `pull_request` e em `push` na `main` e na `feat/landing`. Push em sub-branch
 sem PR aberto não dispara CI; nesse momento a verificação é a do hook local de pre-push.

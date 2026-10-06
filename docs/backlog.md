@@ -11,6 +11,7 @@
 - [x] Documentação base
 - [x] `CLAUDE.md` do projeto
 - [x] Identidade visual: tokens de cor e fontes no tema do Tailwind
+- [x] Proteção de branch, Dependabot, CodeQL e SonarCloud no CI
 - [x] Tratamento de imagens no build (AVIF/WebP) e componente `Picture`
 - [x] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [x] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
@@ -46,6 +47,9 @@
 - [ ] `robots.txt`, `sitemap.xml` e favicon
 - [ ] Variáveis de ambiente configuradas na Vercel (Production e Preview) — sem elas o build
       da Vercel falha
+- [ ] Na entrega: merge na `main`, voltar a branch padrão do GitHub para a `main` e rodar de
+      novo o `setup-github.mjs` (decisão 0007)
+- [ ] Religar a análise: conferir os alertas do Dependabot e do CodeQL depois do merge final
 - [ ] Decidir o que fazer com o GitHub Pages: ele serve a raiz da `main` sem build e vai
       quebrar quando a versão React chegar lá (desligar ou trocar para o build)
 - [ ] Auditoria manual de a11y (teclado e leitor de tela) antes de publicar
