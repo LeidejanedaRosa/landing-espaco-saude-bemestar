@@ -1,9 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 // Área útil do navegador, já descontadas as barras: um notebook de 1366x768 sobra com ~625px.
-// Inclui tablet em pé e deitado, e uma janela bem baixa (DevTools aberto embaixo).
+// Inclui tablet deitado e uma janela bem baixa (DevTools aberto embaixo).
 const TWO_COLUMN_SIZES = [
-  { width: 768, height: 950 },
   { width: 1024, height: 650 },
   { width: 1280, height: 600 },
   { width: 1366, height: 625 },
@@ -11,6 +10,13 @@ const TWO_COLUMN_SIZES = [
   { width: 1440, height: 780 },
   { width: 1536, height: 730 },
   { width: 1920, height: 950 }
+];
+
+// Tablet em pé: frase à esquerda e figura à direita no topo, centradas; texto embaixo.
+const TABLET_PORTRAIT_SIZES = [
+  { width: 768, height: 950 },
+  { width: 820, height: 1100 },
+  { width: 912, height: 1250 }
 ];
 
 test.describe('hero', () => {
@@ -98,6 +104,73 @@ test.describe('hero', () => {
       expect(second.y + second.height).toBeLessThanOrEqual(drawing.y + drawing.height * 0.24);
     });
   }
+
+  for (const size of TABLET_PORTRAIT_SIZES) {
+    const label = `${size.width}x${size.height}`;
+
+    test(`no tablet em pé (${label}) a frase fica à esquerda e a figura à direita, centradas, acima do texto`, async ({
+      page
+    }) => {
+      await page.setViewportSize(size);
+      await page.goto('/');
+      await page.evaluate(() => document.fonts.ready);
+
+      const header = await page.getByRole('banner').boundingBox();
+      const first = await page.getByText('Acredite!', { exact: true }).boundingBox();
+      const second = await page.getByText('O movimento cura', { exact: true }).boundingBox();
+      const drawing = await page.locator('main img[src*="guerreira"]').boundingBox();
+      const heading = await page.getByRole('heading', { level: 1 }).boundingBox();
+      const stats = await page.getByRole('main').locator('dl').boundingBox();
+      if (!header || !first || !second || !drawing || !heading || !stats) {
+        throw new Error('hero incompleto');
+      }
+
+      // lado a lado: a frase inteira fica à esquerda da figura
+      expect(second.x).toBeGreaterThan(first.x + first.width * 0.8);
+      expect(second.x + second.width).toBeLessThanOrEqual(drawing.x);
+
+      // centradas na horizontal (sobras iguais nas laterais) e na vertical (uma pela outra)
+      const leftSpace = first.x;
+      const rightSpace = size.width - (drawing.x + drawing.width);
+      expect(Math.abs(leftSpace - rightSpace)).toBeLessThanOrEqual(4);
+      const phraseCenter = (first.y + second.y + second.height) / 2;
+      const drawingCenter = drawing.y + drawing.height / 2;
+      expect(Math.abs(phraseCenter - drawingCenter)).toBeLessThanOrEqual(4);
+
+      // a figura usa toda a altura acima do texto, ou já bateu no limite de largura
+      const availableHeight = heading.y - header.height;
+      const usedWidth = drawing.x + drawing.width - first.x;
+      const fillsHeight = drawing.height >= availableHeight * 0.75;
+      const fillsWidth = usedWidth >= heading.width * 0.95;
+      expect(fillsHeight || fillsWidth).toBe(true);
+
+      // nada cortado: começa abaixo do header, termina antes do título, números na tela
+      expect(first.y).toBeGreaterThanOrEqual(header.height);
+      expect(drawing.y).toBeGreaterThanOrEqual(header.height);
+      expect(drawing.y + drawing.height).toBeLessThanOrEqual(heading.y);
+      expect(heading.width).toBeGreaterThan(size.width * 0.7);
+      expect(stats.y + stats.height).toBeLessThanOrEqual(size.height);
+    });
+  }
+
+  test('em janela de tablet bem baixa (768x450) a frase não é cortada pelo header', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 768, height: 450 });
+    await page.goto('/');
+    await page.evaluate(() => document.fonts.ready);
+
+    const header = await page.getByRole('banner').boundingBox();
+    const first = await page.getByText('Acredite!', { exact: true }).boundingBox();
+    const drawing = await page.locator('main img[src*="guerreira"]').boundingBox();
+    const heading = await page.getByRole('heading', { level: 1 }).boundingBox();
+    if (!header || !first || !drawing || !heading) throw new Error('hero incompleto');
+
+    expect(first.y).toBeGreaterThanOrEqual(header.height);
+    expect(drawing.y).toBeGreaterThanOrEqual(header.height);
+    expect(drawing.y + drawing.height).toBeLessThanOrEqual(heading.y);
+    expect(first.height).toBeLessThan(drawing.height);
+  });
 
   // Área útil de um celular comum com as barras do navegador.
   for (const size of [
