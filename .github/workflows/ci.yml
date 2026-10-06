@@ -20,6 +20,10 @@ permissions:
 
 env:
   HUSKY: 0
+  # Valores de exemplo: o build exige estas variáveis, e o CI não precisa dos dados reais.
+  VITE_SITE_URL: https://exemplo.com.br
+  VITE_WHATSAPP_NUMBER: '5500000000000'
+  VITE_INSTAGRAM_URL: https://www.instagram.com/exemplo
 
 jobs:
   quality:
