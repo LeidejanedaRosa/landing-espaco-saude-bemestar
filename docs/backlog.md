@@ -15,7 +15,7 @@
 - [x] Passo do SonarCloud no CI (pulado enquanto o `SONAR_TOKEN` não existir)
 - [x] Tratamento de imagens no build (AVIF/WebP) e componente `Picture`
 - [x] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
-- [x] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
+- [x] `Container` em `shared/ui` (largura máxima de 80rem, fundo sempre de borda a borda)
 
 ## Próximos passos
 
@@ -23,14 +23,14 @@
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
 - [ ] Gerar os desenhos em traço a partir de [docs/identidade/prompts-desenhos.md](identidade/prompts-desenhos.md)
 - [ ] Prompts e especificações das fotos
-- [ ] Vetorizar os desenhos em traço para SVG
+- [ ] Vetorizar os demais desenhos em traço para SVG (o do hero já está em `src/assets/tracos`)
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
 
 ## Seções da landing (uma branch por seção, a partir de `feat/landing`)
 
 - [x] Header e navegação (com menu mobile acessível)
-- [ ] Hero
+- [x] Hero
 - [ ] Studio / aparelhos
 - [ ] Serviços
 - [ ] Sobre a Luiza
