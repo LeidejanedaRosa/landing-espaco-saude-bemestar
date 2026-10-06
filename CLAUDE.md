@@ -95,6 +95,8 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
 - **Uma única cor de fundo para a página inteira**, em degradê vertical: a cor mais clara no
   topo, a mais escura no footer. Fica no elemento raiz da página, não nas seções.
 - **Seções têm fundo transparente** e não definem `background-color`.
+- **Exceção: o header.** Ele fica fixo no topo e passa por cima do conteúdo, então precisa de
+  fundo próprio para o texto continuar legível (`cream` quase opaco, a cor do topo do degradê).
 - No código: o degradê vive só em `PageBackground` (`src/shared/ui`), usado pela página e
   pela tela de erro. Não repetir as classes do degradê em outro lugar.
 - Como o fundo escurece ao longo da página, conferir o contraste do texto (WCAG AA, 4.5:1) em
@@ -111,6 +113,17 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
   `<img>` sim. É o mesmo padrão do `ThemedBackgroundImage` do projeto `portfolio`.
 - A imagem é posicionada em relação à seção (largura total), não ao Container.
 - `pointer-events-none`, atrás do conteúdo, discreta o bastante para não atrapalhar a leitura.
+
+## Navegação
+
+- Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra
+  com o `id` igual ao `href` do seu item**; sem isso o link do menu não leva a lugar nenhum.
+- O header é fixo: a folga para ele não cobrir o início da seção de destino está em
+  `scroll-padding-top`, em `src/styles/main.css`. Se a altura do header mudar, ajustar lá.
+- Botão com aparência de botão que leva a outro lugar é `ButtonLink` (`src/shared/ui`); com
+  `external`, ele abre em nova aba, protege com `rel` e avisa o leitor de tela.
+- Abrir e fechar (menu, sanfona) usa o hook `useDisclosure` (`src/shared/hooks`), que já
+  trata a tecla Esc.
 
 ## Imagens
 

@@ -27,7 +27,7 @@
 
 ## Seções da landing (uma branch por seção, a partir de `feat/landing`)
 
-- [ ] Header e navegação (com menu mobile acessível)
+- [x] Header e navegação (com menu mobile acessível)
 - [ ] Hero
 - [ ] Studio / aparelhos
 - [ ] Serviços
@@ -49,6 +49,8 @@
 - [ ] Decidir o que fazer com o GitHub Pages: ele serve a raiz da `main` sem build e vai
       quebrar quando a versão React chegar lá (desligar ou trocar para o build)
 - [ ] Auditoria manual de a11y (teclado e leitor de tela) antes de publicar
+- [ ] Teste e2e: todo link do menu aponta para uma seção que existe (hoje os destinos ainda
+      não foram construídos)
 
 ## Pendências técnicas
 
