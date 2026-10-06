@@ -7,6 +7,6 @@ describe('prerender', () => {
     const html = render();
 
     expect(html).toContain('<main');
-    expect(html).toMatch(/<h1[^>]*>Luiza — Espaço Saúde e Bem-estar<\/h1>/);
+    expect(html).toMatch(/<h1[^>]*>Saúde, movimento e/);
   });
 });

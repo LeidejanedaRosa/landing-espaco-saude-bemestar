@@ -29,16 +29,19 @@
   --font-display: 'Playfair Display', ui-serif, Georgia, serif;
   --font-script: 'Great Vibes', cursive;
 
-  /* 90rem = 1440px no tamanho de fonte padrão; em rem acompanha a preferência do visitante. */
-  --container-page: 90rem;
+  /* 80rem = 1280px no tamanho de fonte padrão; em rem acompanha a preferência do visitante.
+     Em telas de 1440px para cima sobram margens laterais, onde ficam as folhagens. */
+  --container-page: 80rem;
   /* Respiro lateral fluido: 1rem no celular, cresce com a tela, para em 4rem. */
   --spacing-gutter: clamp(1rem, 5vw, 4rem);
+  /* Altura do header fixo. As seções de tela cheia descontam este valor. */
+  --spacing-header: 5rem;
 }
 
 @layer base {
   html {
     /* O header é fixo no topo: sem esta folga ele cobriria o início da seção de destino. */
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: calc(var(--spacing-header) + 0.5rem);
   }
 
   @media (prefers-reduced-motion: no-preference) {

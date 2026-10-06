@@ -48,7 +48,7 @@ Acrescente a linha da pose ao final do prompt base.
 
 | Seção              | Arquivo                 | Proporção | Linha da pose                                                                                                                                           |
 | ------------------ | ----------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Hero               | `traco-guerreira.png`   | 3:4       | _Não gerar: é o desenho da recepção, recortado sem a frase._                                                                                            |
+| Hero               | `traco-guerreira.png`   | 3:4       | _Pronto: é o desenho da recepção, recortado sem a frase e já vetorizado._                                                                               |
 | Studio / aparelhos | `traco-alongamento.png` | 4:3       | `Pose: seated on the floor, legs extended straight forward, torso folding forward, both arms reaching toward the feet. Side view.`                      |
 | Serviços           | `traco-inclinacao.png`  | 3:4       | `Pose: standing, feet together, one arm stretched overhead, torso bending sideways in a long arc, the other arm relaxed along the body. Front view.`    |
 | Sobre a Luiza      | `traco-equilibrio.png`  | 3:4       | `Pose: standing balanced on one leg, the other knee lifted to hip height, both arms open to the sides at shoulder height. Side view.`                   |
