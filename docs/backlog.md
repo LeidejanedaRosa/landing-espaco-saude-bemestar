@@ -11,7 +11,8 @@
 - [x] Documentação base
 - [x] `CLAUDE.md` do projeto
 - [x] Identidade visual: tokens de cor e fontes no tema do Tailwind
-- [x] Proteção de branch, Dependabot, CodeQL e SonarCloud no CI
+- [x] Proteção de branch, Dependabot e CodeQL
+- [x] Passo do SonarCloud no CI (pulado enquanto o `SONAR_TOKEN` não existir)
 - [x] Tratamento de imagens no build (AVIF/WebP) e componente `Picture`
 - [x] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [x] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
@@ -58,4 +59,7 @@
 
 ## Pendências técnicas
 
+- [ ] Ativar o SonarCloud: criar o projeto, cadastrar o segredo `SONAR_TOKEN` no GitHub,
+      conferir `sonar.organization` e `sonar.projectKey` em `sonar-project.properties` e ver a
+      primeira análise passar no CI
 - [ ] Rever TypeScript 7 e ESLint 10 quando os plugins aceitarem (decisão 0003)
