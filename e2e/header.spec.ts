@@ -16,7 +16,10 @@ test.describe('header no desktop', () => {
   test('o botão Agendar leva ao WhatsApp com mensagem preenchida', async ({ page }) => {
     await page.goto('/');
 
-    const href = await page.getByRole('link', { name: /agendar/i }).getAttribute('href');
+    const href = await page
+      .getByRole('banner')
+      .getByRole('link', { name: /agendar/i })
+      .getAttribute('href');
     const url = new URL(href ?? '');
 
     expect(url.origin).toBe('https://wa.me');

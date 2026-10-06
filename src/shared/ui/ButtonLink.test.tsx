@@ -40,4 +40,17 @@ describe('ButtonLink', () => {
 
     expect(screen.getByRole('link', { name: 'Pequeno' })).toHaveClass('min-h-11');
   });
+
+  it('a variante secundária é vazada, para não competir com a ação principal', () => {
+    render(
+      <ButtonLink href="#studio" variant="secondary">
+        Conhecer o studio
+      </ButtonLink>
+    );
+
+    const link = screen.getByRole('link', { name: 'Conhecer o studio' });
+
+    expect(link).toHaveClass('border', 'text-olive-deep');
+    expect(link).not.toHaveClass('bg-olive-deep');
+  });
 });

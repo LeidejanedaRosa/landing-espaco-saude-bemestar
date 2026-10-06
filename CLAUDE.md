@@ -80,22 +80,24 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
 ```
 ┌──────────────────────── viewport (qualquer largura) ────────────────────────┐
 │ <section>  fundo e imagem decorativa: 100% da largura, sempre               │
-│        ┌──────────── Container: max 90rem (1440px), mx-auto ───────────┐    │
+│        ┌──────────── Container: max 80rem (1280px), mx-auto ───────────┐    │
 │        │  conteúdo                                                     │    │
 │        └───────────────────────────────────────────────────────────────┘    │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-- **Largura máxima de 1440px, centralizada** (`mx-auto`). Escrita como `90rem` em um token do
+- **Largura máxima de 1280px, centralizada** (`mx-auto`). Escrita como `80rem` em um token do
   tema do Tailwind, para acompanhar o tamanho de fonte que a pessoa configurou no navegador.
+  Assim, numa tela de 1440px o conteúdo já fica centralizado, com margens laterais; é nessas
+  margens que entram as folhagens (e, depois, os desenhos em traço).
 - **O fundo nunca fica preso ao Container.** Quem carrega fundo é o elemento de fora
   (`<section>`, `<header>`, `<footer>`), com largura total; o Container fica dentro e limita só
-  o conteúdo. Em telas maiores que 1440px o fundo continua indo de borda a borda.
+  o conteúdo. Em telas maiores que 1280px o fundo continua indo de borda a borda.
 - **Sem valores fixos.** Nada de `px` em largura, altura, espaçamento ou tamanho de fonte. Usar
   `rem`, `%`, `fr`, `dvh`, `clamp()`, `min()`/`max()` e `aspect-ratio`. Exceção: detalhes de
   1px, como bordas.
 - Espaçamento lateral do Container é fluido (cresce com a tela), nunca um número fixo.
-- No código: `<Container>` aplica `max-w-page` (token `--container-page: 90rem`) e `px-gutter`
+- No código: `<Container>` aplica `max-w-page` (token `--container-page: 80rem`) e `px-gutter`
   (token `--spacing-gutter: clamp(1rem, 5vw, 4rem)`). Classes extras (`flex`, `grid`...) entram
   por `className`; largura e respiro lateral nunca são sobrescritos por quem usa.
 - Mobile first: o estilo base é o do celular; breakpoints só acrescentam.
@@ -128,8 +130,18 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra
   com o `id` igual ao `href` do seu item**; sem isso o link do menu não leva a lugar nenhum.
-- O header é fixo: a folga para ele não cobrir o início da seção de destino está em
-  `scroll-padding-top`, em `src/styles/main.css`. Se a altura do header mudar, ajustar lá.
+- O header é fixo no topo (`sticky`) e a altura dele é o token `--spacing-header`
+  (`src/styles/main.css`), usado em três lugares: no próprio header (`h-header`), na folga de
+  rolagem (`scroll-padding-top`) e nas seções de tela cheia. Mudou a altura, muda só o token.
+- **Seção de tela cheia nunca passa do viewport:** a altura é a da tela menos o header,
+  `min-h-[calc(100dvh-var(--spacing-header))]`. É `min-h`, e não `h`, para o conteúdo não ser
+  cortado quando não cabe. A regra de caber na tela vale para desktop e notebook; no celular a
+  seção pode crescer.
+- **Testar altura com a área útil do navegador, não com a resolução do monitor.** Um notebook
+  de 1366×768 sobra com cerca de 625px depois das barras do navegador. Para caber nessas
+  telas, fontes e espaços da seção de tela cheia encolhem com a altura (`clamp()` com `dvh`).
+  Os tamanhos cobertos pelo e2e estão em `e2e/hero.spec.ts`; seção nova de tela cheia segue a
+  mesma lista.
 - Botão com aparência de botão que leva a outro lugar é `ButtonLink` (`src/shared/ui`); com
   `external`, ele abre em nova aba, protege com `rel` e avisa o leitor de tela.
 - Abrir e fechar (menu, sanfona) usa o hook `useDisclosure` (`src/shared/hooks`), que já
@@ -170,6 +182,17 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
 - Arquivos originais (PNG gerados, antes de tratar) ficam em `design/originais/`, fora de
   `src`, para o build não os publicar. Só a versão tratada (SVG, AVIF, WebP) entra em
   `src/assets`.
+- **Desenho em traço e folhagem entram pelo componente `DecorativeImage`** (`src/shared/ui`), a
+  partir de um SVG em `src/assets/tracos/` ou `src/assets/folhagens/`. Ele já sai decorativo
+  (`alt=""`, `aria-hidden`) e com carregamento lento; na primeira tela, usar `priority`.
+- **Folhagens:** `ramo-verde.svg` e `ramo-rosa.svg`, nas cores `teal` e `rose`. Ficam nos cantos
+  da seção, semitransparentes, atrás do conteúdo e parcialmente para fora da tela (a seção usa
+  `overflow-hidden`). São dois arquivos porque SVG em `<img>` não muda de cor por CSS.
+- **Como um PNG de traço vira SVG:** o original (traço preto, fundo branco) fica em
+  `design/originais/`; a vetorização é feita com `potrace`, e o resultado passa pelo `svgo`
+  (`--precision 0 --multipass`), que derruba o arquivo para cerca de um décimo. O `potrace` do
+  npm traz dependências com vulnerabilidades, então é usado fora do projeto e não entra no
+  `package.json`. A cor do traço é definida no próprio SVG (`rose-deep` no hero).
 - Prompts e especificações dos desenhos em traço:
   [docs/identidade/prompts-desenhos.md](docs/identidade/prompts-desenhos.md).
 
@@ -251,6 +274,26 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
 - Folhagens em aquarela discreta nos cantos; divisores finos com um pequeno ornamento central.
 - Tipografia em três papéis: serifada elegante de alto contraste nos títulos, sem serifa limpa
   no texto, e manuscrita só em palavras de destaque (nunca em parágrafo).
+
+### A parede da recepção no hero
+
+O hero reproduz a parede da recepção do studio: "Acredite!" na primeira linha e "O movimento
+cura" na segunda, começando embaixo do "!" e terminando rente ao braço erguido da figura em
+traço. A frase é texto, em `font-script`.
+
+- O recuo da segunda linha é `2.57em`, a largura de "Acredite" nessa fonte. Trocar a fonte da
+  frase exige medir de novo.
+- A frase é ancorada pela direita, a uma fração da altura do desenho (variável `--art-h`),
+  para acompanhar o braço em qualquer tamanho de tela sem encostar nele.
+- **Duas colunas a partir do tablet (`md`, 768px):** texto à esquerda, parede à direita. A
+  coluna da direita é um container de tamanho (`container-type: size`): o desenho cresce até a
+  altura disponível (`cqh`) e para quando a largura da coluna não comporta mais a frase à
+  esquerda do braço (`cqw`). Em tablet em pé a coluna é estreita e alta, então o limite é a
+  largura e sobra espaço acima e abaixo do desenho.
+- No celular a composição é a mesma, com a figura nítida, e vem no topo, antes do título
+  (só na ordem visual; no HTML o título continua primeiro). Ali o hero
+  fica mais alto que a tela e a pessoa rola: texto e figura não cabem juntos num celular, e a
+  figura visível tem prioridade sobre caber em uma tela só.
 
 ### Desenhos em traço
 

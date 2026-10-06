@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const MAX_CONTENT_WIDTH = 1440;
+const MAX_CONTENT_WIDTH = 1280;
 
 test.describe('container da página', () => {
   test('em tela muito larga, limita e centraliza o conteúdo, mas o fundo vai de borda a borda', async ({
@@ -9,7 +9,7 @@ test.describe('container da página', () => {
     await page.setViewportSize({ width: 2560, height: 1000 });
     await page.goto('/');
 
-    const container = await page.getByRole('main').locator('> div').boundingBox();
+    const container = await page.getByRole('main').locator('section > div').first().boundingBox();
     const background = await page.locator('#root > div').boundingBox();
 
     expect(container?.width).toBe(MAX_CONTENT_WIDTH);
