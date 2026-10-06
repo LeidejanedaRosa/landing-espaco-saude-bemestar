@@ -4,7 +4,6 @@ import { expect, test } from '@playwright/test';
 // Ao construir uma seção, tire o destino dela desta lista: o segundo teste falha enquanto
 // ela continuar aqui. A landing só pode ir para a `main` com esta lista vazia.
 const PENDING_SECTIONS = [
-  '#studio',
   '#servicos',
   '#sobre',
   '#atendimento-medico',
