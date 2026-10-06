@@ -120,6 +120,19 @@ como feito a lápis, no estilo do desenho "O movimento cura" da recepção do st
 | Fotos e ilustrações com muitos tons | AVIF, com WebP de reserva (`<picture>`)  |
 | PNG e JPEG                          | só como arquivo original, nunca servidos |
 
+- **No código, foto e ilustração sempre passam pelo componente `Picture`** (`src/shared/ui`),
+  nunca por `<img>` solta. O original é importado com a query do `vite-imagetools`, que gera
+  os arquivos no build ([decisão 0006](docs/decisoes/0006-tratamento-de-imagens-no-build.md)):
+
+  ```tsx
+  import foto from '../../design/originais/foto.png?w=480;960&format=avif;webp&as=picture';
+
+  <Picture image={foto} alt="Descrição da foto" sizes="(min-width: 64rem) 50vw, 100vw" />;
+  ```
+
+  `w=` lista as larguras geradas (nunca maiores que o original); `sizes` diz quanto da tela a
+  imagem ocupa. Para a imagem principal da primeira tela, acrescentar a prop `priority`.
+
 - **Carregamento lento:** toda imagem fora da primeira tela usa `loading="lazy"` e
   `decoding="async"`.
 - **Exceção — a imagem principal do hero:** `loading="eager"` e `fetchpriority="high"`. Ela é o

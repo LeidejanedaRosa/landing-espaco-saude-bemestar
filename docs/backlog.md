@@ -11,6 +11,7 @@
 - [x] Documentação base
 - [x] `CLAUDE.md` do projeto
 - [x] Identidade visual: tokens de cor e fontes no tema do Tailwind
+- [x] Tratamento de imagens no build (AVIF/WebP) e componente `Picture`
 - [x] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [x] `Container` em `shared/ui` (largura máxima de 90rem, fundo sempre de borda a borda)
 
@@ -20,7 +21,7 @@
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
 - [ ] Gerar os desenhos em traço a partir de [docs/identidade/prompts-desenhos.md](identidade/prompts-desenhos.md)
 - [ ] Prompts e especificações das fotos
-- [ ] Tratamento de imagens: vetorizar desenhos para SVG, fotos em AVIF/WebP
+- [ ] Vetorizar os desenhos em traço para SVG
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
 
