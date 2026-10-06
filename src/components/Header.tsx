@@ -6,8 +6,8 @@ import { Container } from '../shared/ui/Container';
 import { Picture } from '../shared/ui/Picture';
 import { buildWhatsAppUrl } from '../shared/utils/whatsapp';
 import type { NavItem } from './navigation';
+import { SCHEDULE_MESSAGE } from './whatsappMessages';
 
-const SCHEDULE_MESSAGE = 'Olá! Gostaria de agendar uma avaliação.';
 const MENU_ID = 'menu-principal';
 
 interface HeaderProps {
@@ -22,7 +22,7 @@ export function Header({ navItems, contentId }: HeaderProps) {
   const menu = useDisclosure({ onEscapeClose: focusMenuButton });
 
   return (
-    <header className="bg-cream/95 border-blush sticky top-0 z-10 border-b backdrop-blur-sm">
+    <header className="bg-cream/95 border-blush h-header sticky top-0 z-10 border-b backdrop-blur-sm">
       <a
         href={`#${contentId}`}
         className="bg-ink text-cream sr-only rounded-full px-4 py-2 focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-20"
@@ -30,7 +30,7 @@ export function Header({ navItems, contentId }: HeaderProps) {
         Pular para o conteúdo
       </a>
 
-      <Container className="relative flex items-center justify-between gap-4 py-2">
+      <Container className="relative flex h-full items-center justify-between gap-4">
         <a
           href={`#${contentId}`}
           className="focus-visible:outline-olive-deep rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2"
@@ -40,7 +40,7 @@ export function Header({ navItems, contentId }: HeaderProps) {
             alt="Luiza — Espaço Saúde e Bem-estar, ir para o início"
             sizes="3.5rem"
             priority
-            className="h-16 w-auto"
+            className="h-14 w-auto"
           />
         </a>
 
