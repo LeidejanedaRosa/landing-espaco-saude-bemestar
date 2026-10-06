@@ -13,6 +13,7 @@
 - [x] Identidade visual: tokens de cor e fontes no tema do Tailwind
 - [x] Proteção de branch, Dependabot e CodeQL
 - [x] Passo do SonarCloud no CI (pulado enquanto o `SONAR_TOKEN` não existir)
+- [x] Papel de parede da página com bonecas em traço e folhagens
 - [x] Tratamento de imagens no build (AVIF/WebP) e componente `Picture`
 - [x] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [x] `Container` em `shared/ui` (largura máxima de 80rem, fundo sempre de borda a borda)
@@ -23,7 +24,8 @@
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
 - [ ] Gerar os desenhos em traço a partir de [docs/identidade/prompts-desenhos.md](identidade/prompts-desenhos.md)
 - [ ] Prompts e especificações das fotos
-- [ ] Vetorizar os demais desenhos em traço para SVG (o do hero já está em `src/assets/tracos`)
+- [ ] Vetorizar os demais desenhos em traço para SVG (prontos em `src/assets/tracos`: guerreira,
+      alongamento e criança)
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
 
@@ -31,7 +33,7 @@
 
 - [x] Header e navegação (com menu mobile acessível)
 - [x] Hero
-- [ ] Studio / aparelhos
+- [x] Studio / aparelhos
 - [ ] Serviços
 - [ ] Sobre a Luiza
 - [ ] Atendimento médico

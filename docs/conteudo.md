@@ -4,6 +4,17 @@ Textos preservados da landing antiga (o `index.html` anterior continua no histó
 `main` até o commit `a9f13b9`) e da versão de referência feita na Emergent. É a fonte dos textos
 para as seções novas.
 
+## Qual texto vale
+
+Os textos da landing antiga, que estão na branch `main`, **foram aprovados pela cliente** e são
+a fonte principal. Os textos que só existem na versão da Emergent entram apenas onde a `main`
+não tem nada equivalente (hoje, o título e os três números do hero) e precisam da revisão
+dela. O texto de apresentação do hero é o parágrafo aprovado da `main`.
+
+Títulos de seção aprovados na `main`: "Sobre a Luiza", "Certificações e Qualificações", "O que
+Luiza Espaço Saúde e bem estar oferece?", "Para quem o pilates é indicado?", "Equipamentos",
+"Nossa Metodologia" e "O que dizem sobre nós".
+
 ## Dados confirmados pela cliente (2026-10-05)
 
 - **WhatsApp:** +55 35 98896-0886
@@ -113,7 +124,8 @@ Consultas integrativas com atendimento humanizado e tratamento integrado.
 
 ### Bicicleta
 
-A bicicleta ergométrica horizontal é uma forma segura, confortável e eficiente de se exercitar.
+A bicicleta ergométrica horizontal é uma forma segura, confortável e eficiente de se exercitar,
+ajudando a:
 
 - Fortalece pernas e articulações
 - Melhora a mobilidade e postura
@@ -192,3 +204,7 @@ garantindo que cada sessão seja produtiva e agradável.
 - Chamada final: "Priorize o que realmente importa: Você! Agende sua consulta ou aula
   experimental e sinta a diferença de um cuidado verdadeiramente individualizado."
 - Rodapé: "Movimento consciente, reabilitação especializada e cuidado integrado."
+- Seção de aparelhos: nome "Nosso studio" e frase de destaque "Aparelhos de alta precisão para o
+  seu treino" (escolhidos no lugar do título "Equipamentos" da `main`).
+- Rótulos dos aparelhos: Reformer "O clássico do Pilates", Cadillac "Reabilitação completa",
+  Barrel "Flexibilidade & coluna", Chair "Equilíbrio & controle", Bicicleta "Força & resistência".
