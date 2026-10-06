@@ -33,7 +33,8 @@ export default defineConfig(({ mode }) => {
         include: ['src/**/*.{ts,tsx}'],
         // entry-client só liga o React ao DOM real; quem cobre esse caminho é o e2e.
         exclude: ['src/entry-client.tsx', 'src/test/**', 'src/**/*.test.{ts,tsx}', 'src/**/*.d.ts'],
-        reporter: ['text', 'html'],
+        // lcov é o formato que o SonarCloud lê para mostrar a cobertura.
+        reporter: ['text', 'html', 'lcov'],
         thresholds: { statements: 90, branches: 90, functions: 90, lines: 90 }
       }
     }
