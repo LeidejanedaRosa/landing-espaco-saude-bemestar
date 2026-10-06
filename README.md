@@ -13,7 +13,7 @@ Pré-requisitos: Node 24 (`nvm use`) e [gitleaks](https://github.com/gitleaks/gi
 
 ```bash
 npm install
-cp .env.example .env   # preencha os valores
+cp .env.example .env   # preencha os valores; sem eles, dev e build param com erro
 npm run dev
 ```
 
