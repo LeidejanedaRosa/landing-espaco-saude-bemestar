@@ -1,3 +1,4 @@
+import { ButtonLink } from '../shared/ui/ButtonLink';
 import { Container } from '../shared/ui/Container';
 import { PageBackground } from '../shared/ui/PageBackground';
 import { buildWhatsAppUrl } from '../shared/utils/whatsapp';
@@ -16,14 +17,9 @@ export function ErrorFallback() {
               WhatsApp.
             </p>
           </div>
-          <a
-            href={buildWhatsAppUrl(SUPPORT_MESSAGE)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-olive-deep text-cream hover:bg-ink focus-visible:outline-olive-deep rounded-full px-6 py-3 font-medium focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
-            Falar no WhatsApp<span className="sr-only"> (abre em nova aba)</span>
-          </a>
+          <ButtonLink href={buildWhatsAppUrl(SUPPORT_MESSAGE)} external>
+            Falar no WhatsApp
+          </ButtonLink>
         </Container>
       </main>
     </PageBackground>
