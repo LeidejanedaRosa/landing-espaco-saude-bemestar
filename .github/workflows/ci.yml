@@ -31,6 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # O SonarCloud usa o histórico para saber o que é código novo em cada PR.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
@@ -40,6 +43,24 @@ jobs:
       - run: npm run format:check
       - run: npm run typecheck
       - run: npm run test:coverage
+      - name: Verificar se o SonarCloud está configurado
+        id: sonar
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        # Sem o token (ex.: PR aberto pelo Dependabot, que não recebe segredos) a análise é
+        # pulada em vez de quebrar o CI.
+        run: |
+          if [ -n "$SONAR_TOKEN" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::SONAR_TOKEN ausente: análise do SonarCloud pulada."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: SonarCloud (análise e quality gate)
+        if: steps.sonar.outputs.configured == 'true'
+        uses: SonarSource/sonarqube-scan-action@v8
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - run: npm run build
 
   e2e:
