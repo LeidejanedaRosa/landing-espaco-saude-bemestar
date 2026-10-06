@@ -18,7 +18,8 @@
 
 - [ ] Transição do degradê para `olive-deep` no footer (o trecho claro já está aplicado)
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
-- [ ] Prompts e especificações das imagens (desenhos em traço por seção e fotos)
+- [ ] Gerar os desenhos em traço a partir de [docs/identidade/prompts-desenhos.md](identidade/prompts-desenhos.md)
+- [ ] Prompts e especificações das fotos
 - [ ] Tratamento de imagens: vetorizar desenhos para SVG, fotos em AVIF/WebP
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
