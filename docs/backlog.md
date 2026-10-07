@@ -35,8 +35,8 @@
 
 ## Próxima rodada de vida às seções
 
-- [ ] Studio em carrossel, um aparelho por vez, na horizontal (sem troca automática)
-- [ ] Conteúdo surgindo de leve ao entrar na tela, respeitando redução de movimento
+- [x] Studio em carrossel, um aparelho por vez, na horizontal (sem troca automática)
+- [x] Conteúdo surgindo de leve ao entrar na tela, respeitando redução de movimento
 
 ## Seções da landing (uma branch por seção, a partir de `feat/landing`)
 

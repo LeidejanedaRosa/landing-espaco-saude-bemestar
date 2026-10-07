@@ -75,3 +75,31 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
 - **Ilustração em traço se colore por preenchimento de região** (`floodfill`), desde que os
   contornos sejam fechados. Onde o contorno é aberto (ponta dos dedos), o preenchimento vaza
   para o fundo e o trecho precisa ser pintado à mão.
+
+## 2026-10-07 — Carrossel do Studio
+
+- **Carrossel não precisa de biblioteca.** `overflow-x: auto` com `scroll-snap` já entrega
+  arrasto, roda do mouse e teclado. O JavaScript ficou só com duas tarefas: saber qual slide
+  está à vista e rolar até outro quando um botão pede.
+- **Estado do React não serve para decidir o próximo passo de uma ação rápida.** O `index` só
+  muda na renderização seguinte; uma tecla apertada antes dela calculava "próximo" a partir do
+  slide antigo e o carrossel não saía do lugar. O valor atual passou a ficar também em um `ref`,
+  lido na hora.
+- **Cada navegador avisa da rolagem em um ritmo.** O Safari dispara o evento de rolagem só no
+  começo e no fim da rolagem suave. A primeira versão concluía "parou" depois de 150 ms sem
+  evento e voltava o marcador no meio do caminho. Hoje a chegada é reconhecida pela posição.
+- **Teste que falha "às vezes" está apontando um defeito de verdade.** A falha só aparecia no
+  WebKit, com os testes em paralelo. Registrar cada evento com o horário mostrou a causa em vez
+  de aumentar o tempo de espera do teste.
+- **Controle abaixo de conteúdo alto some.** No celular, setas embaixo do cartão ficavam fora da
+  tela; foram para cima, junto do título.
+- **Animação ligada à rolagem (`animation-timeline: view()`) dispensa `IntersectionObserver`:**
+  sem JavaScript, não há risco de o conteúdo ficar invisível se o script falhar.
+- **Componente extraído cedo demais vira código morto.** `CardGrid` e `IllustratedCard` foram
+  criados no PR anterior e removidos neste, quando o Studio deixou de ser grade. O que
+  sobreviveu foi a parte realmente repetida, a lista marcada (`CheckList`).
+- **Margem dentro do arquivo também é tamanho.** Barrel e Chair pareciam menores porque o
+  desenho ocupava só metade do próprio arquivo; `object-contain` encaixa o arquivo, não o
+  desenho. Aparar a margem resolveu sem mexer no layout.
+- **Desenho a lápis combina com papel colorido.** Com `mix-blend-multiply` sobre uma folha
+  opaca, o branco do arquivo vira a cor do papel e o grafite continua escuro.
