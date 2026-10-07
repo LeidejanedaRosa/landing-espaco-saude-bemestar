@@ -26,18 +26,24 @@
       caso, no trecho do meio o texto não pode ficar direto sobre o fundo (vai em cartões)
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
 - [ ] Gerar os desenhos em traço a partir de [docs/identidade/prompts-desenhos.md](identidade/prompts-desenhos.md)
-- [ ] Prompts e especificações das fotos
+- [ ] Gerar as três ilustrações de serviço que faltam (Pilates, Massoterapia e Atendimento
+      Médico), por [docs/identidade/prompts-ilustracoes-servicos.md](identidade/prompts-ilustracoes-servicos.md)
 - [ ] Vetorizar os demais desenhos em traço para SVG (prontos em `src/assets/tracos`: guerreira,
       alongamento e criança)
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
+
+## Próxima rodada de vida às seções
+
+- [ ] Studio em carrossel, um aparelho por vez, na horizontal (sem troca automática)
+- [ ] Conteúdo surgindo de leve ao entrar na tela, respeitando redução de movimento
 
 ## Seções da landing (uma branch por seção, a partir de `feat/landing`)
 
 - [x] Header e navegação (com menu mobile acessível)
 - [x] Hero
 - [x] Studio / aparelhos
-- [ ] Serviços
+- [x] Serviços
 - [ ] Sobre a Luiza
 - [ ] Atendimento médico
 - [ ] Metodologia
