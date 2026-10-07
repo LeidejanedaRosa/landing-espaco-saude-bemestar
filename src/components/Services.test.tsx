@@ -115,6 +115,16 @@ describe('Services', () => {
     expect(tab('Fisioterapia')).toHaveFocus();
   });
 
+  it('as setas partem da aba que tem o foco, mesmo que ela não seja a selecionada', async () => {
+    const { user, tab } = renderServices();
+    tab('Pilates').focus();
+
+    await user.keyboard('{ArrowLeft}');
+
+    expect(tab('Fisioterapia')).toHaveFocus();
+    expect(tab('Fisioterapia')).toHaveAttribute('aria-selected', 'true');
+  });
+
   it('Home e End vão para a primeira e a última aba; outras teclas não fazem nada', async () => {
     const { user, tab } = renderServices();
     tab('Fisioterapia').focus();
