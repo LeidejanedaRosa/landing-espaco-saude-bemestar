@@ -20,7 +20,9 @@
 
 ## Próximos passos
 
-- [ ] Transição do degradê para `olive-deep` no footer (o trecho claro já está aplicado)
+- [ ] Transição do degradê para `olive-deep` no footer (o trecho claro já está aplicado).
+      Decidir com a Leidejane onde a mistura começa: ela imagina a partir da seção "Sobre"; nesse
+      caso, no trecho do meio o texto não pode ficar direto sobre o fundo (vai em cartões)
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
 - [ ] Gerar os desenhos em traço a partir de [docs/identidade/prompts-desenhos.md](identidade/prompts-desenhos.md)
 - [ ] Prompts e especificações das fotos
