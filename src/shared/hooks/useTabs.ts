@@ -15,10 +15,12 @@ export function useTabs(count: number) {
     tabs.current[next]?.focus();
   }
 
-  function handleKeyDown(event: KeyboardEvent) {
+  // As setas partem da aba que recebeu a tecla (a que tem o foco), e não da selecionada: as
+  // duas só coincidem enquanto ninguém puser o foco em outra aba por código.
+  function handleKeyDown(index: number, event: KeyboardEvent) {
     const targets: Record<string, number> = {
-      ArrowRight: selectedIndex + 1,
-      ArrowLeft: selectedIndex - 1,
+      ArrowRight: index + 1,
+      ArrowLeft: index - 1,
       Home: 0,
       End: count - 1
     };
@@ -38,7 +40,7 @@ export function useTabs(count: number) {
       'aria-controls': `${baseId}-panel-${index}`,
       tabIndex: index === selectedIndex ? 0 : -1,
       onClick: () => setSelectedIndex(index),
-      onKeyDown: handleKeyDown,
+      onKeyDown: (event: KeyboardEvent) => handleKeyDown(index, event),
       ref: (element: HTMLButtonElement | null) => {
         tabs.current[index] = element;
       }
