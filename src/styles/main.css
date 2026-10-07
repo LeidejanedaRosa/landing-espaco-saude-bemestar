@@ -36,6 +36,31 @@
   --spacing-gutter: clamp(1rem, 5vw, 4rem);
   /* Altura do header fixo. As seções de tela cheia descontam este valor. */
   --spacing-header: 5rem;
+
+  /* "Riscado a lápis": o desenho e a frase do hero surgem aos poucos, como se estivessem
+     sendo traçados. O recorte final é negativo para não cortar as pontas das letras cursivas,
+     que passam da caixa do texto. Só roda com `motion-safe:`. */
+  --animate-write: reveal-right 0.9s ease-out both;
+  --animate-draw-right: reveal-right 2.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  --animate-draw-down: reveal-down 2.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+
+  @keyframes reveal-right {
+    from {
+      clip-path: inset(-0.5em 100% -0.5em -0.5em);
+    }
+    to {
+      clip-path: inset(-0.5em -0.5em -0.5em -0.5em);
+    }
+  }
+
+  @keyframes reveal-down {
+    from {
+      clip-path: inset(-0.5em -0.5em 100% -0.5em);
+    }
+    to {
+      clip-path: inset(-0.5em -0.5em -0.5em -0.5em);
+    }
+  }
 }
 
 @layer base {

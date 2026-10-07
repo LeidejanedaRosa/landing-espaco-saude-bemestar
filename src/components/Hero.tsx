@@ -98,12 +98,20 @@ export function Hero() {
             - desktop (lg): a boneca da recepção, sozinha, na coluna da direita. A frase é
               ancorada a uma fração da altura do desenho (--art-h) e termina rente ao braço
               erguido; o desenho cresce até a altura disponível (cqh), limitado pela largura.
-            No HTML o título continua primeiro; só a ordem visual muda (order-first). */}
+            No HTML o título continua primeiro; só a ordem visual muda (order-first).
+            O atraso da animação é repetido com `lg:` porque `lg:animate-*` redefine a
+            animação inteira nesse tamanho e zeraria o atraso declarado sem prefixo.
+            Ao carregar, a frase é "escrita" linha a linha e depois o desenho é "riscado": da
+            esquerda para a direita na faixa, de cima para baixo na boneca em pé. */}
         <div className="@container relative order-first mx-auto w-full max-w-3xl md:max-lg:self-center lg:@container-size lg:order-0 lg:flex lg:max-w-none lg:items-center lg:justify-end lg:self-stretch lg:[--art-h:min(100cqh,91cqw)] lg:[--phrase:clamp(1.5rem,calc(var(--art-h)*0.085),3.25rem)]">
           <div className="relative w-full pt-[4cqw] lg:w-auto lg:pt-0">
             <p className="font-script text-rose-deep absolute top-0 left-[6cqw] text-[clamp(1.25rem,7.5cqw,3rem)] leading-[1.15] whitespace-nowrap lg:right-[calc(var(--art-h)*0.42)] lg:left-auto lg:text-(length:--phrase) lg:leading-[1.1]">
-              <span className="block w-fit">Acredite!</span>{' '}
-              <span className="ml-[2.57em] block w-fit">O movimento cura</span>
+              <span className="motion-safe:animate-write block w-fit motion-safe:[animation-delay:0.2s]">
+                Acredite!
+              </span>{' '}
+              <span className="motion-safe:animate-write ml-[2.57em] block w-fit motion-safe:[animation-delay:1.1s] motion-safe:[animation-duration:1.3s]">
+                O movimento cura
+              </span>
             </p>
             <DecorativeImage
               src={trio}
@@ -112,7 +120,7 @@ export function Hero() {
               alternate={{ media: '(min-width: 64rem)', src: guerreira, width: 1374, height: 1666 }}
               priority
               fetchPriority="high"
-              className="h-auto w-full lg:mt-[max(0rem,calc(var(--phrase)*2.2-var(--art-h)*0.2))] lg:h-(--art-h) lg:w-auto lg:max-w-none"
+              className="motion-safe:animate-draw-right lg:motion-safe:animate-draw-down h-auto w-full motion-safe:[animation-delay:2.4s] lg:mt-[max(0rem,calc(var(--phrase)*2.2-var(--art-h)*0.2))] lg:h-(--art-h) lg:w-auto lg:max-w-none lg:motion-safe:[animation-delay:2.4s]"
             />
           </div>
         </div>
