@@ -23,6 +23,16 @@ describe('Section', () => {
     expect(section.firstElementChild).toHaveClass('py-section');
   });
 
+  it('o conteúdo surge ao entrar na tela, em toda seção', () => {
+    const section = renderSection();
+
+    expect(section.firstElementChild).toHaveClass('reveal-on-scroll');
+  });
+
+  it('recorta o que passa dela, para o conteúdo ainda deslocado não aumentar a página', () => {
+    expect(renderSection(true)).toHaveClass('overflow-clip');
+  });
+
   it('só ocupa a tela inteira quando pedido', () => {
     expect(renderSection().className).not.toContain('min-h');
   });

@@ -1,138 +1,247 @@
-import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+import { expect, test, type Page } from '@playwright/test';
+
+const EQUIPMENT = ['Bicicleta', 'Reformer', 'Cadillac', 'Barrel', 'Chair'];
+
+// Área útil do navegador em notebook e desktop.
+const DESKTOP_SIZES = [
+  { width: 1280, height: 600 },
+  { width: 1366, height: 625 },
+  { width: 1440, height: 780 },
+  { width: 1920, height: 950 }
+];
+
+function studio(page: Page) {
+  const section = page.locator('#studio');
+
+  return {
+    section,
+    scroller: section.getByRole('group', { name: /deslize/i }),
+    slide: (name: string) => section.getByRole('heading', { level: 3, name, exact: true }),
+    previous: section.getByRole('button', { name: 'Aparelho anterior' }),
+    next: section.getByRole('button', { name: 'Próximo aparelho' }),
+    dot: (name: string) => section.getByRole('button', { name: `Ver ${name}` })
+  };
+}
+
+async function goToStudio(page: Page) {
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Conhecer o studio' }).click();
+  await expect(
+    page.getByRole('heading', { level: 2, name: /aparelhos de alta precisão/i })
+  ).toBeInViewport();
+  // espera a rolagem suave da página terminar, para ela não disputar com a do carrossel
+  await expect
+    .poll(
+      () =>
+        page.locator('#studio').evaluate(async (section) => {
+          const before = section.getBoundingClientRect().top;
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          const after = section.getBoundingClientRect().top;
+          return after <= 90 && before === after;
+        }),
+      // folga para máquina carregada: a rolagem suave pode demorar bem mais que o normal
+      { timeout: 15_000 }
+    )
+    .toBe(true);
+}
 
 test.describe('seção Studio', () => {
-  test('o botão "Conhecer o studio" leva à seção, sem o header cobrir o título', async ({
+  for (const size of DESKTOP_SIZES) {
+    test(`em ${size.width}x${size.height}, a seção inteira cabe na tela, sem o header cobrir o título`, async ({
+      page
+    }) => {
+      await page.setViewportSize(size);
+      await goToStudio(page);
+      const { section, scroller } = studio(page);
+      // espera a rolagem suave terminar
+      await expect
+        .poll(async () => Math.round((await section.boundingBox())?.y ?? 0))
+        .toBeLessThanOrEqual(90);
+
+      const header = await page.getByRole('banner').boundingBox();
+      const eyebrow = await section.getByText('Nosso studio', { exact: true }).boundingBox();
+      const slides = await scroller.boundingBox();
+      if (!header || !eyebrow || !slides) throw new Error('seção incompleta');
+
+      expect(eyebrow.y).toBeGreaterThanOrEqual(header.height);
+      expect(slides.y + slides.height).toBeLessThanOrEqual(size.height);
+    });
+  }
+
+  test('mostra um aparelho por vez, e as setas passam para o seguinte e voltam', async ({
     page
   }) => {
     await page.setViewportSize({ width: 1366, height: 625 });
-    await page.goto('/');
+    await goToStudio(page);
+    const { slide, previous, next, dot } = studio(page);
 
-    await page.getByRole('link', { name: 'Conhecer o studio' }).click();
+    await expect(slide('Bicicleta')).toBeInViewport();
+    await expect(slide('Reformer')).not.toBeInViewport();
+    await expect(previous).toHaveAttribute('aria-disabled', 'true');
 
-    const heading = page.getByRole('heading', { level: 2, name: /aparelhos de alta precisão/i });
-    await expect(heading).toBeInViewport();
+    await next.click();
+    await expect(slide('Reformer')).toBeInViewport({ ratio: 1 });
+    await expect(slide('Bicicleta')).not.toBeInViewport();
+    await expect(dot('Reformer')).toHaveAttribute('aria-current', 'true');
 
-    const header = await page.getByRole('banner').boundingBox();
-    const eyebrow = await page.getByText('Nosso studio', { exact: true }).boundingBox();
-    expect(eyebrow?.y).toBeGreaterThanOrEqual(header?.height ?? 0);
+    await previous.click();
+    await expect(slide('Bicicleta')).toBeInViewport({ ratio: 1 });
   });
 
-  for (const [label, width, columns] of [
-    ['desktop', 1366, 3],
-    ['tablet', 768, 2],
-    ['celular', 390, 1]
-  ] as const) {
-    test(`mostra os cinco aparelhos em ${columns} coluna(s) no ${label}`, async ({ page }) => {
-      await page.setViewportSize({ width, height: 800 });
-      await page.goto('/');
+  test('um marcador leva direto ao aparelho; no último, não há próximo', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await goToStudio(page);
+    const { slide, next, dot } = studio(page);
 
-      const cards = page.locator('#studio > div > ul > li');
-      await expect(cards).toHaveCount(5);
+    await dot('Chair').click();
 
-      const tops = await cards.evaluateAll((items) =>
-        items.map((item) => Math.round(item.getBoundingClientRect().top))
-      );
-      const firstRow = tops.filter((top) => top === tops[0]).length;
+    await expect(slide('Chair')).toBeInViewport({ ratio: 1 });
+    await expect(dot('Chair')).toHaveAttribute('aria-current', 'true');
+    await expect(next).toHaveAttribute('aria-disabled', 'true');
+  });
 
-      expect(firstRow).toBe(columns);
-    });
-  }
+  test('dá para percorrer os cinco aparelhos só com o teclado, sem perder o foco no último', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await goToStudio(page);
+    const { slide, next } = studio(page);
 
-  for (const [label, width] of [
-    ['desktop', 1366],
-    ['tablet', 768]
-  ] as const) {
-    test(`a última linha de cartões, incompleta, fica centralizada no ${label}`, async ({
-      page
-    }) => {
-      await page.setViewportSize({ width, height: 800 });
-      await page.goto('/');
+    await next.focus();
+    for (const name of EQUIPMENT.slice(1)) {
+      await page.keyboard.press('Enter');
+      await expect(slide(name)).toBeInViewport({ ratio: 1 });
+    }
 
-      const boxes = await page.locator('#studio > div > ul > li').evaluateAll((items) =>
-        items.map((item) => {
-          const box = item.getBoundingClientRect();
-          return { top: Math.round(box.top), left: box.left, right: box.right };
-        })
-      );
-      const lastTop = boxes[boxes.length - 1].top;
-      const lastRow = boxes.filter((box) => box.top === lastTop);
-      const leftSpace = lastRow[0].left;
-      const rightSpace = width - lastRow[lastRow.length - 1].right;
+    await expect(next).toHaveAttribute('aria-disabled', 'true');
+    await expect(next).toBeFocused();
+  });
 
-      expect(lastRow.length).toBeLessThan(boxes.filter((box) => box.top === boxes[0].top).length);
-      expect(Math.abs(leftSpace - rightSpace)).toBeLessThanOrEqual(2);
-    });
-  }
+  test('arrastar os slides (rolagem lateral) atualiza o marcador', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 664 });
+    await page.goto('/');
+    const { scroller, dot } = studio(page);
+    await scroller.scrollIntoViewIfNeeded();
 
-  test('ao passar o mouse no cartão, o desenho amplia sem sair do painel', async ({ page }) => {
-    await page.setViewportSize({ width: 1366, height: 800 });
+    await scroller.evaluate((element) => element.scrollTo({ left: element.clientWidth * 2 }));
+
+    await expect(dot('Cadillac')).toHaveAttribute('aria-current', 'true');
+  });
+
+  test('os cinco aparelhos estão no HTML entregue, mesmo com só um à vista', async ({
+    request
+  }) => {
+    const html = await (await request.get('/')).text();
+
+    for (const name of EQUIPMENT) expect(html).toContain(`>${name}</h3>`);
+  });
+
+  test('todos os slides têm a mesma altura: a página não pula ao trocar de aparelho', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 390, height: 664 });
     await page.goto('/');
 
-    const card = page.locator('#studio > div > ul > li').first();
-    const image = card.locator('img');
-    await card.scrollIntoViewIfNeeded();
-    // O Tailwind 4 aplica a ampliação pela propriedade CSS `scale`, e não por `transform`.
-    const scaleOf = () => image.evaluate((img) => getComputedStyle(img).scale);
+    const heights = await page
+      .locator('#studio [aria-roledescription="slide"]')
+      .evaluateAll((slides) =>
+        slides.map((slide) => Math.round(slide.getBoundingClientRect().height))
+      );
 
-    expect(await scaleOf()).toBe('none');
+    expect(heights).toHaveLength(5);
+    expect(new Set(heights).size).toBe(1);
+  });
 
-    await card.hover();
-    await expect.poll(scaleOf).toBe('1.3');
+  test('no desktop, o desenho fica à esquerda e o texto à direita', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await goToStudio(page);
+    const { section, slide } = studio(page);
 
-    const overflow = await image.evaluate(
-      (img) => getComputedStyle(img.closest('div') as HTMLElement).overflow
-    );
-    expect(overflow).toBe('hidden');
+    // a área do desenho, e não a imagem: a folha é inclinada e a imagem amplia sob o mouse
+    const drawing = await section
+      .getByRole('img', { name: /bicicleta/i })
+      .locator('xpath=ancestor::div[2]')
+      .boundingBox();
+    const heading = await slide('Bicicleta').boundingBox();
+
+    expect((drawing?.x ?? 0) + (drawing?.width ?? 0)).toBeLessThanOrEqual(heading?.x ?? 0);
+  });
+
+  for (const width of [390, 320]) {
+    test(`no celular (${width}px), setas e marcadores ficam acima do cartão, à vista junto com o título`, async ({
+      page
+    }) => {
+      await page.setViewportSize({ width, height: 664 });
+      await page.goto('/');
+      const { section, slide, previous, next, scroller } = studio(page);
+      await section.scrollIntoViewIfNeeded();
+      await page
+        .getByRole('heading', { level: 2, name: /aparelhos de alta precisão/i })
+        .scrollIntoViewIfNeeded();
+
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      );
+      const nextBox = await next.boundingBox();
+      const slidesBox = await scroller.boundingBox();
+      const image = await section.getByRole('img', { name: /bicicleta/i }).boundingBox();
+      const heading = await slide('Bicicleta').boundingBox();
+
+      expect(overflow).toBe(0);
+      await expect(previous).toBeInViewport({ ratio: 1 });
+      await expect(next).toBeInViewport({ ratio: 1 });
+      expect((nextBox?.y ?? 0) + (nextBox?.height ?? 0)).toBeLessThanOrEqual(slidesBox?.y ?? 0);
+      // no celular, o desenho vem em cima do texto
+      expect((image?.y ?? 0) + (image?.height ?? 0)).toBeLessThanOrEqual(heading?.y ?? 0);
+    });
+  }
+
+  test('ao passar o mouse, a folha se endireita e vem para a frente, com o desenho inteiro', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await goToStudio(page);
+    const image = studio(page).section.getByRole('img', { name: /bicicleta/i });
+    const sheet = image.locator('xpath=ancestor::div[1]');
+    // o clique no botão do hero pode ter deixado o ponteiro em cima da folha
+    await page.mouse.move(0, 0);
+    // O Tailwind 4 aplica ampliação e giro pelas propriedades CSS `scale` e `rotate`.
+    await expect(sheet).toHaveCSS('rotate', '-2deg');
+
+    await image.hover();
+
+    await expect(sheet).toHaveCSS('rotate', '0deg');
+    await expect(sheet).toHaveCSS('scale', '1.1');
+    // quem amplia é a folha: nada corta o desenho dentro dela
+    await expect(sheet).toHaveCSS('overflow', 'visible');
+    await expect(image).toHaveCSS('scale', 'none');
   });
 
   test('quem pediu menos movimento não vê a ampliação', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.setViewportSize({ width: 1366, height: 800 });
-    await page.goto('/');
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await goToStudio(page);
+    const image = studio(page).section.getByRole('img', { name: /bicicleta/i });
 
-    const card = page.locator('#studio > div > ul > li').first();
-    await card.scrollIntoViewIfNeeded();
-    await card.hover();
+    await image.hover();
 
-    const scale = await card.locator('img').evaluate((img) => getComputedStyle(img).scale);
-    expect(['none', '1']).toContain(scale);
+    await expect(image.locator('xpath=ancestor::div[1]')).toHaveCSS('scale', '1');
   });
 
-  test('todos os desenhos ocupam a mesma área, inteiros e sem distorcer', async ({ page }) => {
-    await page.setViewportSize({ width: 1366, height: 800 });
-    await page.goto('/');
-
-    const boxes = await page.locator('#studio li img').evaluateAll((images) =>
-      images.map((image) => {
-        const img = image as HTMLImageElement;
-        const box = img.getBoundingClientRect();
-        return {
-          width: Math.round(box.width),
-          height: Math.round(box.height),
-          fit: getComputedStyle(img).objectFit
-        };
-      })
-    );
-
-    expect(boxes).toHaveLength(5);
-    expect(new Set(boxes.map((box) => `${box.width}x${box.height}`)).size).toBe(1);
-    expect(boxes.every((box) => box.fit === 'contain')).toBe(true);
-  });
-
-  // Quando baixar uma imagem "lazy" é decisão do navegador (ele antecipa o que está a algumas
-  // telas de distância), então o teste confere o que controlamos: o atributo e o formato.
+  // Quando baixar uma imagem "lazy" é decisão do navegador (ele antecipa o que está perto da
+  // tela), então o teste confere o que controlamos: o atributo e o formato.
   test('os desenhos são marcados para carregamento sob demanda e servidos em formato moderno', async ({
     page
   }) => {
     await page.setViewportSize({ width: 1366, height: 625 });
-    await page.goto('/');
-    await page.locator('#studio').scrollIntoViewIfNeeded();
-
-    const images = page.locator('#studio li img');
+    await goToStudio(page);
+    const { section, next } = studio(page);
+    const images = section.getByRole('img');
     await expect(images).toHaveCount(5);
 
-    for (const image of await images.all()) {
-      await image.scrollIntoViewIfNeeded();
+    for (const [position, image] of (await images.all()).entries()) {
+      if (position > 0) await next.click();
       await expect(image).toHaveAttribute('loading', 'lazy');
       await expect
         .poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth))
@@ -140,6 +249,22 @@ test.describe('seção Studio', () => {
       expect(await image.evaluate((img: HTMLImageElement) => img.currentSrc)).toMatch(
         /\.(avif|webp)$/
       );
+    }
+  });
+
+  test('a seção não tem violações de acessibilidade, no primeiro e no último aparelho', async ({
+    page
+  }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await goToStudio(page);
+    const { slide, dot } = studio(page);
+
+    for (const name of ['Bicicleta', 'Chair']) {
+      await dot(name).click();
+      await expect(slide(name)).toBeInViewport({ ratio: 1 });
+      const { violations } = await new AxeBuilder({ page }).include('#studio').analyze();
+      expect(violations).toEqual([]);
     }
   });
 });
