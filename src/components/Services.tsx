@@ -1,5 +1,6 @@
 import { useTabs } from '../shared/hooks/useTabs';
 import { ButtonLink } from '../shared/ui/ButtonLink';
+import { CheckList } from '../shared/ui/CheckList';
 import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
 import { SectionHeading } from '../shared/ui/SectionHeading';
@@ -58,28 +59,10 @@ function ServicePanel({ service, index }: Readonly<{ service: Service; index: nu
           {service.name}
         </h3>
         {service.description && <p>{service.description}</p>}
-        <ul className="flex flex-col gap-[clamp(0.25rem,1dvh,0.5rem)] text-[clamp(0.875rem,2.5dvh,1rem)]">
-          {service.items.map((item) => (
-            <li key={`${item.lead ?? ''}${item.rest}`} className="flex gap-2">
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="text-teal-deep mt-1 size-4 shrink-0"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 13l4 4L19 7" />
-              </svg>
-              <span>
-                {item.lead && <strong className="font-semibold">{item.lead} </strong>}
-                {item.rest}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <CheckList
+          items={service.items}
+          className="gap-[clamp(0.25rem,1dvh,0.5rem)] text-[clamp(0.875rem,2.5dvh,1rem)]"
+        />
         {/* Centralizado na coluna do texto e afastado dele: é o passo seguinte à leitura, não
             parte dela. Vazado, para não pesar mais que o texto nem se confundir com a aba
             ativa, que é cheia. */}

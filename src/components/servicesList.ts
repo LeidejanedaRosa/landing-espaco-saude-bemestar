@@ -3,7 +3,7 @@ import fisioterapia from '../../design/originais/servico-fisioterapia.png?w=400;
 import funcional from '../../design/originais/servico-funcional.png?w=400;800&format=avif;webp&as=picture';
 import massoterapia from '../../design/originais/servico-massoterapia.png?w=375;750&format=avif;webp&as=picture';
 import pilates from '../../design/originais/servico-pilates.png?w=215;429&format=avif;webp&as=picture';
-import type { CardItem } from '../shared/ui/IllustratedCard';
+import type { CheckListItem } from '../shared/ui/CheckList';
 import type { PictureImage } from '../shared/ui/Picture';
 
 export interface Service {
@@ -11,7 +11,7 @@ export interface Service {
   tabLabel: string;
   name: string;
   description?: string;
-  items: CardItem[];
+  items: CheckListItem[];
   /** Texto do botão e o que entra na mensagem do WhatsApp ("Gostaria de agendar ..."). */
   cta: { label: string; subject: string };
   image: PictureImage;
