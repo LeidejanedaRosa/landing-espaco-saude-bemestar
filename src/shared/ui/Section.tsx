@@ -17,9 +17,11 @@ export function Section({ id, labelledBy, fullScreen = false, children }: Sectio
     <section
       id={id}
       aria-labelledby={labelledBy}
-      className={fullScreen ? 'flex min-h-[calc(100dvh-var(--spacing-header))]' : undefined}
+      // `overflow-clip`: antes de surgir, o conteúdo fica deslocado para baixo; sem o recorte,
+      // esse deslocamento na última seção aumentaria a altura da página.
+      className={`overflow-clip ${fullScreen ? 'flex min-h-[calc(100dvh-var(--spacing-header))]' : ''}`.trim()}
     >
-      <Container className="py-section flex flex-col justify-center gap-[clamp(0.75rem,2.5dvh,2rem)]">
+      <Container className="py-section reveal-on-scroll flex flex-col justify-center gap-[clamp(0.75rem,2.5dvh,2rem)]">
         {children}
       </Container>
     </section>
