@@ -1,6 +1,7 @@
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { NAV_ITEMS } from '../components/navigation';
+import { Services } from '../components/Services';
 import { Studio } from '../components/Studio';
 import { PageBackground } from '../shared/ui/PageBackground';
 
@@ -13,6 +14,7 @@ export function HomePage() {
       <main id={CONTENT_ID}>
         <Hero />
         <Studio />
+        <Services />
       </main>
     </PageBackground>
   );
