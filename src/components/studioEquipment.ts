@@ -3,6 +3,7 @@ import bicicleta from '../../design/originais/aparelho-bicicleta.png?w=400;800&f
 import cadillac from '../../design/originais/aparelho-cadillac.png?w=400;800&format=avif;webp&as=picture';
 import chair from '../../design/originais/aparelho-chair.png?w=400;800&format=avif;webp&as=picture';
 import reformer from '../../design/originais/aparelho-reformer.png?w=400;800&format=avif;webp&as=picture';
+import type { CardItem } from '../shared/ui/IllustratedCard';
 import type { PictureImage } from '../shared/ui/Picture';
 
 export interface Equipment {
@@ -11,7 +12,7 @@ export interface Equipment {
   name: string;
   description: string;
   /** O começo de cada benefício vai em destaque, como na landing aprovada. */
-  benefits: { lead: string; rest: string }[];
+  benefits: CardItem[];
   image: PictureImage;
   imageAlt: string;
 }
