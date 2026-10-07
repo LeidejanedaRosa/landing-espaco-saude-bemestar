@@ -141,33 +141,80 @@ todas as seções, e é para "abusar": o efeito é mais forte nas telas grandes.
 
 ## Seções
 
-Toda seção depois do hero segue a mesma estrutura:
+Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading` (`src/shared/ui`):
 
 ```tsx
-<section id="studio" aria-labelledby="studio-titulo">
-  <Container className="flex flex-col gap-10 py-16 lg:py-24">
-    <SectionHeading id="studio-titulo" eyebrow="Nosso studio" title="Aparelhos de alta..." />
-    {/* conteúdo */}
-  </Container>
-</section>
+<Section id="servicos" labelledBy="servicos-titulo" fullScreen>
+  <SectionHeading id="servicos-titulo" eyebrow="Serviços" title="O que Luiza Espaço..." />
+  {/* conteúdo */}
+</Section>
 ```
 
-- O `id` da seção é o destino do link do menu; o `id` do título é o que `aria-labelledby` usa.
+- **O respiro vertical é o mesmo em toda seção** e vem do token `--spacing-section`
+  (`py-section`), dentro de `Section`. Nenhuma seção define `py` próprio; para mudar, muda-se o
+  token. Ele encolhe em telas baixas, para o conteúdo caber.
+- O `id` da seção é o destino do link do menu; `labelledBy` é o `id` do título.
+- `fullScreen` faz a seção ocupar a tela menos o header, com o conteúdo centralizado. Usar
+  quando o conteúdo é interativo e cabe em uma tela (abas, carrossel).
 - **Cabeçalho de seção: o nome da seção (rótulo pequeno, em maiúsculas) e uma frase de
-  destaque (`h2`).** Só isso; sem parágrafo de apoio. É o `SectionHeading` (`src/shared/ui`).
-- **Cartão com rótulo acima do nome**, no mesmo estilo do rótulo da seção.
-- **Imagem de cartão amplia de leve ao passar o mouse** (`group-hover:scale-110`), dentro de um
-  painel com `overflow-hidden`, e não se mexe para quem pediu redução de movimento
-  (`motion-reduce`).
+  destaque (`h2`).** Só isso; sem parágrafo de apoio.
+- **Seções vizinhas não repetem o mesmo arranjo.** Duas grades de cartões iguais em sequência
+  deixam a página monótona e a pessoa não percebe que mudou de assunto.
 - Os dados de uma seção com vários itens ficam em um arquivo próprio ao lado do componente
-  (ex.: `studioEquipment.ts`), com os textos de `docs/conteudo.md`; o componente só monta.
-- **Cartões:** fundo `cream` semitransparente, borda `blush`, cantos bem arredondados. Lista de
-  itens usa `<ul>`/`<li>`, para o leitor de tela anunciar quantos são.
-- **Grade com última linha incompleta fica centralizada:** `flex flex-wrap justify-center`, com
-  a largura de cada cartão calculada pelo número de colunas, em vez de `grid` (que deixaria a
-  última linha encostada à esquerda, com um vazio ao lado).
-- **Imagens de formatos diferentes em cartões iguais:** painel de proporção fixa com a imagem
-  em `object-contain`. Todas ocupam a mesma área, inteiras e sem distorcer.
+  (ex.: `servicesList.ts`), com os textos de `docs/conteudo.md`; o componente só monta.
+- **Texto corrido em lista ganha destaque no começo de cada item** (`lead` em negrito), sem
+  mudar nenhuma palavra do texto aprovado. É o que permite ler batendo o olho.
+
+### Abas (Serviços)
+
+O que o studio vende fica em abas, e não em carrossel: os cinco nomes aparecem de uma vez, e a
+pessoa escolhe. Carrossel esconde o que não é o primeiro item.
+
+- Comportamento no hook `useTabs` (`src/shared/hooks`), que segue o padrão "Tabs" da WAI-ARIA:
+  só a aba ativa entra na ordem do Tab; setas, Home e End trocam de aba levando o foco.
+- **Todos os painéis ficam no HTML e ocupam a mesma célula de uma grade**, um sobre o outro. O
+  inativo recebe `inert` (sai do teclado e do leitor de tela) e `inert:invisible` (some da
+  vista), mas continua ocupando espaço. Três efeitos: buscadores leem todo o conteúdo; **o
+  cartão tem a altura do maior painel e não muda ao trocar de aba**; e as ilustrações são
+  baixadas quando a seção se aproxima da tela, antes do clique.
+- Não usar `hidden` nem `display: none` no painel inativo: ele deixa de ocupar espaço (a altura
+  volta a variar) e a imagem só é pedida no clique, com atraso visível.
+- **A seção inteira cabe na tela em notebook e desktop, do rótulo à frase final.** A área da
+  ilustração não tem altura própria (acompanha a do texto), e fontes e espaços do cartão
+  encolhem com a altura da tela (`clamp()` com `dvh`).
+- Painel na horizontal: ilustração à esquerda, texto e botão à direita; no celular, ilustração
+  em cima. Cada serviço tem o próprio botão, com a mensagem do WhatsApp dizendo qual é.
+- O botão do serviço fica centralizado na coluna do texto e afastado dele: é o passo seguinte
+  à leitura, não parte dela. É **vazado** (`variant="secondary"`), para não pesar mais que o
+  texto nem se confundir com a aba ativa; botão cheio fica para a aba selecionada e para o
+  "Agendar" do topo.
+- **As cinco abas ficam sempre à vista:** quando não cabem em uma linha (celular), quebram em
+  mais linhas, centralizadas. Fileira deslizante esconde as últimas sem avisar que existem.
+- **A ilustração não fica em painel branco.** Ela se apoia em três formas orgânicas, como as dos
+  adesivos da fachada: duas coloridas (`teal`, `gold` e `rose`, em rodízio por serviço) e, por
+  cima, uma clara. A imagem usa `mix-blend-multiply`, que faz o fundo branco de algumas
+  ilustrações sumir sem recortar o arquivo.
+- Movimento só em resposta a uma ação: ao abrir a aba, o cartão sobe de leve e as formas
+  crescem, em menos de meio segundo, com a ilustração já inteira (revelada aos poucos, ela
+  parecia imagem demorando para carregar); ao passar o mouse, a ilustração amplia (`group-hover:scale-130`) e as formas mudam
+  de contorno. A área da ilustração não usa `overflow-hidden` (a figura ampliada aparece
+  inteira) nem `z-index` (ele isolaria o `mix-blend-multiply` e o branco voltaria). **Nada fica animado sem parar:** movimento contínuo distrai e exigiria um botão
+  de pausa (WCAG 2.2.2). Tudo respeita `motion-safe`/`motion-reduce`.
+- Ao reativar um painel, a animação recomeça porque `inert:animate-none` a desliga enquanto ele
+  está inativo.
+
+### Cartões em grade (Studio)
+
+- `CardGrid` + `IllustratedCard` (`src/shared/ui`): ilustração em painel branco, rótulo opcional
+  acima do título, descrição opcional e lista de itens.
+- **Imagem de cartão amplia ao passar o mouse** (`group-hover:scale-130`), dentro de um painel
+  com `overflow-hidden`, e não se mexe para quem pediu redução de movimento (`motion-reduce`).
+- **Cartões:** fundo `cream` semitransparente, borda fina em `olive` suave, cantos bem
+  arredondados. Lista de itens usa `<ul>`/`<li>`, para o leitor de tela anunciar quantos são.
+- **Grade com última linha incompleta fica centralizada:** é o que o `CardGrid` faz, com
+  `flex flex-wrap justify-center` em vez de `grid`.
+- **Imagens de formatos diferentes em áreas iguais:** painel de proporção fixa com a imagem em
+  `object-contain`. Todas ocupam a mesma área, inteiras e sem distorcer.
 
 ## Navegação
 
@@ -312,6 +359,24 @@ Toda seção depois do hero segue a mesma estrutura:
   - **A passagem de `blush` para `olive-deep` não pode ter texto em cima.** No meio dessa faixa
     nem `ink` nem `cream` chegam a 4,5:1. A transição fica concentrada num trecho curto e sem
     texto logo antes do footer.
+
+### De onde vem cada ilustração
+
+Cada família de desenho remete a um lugar físico do studio e tem um papel só no site:
+
+| Onde a cliente usa        | Família                              | Papel no site                       |
+| ------------------------- | ------------------------------------ | ----------------------------------- |
+| parede da recepção        | bonecas em traço contínuo            | hero e papel de parede              |
+| aparelhos                 | desenhos a lápis                     | seção Studio                        |
+| fachada (portas de vidro) | bonecas coloridas, em cores chapadas | seção Serviços                      |
+| posts recentes            | rosa, oliva, creme e folhagens       | cores, fontes e folhagens da página |
+
+- Não misturar famílias na mesma seção.
+- **As bonecas coloridas mantêm as cores da fachada** (verde-água, laranja, rosa, azul-marinho):
+  quem passa em frente ao studio precisa reconhecer no site o que viu na porta. Não recolorir
+  com a paleta do site.
+- Prompts das ilustrações de serviço que faltam:
+  [docs/identidade/prompts-ilustracoes-servicos.md](docs/identidade/prompts-ilustracoes-servicos.md).
 
 ### Estilo observado nos posts da cliente
 

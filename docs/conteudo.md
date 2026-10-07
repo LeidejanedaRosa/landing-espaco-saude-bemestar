@@ -38,6 +38,12 @@ Ficam para depois da primeira entrega para aprovação da cliente:
   vêm do post da cliente; a descrição de cada uma veio da versão da Emergent e precisa da
   revisão da Dra. Veronika. Até lá, o site usa o texto atual.
 - **E-mail:** sem e-mail confirmado, o site não exibe e-mail.
+- **Rótulos das abas e botões de serviço:** "Pilates", "Funcional", "Agendar fisioterapia",
+  "Agendar pilates", "Agendar treino funcional", "Agendar massoterapia" e "Agendar consulta
+  médica" são textos novos, criados para a navegação. Pedem a revisão da cliente.
+- **Cartão de Atendimento Médico, na seção Serviços:** a landing antiga repetia ali o texto de
+  Massoterapia. O site usa as três especialidades e a frase "Atendimento humanizado e tratamento
+  integrado", tiradas do post da cliente sobre a Dra. Veronika. Pede a confirmação dela.
 
 ## Depoimentos
 

@@ -41,3 +41,37 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   sobre `blush` (4,2:1). Uma cor "aprovada" só está aprovada para o fundo em que foi medida.
 - **SVG em `<img>` não herda a cor do CSS da página;** `currentColor` só funciona com o SVG
   embutido no HTML.
+
+## 2026-10-07 — Abas da seção Serviços
+
+- **`hidden` tira o elemento do layout; `inert` + `visibility: hidden` não.** Com `hidden`, cada
+  painel tinha a própria altura e a frase final da seção subia e descia a cada troca de aba.
+  Com os cinco painéis empilhados na mesma célula de uma grade, a célula tem a altura do maior
+  e nada se mexe.
+- **Imagem com `loading="lazy"` dentro de `display: none` só é pedida quando aparece.** Por
+  isso a ilustração demorava no clique. Invisível, mas ocupando espaço, ela é baixada quando a
+  seção se aproxima da tela.
+- **Animação CSS não recomeça só porque o elemento voltou a ser visível.** Ela recomeça quando
+  `animation-name` muda; desligar a animação no painel inativo (`inert:animate-none`) faz ela
+  rodar de novo ao reativar.
+- **`mix-blend-mode: multiply` apaga fundo branco sem editar a imagem:** branco multiplicado por
+  uma cor dá a própria cor. Sobre cor forte a figura escurece; por isso ela fica sobre uma forma
+  clara. Recortar o fundo por código estragou os jalecos brancos, que não têm contorno.
+- **"Cabe na tela" precisa de teste até a última linha.** O teste antigo media só o cartão, e a
+  frase final ficava para fora sem ninguém avisar.
+- **Animação sem fim tem custo de acessibilidade** (WCAG 2.2.2 pede um jeito de pausar o que se
+  move por mais de cinco segundos). Movimento curto, em resposta a clique ou mouse, não.
+- **Rolagem horizontal sem sinal visível esconde conteúdo.** No celular a fileira de abas
+  deslizava de lado e duas das cinco ficavam fora da tela; para quem olha, elas sumiram. O teste
+  antigo conferia que a fileira rolava, e não que a pessoa via as abas: passava com o defeito.
+- **Isolamento quebra `mix-blend-mode`.** `z-index`, `opacity`, `translate` e animação com
+  `fill-mode: both` criam um contexto de empilhamento; dentro dele a imagem só se mistura com o
+  que está no mesmo grupo, e o branco reaparece onde não há fundo. A animação do cartão passou a
+  usar `backwards`, que não deixa nada aplicado ao terminar.
+- **Medir antes de otimizar.** A queixa era "as imagens demoram a carregar". Medido, cada
+  ilustração chega em 0,1 a 0,2 s, no dev e no build. O atraso era a animação: a figura era
+  revelada da esquerda para a direita em 0,9 s, depois de o cartão surgir, e isso se lê como
+  carregamento lento. Animação que imita defeito é defeito.
+- **Ilustração em traço se colore por preenchimento de região** (`floodfill`), desde que os
+  contornos sejam fechados. Onde o contorno é aberto (ponta dos dedos), o preenchimento vaza
+  para o fundo e o trecho precisa ser pintado à mão.

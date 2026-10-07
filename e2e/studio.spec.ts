@@ -77,7 +77,7 @@ test.describe('seção Studio', () => {
     expect(await scaleOf()).toBe('none');
 
     await card.hover();
-    await expect.poll(scaleOf).toBe('1.1');
+    await expect.poll(scaleOf).toBe('1.3');
 
     const overflow = await image.evaluate(
       (img) => getComputedStyle(img.closest('div') as HTMLElement).overflow
