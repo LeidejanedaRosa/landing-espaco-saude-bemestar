@@ -14,6 +14,7 @@
 - [x] Proteção de branch, Dependabot e CodeQL
 - [x] Passo do SonarCloud no CI (pulado enquanto o `SONAR_TOKEN` não existir)
 - [x] Papel de parede da página com bonecas em traço e folhagens
+- [x] Hero com a faixa das três bonecas (celular e tablet) e animação "riscado a lápis"
 - [x] Tratamento de imagens no build (AVIF/WebP) e componente `Picture`
 - [x] `ErrorBoundary` na raiz do app, com saída para o WhatsApp
 - [x] `Container` em `shared/ui` (largura máxima de 80rem, fundo sempre de borda a borda)

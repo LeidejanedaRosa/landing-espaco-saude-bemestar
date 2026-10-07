@@ -345,6 +345,24 @@ Há dois desenhos, e o navegador baixa só o que a tela usa (`DecorativeImage` c
 - No celular e no tablet a faixa vem no topo só na ordem visual; no HTML o título continua
   primeiro. No celular o hero fica mais alto que a tela e a pessoa rola.
 
+### Animação "riscado a lápis"
+
+Ao carregar a página, a frase do hero é "escrita" linha a linha e depois o desenho é
+"riscado": da esquerda para a direita na faixa das três bonecas, de cima para baixo na boneca
+em pé. Dura menos de cinco segundos e roda uma vez.
+
+- É só CSS: um recorte (`clip-path`) que se abre aos poucos. As animações são tokens do tema
+  (`animate-write`, `animate-draw-right`, `animate-draw-down`, em `src/styles/main.css`).
+- **Sempre com `motion-safe:`**: quem pediu redução de movimento no sistema vê tudo pronto.
+- É uma revelação, não um lápis seguindo a linha: os SVGs são o contorno do traço, e não o
+  caminho que a mão percorreu. Um lápis de verdade exigiria redesenhar cada boneca como um
+  traço único.
+- O recorte final é negativo (`inset(-0.5em ...)`), para não cortar as pontas das letras
+  cursivas, que passam da caixa do texto.
+- **`lg:animate-*` redefine a animação inteira e zera o atraso** declarado sem prefixo; o
+  atraso precisa ser repetido com `lg:`. Foi um teste e2e que pegou isso.
+- Sem JavaScript: o HTML do build já vem com o conteúdo, e a animação não depende do React.
+
 ### Desenhos em traço
 
 Já vetorizados, em `src/assets/tracos/`: `guerreira.svg` (a da recepção), `alongamento.svg`
