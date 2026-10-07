@@ -8,6 +8,9 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: isCI,
   retries: isCI ? 2 : 0,
+  // O padrão é 30s. No WebKit cada clique leva perto de 1s nesta página, e um teste com
+  // vários passos estoura o prazo quando a máquina está ocupada com outra tarefa.
+  timeout: 60_000,
   reporter: isCI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL: `http://localhost:${PORT}`,
