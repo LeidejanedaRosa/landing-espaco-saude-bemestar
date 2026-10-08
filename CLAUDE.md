@@ -158,6 +158,12 @@ Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading
   quando o conteúdo é interativo e cabe em uma tela (abas, carrossel).
 - **Cabeçalho de seção: o nome da seção (rótulo pequeno, em maiúsculas) e uma frase de
   destaque (`h2`).** Só isso; sem parágrafo de apoio.
+  Fica centralizado acima do conteúdo; quando a seção é um cartão único com foto, vai dentro
+  do cartão, alinhado à esquerda (`align="start"`).
+- **Todo título de seção tem um trecho em destaque**, na fonte manuscrita e em rosa vivo, como a
+  frase do hero: é a prop `highlight` do `SectionHeading`. Uma palavra ou expressão curta por
+  título, a que carrega a promessa da seção, de preferência no fim da linha. Não muda o texto
+  (o leitor de tela lê o título normalmente) e não vai em parágrafo nem em cartão.
 - **Seções vizinhas não repetem o mesmo arranjo.** Duas grades de cartões iguais em sequência
   deixam a página monótona e a pessoa não percebe que mudou de assunto.
 - Os dados de uma seção com vários itens ficam em um arquivo próprio ao lado do componente
@@ -257,13 +263,13 @@ Toda seção depois do hero surge de leve ao entrar na tela. É a classe `reveal
 ### Quem é a principal: a Luiza
 
 A Luiza é a figura principal da página. O espaço é dela, e a Dra. Veronika atende dentro dele.
-Na versão de referência (Emergent) a seção da médica chamava mais atenção que a da Luiza; aqui
-é o contrário.
+Na versão de referência (Emergent) a seção da médica vinha em um bloco verde-escuro, o elemento
+mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contrário.
 
-- **Sobre a Luiza** tem a foto grande, o nome completo com o registro, a apresentação em
-  primeira pessoa e o botão cheio ("Agendar avaliação").
-- **Atendimento médico** é complementar: nunca maior, mais colorida ou com mais destaque que a
-  seção da Luiza. Foto menor ou sem foto, botão vazado, sem tela cheia.
+- **O destaque mais forte da página é da Luiza.** Bloco escuro, foto maior e botão cheio são
+  dela.
+- **Atendimento médico é complementar, e não escondido:** tem foto e é bem acabado, mas em
+  cartão claro, com foto menor que a da Luiza e botão vazado.
 - Em qualquer lugar onde as duas apareçam juntas (menu, abas de Serviços, footer), a Luiza e os
   serviços dela vêm primeiro.
 
@@ -275,6 +281,28 @@ Na versão de referência (Emergent) a seção da médica chamava mais atenção
 - As seis certificações ficam em `aboutCredentials.ts`. São seis, então a grade (1, 2 ou 3
   colunas) nunca tem linha incompleta; mudando a quantidade, rever as colunas.
 - A frase de destaque (`h2`) é um trecho da própria apresentação dela.
+
+### Atendimento médico
+
+- Um cartão claro que reúne tudo, inclusive o rótulo e o título da seção (`SectionHeading` com
+  `align="start"`): foto da médica à esquerda, com um crachá branco sobreposto à base (nome em
+  destaque e o CRM em um selo rosa-escuro com texto claro); à direita, título, as três especialidades em cartões pequenos com ícone e um
+  botão vazado.
+- **A seção cabe inteira em uma tela, sem rolar** (`fullScreen`), do notebook de 1280×600 ao
+  celular de 390×664. A foto encolhe com a altura da tela, e no celular ela vira uma miniatura
+  ao lado do nome, com as especialidades em lista compacta. Em celular menor que isso o texto
+  não cabe sem ficar ilegível, e a seção passa um pouco da tela em vez de cortar conteúdo.
+- No HTML a ordem é título, foto e nome, especialidades, botão. No desktop a foto vai para a
+  coluna da esquerda só pela posição na grade.
+- Folhagens (`ramo-verde` e `ramo-rosa`) saem de trás do cartão em cantos opostos, e um ramo
+  bem claro fica por dentro, no canto, como marca-d'água. Sob o título, um divisor fino com um
+  pequeno losango dourado, como nos posts da cliente.
+- É a aplicação da regra acima; um teste e2e confere que a foto é menor que a da Luiza e que a
+  seção é mais baixa.
+- As especialidades são uma lista de definições (`<dl>`): o nome é o termo, a descrição é o que
+  ela trata. Ficam em `medicalSpecialties.ts`. **Um grupo de `<dl>` só aceita `<dt>` e `<dd>`:**
+  o ícone vai dentro do `<dt>`, e não solto ao lado.
+- Ícone de linha decorativo, aqui e nas certificações da Luiza, é o `LineIcon` (`src/shared/ui`).
 
 ## Navegação
 
@@ -345,7 +373,8 @@ Na versão de referência (Emergent) a seção da médica chamava mais atenção
   `design/originais/`; a vetorização é feita com `potrace`, e o resultado passa pelo `svgo`
   (`--precision 0 --multipass`), que derruba o arquivo para cerca de um décimo. O `potrace` do
   npm traz dependências com vulnerabilidades, então é usado fora do projeto e não entra no
-  `package.json`. A cor do traço é definida no próprio SVG (`rose-deep` no hero).
+  `package.json`. A cor do traço é definida no próprio SVG (`rose`, o rosa claro, nas
+  bonecas do hero: desenho é decorativo e não tem exigência de contraste de texto).
 - Prompts e especificações dos desenhos em traço:
   [docs/identidade/prompts-desenhos.md](docs/identidade/prompts-desenhos.md).
 
@@ -386,6 +415,8 @@ Na versão de referência (Emergent) a seção da médica chamava mais atenção
   | `blush`      | `#F2D5CD` | meio do degradê, cartões                                                                |
   | `rose`       | `#CB847C` | decorativo: selos, ícones, detalhes (não usar em texto)                                 |
   | `rose-deep`  | `#9A4F4A` | títulos de destaque, links, texto em rosa (sobre `blush`: só título grande)             |
+  | `rose-ink`   | `#8E4944` | texto pequeno em rosa sobre `blush`: o rótulo das seções (`SectionHeading`)             |
+  | `rose-vivid` | `#BE5A5F` | só texto grande: palavra em destaque dos títulos e a frase do hero (3,2:1 em `blush`)   |
   | `teal`       | `#688F90` | decorativo: ícones e detalhes (não usar em texto pequeno)                               |
   | `teal-deep`  | `#3F6B6C` | cor de apoio: botões secundários, texto em verde-água (sobre `blush`: só título grande) |
   | `olive`      | `#737B5B` | decorativo: blocos e ondas (texto só se for grande)                                     |
@@ -416,6 +447,11 @@ Na versão de referência (Emergent) a seção da médica chamava mais atenção
   - **Sobre `blush` (cartões e meio da página), `rose-deep` dá 4,2:1 e `teal-deep` dá 4,3:1:**
     abaixo dos 4,5:1. Ali eles só servem para título grande; texto de tamanho normal e links
     usam `ink` (8,6:1). Sobre `cream` os dois passam (5,1:1 e 5,2:1) e seguem valendo para texto.
+  - **A palavra em destaque dos títulos usa `rose-vivid`**, mais claro e vivo: passa nos 3:1 de
+    texto grande (3,2:1 sobre `blush`, 3,8:1 sobre `cream`) e nunca vai em texto pequeno. Com o
+    `rose-deep` os destaques ficavam escuros e a página perdia vida.
+  - **Texto pequeno em rosa sobre `blush` usa `rose-ink`** (4,8:1), o `rose-deep` 8% mais escuro.
+    É a cor do rótulo de todas as seções, para ele ser igual do topo ao fim da página.
   - **A passagem de `blush` para `olive-deep` não pode ter texto em cima.** No meio dessa faixa
     nem `ink` nem `cream` chegam a 4,5:1. A transição fica concentrada num trecho curto e sem
     texto logo antes do footer.
@@ -449,7 +485,7 @@ Cada família de desenho remete a um lugar físico do studio e tem um papel só 
 ### A parede da recepção no hero
 
 O hero reproduz a parede da recepção do studio: "Acredite!" na primeira linha e "O movimento
-cura" na segunda, começando embaixo do "!". A frase é texto, em `font-script`. O recuo da
+cura" na segunda, começando embaixo do "!". A frase é texto, em `font-script` e `rose-vivid`. O recuo da
 segunda linha é `2.57em`, a largura de "Acredite" nessa fonte; trocar a fonte exige medir de novo.
 
 Há dois desenhos, e o navegador baixa só o que a tela usa (`DecorativeImage` com `alternate`):

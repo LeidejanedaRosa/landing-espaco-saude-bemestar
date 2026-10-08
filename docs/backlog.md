@@ -31,14 +31,17 @@
 - [ ] Vetorizar os demais desenhos em traço para SVG (prontos em `src/assets/tracos`: guerreira,
       alongamento e criança)
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
-- [ ] Rótulo das seções (`SectionHeading`) sobre fundo `blush`: `rose-deep` dá 4,2:1 em texto
-      pequeno. Em "Sobre a Luiza" ainda passa (4,5:1); nas seções seguintes, medir e trocar a cor
+- [x] Rótulo das seções (`SectionHeading`) sobre fundo `blush`: passou a usar `rose-ink`
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
 
 ## Próxima rodada de vida às seções
 
 - [x] Studio em carrossel, um aparelho por vez, na horizontal (sem troca automática)
 - [x] Conteúdo surgindo de leve ao entrar na tela, respeitando redução de movimento
+- [ ] Bloco verde-oliva na seção "Sobre a Luiza" (foto, apresentação, nome e botão claro dentro
+      dele; certificações fora), para ela ter o destaque mais forte da página
+- [ ] Degradê da página começando a escurecer já nas seções do meio; na faixa de transição,
+      texto pequeno só dentro de cartão
 
 ## Seções da landing (uma branch por seção, a partir de `feat/landing`)
 
@@ -47,7 +50,7 @@
 - [x] Studio / aparelhos
 - [x] Serviços
 - [x] Sobre a Luiza (foto provisória: ver pendências em docs/conteudo.md)
-- [ ] Atendimento médico
+- [x] Atendimento médico (foto provisória; descrições das especialidades aguardam revisão)
 - [ ] Metodologia
 - [ ] Para quem é indicado
 - [ ] Depoimentos (avaliações reais do Google, escolhidas pela cliente)
