@@ -146,3 +146,11 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
 - **Seletor de teste amplo quebra quando a página cresce.** O teste do hero procurava "a lista
   de definições da página"; a seção médica trouxe uma segunda, e ele passou a achar duas. Agora
   procura dentro do hero.
+
+## 2026-10-08 — Bloco verde da Luiza
+
+- **Fundo escuro pede as próprias cores.** Sobre o `olive-deep`, o botão verde some e os rosas
+  escuros ficam abaixo de 2:1. Componentes compartilhados ganharam uma opção para isso
+  (`tone="dark"` no título, `variant="light"` no botão), em vez de classes soltas na seção.
+- **O contorno de foco também depende do fundo.** Ele era verde-escuro para todos os botões e
+  desapareceria no bloco; agora cada variante de botão define o seu.

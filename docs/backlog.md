@@ -38,7 +38,7 @@
 
 - [x] Studio em carrossel, um aparelho por vez, na horizontal (sem troca automática)
 - [x] Conteúdo surgindo de leve ao entrar na tela, respeitando redução de movimento
-- [ ] Bloco verde-oliva na seção "Sobre a Luiza" (foto, apresentação, nome e botão claro dentro
+- [x] Bloco verde-oliva na seção "Sobre a Luiza" (foto, apresentação, nome e botão claro dentro
       dele; certificações fora), para ela ter o destaque mais forte da página
 - [ ] Degradê da página começando a escurecer já nas seções do meio; na faixa de transição,
       texto pequeno só dentro de cartão
