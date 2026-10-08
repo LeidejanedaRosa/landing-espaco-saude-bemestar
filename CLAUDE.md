@@ -331,6 +331,18 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   versão de referência e só entram com a aprovação da cliente.
 - Não tem item no menu: o `id` é `para-quem`, para um link futuro.
 
+### Contato
+
+- Fecho da página: um cartão claro com a chamada final e os botões à esquerda e, à direita, os
+  três meios de contato (endereço, WhatsApp e Instagram). Cabe em uma tela em notebook, desktop
+  e tablet (`fullScreen`); no celular cresce um pouco.
+- **Sem formulário e sem mapa embutido.** O botão principal abre o WhatsApp; "Ver no mapa" abre
+  o Google Maps em nova aba. Mapa embutido carregaria script de terceiros na página inteira.
+- O endereço fica em `contactInfo.ts` (dado público, igual em qualquer ambiente). WhatsApp e
+  Instagram continuam vindo das variáveis de ambiente; `formatWhatsAppNumber` e
+  `instagramHandle` só os deixam legíveis.
+- Os meios de contato são uma lista de definições (`<dl>`); o endereço usa `<address>`.
+
 ## Navegação
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra

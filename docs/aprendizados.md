@@ -154,3 +154,15 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   (`tone="dark"` no título, `variant="light"` no botão), em vez de classes soltas na seção.
 - **O contorno de foco também depende do fundo.** Ele era verde-escuro para todos os botões e
   desapareceria no bloco; agora cada variante de botão define o seu.
+
+## 2026-10-08 — Metodologia, Para quem é indicado e Contato
+
+- **O mesmo erro duas vezes pede uma regra escrita.** O ícone solto dentro de um grupo de `<dl>`
+  reprovou no axe na seção médica e de novo no Contato. A regra está no `CLAUDE.md`: em `<dl>`, o
+  ícone vai dentro do `<dt>`.
+- **Lista ordenada quando a ordem importa.** As etapas da metodologia são `<ol>`; o número
+  grande é enfeite, porque a lista já diz a posição ao leitor de tela.
+- **Dado público e fixo não é variável de ambiente.** O endereço do studio fica no código;
+  variável de ambiente é para o que muda entre ambientes ou não deve ir para o repositório.
+- **Mapa embutido tem custo.** Um `iframe` do Google Maps carrega script de terceiros para todo
+  visitante; um link "Ver no mapa" resolve para quem quer, sem pesar para os demais.

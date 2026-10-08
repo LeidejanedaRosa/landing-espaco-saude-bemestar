@@ -54,7 +54,7 @@
 - [x] Metodologia
 - [x] Para quem é indicado (só os nomes; complementos aguardam aprovação)
 - [ ] Depoimentos (avaliações reais do Google, escolhidas pela cliente)
-- [ ] Contato (sem formulário: tudo leva ao WhatsApp)
+- [x] Contato (sem formulário: tudo leva ao WhatsApp; chamada final aguarda revisão)
 - [ ] Footer
 
 ## SEO e publicação
