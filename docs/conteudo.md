@@ -44,6 +44,10 @@ Ficam para depois da primeira entrega para aprovação da cliente:
 - **Cartão de Atendimento Médico, na seção Serviços:** a landing antiga repetia ali o texto de
   Massoterapia. O site usa as três especialidades e a frase "Atendimento humanizado e tratamento
   integrado", tiradas do post da cliente sobre a Dra. Veronika. Pede a confirmação dela.
+- **Foto da Dra. Veronika:** a seção "Atendimento médico" usa a foto que estava na versão da
+  Emergent (`design/originais/dra-veronika-retrato.png`, 279×416 px). É provisória: resolução
+  baixa, e falta confirmar com a cliente que a foto pode ser usada. Trocar por uma em retrato,
+  com pelo menos 500 px de largura, do Instagram ou enviada por ela.
 - **Foto da Luiza:** a seção "Sobre a Luiza" usa um recorte de `src/assets/images/Luiza.png`
   (372×496 px). É provisória: a resolução é baixa para telas de alta densidade. Trocar por uma
   foto em retrato, com pelo menos 800 px de largura, do Instagram dela ou enviada por ela.

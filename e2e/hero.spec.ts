@@ -69,7 +69,11 @@ test.describe('hero', () => {
 
       const header = await page.getByRole('banner').boundingBox();
       const hero = await page.getByRole('region', { name: /saúde, movimento/i }).boundingBox();
-      const stats = await page.getByRole('main').locator('dl').boundingBox();
+      // os números do hero, e não outra lista de definições da página
+      const stats = await page
+        .getByRole('region', { name: /saúde, movimento/i })
+        .locator('dl')
+        .boundingBox();
 
       expect(Math.round((header?.height ?? 0) + (hero?.height ?? 0))).toBe(size.height);
       expect((stats?.y ?? 0) + (stats?.height ?? 0)).toBeLessThanOrEqual(size.height);
@@ -171,7 +175,11 @@ test.describe('hero', () => {
       await page.evaluate(() => document.fonts.ready);
 
       const heading = await page.getByRole('heading', { level: 1 }).boundingBox();
-      const stats = await page.getByRole('main').locator('dl').first().boundingBox();
+      // os números do hero, e não outra lista de definições da página
+      const stats = await page
+        .getByRole('region', { name: /saúde, movimento/i })
+        .locator('dl')
+        .boundingBox();
       const drawing = await heroDrawing(page).boundingBox();
       if (!heading || !stats || !drawing) throw new Error('hero incompleto');
 
@@ -180,6 +188,29 @@ test.describe('hero', () => {
       const leftSpace = drawing.x;
       const rightSpace = size.width - (drawing.x + drawing.width);
       expect(Math.abs(leftSpace - rightSpace)).toBeLessThanOrEqual(2);
+    });
+  }
+
+  // O rosa vivo passa no contraste de texto grande (3:1), e não no de texto pequeno (4,5:1).
+  for (const width of [320, 340, 360, 390, 768, 1366]) {
+    test(`em ${width}px, a frase da recepção usa o rosa vivo só quando tem tamanho de texto grande`, async ({
+      page
+    }) => {
+      await page.setViewportSize({ width, height: 700 });
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.goto('/');
+
+      const phrase = await page
+        .getByText('Acredite!')
+        .locator('xpath=ancestor::p[1]')
+        .evaluate((element) => {
+          const style = getComputedStyle(element);
+          return { size: Number.parseFloat(style.fontSize), color: style.color };
+        });
+      const ROSE_VIVID = 'rgb(190, 90, 95)';
+      const ROSE_INK = 'rgb(142, 73, 68)';
+
+      expect(phrase.color).toBe(phrase.size >= 24 ? ROSE_VIVID : ROSE_INK);
     });
   }
 });

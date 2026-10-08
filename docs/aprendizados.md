@@ -114,3 +114,35 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   seção, 4,2:1 no fim. Um teste verde de acessibilidade não cobre isso.
 - **Recorte de foto também é conteúdo.** O primeiro recorte deixava pedaços das letras do logo
   da parede ("Esp", "Saúde"); letra cortada parece descuido.
+
+## 2026-10-08 — Seção Atendimento médico
+
+- **Confirmar o que a pessoa quis dizer antes de construir.** "Dar mais visibilidade à Luiza do
+  que à médica" foi lido como "a seção da médica precisa ser menor", e a primeira versão saiu
+  sem foto, numa faixa baixa. O incômodo era outro: na referência, a médica estava no bloco
+  verde, o elemento mais forte da página. Abrir a referência teria mostrado isso em um minuto.
+- **Hierarquia se resolve dando o destaque a quem é principal, e não apagando o outro.** A
+  médica continua com foto e seção bonita; o que muda de dono é o bloco escuro.
+- **O axe conhece regras de HTML que o olho não vê.** Dentro de um grupo de `<dl>` só cabem
+  `<dt>` e `<dd>`; o ícone solto ao lado reprovou. Foi para dentro do `<dt>`.
+- **Regra de hierarquia vira teste:** a foto da médica é menor que a da Luiza, e a seção é mais
+  baixa.
+- **Ordem do HTML é a ordem de leitura.** Foto, nome, especialidades e botão, nessa ordem, no
+  celular e para o leitor de tela.
+- **Cor de marca no limite do contraste pede um tom próprio para texto pequeno.** O `rose-deep`
+  dava 4,3:1 no rótulo desta seção. Em vez de mudar a cor da marca, entrou o `rose-ink`, 8%
+  mais escuro, só para o rótulo.
+- **"Caber em uma tela" tem um piso.** A seção cabe de 1280×600 até o celular de 390×664. Em
+  celular menor o texto precisaria ficar abaixo de 12px, e ilegível é pior que rolar: lá a
+  seção cresce um pouco (`min-h`, nunca `h`), sem cortar nada.
+- **Um layout para cada tela, um HTML só.** No celular a foto é miniatura ao lado do nome e as
+  especialidades são lista; no desktop, foto grande com crachá e cartões. Mudam só as classes.
+- **Regra escrita e não aplicada não existe.** A identidade já previa a manuscrita "em palavras
+  de destaque", mas só o hero usava. Virou uma prop do `SectionHeading` (`highlight`), e agora
+  todo título de seção tem a sua.
+- **Quanto de rosa claro cabe depende do papel de cada elemento.** Desenho decorativo não tem
+  exigência de contraste e pode ir no rosa claro da marca. Texto grande precisa de 3:1 e vai no
+  `rose-vivid`. Texto pequeno precisa de 4,5:1, e nenhum rosa claro chega lá sobre fundo rosado.
+- **Seletor de teste amplo quebra quando a página cresce.** O teste do hero procurava "a lista
+  de definições da página"; a seção médica trouxe uma segunda, e ele passou a achar duas. Agora
+  procura dentro do hero.

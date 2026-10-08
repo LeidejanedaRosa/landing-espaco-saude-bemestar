@@ -74,6 +74,7 @@ export function Studio() {
         id={HEADING_ID}
         eyebrow="Nosso studio"
         title="Aparelhos de alta precisão para o seu treino"
+        highlight="treino"
       />
 
       <Carousel
