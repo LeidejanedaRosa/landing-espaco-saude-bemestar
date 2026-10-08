@@ -322,6 +322,15 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   não é branco puro até o limite.
 - O título ("Técnica científica com cuidado humano") é um trecho do compromisso aprovado.
 
+### Para quem o pilates é indicado
+
+- Seis medalhões: ícone de linha dentro de um círculo, com o nome do público embaixo. É uma
+  seção curta, de respiro entre duas mais densas; não é tela cheia.
+- São seis, em 2, 3 ou 6 colunas, sempre sem linha incompleta. Ficam em `audienceList.ts`.
+- Só os nomes aparecem (aprovados na landing antiga). Os complementos de cada público vieram da
+  versão de referência e só entram com a aprovação da cliente.
+- Não tem item no menu: o `id` é `para-quem`, para um link futuro.
+
 ## Navegação
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra

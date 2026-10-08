@@ -52,7 +52,7 @@
 - [x] Sobre a Luiza (foto provisória: ver pendências em docs/conteudo.md)
 - [x] Atendimento médico (foto provisória; descrições das especialidades aguardam revisão)
 - [x] Metodologia
-- [ ] Para quem é indicado
+- [x] Para quem é indicado (só os nomes; complementos aguardam aprovação)
 - [ ] Depoimentos (avaliações reais do Google, escolhidas pela cliente)
 - [ ] Contato (sem formulário: tudo leva ao WhatsApp)
 - [ ] Footer
