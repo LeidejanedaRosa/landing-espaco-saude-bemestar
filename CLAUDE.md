@@ -254,6 +254,28 @@ Toda seção depois do hero surge de leve ao entrar na tela. É a classe `reveal
 - O efeito termina quando a seção entrou 25% na tela, antes de a ilustração do serviço
   aparecer. Mudar esse limite exige conferir a aba Pilates.
 
+### Quem é a principal: a Luiza
+
+A Luiza é a figura principal da página. O espaço é dela, e a Dra. Veronika atende dentro dele.
+Na versão de referência (Emergent) a seção da médica chamava mais atenção que a da Luiza; aqui
+é o contrário.
+
+- **Sobre a Luiza** tem a foto grande, o nome completo com o registro, a apresentação em
+  primeira pessoa e o botão cheio ("Agendar avaliação").
+- **Atendimento médico** é complementar: nunca maior, mais colorida ou com mais destaque que a
+  seção da Luiza. Foto menor ou sem foto, botão vazado, sem tela cheia.
+- Em qualquer lugar onde as duas apareçam juntas (menu, abas de Serviços, footer), a Luiza e os
+  serviços dela vêm primeiro.
+
+### Sobre a Luiza
+
+- Foto e apresentação lado a lado, e as certificações em grade logo abaixo. Não é carrossel nem
+  abas: aqui a pessoa só lê, e a seção pode ser mais alta que a tela.
+- A foto vai em moldura orgânica, com duas formas coloridas saindo de trás.
+- As seis certificações ficam em `aboutCredentials.ts`. São seis, então a grade (1, 2 ou 3
+  colunas) nunca tem linha incompleta; mudando a quantidade, rever as colunas.
+- A frase de destaque (`h2`) é um trecho da própria apresentação dela.
+
 ## Navegação
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra

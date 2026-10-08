@@ -44,6 +44,12 @@ Ficam para depois da primeira entrega para aprovação da cliente:
 - **Cartão de Atendimento Médico, na seção Serviços:** a landing antiga repetia ali o texto de
   Massoterapia. O site usa as três especialidades e a frase "Atendimento humanizado e tratamento
   integrado", tiradas do post da cliente sobre a Dra. Veronika. Pede a confirmação dela.
+- **Foto da Luiza:** a seção "Sobre a Luiza" usa um recorte de `src/assets/images/Luiza.png`
+  (372×496 px). É provisória: a resolução é baixa para telas de alta densidade. Trocar por uma
+  foto em retrato, com pelo menos 800 px de largura, do Instagram dela ou enviada por ela.
+- **Frase de destaque da seção "Sobre a Luiza":** "Atendimento individualizado, com foco na
+  reabilitação, na prevenção de lesões e na melhora da qualidade de vida" é um trecho da
+  apresentação dela, promovido a título. Ele aparece de novo no segundo parágrafo.
 
 ## Depoimentos
 
