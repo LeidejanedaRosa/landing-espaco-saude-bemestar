@@ -25,7 +25,7 @@ describe('Studio', () => {
     render(<Studio />);
 
     for (const heading of screen.getAllByRole('heading', { level: 3 })) {
-      const card = heading.closest('li') as HTMLElement;
+      const card = heading.closest('[aria-roledescription="slide"]') as HTMLElement;
 
       const [tag, description] = [...card.querySelectorAll('p')];
 
@@ -58,7 +58,9 @@ describe('Studio', () => {
   it('destaca o começo de cada benefício, como na landing aprovada', () => {
     render(<Studio />);
 
-    const reformer = screen.getByRole('heading', { level: 3, name: 'Reformer' }).closest('li');
+    const reformer = screen
+      .getByRole('heading', { level: 3, name: 'Reformer' })
+      .closest('[aria-roledescription="slide"]');
     const firstBenefit = within(reformer as HTMLElement).getAllByRole('listitem')[0];
 
     expect(firstBenefit).toHaveTextContent(
@@ -85,5 +87,33 @@ describe('Studio', () => {
 
     expect(within(header).getByText('Nosso studio')).toBeInTheDocument();
     expect(header.querySelectorAll('p')).toHaveLength(1);
+  });
+
+  it('mostra os aparelhos em carrossel, com cada slide dizendo o aparelho e a posição', () => {
+    render(<Studio />);
+
+    const carousel = screen.getByRole('group', { name: 'Aparelhos do studio' });
+    const slides = [...carousel.querySelectorAll('[aria-roledescription="slide"]')].map((slide) =>
+      slide.getAttribute('aria-label')
+    );
+
+    expect(carousel).toHaveAttribute('aria-roledescription', 'carrossel');
+    expect(slides).toEqual([
+      'Bicicleta, 1 de 5',
+      'Reformer, 2 de 5',
+      'Cadillac, 3 de 5',
+      'Barrel, 4 de 5',
+      'Chair, 5 de 5'
+    ]);
+  });
+
+  it('as setas e os marcadores dizem o que fazem, com o nome de cada aparelho', () => {
+    render(<Studio />);
+
+    expect(screen.getByRole('button', { name: 'Aparelho anterior' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Próximo aparelho' })).toBeInTheDocument();
+    for (const name of ['Bicicleta', 'Reformer', 'Cadillac', 'Barrel', 'Chair']) {
+      expect(screen.getByRole('button', { name: `Ver ${name}` })).toBeInTheDocument();
+    }
   });
 });

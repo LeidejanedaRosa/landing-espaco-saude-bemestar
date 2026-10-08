@@ -94,6 +94,36 @@
   }
 }
 
+/* Carrossel: a rolagem lateral existe, a barra não aparece (há setas e marcadores). */
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* O conteúdo surge de leve quando a seção entra na tela. É CSS puro, ligado à rolagem
+   (`animation-timeline: view()`): sem JavaScript, e onde o navegador não tem o recurso o
+   conteúdo simplesmente já está lá. `backwards`, e não `both`: passada a entrada, nada fica
+   aplicado, senão o `mix-blend-multiply` das ilustrações de serviço deixaria de funcionar. */
+@utility reveal-on-scroll {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: reveal-up linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 25%;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+}
+
 @layer base {
   html {
     /* O header é fixo no topo: sem esta folga ele cobriria o início da seção de destino. */

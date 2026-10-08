@@ -203,18 +203,56 @@ pessoa escolhe. Carrossel esconde o que não é o primeiro item.
 - Ao reativar um painel, a animação recomeça porque `inert:animate-none` a desliga enquanto ele
   está inativo.
 
-### Cartões em grade (Studio)
+### Carrossel (Studio)
 
-- `CardGrid` + `IllustratedCard` (`src/shared/ui`): ilustração em painel branco, rótulo opcional
-  acima do título, descrição opcional e lista de itens.
-- **Imagem de cartão amplia ao passar o mouse** (`group-hover:scale-130`), dentro de um painel
-  com `overflow-hidden`, e não se mexe para quem pediu redução de movimento (`motion-reduce`).
-- **Cartões:** fundo `cream` semitransparente, borda fina em `olive` suave, cantos bem
-  arredondados. Lista de itens usa `<ul>`/`<li>`, para o leitor de tela anunciar quantos são.
-- **Grade com última linha incompleta fica centralizada:** é o que o `CardGrid` faz, com
-  `flex flex-wrap justify-center` em vez de `grid`.
-- **Imagens de formatos diferentes em áreas iguais:** painel de proporção fixa com a imagem em
-  `object-contain`. Todas ocupam a mesma área, inteiras e sem distorcer.
+Os aparelhos ficam em carrossel, um por vez: são para conhecer, não para escolher (para
+escolher, abas). É o `Carousel` (`src/shared/ui`) com o hook `useCarousel` (`src/shared/hooks`).
+
+- **Rolagem nativa com `scroll-snap`, sem biblioteca.** Arrastar com o dedo, roda do mouse e
+  setas do teclado funcionam sem JavaScript; o hook só acompanha qual slide está à vista e leva
+  a rolagem até outro quando um botão pede.
+- **Sem troca automática.** Conteúdo que anda sozinho tira o controle de quem lê e exigiria
+  botão de pausa (WCAG 2.2.2).
+- Segue o padrão "Carousel" da WAI-ARIA: o conjunto e cada slide se apresentam ao leitor de tela
+  (`aria-roledescription`), cada slide diz o nome e a posição ("Reformer, 2 de 5") e um aviso
+  (`aria-live`) anuncia o slide que entrou. Todos os slides ficam no HTML.
+- **Setas e marcadores vêm antes dos slides**, logo abaixo do título: no celular o cartão é mais
+  alto que a tela, e embaixo dele ninguém os encontraria.
+- Nas pontas a seta usa `aria-disabled`, e não `disabled`: botão desabilitado perde o foco e
+  joga quem navega pelo teclado para fora do carrossel.
+- A área que rola tem `tabIndex={0}` (é a única exceção à regra de lint, comentada no código):
+  sem foco, o axe reprova e o teclado não desliza em navegador que não foca áreas de rolagem.
+- Todos os slides têm a altura do maior, então a página não pula ao trocar. No desktop a seção
+  inteira cabe na tela (`fullScreen`).
+- **O desenho fica em uma "folha de caderno"**: papel colorido levemente inclinado, com sombra
+  e um pedaço de fita no topo. Papel e fita mudam por aparelho (`gold`, `teal` e `rose`, em
+  rodízio). Nada de painel branco: ele apaga a seção.
+- A imagem usa `mix-blend-multiply` (o fundo branco do arquivo vira a cor do papel, como
+  grafite em papel colorido) e `contrast-125` (leva a branco o fundo acinzentado de alguns
+  arquivos, que apareceria como um retângulo). A folha é opaca, então a mistura fica nela.
+- Ao passar o mouse a folha se endireita e vem para a frente (`group-hover:scale-110`). Quem
+  amplia é a folha inteira, e não o desenho dentro dela, que seria cortado nas bordas; nada se
+  mexe para quem pediu redução de movimento.
+- **Os arquivos dos aparelhos são aparados rente ao desenho** (cerca de 3% de margem). Com
+  margens brancas diferentes, uns apareciam bem menores que os outros na mesma folha.
+- Lista de itens marcados, aqui e em Serviços, é o `CheckList` (`src/shared/ui`).
+
+### Conteúdo surgindo ao rolar
+
+Toda seção depois do hero surge de leve ao entrar na tela. É a classe `reveal-on-scroll`
+(`src/styles/main.css`), aplicada dentro de `Section`; nenhuma seção precisa pedir.
+
+- **É CSS puro, ligado à rolagem** (`animation-timeline: view()`), sem JavaScript: o HTML do
+  build continua completo e, onde o navegador não tem o recurso, o conteúdo já está na tela.
+- Só com `prefers-reduced-motion: no-preference`.
+- **`animation-fill-mode: backwards`, nunca `both`:** passada a entrada, nada fica aplicado. Com
+  `both`, a seção ficaria isolada para sempre e o `mix-blend-multiply` das ilustrações de
+  serviço voltaria a mostrar o fundo branco.
+- Antes de surgir, o conteúdo fica deslocado para baixo. Por isso `Section` usa
+  `overflow-clip`: sem o recorte, a última seção aumentaria a altura da página e apareceria uma
+  faixa sem fundo no fim.
+- O efeito termina quando a seção entrou 25% na tela, antes de a ilustração do serviço
+  aparecer. Mudar esse limite exige conferir a aba Pilates.
 
 ## Navegação
 

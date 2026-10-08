@@ -1,9 +1,9 @@
-import barrel from '../../design/originais/aparelho-barrel.png?w=400;800&format=avif;webp&as=picture';
+import barrel from '../../design/originais/aparelho-barrel.png?w=287;575&format=avif;webp&as=picture';
 import bicicleta from '../../design/originais/aparelho-bicicleta.png?w=400;800&format=avif;webp&as=picture';
-import cadillac from '../../design/originais/aparelho-cadillac.png?w=400;800&format=avif;webp&as=picture';
-import chair from '../../design/originais/aparelho-chair.png?w=400;800&format=avif;webp&as=picture';
+import cadillac from '../../design/originais/aparelho-cadillac.png?w=388;776&format=avif;webp&as=picture';
+import chair from '../../design/originais/aparelho-chair.png?w=343;687&format=avif;webp&as=picture';
 import reformer from '../../design/originais/aparelho-reformer.png?w=400;800&format=avif;webp&as=picture';
-import type { CardItem } from '../shared/ui/IllustratedCard';
+import type { CheckListItem } from '../shared/ui/CheckList';
 import type { PictureImage } from '../shared/ui/Picture';
 
 export interface Equipment {
@@ -12,7 +12,7 @@ export interface Equipment {
   name: string;
   description: string;
   /** O começo de cada benefício vai em destaque, como na landing aprovada. */
-  benefits: CardItem[];
+  benefits: CheckListItem[];
   image: PictureImage;
   imageAlt: string;
 }
