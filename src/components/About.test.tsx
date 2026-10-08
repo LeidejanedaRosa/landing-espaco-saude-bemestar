@@ -99,4 +99,22 @@ describe('About', () => {
     expect(url.searchParams.get('text')).toBe('Olá! Gostaria de agendar uma avaliação.');
     expect(link).toHaveAttribute('target', '_blank');
   });
+
+  it('é a seção de maior destaque: o botão é o cheio para fundo escuro, dentro do bloco verde', () => {
+    render(<About />);
+
+    const link = screen.getByRole('link', { name: /agendar avaliação/i });
+
+    expect(link).toHaveClass('bg-cream');
+    expect(link.closest('.bg-olive-deep')).not.toBeNull();
+    expect(screen.getByRole('heading', { level: 2 }).closest('.bg-olive-deep')).not.toBeNull();
+  });
+
+  it('as certificações ficam fora do bloco verde', () => {
+    render(<About />);
+
+    const list = screen.getByRole('list', { name: 'Certificações e qualificações' });
+
+    expect(list.closest('.bg-olive-deep')).toBeNull();
+  });
 });
