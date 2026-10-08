@@ -88,6 +88,7 @@ export function Services() {
         id={HEADING_ID}
         eyebrow="Serviços"
         title="O que Luiza Espaço Saúde e bem estar oferece?"
+        highlight="bem estar"
       />
 
       {/* As abas quebram em linhas quando não cabem: as cinco ficam sempre à vista. Em fileira
