@@ -1,3 +1,4 @@
+import { About } from '../components/About';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { NAV_ITEMS } from '../components/navigation';
@@ -15,6 +16,7 @@ export function HomePage() {
         <Hero />
         <Studio />
         <Services />
+        <About />
       </main>
     </PageBackground>
   );
