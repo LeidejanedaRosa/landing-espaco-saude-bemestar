@@ -21,9 +21,9 @@
 
 ## Próximos passos
 
-- [ ] Transição do degradê para `olive-deep` no footer (o trecho claro já está aplicado).
-      Decidir com a Leidejane onde a mistura começa: ela imagina a partir da seção "Sobre"; nesse
-      caso, no trecho do meio o texto não pode ficar direto sobre o fundo (vai em cartões)
+- [x] Transição para `olive-deep` no footer: faixa sem texto no topo do próprio footer.
+      Em aberto: a Leidejane imagina a mistura começando antes, a partir da seção "Sobre";
+      mostrar as duas versões e decidir com ela
 - [x] Dados reais levantados (ver docs/conteudo.md) e `.env` local preenchido
 - [ ] Gerar os desenhos em traço a partir de [docs/identidade/prompts-desenhos.md](identidade/prompts-desenhos.md)
 - [ ] Gerar as três ilustrações de serviço que faltam (Pilates, Massoterapia e Atendimento
@@ -55,7 +55,7 @@
 - [x] Para quem é indicado (só os nomes; complementos aguardam aprovação)
 - [ ] Depoimentos (avaliações reais do Google, escolhidas pela cliente)
 - [x] Contato (sem formulário: tudo leva ao WhatsApp; chamada final aguarda revisão)
-- [ ] Footer
+- [x] Footer (frase do rodapé aguarda revisão)
 
 ## SEO e publicação
 

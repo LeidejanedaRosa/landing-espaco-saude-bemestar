@@ -54,6 +54,8 @@ Ficam para depois da primeira entrega para aprovação da cliente:
   consulta ou aula experimental e sinta a diferença de um cuidado verdadeiramente
   individualizado." vêm da versão da Emergent; a landing antiga não tinha chamada final. Pedem
   a revisão da cliente.
+- **Frase do rodapé:** "Movimento consciente, reabilitação especializada e cuidado integrado."
+  vem da versão da Emergent. Pede a revisão da cliente.
 - **Foto da Dra. Veronika:** a seção "Atendimento médico" usa a foto que estava na versão da
   Emergent (`design/originais/dra-veronika-retrato.png`, 279×416 px). É provisória: resolução
   baixa, e falta confirmar com a cliente que a foto pode ser usada. Trocar por uma em retrato,
