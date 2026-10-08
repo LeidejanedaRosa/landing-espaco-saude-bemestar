@@ -60,14 +60,16 @@ export function SectionHeading({
       )}
       <h2
         id={id}
-        className="text-[clamp(1.5rem,min(3vw,5.5dvh),2.25rem)] leading-tight font-medium"
+        className="text-[clamp(1.5rem,min(3vw,5.5dvh),2.25rem)] leading-tight font-medium wrap-anywhere"
       >
         {before}
         {highlighted && (
           // Mesmo gesto do hero: a manuscrita é mais miúda que a serifada, por isso é maior; a
           // altura de linha abaixo de 1 não deixa a linha do título crescer por causa dela.
+          // Sem `nowrap`: em tela estreita, com a fonte do navegador aumentada, o destaque
+          // precisa poder quebrar (o `wrap-anywhere` do título quebra até uma palavra só).
           <span
-            className={`${TONE_CLASSES[tone].highlight} font-script text-[1.4em] leading-[0.85] font-normal whitespace-nowrap`}
+            className={`${TONE_CLASSES[tone].highlight} font-script text-[1.4em] leading-[0.85] font-normal`}
           >
             {highlighted}
           </span>
