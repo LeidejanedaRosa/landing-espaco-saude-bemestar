@@ -103,3 +103,14 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   desenho. Aparar a margem resolveu sem mexer no layout.
 - **Desenho a lápis combina com papel colorido.** Com `mix-blend-multiply` sobre uma folha
   opaca, o branco do arquivo vira a cor do papel e o grafite continua escuro.
+
+## 2026-10-07 — Seção Sobre a Luiza
+
+- **Hierarquia visual é decisão de negócio.** Quem aparece maior, com foto e botão cheio, é
+  quem a página diz que é a principal. Na versão de referência a seção da médica ganhava da
+  dona do espaço; a regra agora está escrita no `CLAUDE.md`, para valer nas próximas seções.
+- **O axe não mede contraste sobre degradê.** Ele marca como "incompleto", e não como violação.
+  O contraste do rótulo foi medido à mão, pela cor real do fundo no print: 4,5:1 no topo da
+  seção, 4,2:1 no fim. Um teste verde de acessibilidade não cobre isso.
+- **Recorte de foto também é conteúdo.** O primeiro recorte deixava pedaços das letras do logo
+  da parede ("Esp", "Saúde"); letra cortada parece descuido.

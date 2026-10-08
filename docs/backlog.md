@@ -31,6 +31,8 @@
 - [ ] Vetorizar os demais desenhos em traço para SVG (prontos em `src/assets/tracos`: guerreira,
       alongamento e criança)
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
+- [ ] Rótulo das seções (`SectionHeading`) sobre fundo `blush`: `rose-deep` dá 4,2:1 em texto
+      pequeno. Em "Sobre a Luiza" ainda passa (4,5:1); nas seções seguintes, medir e trocar a cor
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
 
 ## Próxima rodada de vida às seções
@@ -44,7 +46,7 @@
 - [x] Hero
 - [x] Studio / aparelhos
 - [x] Serviços
-- [ ] Sobre a Luiza
+- [x] Sobre a Luiza (foto provisória: ver pendências em docs/conteudo.md)
 - [ ] Atendimento médico
 - [ ] Metodologia
 - [ ] Para quem é indicado
