@@ -1,5 +1,6 @@
 import retrato from '../../design/originais/luiza-retrato.png?w=186;372&format=avif;webp&as=picture';
 import { ButtonLink } from '../shared/ui/ButtonLink';
+import { LineIcon } from '../shared/ui/LineIcon';
 import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
 import { SectionHeading } from '../shared/ui/SectionHeading';
@@ -18,6 +19,7 @@ export function About() {
         id={HEADING_ID}
         eyebrow="Sobre a Luiza"
         title="Atendimento individualizado, com foco na reabilitação, na prevenção de lesões e na melhora da qualidade de vida"
+        highlight="individualizado"
       />
 
       <div className="grid items-center gap-8 lg:grid-cols-[2fr_3fr] lg:gap-12">
@@ -78,20 +80,7 @@ export function About() {
           {CREDENTIALS.map((credential) => (
             <li key={credential.title} className="flex gap-4">
               <span className="bg-cream border-rose text-rose-deep inline-flex size-12 shrink-0 items-center justify-center rounded-full border">
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="size-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  {credential.iconPaths.map((path) => (
-                    <path key={path} d={path} />
-                  ))}
-                </svg>
+                <LineIcon paths={credential.iconPaths} />
               </span>
               <div className="flex flex-col gap-1">
                 <h4 className="font-semibold">{credential.title}</h4>
