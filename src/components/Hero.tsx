@@ -55,7 +55,7 @@ export function Hero() {
             className="text-[clamp(2.25rem,min(4.2vw,7dvh),3.75rem)] leading-tight font-medium"
           >
             Saúde, movimento e{' '}
-            <span className="font-script text-rose-deep text-[1.15em] leading-none font-normal whitespace-nowrap">
+            <span className="font-script text-rose-vivid text-[1.15em] leading-none font-normal whitespace-nowrap">
               bem-estar
             </span>{' '}
             em um só espaço
@@ -102,10 +102,13 @@ export function Hero() {
             O atraso da animação é repetido com `lg:` porque `lg:animate-*` redefine a
             animação inteira nesse tamanho e zeraria o atraso declarado sem prefixo.
             Ao carregar, a frase é "escrita" linha a linha e depois o desenho é "riscado": da
-            esquerda para a direita na faixa, de cima para baixo na boneca em pé. */}
+            esquerda para a direita na faixa, de cima para baixo na boneca em pé.
+            A cor da frase acompanha o tamanho: o rosa vivo só tem contraste para texto grande
+            (24px ou mais). Abaixo de 20rem de faixa, 7.5cqw dá menos que isso, e a frase usa o
+            rosa escuro, que passa como texto pequeno. */}
         <div className="@container relative order-first mx-auto w-full max-w-3xl md:max-lg:self-center lg:@container-size lg:order-0 lg:flex lg:max-w-none lg:items-center lg:justify-end lg:self-stretch lg:[--art-h:min(100cqh,91cqw)] lg:[--phrase:clamp(1.5rem,calc(var(--art-h)*0.085),3.25rem)]">
           <div className="relative w-full pt-[4cqw] lg:w-auto lg:pt-0">
-            <p className="font-script text-rose-deep absolute top-0 left-[6cqw] text-[clamp(1.25rem,7.5cqw,3rem)] leading-[1.15] whitespace-nowrap lg:right-[calc(var(--art-h)*0.42)] lg:left-auto lg:text-(length:--phrase) lg:leading-[1.1]">
+            <p className="font-script text-rose-ink @min-[20rem]:text-rose-vivid absolute top-0 left-[6cqw] text-[clamp(1.25rem,7.5cqw,3rem)] leading-[1.15] whitespace-nowrap lg:right-[calc(var(--art-h)*0.42)] lg:left-auto lg:text-(length:--phrase) lg:leading-[1.1]">
               <span className="motion-safe:animate-write block w-fit motion-safe:[animation-delay:0.2s]">
                 Acredite!
               </span>{' '}
