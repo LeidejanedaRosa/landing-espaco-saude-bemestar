@@ -279,10 +279,10 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 
 ### Sobre a Luiza
 
-- **Bloco `olive-deep` com texto claro**, que reúne o rótulo e o título da seção, a foto em
-  moldura orgânica, a apresentação em primeira pessoa, o nome com o registro e o botão. As seis
-  certificações ficam fora dele, em grade, no fundo claro: com tudo dentro, o bloco viraria uma
-  parede verde de mais de uma tela.
+- **Bloco `olive-deep` com texto claro, que reúne a seção inteira:** o rótulo e o título, a
+  foto em moldura orgânica, a apresentação em primeira pessoa, o nome com o registro, o botão e,
+  depois de um divisor com ornamento, as seis certificações. Fora do bloco elas pareciam soltas,
+  sem ligação com a Luiza.
 - Não é carrossel nem abas: aqui a pessoa só lê, e a seção pode ser mais alta que a tela.
 - No HTML a ordem é título, foto, apresentação. No desktop a foto vai para a coluna da esquerda
   só pela posição na grade.
@@ -292,6 +292,10 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - As seis certificações ficam em `aboutCredentials.ts`. São seis, então a grade (1, 2 ou 3
   colunas) nunca tem linha incompleta; mudando a quantidade, rever as colunas.
 - A frase de destaque (`h2`) é um trecho da própria apresentação dela.
+- Folhagens próprias, claras sobre o verde: `eucalipto-claro.svg` e `ramo-traco-dourado.svg`
+  (`src/assets/folhagens/`). Cada seção pode ter a sua folhagem; não precisa ser a mesma em todas.
+- Divisor fino com losango dourado é o `OrnamentDivider` (`src/shared/ui`), aqui em largura total
+  e com `tone="dark"`; na seção médica, curto, sob o título.
 
 ### Atendimento médico
 
@@ -421,7 +425,8 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - **Desenho em traço e folhagem entram pelo componente `DecorativeImage`** (`src/shared/ui`), a
   partir de um SVG em `src/assets/tracos/` ou `src/assets/folhagens/`. Ele já sai decorativo
   (`alt=""`, `aria-hidden`) e com carregamento lento; na primeira tela, usar `priority`.
-- **Folhagens:** `ramo-verde.svg` e `ramo-rosa.svg`, nas cores `teal` e `rose`. Ficam nos cantos
+- **Folhagens:** `ramo-verde.svg` e `ramo-rosa.svg`, nas cores `teal` e `rose`, para fundo claro;
+  `eucalipto-claro.svg` (rosa claro) e `ramo-traco-dourado.svg` (só contorno), para o bloco verde. Ficam nos cantos
   da seção, semitransparentes, atrás do conteúdo e parcialmente para fora da tela (a seção usa
   `overflow-hidden`). São dois arquivos porque SVG em `<img>` não muda de cor por CSS.
 - **Como um PNG de traço vira SVG:** o original (traço preto, fundo branco) fica em
