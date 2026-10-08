@@ -44,6 +44,9 @@ Ficam para depois da primeira entrega para aprovação da cliente:
 - **Cartão de Atendimento Médico, na seção Serviços:** a landing antiga repetia ali o texto de
   Massoterapia. O site usa as três especialidades e a frase "Atendimento humanizado e tratamento
   integrado", tiradas do post da cliente sobre a Dra. Veronika. Pede a confirmação dela.
+- **Título da seção Metodologia:** a landing antiga usava "Nossa Metodologia". Aqui isso virou o
+  rótulo, e o título é "Técnica científica com cuidado humano", trecho do compromisso aprovado
+  ("nossa abordagem combina técnica científica com cuidado humano"). Pede a confirmação da cliente.
 - **Foto da Dra. Veronika:** a seção "Atendimento médico" usa a foto que estava na versão da
   Emergent (`design/originais/dra-veronika-retrato.png`, 279×416 px). É provisória: resolução
   baixa, e falta confirmar com a cliente que a foto pode ser usada. Trocar por uma em retrato,
