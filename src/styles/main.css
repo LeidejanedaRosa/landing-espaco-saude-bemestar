@@ -18,6 +18,12 @@
   --color-blush: #f2d5cd;
   --color-rose: #cb847c;
   --color-rose-deep: #9a4f4a;
+  /* O `rose-deep` 8% mais escuro: para texto pequeno em rosa sobre o fundo `blush`, onde o
+     `rose-deep` fica abaixo de 4,5:1. */
+  --color-rose-ink: #8e4944;
+  /* Rosa mais claro e vivo, só para texto grande (palavra em destaque dos títulos): 3,2:1
+     sobre `blush`, acima dos 3:1 exigidos para texto grande e abaixo dos 4,5:1 do pequeno. */
+  --color-rose-vivid: #be5a5f;
   --color-teal: #688f90;
   --color-teal-deep: #3f6b6c;
   --color-olive: #737b5b;
