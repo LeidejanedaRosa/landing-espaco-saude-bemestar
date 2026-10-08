@@ -1,6 +1,7 @@
 import { About } from '../components/About';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
+import { MedicalCare } from '../components/MedicalCare';
 import { NAV_ITEMS } from '../components/navigation';
 import { Services } from '../components/Services';
 import { Studio } from '../components/Studio';
@@ -17,6 +18,7 @@ export function HomePage() {
         <Studio />
         <Services />
         <About />
+        <MedicalCare />
       </main>
     </PageBackground>
   );
