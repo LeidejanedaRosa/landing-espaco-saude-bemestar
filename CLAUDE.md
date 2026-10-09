@@ -311,6 +311,17 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   o ícone vai dentro do `<dt>`, e não solto ao lado.
 - Ícone de linha decorativo, aqui e nas certificações da Luiza, é o `LineIcon` (`src/shared/ui`).
 
+### Metodologia
+
+- Ilustração à esquerda e as quatro etapas à direita, em cartões numerados (2 × 2), com o
+  compromisso do espaço fechando a seção. Cabe em uma tela em notebook, desktop e tablet
+  (`fullScreen`); no celular as quatro etapas, com o texto aprovado, não cabem, e a seção cresce.
+- As etapas são uma lista ordenada (`<ol>`): a ordem importa. O número grande em manuscrita é
+  só enfeite (`aria-hidden`), porque a lista já informa a posição. Ficam em `methodologySteps.ts`.
+- A ilustração usa `mix-blend-multiply` e uma máscara que esfuma a borda: o fundo do arquivo
+  não é branco puro até o limite.
+- O título ("Técnica científica com cuidado humano") é um trecho do compromisso aprovado.
+
 ## Navegação
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra
