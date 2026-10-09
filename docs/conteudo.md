@@ -47,6 +47,9 @@ Ficam para depois da primeira entrega para aprovação da cliente:
 - **Título da seção Metodologia:** a landing antiga usava "Nossa Metodologia". Aqui isso virou o
   rótulo, e o título é "Técnica científica com cuidado humano", trecho do compromisso aprovado
   ("nossa abordagem combina técnica científica com cuidado humano"). Pede a confirmação da cliente.
+- **Seção "Para quem o pilates é indicado":** o site mostra só os nomes dos seis públicos. O
+  rótulo "Indicações" é novo, e os complementos da tabela abaixo (da versão da Emergent) ficam
+  de fora até a cliente aprovar.
 - **Foto da Dra. Veronika:** a seção "Atendimento médico" usa a foto que estava na versão da
   Emergent (`design/originais/dra-veronika-retrato.png`, 279×416 px). É provisória: resolução
   baixa, e falta confirmar com a cliente que a foto pode ser usada. Trocar por uma em retrato,

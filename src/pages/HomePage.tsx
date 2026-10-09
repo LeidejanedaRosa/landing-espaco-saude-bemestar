@@ -1,4 +1,5 @@
 import { About } from '../components/About';
+import { Audience } from '../components/Audience';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { MedicalCare } from '../components/MedicalCare';
@@ -21,6 +22,7 @@ export function HomePage() {
         <About />
         <MedicalCare />
         <Methodology />
+        <Audience />
       </main>
     </PageBackground>
   );
