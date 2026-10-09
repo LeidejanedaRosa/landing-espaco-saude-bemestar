@@ -122,13 +122,14 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
 
 ### Papel de parede: bonecas em traço e folhagens
 
-A página inteira tem um papel de parede discreto com as bonecas em traço e as folhagens, no
-espírito do fundo ilustrado do projeto `portfolio`. É onde a identidade da recepção aparece em
+A página inteira tem um papel de parede discreto com as bonecas em traço, no espírito do fundo
+ilustrado do projeto `portfolio`. **Só as bonecas:** as folhagens ficam nas seções (hero, bloco
+da Luiza, cartão da médica), onde dão um toque especial; no fundo, em tela grande, poluíam. É onde a identidade da recepção aparece em
 todas as seções, e é para "abusar": o efeito é mais forte nas telas grandes.
 
 - Vive em `PageBackground` (`src/shared/ui`), junto do degradê: um único fundo para a página,
   nenhuma seção define o seu.
-- É um mosaico: o arquivo `src/assets/fundos/bonecas-folhagens.svg` se repete em toda a página,
+- É um mosaico: o arquivo `src/assets/fundos/bonecas.svg` se repete em toda a página,
   sempre no mesmo tamanho (`110rem` de largura), em qualquer tela.
 - **Poucas figuras, grandes e bem visíveis**, e não muitas pequenas: a referência é o fundo do
   `portfolio`, com ilustrações em escala grande. Miúdo e repetido, vira estampa de papel de
@@ -159,7 +160,10 @@ Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading
   token. Ele encolhe em telas baixas, para o conteúdo caber.
 - O `id` da seção é o destino do link do menu; `labelledBy` é o `id` do título.
 - `fullScreen` faz a seção ocupar a tela menos o header, com o conteúdo centralizado. Usar
-  quando o conteúdo é interativo e cabe em uma tela (abas, carrossel).
+  quando o conteúdo é interativo e cabe em uma tela (abas, carrossel). **A altura tem teto:** é
+  o token `--spacing-fullscreen` (`min-h-fullscreen`), a tela menos o header, até `44rem`. Sem o
+  teto, em monitor alto o conteúdo ficava no meio de um vazio entre as seções. O hero usa o
+  mesmo token.
 - **Cabeçalho de seção: o nome da seção (rótulo pequeno, em maiúsculas) e uma frase de
   destaque (`h2`).** Só isso; sem parágrafo de apoio.
   Fica centralizado acima do conteúdo; quando a seção é um cartão único com foto, vai dentro
@@ -204,13 +208,12 @@ pessoa escolhe. Carrossel esconde o que não é o primeiro item.
   mais linhas, centralizadas. Fileira deslizante esconde as últimas sem avisar que existem.
 - **A ilustração não fica em painel branco.** Ela se apoia em três formas orgânicas, como as dos
   adesivos da fachada: duas coloridas (`teal`, `gold` e `rose`, em rodízio por serviço) e, por
-  cima, uma clara. A imagem usa `mix-blend-multiply`, que faz o fundo branco de algumas
-  ilustrações sumir sem recortar o arquivo.
+  cima, uma clara. As ilustrações têm fundo transparente de verdade (ver "Imagens").
 - Movimento só em resposta a uma ação: ao abrir a aba, o cartão sobe de leve e as formas
   crescem, em menos de meio segundo, com a ilustração já inteira (revelada aos poucos, ela
   parecia imagem demorando para carregar); ao passar o mouse, a ilustração amplia (`group-hover:scale-130`) e as formas mudam
   de contorno. A área da ilustração não usa `overflow-hidden` (a figura ampliada aparece
-  inteira) nem `z-index` (ele isolaria o `mix-blend-multiply` e o branco voltaria). **Nada fica animado sem parar:** movimento contínuo distrai e exigiria um botão
+  inteira). **Nada fica animado sem parar:** movimento contínuo distrai e exigiria um botão
   de pausa (WCAG 2.2.2). Tudo respeita `motion-safe`/`motion-reduce`.
 - Ao reativar um painel, a animação recomeça porque `inert:animate-none` a desliga enquanto ele
   está inativo.
@@ -239,12 +242,11 @@ escolher, abas). É o `Carousel` (`src/shared/ui`) com o hook `useCarousel` (`sr
 - **O desenho fica em uma "folha de caderno"**: papel colorido levemente inclinado, com sombra
   e um pedaço de fita no topo. Papel e fita mudam por aparelho (`gold`, `teal` e `rose`, em
   rodízio). Nada de painel branco: ele apaga a seção.
-- A imagem usa `mix-blend-multiply` (o fundo branco do arquivo vira a cor do papel, como
-  grafite em papel colorido) e `contrast-125` (leva a branco o fundo acinzentado de alguns
-  arquivos, que apareceria como um retângulo). A folha é opaca, então a mistura fica nela.
-- Ao passar o mouse a folha se endireita e vem para a frente (`group-hover:scale-110`). Quem
-  amplia é a folha inteira, e não o desenho dentro dela, que seria cortado nas bordas; nada se
-  mexe para quem pediu redução de movimento.
+- Os desenhos têm fundo transparente de verdade (ver "Imagens"): sobre o papel colorido ficam
+  como grafite em papel colorido, sem retângulo em volta.
+- **Ao passar o mouse, só o desenho amplia** (`group-hover:scale-125`); a folha fica parada.
+  Ampliado, o desenho pode passar da borda da folha, e nada o corta. Nada se mexe para quem
+  pediu redução de movimento.
 - **Os arquivos dos aparelhos são aparados rente ao desenho** (cerca de 3% de margem). Com
   margens brancas diferentes, uns apareciam bem menores que os outros na mesma folha.
 - Lista de itens marcados, aqui e em Serviços, é o `CheckList` (`src/shared/ui`).
@@ -257,14 +259,12 @@ Toda seção depois do hero surge de leve ao entrar na tela. É a classe `reveal
 - **É CSS puro, ligado à rolagem** (`animation-timeline: view()`), sem JavaScript: o HTML do
   build continua completo e, onde o navegador não tem o recurso, o conteúdo já está na tela.
 - Só com `prefers-reduced-motion: no-preference`.
-- **`animation-fill-mode: backwards`, nunca `both`:** passada a entrada, nada fica aplicado. Com
-  `both`, a seção ficaria isolada para sempre e o `mix-blend-multiply` das ilustrações de
-  serviço voltaria a mostrar o fundo branco.
+- **`animation-fill-mode: backwards`, nunca `both`:** passada a entrada, nada fica aplicado, e
+  a seção volta a ser um elemento comum, sem `opacity` nem `translate` presos nela.
 - Antes de surgir, o conteúdo fica deslocado para baixo. Por isso `Section` usa
   `overflow-clip`: sem o recorte, a última seção aumentaria a altura da página e apareceria uma
   faixa sem fundo no fim.
-- O efeito termina quando a seção entrou 25% na tela, antes de a ilustração do serviço
-  aparecer. Mudar esse limite exige conferir a aba Pilates.
+- O efeito termina quando a seção entrou 25% na tela.
 
 ### Quem é a principal: a Luiza
 
@@ -336,8 +336,8 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - **Título e imagem empilhados usam o mesmo alinhamento.** Título à esquerda com imagem
   centralizada embaixo parece desalinhado; por isso o `align="center-then-start"` do
   `SectionHeading` (centralizado no celular, à esquerda quando fica ao lado da imagem).
-- A ilustração se apoia em três formas orgânicas (duas coloridas e uma clara por cima), usa
-  `mix-blend-multiply` e uma máscara que esfuma só a borda. O arquivo é aparado rente à cena.
+- A ilustração se apoia em três formas orgânicas (duas coloridas e uma clara por cima) e tem
+  uma máscara que esfuma só a borda. O arquivo é aparado rente à cena e tem fundo transparente.
 - **O compromisso vai em um quadro próprio** (fundo rosado, borda, ícone), e não em uma linha
   solta de texto pequeno: é a promessa da seção.
 - As etapas são uma lista ordenada (`<ol>`): a ordem importa. O número grande em manuscrita é
@@ -392,8 +392,8 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 - O header é fixo no topo (`sticky`) e a altura dele é o token `--spacing-header`
   (`src/styles/main.css`), usado em três lugares: no próprio header (`h-header`), na folga de
   rolagem (`scroll-padding-top`) e nas seções de tela cheia. Mudou a altura, muda só o token.
-- **Seção de tela cheia nunca passa do viewport:** a altura é a da tela menos o header,
-  `min-h-[calc(100dvh-var(--spacing-header))]`. É `min-h`, e não `h`, para o conteúdo não ser
+- **Seção de tela cheia nunca passa do viewport:** a altura é a da tela menos o header, com
+  teto de `44rem` (`min-h-fullscreen`, token `--spacing-fullscreen`). É `min-h`, e não `h`, para o conteúdo não ser
   cortado quando não cabe. A regra de caber na tela vale para desktop e notebook; no celular a
   seção pode crescer.
 - **Testar altura com a área útil do navegador, não com a resolução do monitor.** Um notebook
@@ -439,6 +439,11 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 - `alt` descritivo em imagem de conteúdo; `alt=""` em imagem decorativa.
 - Imagens novas são geradas por IA a partir de prompts. Cada pedido de prompt vem com a
   especificação exata: proporção, dimensões, fundo, formato de entrega e onde será usada.
+- **Ilustração e desenho têm fundo transparente de verdade**, e não branco escondido com
+  `mix-blend-multiply`. A mistura falha quando o elemento é isolado (animação, `transform` no
+  elemento de fora) ou quando a imagem passa da própria área, e o retângulo branco aparece. O
+  original é convertido com "cor para alfa" (o branco vira transparência; sobre branco a imagem
+  fica idêntica) e continua sendo servido em AVIF/WebP, que aceitam transparência.
 - Nomes de arquivo em kebab-case, descritivos, sem espaços nem acentos.
 - Arquivos originais (PNG gerados, antes de tratar) ficam em `design/originais/`, fora de
   `src`, para o build não os publicar. Só a versão tratada (SVG, AVIF, WebP) entra em
@@ -448,8 +453,9 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
   (`alt=""`, `aria-hidden`) e com carregamento lento; na primeira tela, usar `priority`.
 - **Folhagens:** `ramo-verde.svg` e `ramo-rosa.svg`, nas cores `teal` e `rose`, para fundo claro;
   `eucalipto-claro.svg` (rosa claro) e `ramo-traco-dourado.svg` (só contorno), para o bloco verde. Ficam nos cantos
-  da seção, semitransparentes, atrás do conteúdo e parcialmente para fora da tela (a seção usa
-  `overflow-hidden`). São dois arquivos porque SVG em `<img>` não muda de cor por CSS.
+  da seção, semitransparentes, atrás do conteúdo. **São posicionadas em relação à largura do
+  conteúdo (`max-w-page`), e não às bordas da tela:** em monitor largo, presas às bordas, elas
+  iam parar nas margens, longe da seção. São dois arquivos porque SVG em `<img>` não muda de cor por CSS.
 - **Como um PNG de traço vira SVG:** o original (traço preto, fundo branco) fica em
   `design/originais/`; a vetorização é feita com `potrace`, e o resultado passa pelo `svgo`
   (`--precision 0 --multipass`), que derruba o arquivo para cerca de um décimo. O `potrace` do

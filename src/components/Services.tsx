@@ -26,8 +26,7 @@ function ServicePanel({ service, index }: Readonly<{ service: Service; index: nu
     <div className="bg-cream/80 border-olive/40 motion-safe:animate-panel-in grid h-full content-center items-center gap-6 rounded-3xl border p-5 inert:animate-none md:grid-cols-[2fr_3fr] md:content-stretch md:gap-8 md:p-[clamp(0.75rem,2.5dvh,2rem)]">
       {/* Ao lado do texto, a área da ilustração não tem altura própria: acompanha a do texto,
           para o cartão nunca crescer por causa da figura. Sem `overflow-hidden`: ampliada, a
-          figura passa da área e aparece inteira, por cima do texto ao lado. E sem `z-index`
-          aqui: ele isolaria o `mix-blend-multiply` e o fundo branco das imagens voltaria. */}
+          figura passa da área e aparece inteira, por cima do texto ao lado. */}
       <div className="group relative mx-auto aspect-4/3 w-full max-w-sm md:aspect-auto md:max-w-none md:self-stretch">
         {/* Formas orgânicas no lugar de um painel branco, como as dos adesivos da fachada do
             studio: duas coloridas e, por cima, uma clara, onde a figura se apoia sem perder as
@@ -44,13 +43,11 @@ function ServicePanel({ service, index }: Readonly<{ service: Service; index: nu
           aria-hidden="true"
           className={`${BLOB} inset-[7%_9%] rounded-[52%_48%_46%_54%/55%_47%_53%_45%] bg-white/80 group-hover:rounded-[46%_54%_53%_47%/48%_55%_45%_52%]`}
         />
-        {/* `mix-blend-multiply`: o branco do fundo de algumas ilustrações some sobre a forma
-            clara, sem precisar recortar o arquivo. */}
         <Picture
           image={service.image}
           alt={service.imageAlt}
           sizes={IMAGE_SIZES}
-          className="absolute inset-[5%] size-[90%] object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-130 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          className="absolute inset-[5%] size-[90%] object-contain transition-transform duration-500 ease-out group-hover:scale-130 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
         />
       </div>
 

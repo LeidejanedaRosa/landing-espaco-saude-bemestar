@@ -45,6 +45,9 @@
   --spacing-gutter: clamp(1rem, 5vw, 4rem);
   /* Altura do header fixo. As seções de tela cheia descontam este valor. */
   --spacing-header: 5rem;
+  /* Altura das seções de tela cheia (hero, abas, carrossel): a tela menos o header, com teto.
+     Em monitor alto, sem o teto, o conteúdo ficava no meio de um vazio entre as seções. */
+  --spacing-fullscreen: min(calc(100dvh - var(--spacing-header)), 44rem);
   /* Respiro vertical padrão de toda seção. Encolhe em telas baixas, para o conteúdo caber. */
   --spacing-section: clamp(1rem, 4dvh, 3.5rem);
 
@@ -57,8 +60,7 @@
   /* Troca de painel (abas): o conteúdo sobe de leve, depressa. A ilustração entra junto, já
      inteira: revelada aos poucos, ela parecia uma imagem demorando para carregar. */
   /* `backwards`, e não `both`: terminada a animação, o cartão não guarda `opacity` nem
-     `translate`. Guardados, eles isolariam o cartão do fundo da página e o
-     `mix-blend-multiply` das ilustrações deixaria de apagar o branco. */
+     `translate`, e volta a ser um elemento comum, sem contexto de empilhamento próprio. */
   --animate-panel-in: panel-in 0.3s ease-out backwards;
   /* As formas atrás da ilustração crescem uma vez, ao abrir a aba. Nada fica em movimento
      contínuo: animação sem fim distrai e exigiria um botão de pausa (WCAG 2.2.2). */
@@ -115,7 +117,7 @@
 /* O conteúdo surge de leve quando a seção entra na tela. É CSS puro, ligado à rolagem
    (`animation-timeline: view()`): sem JavaScript, e onde o navegador não tem o recurso o
    conteúdo simplesmente já está lá. `backwards`, e não `both`: passada a entrada, nada fica
-   aplicado, senão o `mix-blend-multiply` das ilustrações de serviço deixaria de funcionar. */
+   aplicado, e a seção volta a ser um elemento comum. */
 @utility reveal-on-scroll {
   @media (prefers-reduced-motion: no-preference) {
     @supports (animation-timeline: view()) {

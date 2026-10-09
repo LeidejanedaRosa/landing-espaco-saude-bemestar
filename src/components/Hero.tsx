@@ -18,35 +18,42 @@ export function Hero() {
   return (
     <section
       aria-labelledby="hero-titulo"
-      className="relative isolate flex min-h-[calc(100dvh-var(--spacing-header))] overflow-hidden"
+      className="min-h-fullscreen relative isolate flex overflow-hidden"
     >
-      <DecorativeImage
-        src={ramoVerde}
-        width={120}
-        height={300}
-        priority
-        className="absolute -top-16 -left-8 -z-10 h-44 w-auto rotate-155 opacity-45 md:h-56 min-[90rem]:-left-2 min-[90rem]:h-72"
-      />
-      <DecorativeImage
-        src={ramoRosa}
-        width={120}
-        height={300}
-        priority
-        className="absolute -right-2 -bottom-10 -z-10 hidden h-64 w-auto rotate-20 opacity-45 md:block min-[90rem]:right-4 min-[90rem]:h-80"
-      />
-      {/* Só quando sobram margens laterais (tela mais larga que o conteúdo). */}
-      <DecorativeImage
-        src={ramoRosa}
-        width={120}
-        height={300}
-        className="absolute bottom-6 -left-4 -z-10 hidden h-56 w-auto rotate-[-18deg] opacity-35 min-[90rem]:block"
-      />
-      <DecorativeImage
-        src={ramoVerde}
-        width={120}
-        height={300}
-        className="absolute top-2 -right-6 -z-10 hidden h-56 w-auto rotate-200 opacity-35 min-[90rem]:block"
-      />
+      {/* As folhagens ficam presas à largura do conteúdo, e não às bordas da tela: em monitor
+          largo elas acompanhavam as margens e se afastavam do hero. */}
+      <div
+        aria-hidden="true"
+        className="max-w-page pointer-events-none absolute inset-0 -z-10 mx-auto"
+      >
+        <DecorativeImage
+          src={ramoVerde}
+          width={120}
+          height={300}
+          priority
+          className="absolute -top-16 -left-8 h-44 w-auto rotate-155 opacity-45 md:h-56 min-[90rem]:-left-20 min-[90rem]:h-72"
+        />
+        <DecorativeImage
+          src={ramoRosa}
+          width={120}
+          height={300}
+          priority
+          className="absolute -right-2 -bottom-10 hidden h-64 w-auto rotate-20 opacity-45 md:block min-[90rem]:-right-16 min-[90rem]:h-80"
+        />
+        {/* Só quando sobram margens laterais (tela mais larga que o conteúdo). */}
+        <DecorativeImage
+          src={ramoRosa}
+          width={120}
+          height={300}
+          className="absolute bottom-6 -left-24 hidden h-56 w-auto rotate-[-18deg] opacity-35 min-[90rem]:block"
+        />
+        <DecorativeImage
+          src={ramoVerde}
+          width={120}
+          height={300}
+          className="absolute top-2 -right-24 hidden h-56 w-auto rotate-200 opacity-35 min-[90rem]:block"
+        />
+      </div>
 
       <Container className="grid gap-6 py-[clamp(0.75rem,3.5dvh,2rem)] md:max-lg:grid-rows-[1fr_auto] lg:grid-cols-[5fr_6fr] lg:gap-10">
         <div className="flex flex-col items-start gap-[clamp(0.5rem,2.2dvh,1.25rem)] self-center">

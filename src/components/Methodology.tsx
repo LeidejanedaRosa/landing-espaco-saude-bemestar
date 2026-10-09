@@ -51,13 +51,13 @@ export function Methodology() {
             aria-hidden="true"
             className="absolute inset-[6%_8%] rounded-[52%_48%_46%_54%/55%_47%_53%_45%] bg-white/85"
           />
-          {/* `mix-blend-multiply`: o fundo branco da ilustração assume a cor de trás. A máscara
-              esfuma só a borda, porque o fundo do arquivo não é branco puro até o limite. */}
+          {/* A máscara esfuma só a borda: o halo verde do desenho vai até o limite do arquivo, e
+              sem ela terminaria em uma linha reta. */}
           <Picture
             image={ilustracao}
             alt="Ilustração de uma profissional de jaleco com as mãos nos ombros de um senhor sentado, sorrindo"
             sizes={IMAGE_SIZES}
-            className="absolute inset-0 size-full [mask-image:radial-gradient(ellipse_closest-side,black_94%,transparent)] object-contain mix-blend-multiply"
+            className="absolute inset-0 size-full [mask-image:radial-gradient(ellipse_closest-side,black_94%,transparent)] object-contain"
           />
         </div>
 

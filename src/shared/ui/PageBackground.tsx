@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import wallpaper from '../../assets/fundos/bonecas-folhagens.svg';
+import wallpaper from '../../assets/fundos/bonecas.svg';
 
 interface PageBackgroundProps {
   children: ReactNode;

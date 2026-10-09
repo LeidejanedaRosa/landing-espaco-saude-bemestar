@@ -197,9 +197,7 @@ test.describe('seção Studio', () => {
     });
   }
 
-  test('ao passar o mouse, a folha se endireita e vem para a frente, com o desenho inteiro', async ({
-    page
-  }) => {
+  test('ao passar o mouse, só o desenho amplia; a folha de papel fica parada', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 625 });
     await goToStudio(page);
     const image = studio(page).section.getByRole('img', { name: /bicicleta/i });
@@ -209,13 +207,16 @@ test.describe('seção Studio', () => {
     // O Tailwind 4 aplica ampliação e giro pelas propriedades CSS `scale` e `rotate`.
     await expect(sheet).toHaveCSS('rotate', '-2deg');
 
-    await image.hover();
-
-    await expect(sheet).toHaveCSS('rotate', '0deg');
-    await expect(sheet).toHaveCSS('scale', '1.1');
-    // quem amplia é a folha: nada corta o desenho dentro dela
+    // Repete o gesto se preciso: com a suíte inteira rodando, a página às vezes ainda se
+    // acomoda quando o mouse chega, e ele acaba fora do desenho.
+    await expect(async () => {
+      await image.hover();
+      await expect(image).toHaveCSS('scale', '1.25', { timeout: 2000 });
+    }).toPass();
+    await expect(sheet).toHaveCSS('rotate', '-2deg');
+    await expect(sheet).toHaveCSS('scale', 'none');
+    // ampliado, o desenho pode passar da folha: nada o corta
     await expect(sheet).toHaveCSS('overflow', 'visible');
-    await expect(image).toHaveCSS('scale', 'none');
   });
 
   test('quem pediu menos movimento não vê a ampliação', async ({ page }) => {
@@ -226,7 +227,34 @@ test.describe('seção Studio', () => {
 
     await image.hover();
 
-    await expect(image.locator('xpath=ancestor::div[1]')).toHaveCSS('scale', '1');
+    await expect(image).toHaveCSS('scale', '1');
+  });
+
+  // Fundo branco gravado no arquivo aparece como um retângulo quando a imagem passa da folha.
+  test('os desenhos têm fundo transparente de verdade, sem depender de mistura de cores', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await goToStudio(page);
+    const image = studio(page).section.getByRole('img', { name: /bicicleta/i });
+    await expect
+      .poll(() => image.evaluate((img: HTMLImageElement) => img.naturalWidth))
+      .toBeGreaterThan(0);
+
+    const result = await image.evaluate((img: HTMLImageElement) => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const context = canvas.getContext('2d') as CanvasRenderingContext2D;
+      context.drawImage(img, 0, 0);
+      return {
+        cornerAlpha: context.getImageData(2, 2, 1, 1).data[3],
+        blend: getComputedStyle(img).mixBlendMode
+      };
+    });
+
+    expect(result.cornerAlpha).toBe(0);
+    expect(result.blend).toBe('normal');
   });
 
   // Quando baixar uma imagem "lazy" é decisão do navegador (ele antecipa o que está perto da

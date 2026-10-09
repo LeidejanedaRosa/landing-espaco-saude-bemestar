@@ -30,6 +30,9 @@ const PHONE_SIZES = [
 const SHORT_TABLET = { width: 768, height: 450 };
 
 // O desenho principal do hero: a faixa das três bonecas ou a boneca da recepção.
+// Teto da altura das seções de tela cheia (`--spacing-fullscreen`): 44rem.
+const FULL_SCREEN_MAX = 704;
+
 function heroDrawing(page: Page) {
   return page.locator('main section').first().locator('picture img');
 }
@@ -75,7 +78,10 @@ test.describe('hero', () => {
         .locator('dl')
         .boundingBox();
 
-      expect(Math.round((header?.height ?? 0) + (hero?.height ?? 0))).toBe(size.height);
+      // a tela menos o header, com o teto de 44rem das seções de tela cheia
+      expect(Math.round((header?.height ?? 0) + (hero?.height ?? 0))).toBe(
+        Math.min(size.height, Math.round(header?.height ?? 0) + FULL_SCREEN_MAX)
+      );
       expect((stats?.y ?? 0) + (stats?.height ?? 0)).toBeLessThanOrEqual(size.height);
     });
 

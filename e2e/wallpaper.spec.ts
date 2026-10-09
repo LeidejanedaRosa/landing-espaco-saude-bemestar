@@ -18,7 +18,7 @@ test.describe('papel de parede', () => {
     expect(content?.width).toBe(1280);
 
     const image = await wallpaper.evaluate((element) => getComputedStyle(element).backgroundImage);
-    expect(image).toContain('bonecas-folhagens');
+    expect(image).toContain('bonecas');
   });
 
   test('o arquivo do papel de parede existe e é um SVG servido pelo próprio site', async ({
@@ -44,5 +44,24 @@ test.describe('papel de parede', () => {
     await page.getByRole('link', { name: 'Conhecer o studio' }).click();
 
     await expect(page).toHaveURL(/#studio$/);
+  });
+
+  test('tem só as bonecas em traço: as folhagens ficam nas seções, e não no fundo', async ({
+    page,
+    request
+  }) => {
+    await page.goto('/');
+    const image = await page
+      .locator('[data-wallpaper]')
+      .evaluate((element) => getComputedStyle(element).backgroundImage);
+    const url = /url\("?([^")]+)"?\)/.exec(image)?.[1] ?? '';
+
+    const svg = await (await request.get(url)).text();
+
+    expect(svg).toContain('guerreira');
+    expect(svg).not.toContain('ramo');
+    // verde-água e rosa claro eram as cores das folhagens
+    expect(svg).not.toContain('#688f90');
+    expect(svg).not.toContain('#cb847c');
   });
 });
