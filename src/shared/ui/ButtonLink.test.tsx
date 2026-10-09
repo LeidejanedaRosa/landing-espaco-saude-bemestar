@@ -74,4 +74,13 @@ describe('ButtonLink', () => {
       'focus-visible:outline-olive-deep'
     );
   });
+
+  it('se o texto quebrar em duas linhas, fica centralizado e com respiro', () => {
+    render(<ButtonLink href="#a">Agendar consulta médica</ButtonLink>);
+
+    expect(screen.getByRole('link', { name: 'Agendar consulta médica' })).toHaveClass(
+      'text-center',
+      'py-1.5'
+    );
+  });
 });
