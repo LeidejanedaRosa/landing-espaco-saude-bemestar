@@ -1,6 +1,5 @@
 import { About } from '../components/About';
 import { Audience } from '../components/Audience';
-import { Contact } from '../components/Contact';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
@@ -27,7 +26,6 @@ export function HomePage() {
         <MedicalCare />
         <Methodology />
         <Audience />
-        <Contact />
       </main>
       <Footer navItems={NAV_ITEMS} year={CURRENT_YEAR} />
     </PageBackground>
