@@ -107,6 +107,61 @@ test.describe('rodapé', () => {
     }
   });
 
+  test('em tamanho normal, a frase fica em duas linhas, com a segunda recuada como na parede', async ({
+    page
+  }) => {
+    for (const width of [320, 390, 1366]) {
+      await page.setViewportSize({ width, height: 700 });
+      await page.goto('/');
+      const footer = page.getByRole('contentinfo');
+      const first = footer.getByText('Acredite!', { exact: true });
+      const second = footer.getByText('O movimento cura', { exact: true });
+      await second.scrollIntoViewIfNeeded();
+
+      const indent = await second.evaluate((line) => {
+        const style = getComputedStyle(line);
+        return Number.parseFloat(style.marginLeft) / Number.parseFloat(style.fontSize);
+      });
+      const lines = await second.evaluate((line) => {
+        const range = document.createRange();
+        range.selectNodeContents(line);
+        return new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size;
+      });
+
+      expect(indent).toBeCloseTo(2.57, 1);
+      expect(lines).toBe(1);
+      expect((await second.boundingBox())?.y ?? 0).toBeGreaterThan(
+        (await first.boundingBox())?.y ?? 0
+      );
+    }
+  });
+
+  // WCAG 1.4.4: com o texto do navegador em 200%, nada pode ficar cortado.
+  test('em 320px com a fonte do navegador dobrada, a frase inteira continua dentro da coluna', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 320, height: 664 });
+    await page.goto('/');
+    await page.addStyleTag({ content: 'html { font-size: 200%; }' });
+    const phrase = page
+      .getByRole('contentinfo')
+      .getByText('Acredite!', { exact: true })
+      .locator('xpath=ancestor::p[1]');
+    await phrase.scrollIntoViewIfNeeded();
+
+    const fits = await phrase.evaluate((paragraph) => {
+      const column = (paragraph.parentElement as HTMLElement).getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(paragraph);
+
+      return [...range.getClientRects()].every(
+        (line) => line.left >= column.left - 1 && line.right <= column.right + 1
+      );
+    });
+
+    expect(fits).toBe(true);
+  });
+
   test('os ícones de rede reagem ao mouse, e ficam parados para quem pediu menos movimento', async ({
     page
   }) => {

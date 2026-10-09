@@ -48,7 +48,8 @@ describe('Footer', () => {
     const second = screen.getByText('O movimento cura');
 
     expect(screen.getByText('Acredite!')).toHaveClass('block');
-    expect(second).toHaveClass('block', 'ml-[2.57em]');
+    expect(second).toHaveClass('block', 'ml-[min(2.57em,30cqw)]');
+    expect(second.parentElement).not.toHaveClass('whitespace-nowrap');
   });
 
   it('a boneca em traço ao fundo é só enfeite', () => {
