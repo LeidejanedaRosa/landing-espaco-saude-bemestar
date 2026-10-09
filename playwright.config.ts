@@ -11,6 +11,9 @@ export default defineConfig({
   // O padrão é 30s. No WebKit cada clique leva perto de 1s nesta página, e um teste com
   // vários passos estoura o prazo quando a máquina está ocupada com outra tarefa.
   timeout: 60_000,
+  // O padrão de cada verificação é 5s. A rolagem suave até uma seção distante demora mais que
+  // isso com a suíte inteira rodando; o teste falhava sem haver defeito na página.
+  expect: { timeout: 15_000 },
   reporter: isCI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: {
     baseURL: `http://localhost:${PORT}`,
