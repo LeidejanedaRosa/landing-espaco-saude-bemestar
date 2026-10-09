@@ -113,6 +113,10 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
   fundo próprio para o texto continuar legível (`cream` quase opaco, a cor do topo do degradê).
 - No código: o degradê vive só em `PageBackground` (`src/shared/ui`), usado pela página e
   pela tela de erro. Não repetir as classes do degradê em outro lugar.
+- **Exceção: o footer.** Ele tem fundo próprio (`olive-deep`) e, logo acima, uma faixa que vai do
+  transparente ao verde. A faixa é do footer, e não do degradê da página, porque o degradê é
+  medido em porcentagem da altura e mudaria de lugar a cada seção nova; a faixa fica sempre
+  colada ao footer.
 - Como o fundo escurece ao longo da página, conferir o contraste do texto (WCAG AA, 4.5:1) em
   cada seção, principalmente nas últimas e no footer.
 
@@ -343,6 +347,16 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   `instagramHandle` só os deixam legíveis.
 - Os meios de contato são uma lista de definições (`<dl>`); o endereço usa `<address>`.
 
+### Footer
+
+- Fundo `olive-deep` com texto `cream`: nome do espaço, navegação (os mesmos `NAV_ITEMS` do
+  menu, em uma `<nav>` chamada "Rodapé"), contato (endereço com link para o mapa, WhatsApp e
+  Instagram) e, na última linha, as duas profissionais com os registros e o aviso de direitos.
+- A Luiza vem antes da médica, como em todo lugar onde as duas aparecem juntas.
+- O ano do aviso de direitos é passado por quem monta a página (`year`), para o componente não
+  depender do relógio e poder ser testado.
+- Links sobre o verde usam contorno de foco `cream`.
+
 ## Navegação
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra
@@ -466,8 +480,9 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   | `gold`       | `#DBB67B` | detalhe pontual (estrelas, ornamentos)                                                  |
   | `ink`        | `#3F3532` | texto corrido                                                                           |
 
-- **Degradê da página:** `cream` no topo → `blush` → `olive-deep` no footer. No footer o texto é
-  claro (`cream`).
+- **Degradê da página:** `cream` no topo → `blush`, e daí para o `olive-deep` do footer. A
+  passagem do `blush` para o verde acontece em uma faixa sem texto, no topo do próprio footer.
+  No footer o texto é claro (`cream`).
 - **Fontes:** Playfair Display nos títulos, Poppins no texto e Great
   Vibes só em palavras de destaque. As fontes são servidas pelo próprio site (pacotes
   `@fontsource`), nunca por CDN.

@@ -166,3 +166,8 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   variável de ambiente é para o que muda entre ambientes ou não deve ir para o repositório.
 - **Mapa embutido tem custo.** Um `iframe` do Google Maps carrega script de terceiros para todo
   visitante; um link "Ver no mapa" resolve para quem quer, sem pesar para os demais.
+- **Medida relativa à página muda quando a página cresce.** O degradê em porcentagem da altura
+  mudaria de lugar a cada seção nova. A passagem para o verde virou uma faixa do próprio footer,
+  que anda junto com ele.
+- **Componente não deve ler o relógio.** O ano do rodapé chega por prop; assim o teste escolhe
+  o ano e o componente continua previsível.
