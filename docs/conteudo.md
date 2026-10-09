@@ -50,6 +50,10 @@ Ficam para depois da primeira entrega para aprovação da cliente:
 - **Seção "Para quem o pilates é indicado":** o site mostra só os nomes dos seis públicos. O
   rótulo "Indicações" é novo, e os complementos da tabela abaixo (da versão da Emergent) ficam
   de fora até a cliente aprovar.
+- **Chamada final da seção Contato:** "Priorize o que realmente importa: Você!" e "Agende sua
+  consulta ou aula experimental e sinta a diferença de um cuidado verdadeiramente
+  individualizado." vêm da versão da Emergent; a landing antiga não tinha chamada final. Pedem
+  a revisão da cliente.
 - **Foto da Dra. Veronika:** a seção "Atendimento médico" usa a foto que estava na versão da
   Emergent (`design/originais/dra-veronika-retrato.png`, 279×416 px). É provisória: resolução
   baixa, e falta confirmar com a cliente que a foto pode ser usada. Trocar por uma em retrato,

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { buildWhatsAppUrl } from './whatsapp';
+import { buildWhatsAppUrl, formatWhatsAppNumber } from './whatsapp';
 
 describe('buildWhatsAppUrl', () => {
   beforeEach(() => {
@@ -26,5 +26,23 @@ describe('buildWhatsAppUrl', () => {
     expect(url.searchParams.get('text')).toBe('Pilates & Fisio #1?');
     expect([...url.searchParams.keys()]).toEqual(['text']);
     expect(url.hash).toBe('');
+  });
+});
+
+describe('formatWhatsAppNumber', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
+  it('mostra o número de celular com DDI, DDD e hífen antes dos quatro últimos dígitos', () => {
+    vi.stubEnv('VITE_WHATSAPP_NUMBER', '5535988960886');
+
+    expect(formatWhatsAppNumber()).toBe('+55 35 98896-0886');
+  });
+
+  it('também funciona com número fixo, de oito dígitos', () => {
+    vi.stubEnv('VITE_WHATSAPP_NUMBER', '553533312222');
+
+    expect(formatWhatsAppNumber()).toBe('+55 35 3331-2222');
   });
 });
