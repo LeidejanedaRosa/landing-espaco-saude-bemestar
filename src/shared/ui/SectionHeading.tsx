@@ -68,8 +68,10 @@ export function SectionHeading({
           // altura de linha abaixo de 1 não deixa a linha do título crescer por causa dela.
           // Sem `nowrap`: em tela estreita, com a fonte do navegador aumentada, o destaque
           // precisa poder quebrar (o `wrap-anywhere` do título quebra até uma palavra só).
+          // `inline-block`: enquanto couber, o destaque desce inteiro para a linha seguinte, em
+          // vez de se partir ao meio ("cuidado" em uma linha e "humano" na outra).
           <span
-            className={`${TONE_CLASSES[tone].highlight} font-script text-[1.4em] leading-[0.85] font-normal`}
+            className={`${TONE_CLASSES[tone].highlight} font-script inline-block text-[1.4em] leading-[0.85] font-normal`}
           >
             {highlighted}
           </span>
