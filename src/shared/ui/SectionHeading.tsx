@@ -9,8 +9,12 @@ interface SectionHeadingProps {
    */
   highlight?: string;
   description?: string;
-  /** `start` quando o cabeçalho vai dentro de um cartão, ao lado de uma foto. */
-  align?: 'center' | 'start';
+  /**
+   * `start` quando o cabeçalho vai dentro de um cartão, ao lado de uma foto.
+   * `center-then-start` quando ele só fica ao lado da imagem a partir do tablet: no celular,
+   * empilhado com ela, fica centralizado.
+   */
+  align?: 'center' | 'start' | 'center-then-start';
   /** `dark` quando o cabeçalho fica sobre fundo escuro (bloco verde-oliva): cores claras. */
   tone?: 'light' | 'dark';
 }
@@ -23,7 +27,8 @@ const TONE_CLASSES = {
 
 const ALIGN_CLASSES = {
   center: 'mx-auto max-w-3xl items-center text-center',
-  start: 'items-start text-left'
+  start: 'items-start text-left',
+  'center-then-start': 'items-center text-center sm:items-start sm:text-left'
 };
 
 /** Divide o título em antes, destaque e depois. Sem destaque (ou se ele não está no título), devolve só o título. */

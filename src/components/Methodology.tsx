@@ -18,21 +18,24 @@ const SPARKLE_ICON = [
 export function Methodology() {
   return (
     <Section id="metodologia" labelledBy={HEADING_ID} fullScreen>
-      {/* No HTML a ordem é título, ilustração, etapas, compromisso. No desktop a ilustração
-          ocupa a coluna da esquerda de cima a baixo, só pela posição na grade: é assim que ela
-          fica grande sem a seção passar de uma tela. */}
-      <div className="grid items-center gap-x-6 gap-y-[clamp(0.5rem,1.6dvh,1.25rem)] lg:grid-cols-[1fr_2fr] xl:grid-cols-[4fr_7fr] xl:gap-x-10">
-        <div className="lg:col-start-2 lg:row-start-1">
+      {/* No HTML a ordem é título, ilustração, etapas, compromisso; a grade só reposiciona.
+          - celular: tudo empilhado e centralizado;
+          - tablet: duas colunas. À esquerda, título, ilustração e compromisso; à direita, as
+            quatro etapas, uma embaixo da outra. A ilustração ocupa a altura que sobra;
+          - desktop: a ilustração ocupa a coluna da esquerda de cima a baixo. É assim que ela
+            fica grande sem a seção passar de uma tela. */}
+      <div className="grid items-center gap-x-6 gap-y-[clamp(0.5rem,1.6dvh,1.25rem)] sm:grid-cols-2 sm:grid-rows-[auto_1fr_auto] lg:grid-cols-[1fr_2fr] lg:grid-rows-none xl:grid-cols-[4fr_7fr] xl:gap-x-10">
+        <div className="sm:col-start-1 sm:row-start-1 lg:col-start-2">
           <SectionHeading
             id={HEADING_ID}
             eyebrow="Nossa metodologia"
             title="Técnica científica com cuidado humano"
             highlight="cuidado humano"
-            align="start"
+            align="center-then-start"
           />
         </div>
 
-        <div className="relative mx-auto aspect-square w-[min(72vw,clamp(11rem,28dvh,17rem))] lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:aspect-auto lg:h-auto lg:w-full lg:self-stretch">
+        <div className="relative mx-auto aspect-square w-[min(72vw,clamp(11rem,28dvh,17rem))] sm:col-start-1 sm:row-start-2 sm:aspect-auto sm:h-auto sm:min-h-[clamp(10rem,26dvh,18rem)] sm:w-full sm:self-stretch lg:row-span-3 lg:row-start-1 lg:min-h-0">
           {/* Formas orgânicas atrás da figura: duas coloridas e, por cima, uma clara, onde a
               ilustração se apoia sem perder as cores. */}
           <div
@@ -59,7 +62,7 @@ export function Methodology() {
 
         {/* Lista ordenada: são etapas, e a ordem importa. O número grande é só enfeite, porque
             a própria lista já diz ao leitor de tela qual é a posição de cada etapa. */}
-        <ol className="grid gap-[clamp(0.5rem,1.6dvh,1rem)] sm:grid-cols-2 lg:col-start-2">
+        <ol className="grid gap-[clamp(0.5rem,1.6dvh,1rem)] sm:col-start-2 sm:row-span-3 sm:row-start-1 lg:row-span-1 lg:row-start-2 lg:grid-cols-2">
           {METHODOLOGY_STEPS.map((step, index) => (
             <li
               key={step.title}
@@ -85,7 +88,7 @@ export function Methodology() {
 
         {/* O compromisso é a promessa da seção: vai em um quadro próprio, com ícone, e não em
             uma linha solta de texto pequeno. */}
-        <p className="bg-rose/25 border-rose flex items-start gap-3 rounded-2xl border p-[clamp(0.5rem,1.5dvh,1.25rem)] text-[clamp(0.875rem,2.4dvh,1rem)] leading-snug shadow-sm lg:col-start-2">
+        <p className="bg-rose/25 border-rose flex items-start gap-3 rounded-2xl border p-[clamp(0.5rem,1.5dvh,1.25rem)] text-[clamp(0.875rem,2.4dvh,1rem)] leading-snug shadow-sm sm:col-start-1 sm:row-start-3 lg:col-start-2">
           <span className="text-rose-deep mt-0.5 shrink-0">
             <LineIcon paths={SPARKLE_ICON} />
           </span>
