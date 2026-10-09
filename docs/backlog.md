@@ -32,14 +32,17 @@
       alongamento e criança)
 - [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
 - [x] Rótulo das seções (`SectionHeading`) sobre fundo `blush`: passou a usar `rose-ink`
+- [ ] Texto do navegador em 200% numa tela de 320px (WCAG 1.4.4 e 1.4.10): o título de "Sobre a
+      Luiza" já se ajusta, mas o header passa 35px da tela e outras seções têm conteúdo que
+      extrapola. Revisar seção por seção, com teste
 - [ ] Design system em `shared/ui` (Button, Card, SectionHeading...)
 
 ## Próxima rodada de vida às seções
 
 - [x] Studio em carrossel, um aparelho por vez, na horizontal (sem troca automática)
 - [x] Conteúdo surgindo de leve ao entrar na tela, respeitando redução de movimento
-- [x] Bloco verde-oliva na seção "Sobre a Luiza" (foto, apresentação, nome e botão claro dentro
-      dele; certificações fora), para ela ter o destaque mais forte da página
+- [x] Bloco verde-oliva na seção "Sobre a Luiza" (título, foto, apresentação, botão claro e as
+      certificações, todos dentro dele), para ela ter o destaque mais forte da página
 - [ ] Degradê da página começando a escurecer já nas seções do meio; na faixa de transição,
       texto pequeno só dentro de cartão
 

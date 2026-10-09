@@ -110,11 +110,21 @@ describe('About', () => {
     expect(screen.getByRole('heading', { level: 2 }).closest('.bg-olive-deep')).not.toBeNull();
   });
 
-  it('as certificações ficam fora do bloco verde', () => {
+  it('as certificações ficam dentro do bloco verde, depois de um divisor: são parte da apresentação dela', () => {
     render(<About />);
 
     const list = screen.getByRole('list', { name: 'Certificações e qualificações' });
+    const block = list.closest('.bg-olive-deep') as HTMLElement;
+    const divider = block.querySelector('span[aria-hidden="true"].flex');
+    const button = screen.getByRole('link', { name: /agendar avaliação/i });
 
-    expect(list.closest('.bg-olive-deep')).toBeNull();
+    expect(block).not.toBeNull();
+    expect(divider).not.toBeNull();
+    expect(
+      button.compareDocumentPosition(divider as Element) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+    expect(
+      (divider as Element).compareDocumentPosition(list) & Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
   });
 });

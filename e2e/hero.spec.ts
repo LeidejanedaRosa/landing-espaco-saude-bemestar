@@ -192,25 +192,30 @@ test.describe('hero', () => {
   }
 
   // O rosa vivo passa no contraste de texto grande (3:1), e não no de texto pequeno (4,5:1).
-  for (const width of [320, 340, 360, 390, 768, 1366]) {
-    test(`em ${width}px, a frase da recepção usa o rosa vivo só quando tem tamanho de texto grande`, async ({
-      page
-    }) => {
-      await page.setViewportSize({ width, height: 700 });
-      await page.emulateMedia({ reducedMotion: 'reduce' });
-      await page.goto('/');
+  // "Texto grande" é medido em px: o resultado tem de valer com qualquer tamanho de fonte do
+  // navegador, por isso o teste repete com a fonte padrão (100%) e com uma menor (75%).
+  for (const rootFont of [100, 75]) {
+    for (const width of [320, 340, 360, 390, 768, 1366]) {
+      test(`em ${width}px com a fonte do navegador em ${rootFont}%, a frase da recepção usa o rosa vivo só quando tem tamanho de texto grande`, async ({
+        page
+      }) => {
+        await page.setViewportSize({ width, height: 700 });
+        await page.emulateMedia({ reducedMotion: 'reduce' });
+        await page.goto('/');
+        await page.addStyleTag({ content: `html { font-size: ${rootFont}%; }` });
 
-      const phrase = await page
-        .getByText('Acredite!')
-        .locator('xpath=ancestor::p[1]')
-        .evaluate((element) => {
-          const style = getComputedStyle(element);
-          return { size: Number.parseFloat(style.fontSize), color: style.color };
-        });
-      const ROSE_VIVID = 'rgb(190, 90, 95)';
-      const ROSE_INK = 'rgb(142, 73, 68)';
+        const phrase = await page
+          .getByText('Acredite!')
+          .locator('xpath=ancestor::p[1]')
+          .evaluate((element) => {
+            const style = getComputedStyle(element);
+            return { size: Number.parseFloat(style.fontSize), color: style.color };
+          });
+        const ROSE_VIVID = 'rgb(190, 90, 95)';
+        const ROSE_INK = 'rgb(142, 73, 68)';
 
-      expect(phrase.color).toBe(phrase.size >= 24 ? ROSE_VIVID : ROSE_INK);
-    });
+        expect(phrase.color).toBe(phrase.size >= 24 ? ROSE_VIVID : ROSE_INK);
+      });
+    }
   }
 });

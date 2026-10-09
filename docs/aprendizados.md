@@ -171,3 +171,11 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   que anda junto com ele.
 - **Componente não deve ler o relógio.** O ano do rodapé chega por prop; assim o teste escolhe
   o ano e o componente continua previsível.
+
+## 2026-10-08 — Certificações dentro do bloco da Luiza
+
+- **Proximidade e fundo comum dizem "isto é da mesma coisa".** As certificações estavam logo
+  abaixo do bloco verde, mas fora dele, e pareciam uma seção à parte. Dentro do bloco, depois de
+  um divisor, passam a ser lidas como parte da apresentação dela.
+- **Enfeite repetido vira componente.** O divisor com losango dourado nasceu na seção médica e
+  foi pedido de novo aqui: virou o `OrnamentDivider`, com tom e largura por opção.

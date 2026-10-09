@@ -84,4 +84,11 @@ describe('SectionHeading', () => {
     expect(screen.getByText('Sobre')).toHaveClass('text-rose-ink');
     expect(screen.getByText('individual')).toHaveClass('text-rose-vivid');
   });
+
+  it('o destaque pode quebrar de linha: em tela estreita com fonte aumentada ele não some', () => {
+    render(<SectionHeading id="t" title="Cuidado individualizado" highlight="individualizado" />);
+
+    expect(screen.getByText('individualizado')).not.toHaveClass('whitespace-nowrap');
+    expect(screen.getByRole('heading', { level: 2 })).toHaveClass('wrap-anywhere');
+  });
 });

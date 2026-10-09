@@ -92,6 +92,32 @@ test.describe('seção Sobre a Luiza', () => {
     });
   }
 
+  // WCAG 1.4.4: com o texto do navegador em 200%, nada pode ficar cortado.
+  test('em 320px com a fonte do navegador dobrada, o título inteiro continua dentro do bloco', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 320, height: 664 });
+    await page.goto('/');
+    await page.addStyleTag({ content: 'html { font-size: 200%; }' });
+    const { section } = about(page);
+    const title = page.getByRole('heading', { level: 2, name: /atendimento individualizado/i });
+    await title.scrollIntoViewIfNeeded();
+
+    const fits = await title.evaluate((heading) => {
+      const block = heading.closest('.bg-olive-deep') as HTMLElement;
+      const blockBox = block.getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(heading);
+
+      return [...range.getClientRects()].every(
+        (line) => line.left >= blockBox.left && line.right <= blockBox.right
+      );
+    });
+
+    await expect(section).toBeVisible();
+    expect(fits).toBe(true);
+  });
+
   test('a foto carrega em formato moderno, inteira dentro da moldura', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 625 });
     await goToAbout(page);

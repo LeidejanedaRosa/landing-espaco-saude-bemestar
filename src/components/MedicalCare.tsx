@@ -4,6 +4,7 @@ import ramoVerde from '../assets/folhagens/ramo-verde.svg';
 import { ButtonLink } from '../shared/ui/ButtonLink';
 import { DecorativeImage } from '../shared/ui/DecorativeImage';
 import { LineIcon } from '../shared/ui/LineIcon';
+import { OrnamentDivider } from '../shared/ui/OrnamentDivider';
 import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
 import { SectionHeading } from '../shared/ui/SectionHeading';
@@ -56,12 +57,7 @@ export function MedicalCare() {
               highlight="integrado"
               align="start"
             />
-            {/* Divisor fino com um pequeno ornamento, como nos posts da cliente. */}
-            <span aria-hidden="true" className="flex items-center gap-2">
-              <span className="bg-rose/60 h-px w-12" />
-              <span className="bg-gold size-1.5 rotate-45" />
-              <span className="bg-rose/60 h-px w-12" />
-            </span>
+            <OrnamentDivider />
           </div>
 
           {/* No celular, foto pequena ao lado do nome. No desktop, foto grande com a plaqueta
