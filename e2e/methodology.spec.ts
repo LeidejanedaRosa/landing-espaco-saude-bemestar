@@ -45,6 +45,27 @@ test.describe('seção Metodologia', () => {
     });
   }
 
+  test('no notebook, a ilustração é grande: ocupa a altura do título ao compromisso', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await page.goto('/');
+    const { section, illustration, commitment } = methodology(page);
+    await section.scrollIntoViewIfNeeded();
+
+    const image = await illustration.boundingBox();
+    const title = await page
+      .getByRole('heading', { level: 2, name: /técnica científica/i })
+      .boundingBox();
+    const box = await commitment.boundingBox();
+    if (!image || !title || !box) throw new Error('seção incompleta');
+
+    expect(image.height).toBeGreaterThanOrEqual(box.y + box.height - title.y - 1);
+    expect(image.height).toBeGreaterThanOrEqual(320);
+    // e tem largura: uma área que se estica só na altura ficaria invisível
+    expect(image.width).toBeGreaterThanOrEqual(280);
+  });
+
   test('o link do menu leva à seção', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 625 });
     await page.goto('/');
