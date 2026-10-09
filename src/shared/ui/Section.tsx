@@ -6,7 +6,10 @@ interface SectionProps {
   id: string;
   /** id do título da seção, para ela se identificar por ele. */
   labelledBy: string;
-  /** Ocupa a altura da tela menos o header, com o conteúdo centralizado na vertical. */
+  /**
+   * Ocupa a altura da tela menos o header, com o conteúdo centralizado na vertical. Em tela
+   * alta (monitor grande) a altura para em 44rem: acima disso sobrava um vazio entre as seções.
+   */
   fullScreen?: boolean;
   children: ReactNode;
 }
@@ -19,7 +22,7 @@ export function Section({ id, labelledBy, fullScreen = false, children }: Sectio
       aria-labelledby={labelledBy}
       // `overflow-clip`: antes de surgir, o conteúdo fica deslocado para baixo; sem o recorte,
       // esse deslocamento na última seção aumentaria a altura da página.
-      className={`overflow-clip ${fullScreen ? 'flex min-h-[calc(100dvh-var(--spacing-header))]' : ''}`.trim()}
+      className={`overflow-clip ${fullScreen ? 'min-h-fullscreen flex' : ''}`.trim()}
     >
       <Container className="py-section reveal-on-scroll flex flex-col justify-center gap-[clamp(0.75rem,2.5dvh,2rem)]">
         {children}

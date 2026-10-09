@@ -37,7 +37,7 @@ describe('Section', () => {
     expect(renderSection().className).not.toContain('min-h');
   });
 
-  it('em tela cheia, desconta a altura do header', () => {
-    expect(renderSection(true).className).toContain('100dvh-var(--spacing-header)');
+  it('em tela cheia, usa a altura padrão do tema (a tela menos o header, com teto)', () => {
+    expect(renderSection(true)).toHaveClass('min-h-fullscreen');
   });
 });
