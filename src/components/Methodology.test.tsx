@@ -64,4 +64,28 @@ describe('Methodology', () => {
 
     expect(image).toHaveAttribute('loading', 'lazy');
   });
+
+  it('o compromisso vai em um quadro próprio, com ícone decorativo, e não em uma linha solta', () => {
+    render(<Methodology />);
+
+    const box = screen.getByText('Compromisso com a excelência:').closest('p') as HTMLElement;
+
+    expect(box).toHaveClass('border', 'rounded-2xl');
+    expect(box.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('no HTML o título vem antes da ilustração, e as etapas antes do compromisso', () => {
+    render(<Methodology />);
+
+    const title = screen.getByRole('heading', { level: 2 });
+    const image = screen.getByRole('img', { name: /ilustração de uma profissional/i });
+    const list = screen.getByRole('list');
+    const commitment = screen.getByText('Compromisso com a excelência:');
+    const follows = (first: Element, second: Element) =>
+      Boolean(first.compareDocumentPosition(second) & Node.DOCUMENT_POSITION_FOLLOWING);
+
+    expect(follows(title, image)).toBe(true);
+    expect(follows(image, list)).toBe(true);
+    expect(follows(list, commitment)).toBe(true);
+  });
 });

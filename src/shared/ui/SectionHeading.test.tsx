@@ -91,4 +91,13 @@ describe('SectionHeading', () => {
     expect(screen.getByText('individualizado')).not.toHaveClass('whitespace-nowrap');
     expect(screen.getByRole('heading', { level: 2 })).toHaveClass('wrap-anywhere');
   });
+
+  it('pode ficar centralizado no celular e alinhado à esquerda a partir do tablet', () => {
+    render(<SectionHeading id="t" title="Título" align="center-then-start" />);
+
+    expect(screen.getByRole('heading', { level: 2 }).parentElement).toHaveClass(
+      'text-center',
+      'sm:text-left'
+    );
+  });
 });
