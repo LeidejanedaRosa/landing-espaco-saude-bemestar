@@ -328,8 +328,13 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   Com o título acima das duas colunas, a ilustração ficava espremida na altura das etapas.
 - Cabe em uma tela em notebook, desktop e tablet (`fullScreen`); no celular as quatro etapas,
   com o texto aprovado, não cabem, e a seção cresce.
-- No HTML a ordem é título, ilustração, etapas, compromisso; no desktop a ilustração vai para
-  a esquerda só pela posição na grade.
+- No HTML a ordem é título, ilustração, etapas, compromisso; a grade só reposiciona. No
+  celular fica tudo empilhado e centralizado; no tablet, duas colunas (à esquerda título,
+  ilustração e compromisso; à direita as quatro etapas, uma embaixo da outra); no desktop, a
+  ilustração na coluna da esquerda, de cima a baixo.
+- **Título e imagem empilhados usam o mesmo alinhamento.** Título à esquerda com imagem
+  centralizada embaixo parece desalinhado; por isso o `align="center-then-start"` do
+  `SectionHeading` (centralizado no celular, à esquerda quando fica ao lado da imagem).
 - A ilustração se apoia em três formas orgânicas (duas coloridas e uma clara por cima), usa
   `mix-blend-multiply` e uma máscara que esfuma só a borda. O arquivo é aparado rente à cena.
 - **O compromisso vai em um quadro próprio** (fundo rosado, borda, ícone), e não em uma linha

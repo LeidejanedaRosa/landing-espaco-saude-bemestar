@@ -189,3 +189,6 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   peso quando virou um quadro, com fundo, borda e ícone.
 - **Margem dentro do arquivo, de novo:** a cena ocupava 77% da altura da imagem. Aparar o
   arquivo aumentou a figura sem mudar o layout.
+- **No tablet, equilibre as colunas pelo peso, e não pela ordem.** Ilustração pequena ao lado
+  do título deixava um vazio à direita. Com título, ilustração e compromisso em uma coluna e as
+  quatro etapas na outra, as duas têm a mesma altura e a ilustração cresce para preencher.
