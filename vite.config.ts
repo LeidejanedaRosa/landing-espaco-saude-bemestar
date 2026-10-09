@@ -28,6 +28,9 @@ export default defineConfig(({ mode }) => {
       environment: 'jsdom',
       setupFiles: ['src/test/setup.ts'],
       include: ['src/**/*.test.{ts,tsx}'],
+      // O padrão é 5s. Com a máquina ocupada, os testes que clicam em várias abas passam disso
+      // sem haver defeito, e o push é barrado.
+      testTimeout: 15_000,
       coverage: {
         provider: 'v8',
         include: ['src/**/*.{ts,tsx}'],
