@@ -66,6 +66,47 @@ test.describe('seção Metodologia', () => {
     expect(image.width).toBeGreaterThanOrEqual(280);
   });
 
+  // `sizes` diz ao navegador que largura a imagem terá, para ele escolher o arquivo. Se o
+  // valor for menor que o real, ele baixa o arquivo pequeno e a ilustração fica borrada.
+  for (const width of [390, 820, 1366]) {
+    test(`em ${width}px, a largura anunciada da ilustração não é menor que a largura em que ela aparece`, async ({
+      page
+    }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      const { section, illustration } = methodology(page);
+      await section.scrollIntoViewIfNeeded();
+
+      const shown = (await illustration.boundingBox())?.width ?? 0;
+      // o navegador resolve o atributo `sizes` e devolve a largura anunciada em px
+      const announced = await illustration.evaluate((img: HTMLImageElement) => {
+        const probe = document.createElement('img');
+        probe.sizes = img.sizes || (img.parentElement?.querySelector('source')?.sizes ?? '');
+        probe.srcset = 'data:,a 1w';
+        return probe.sizes
+          ? Number.parseFloat(
+              getComputedStyle(
+                Object.assign(document.body.appendChild(document.createElement('div')), {
+                  style: `width: calc(${matchSizes(probe.sizes)})`
+                })
+              ).width
+            )
+          : 0;
+
+        function matchSizes(sizes: string) {
+          for (const entry of sizes.split(',').map((item) => item.trim())) {
+            const media = /^\((.+)\)\s+(.+)$/.exec(entry);
+            if (!media) return entry;
+            if (matchMedia(`(${media[1]})`).matches) return media[2];
+          }
+          return '100vw';
+        }
+      });
+
+      expect(announced).toBeGreaterThanOrEqual(shown * 0.85);
+    });
+  }
+
   test('o link do menu leva à seção', async ({ page }) => {
     await page.setViewportSize({ width: 1366, height: 625 });
     await page.goto('/');
