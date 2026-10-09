@@ -362,7 +362,8 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
   `#contato`); três colunas (a marca, a navegação e o endereço com as redes e os dois botões);
   as duas profissionais com os registros e o aviso de direitos.
 - **A coluna da marca repete a parede da recepção:** o logo centralizado, a frase em duas
-  linhas ("O movimento cura" começa embaixo do "!", com o mesmo recuo de `2.57em` do hero) e a
+  linhas ("O movimento cura" começa embaixo do "!", com o mesmo recuo de `2.57em` do hero,
+  limitado a 30% da coluna para a frase poder quebrar com a fonte do navegador aumentada) e a
   boneca em traço ao fundo, esmaecida. O logo é verde e rosa e sumiria sobre o verde, por isso
   fica em um cartão `cream`.
 - **Sem formulário e sem mapa embutido.** "Agendar avaliação" abre o WhatsApp; "Ver no mapa"
