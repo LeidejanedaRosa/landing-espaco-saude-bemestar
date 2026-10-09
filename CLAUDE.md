@@ -305,12 +305,13 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   `align="start"`): foto da médica à esquerda, com um crachá branco sobreposto à base (nome em
   destaque e o CRM em um selo rosa-escuro com texto claro); à direita, título, as três especialidades em cartões pequenos com ícone e um
   botão vazado.
-- **A seção cabe inteira em uma tela, sem rolar** (`fullScreen`), do notebook de 1280×600 ao
-  celular de 390×664. A foto encolhe com a altura da tela, e no celular ela vira uma miniatura
-  ao lado do nome, com as especialidades em lista compacta. Em celular menor que isso o texto
-  não cabe sem ficar ilegível, e a seção passa um pouco da tela em vez de cortar conteúdo.
-- No HTML a ordem é título, foto e nome, especialidades, botão. No desktop a foto vai para a
-  coluna da esquerda só pela posição na grade.
+- **A seção cabe inteira em uma tela, sem rolar** (`fullScreen`), em notebook, desktop e
+  tablet. No celular a foto é grande, com o crachá, e a seção passa de uma tela: foi uma escolha
+  (a miniatura que cabia em uma tela deixava a médica quase sem rosto).
+- No HTML a ordem é título, foto e nome, especialidades, botão; a grade só reposiciona. No
+  celular fica tudo empilhado, com título, foto e botão centralizados; no tablet, duas colunas
+  (à esquerda título, foto e botão; à direita as três especialidades, uma embaixo da outra);
+  no desktop, a foto na coluna da esquerda, de cima a baixo.
 - Folhagens (`ramo-verde` e `ramo-rosa`) saem de trás do cartão em cantos opostos, e um ramo
   bem claro fica por dentro, no canto, como marca-d'água. Sob o título, um divisor fino com um
   pequeno losango dourado, como nos posts da cliente.

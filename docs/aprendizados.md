@@ -192,3 +192,10 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
 - **No tablet, equilibre as colunas pelo peso, e não pela ordem.** Ilustração pequena ao lado
   do título deixava um vazio à direita. Com título, ilustração e compromisso em uma coluna e as
   quatro etapas na outra, as duas têm a mesma altura e a ilustração cresce para preencher.
+
+## 2026-10-09 — Atendimento médico no tablet e no celular
+
+- **Um arranjo que funcionou vira padrão.** As duas colunas da Metodologia no tablet (texto e
+  imagem de um lado, cartões do outro) resolveram a seção médica do mesmo jeito.
+- **"Caber em uma tela" e "foto grande" disputam o mesmo espaço no celular.** Não dá para ter
+  os dois; a escolha foi a foto, e o teste que exigia uma tela no celular saiu.
