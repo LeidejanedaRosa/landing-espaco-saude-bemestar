@@ -108,8 +108,14 @@ test.describe('hero', () => {
       await page.goto('/');
       await page.evaluate(() => document.fonts.ready);
 
-      const first = await page.getByText('Acredite!', { exact: true }).boundingBox();
-      const second = await page.getByText('O movimento cura', { exact: true }).boundingBox();
+      const first = await page
+        .getByRole('region', { name: /saúde, movimento/i })
+        .getByText('Acredite!', { exact: true })
+        .boundingBox();
+      const second = await page
+        .getByRole('region', { name: /saúde, movimento/i })
+        .getByText('O movimento cura', { exact: true })
+        .boundingBox();
       const drawing = await heroDrawing(page).boundingBox();
       if (!first || !second || !drawing) throw new Error('frase ou desenho não encontrados');
 
@@ -138,8 +144,14 @@ test.describe('hero', () => {
 
       const image = heroDrawing(page);
       const header = await page.getByRole('banner').boundingBox();
-      const first = await page.getByText('Acredite!', { exact: true }).boundingBox();
-      const second = await page.getByText('O movimento cura', { exact: true }).boundingBox();
+      const first = await page
+        .getByRole('region', { name: /saúde, movimento/i })
+        .getByText('Acredite!', { exact: true })
+        .boundingBox();
+      const second = await page
+        .getByRole('region', { name: /saúde, movimento/i })
+        .getByText('O movimento cura', { exact: true })
+        .boundingBox();
       const drawing = await image.boundingBox();
       const heading = await page.getByRole('heading', { level: 1 }).boundingBox();
       if (!header || !first || !second || !drawing || !heading) throw new Error('hero incompleto');
@@ -204,7 +216,9 @@ test.describe('hero', () => {
         await page.goto('/');
         await page.addStyleTag({ content: `html { font-size: ${rootFont}%; }` });
 
+        // a frase do hero, e não a do rodapé, que repete a parede da recepção
         const phrase = await page
+          .getByRole('region', { name: /saúde, movimento/i })
           .getByText('Acredite!')
           .locator('xpath=ancestor::p[1]')
           .evaluate((element) => {

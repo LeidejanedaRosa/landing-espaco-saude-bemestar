@@ -353,27 +353,34 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   versão de referência e só entram com a aprovação da cliente.
 - Não tem item no menu: o `id` é `para-quem`, para um link futuro.
 
-### Contato
+### Footer e contato
 
-- Fecho da página: um cartão claro com a chamada final e os botões à esquerda e, à direita, os
-  três meios de contato (endereço, WhatsApp e Instagram). Cabe em uma tela em notebook, desktop
-  e tablet (`fullScreen`); no celular cresce um pouco.
-- **Sem formulário e sem mapa embutido.** O botão principal abre o WhatsApp; "Ver no mapa" abre
-  o Google Maps em nova aba. Mapa embutido carregaria script de terceiros na página inteira.
-- O endereço fica em `contactInfo.ts` (dado público, igual em qualquer ambiente). WhatsApp e
-  Instagram continuam vindo das variáveis de ambiente; `formatWhatsAppNumber` e
-  `instagramHandle` só os deixam legíveis.
-- Os meios de contato são uma lista de definições (`<dl>`); o endereço usa `<address>`.
+O contato e o rodapé são um bloco só, em `Footer` (`src/components`). Antes havia um cartão de
+contato e, logo abaixo, o rodapé com as mesmas informações.
 
-### Footer
-
-- Fundo `olive-deep` com texto `cream`: nome do espaço, navegação (os mesmos `NAV_ITEMS` do
-  menu, em uma `<nav>` chamada "Rodapé"), contato (endereço com link para o mapa, WhatsApp e
-  Instagram) e, na última linha, as duas profissionais com os registros e o aviso de direitos.
+- Fundo `olive-deep` com texto `cream`. De cima para baixo: a chamada final (a seção
+  `#contato`); três colunas (a marca, a navegação e o endereço com as redes e os dois botões);
+  as duas profissionais com os registros e o aviso de direitos.
+- **A coluna da marca repete a parede da recepção:** o logo centralizado, a frase em duas
+  linhas ("O movimento cura" começa embaixo do "!", com o mesmo recuo de `2.57em` do hero,
+  limitado a 30% da coluna para a frase poder quebrar com a fonte do navegador aumentada) e a
+  boneca em traço ao fundo, esmaecida. O logo é verde e rosa e sumiria sobre o verde, por isso
+  fica em um cartão `cream`.
+- **Sem formulário e sem mapa embutido.** "Agendar avaliação" abre o WhatsApp; "Ver no mapa"
+  abre o Google Maps em nova aba. Os dois ficam embaixo dos ícones de rede.
+- **Cada informação de contato aparece uma vez na página.** Endereço em texto; WhatsApp e
+  Instagram como botões de ícone, com nome para o leitor de tela (`aria-label`).
+- **Os ícones de rede têm destaque:** círculos cheios `cream`, com um anel em volta. Crescem
+  ao entrar na tela (`pop-on-scroll`, ligado à rolagem) e sobem e ampliam sob o mouse. Nada
+  fica pulsando: movimento contínuo exigiria botão de pausa (WCAG 2.2.2).
+- Sobre o verde: `SectionHeading` com `tone="dark"`, `ButtonLink` nas variantes `light` e
+  `outline-light`, e contorno de foco `cream` nos links.
+- A navegação usa os mesmos `NAV_ITEMS` do menu, em uma `<nav>` chamada "Rodapé".
 - A Luiza vem antes da médica, como em todo lugar onde as duas aparecem juntas.
+- O endereço fica em `contactInfo.ts` (dado público, igual em qualquer ambiente). WhatsApp e
+  Instagram vêm das variáveis de ambiente.
 - O ano do aviso de direitos é passado por quem monta a página (`year`), para o componente não
   depender do relógio e poder ser testado.
-- Links sobre o verde usam contorno de foco `cream`.
 
 ## Navegação
 
@@ -396,8 +403,8 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   mesma lista.
 - Botão com aparência de botão que leva a outro lugar é `ButtonLink` (`src/shared/ui`); com
   `external`, ele abre em nova aba, protege com `rel` e avisa o leitor de tela.
-  Três variantes: `primary` (cheio, verde), `secondary` (vazado) e `light` (cheio, creme, para
-  fundo escuro).
+  Quatro variantes: `primary` (cheio, verde), `secondary` (vazado), e para fundo escuro `light`
+  (cheio, creme) e `outline-light` (vazado, creme).
 - Abrir e fechar (menu, sanfona) usa o hook `useDisclosure` (`src/shared/hooks`), que já
   trata a tecla Esc.
 

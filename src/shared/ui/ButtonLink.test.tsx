@@ -83,4 +83,17 @@ describe('ButtonLink', () => {
       'py-1.5'
     );
   });
+
+  it('a variante vazada clara é o botão secundário para fundo escuro', () => {
+    render(
+      <ButtonLink href="#a" variant="outline-light">
+        Ver no mapa
+      </ButtonLink>
+    );
+
+    const link = screen.getByRole('link', { name: 'Ver no mapa' });
+
+    expect(link).toHaveClass('border', 'border-cream', 'text-cream', 'focus-visible:outline-cream');
+    expect(link).not.toHaveClass('bg-cream');
+  });
 });

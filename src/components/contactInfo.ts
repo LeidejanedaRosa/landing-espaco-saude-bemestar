@@ -9,10 +9,3 @@ export const ADDRESS_LINES = [
 const MAP_QUERY = 'Av. Comendador Costa, 505, Centro, São Lourenço, Minas Gerais, 37470-000';
 
 export const MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_QUERY)}`;
-
-/** "@usuario", tirado do endereço do perfil. */
-export function instagramHandle(profileUrl: string): string {
-  const user = new URL(profileUrl).pathname.split('/').find(Boolean) ?? '';
-
-  return `@${user}`;
-}

@@ -126,6 +126,30 @@
   }
 }
 
+/* Elemento pequeno que merece atenção (botões de rede do rodapé): cresce ao entrar na tela.
+   Ligado à rolagem, como o `reveal-on-scroll`: não fica se mexendo, e some para quem pediu
+   redução de movimento. */
+@utility pop-on-scroll {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: pop-in linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+
+  70% {
+    scale: 1.15;
+  }
+}
+
 @keyframes reveal-up {
   from {
     opacity: 0;

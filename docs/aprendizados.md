@@ -199,3 +199,13 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   imagem de um lado, cartões do outro) resolveram a seção médica do mesmo jeito.
 - **"Caber em uma tela" e "foto grande" disputam o mesmo espaço no celular.** Não dá para ter
   os dois; a escolha foi a foto, e o teste que exigia uma tela no celular saiu.
+
+## 2026-10-09 — Contato e rodapé em um bloco só
+
+- **Informação repetida na mesma tela é ruído.** O cartão de contato e o rodapé mostravam o
+  mesmo endereço, WhatsApp e Instagram, um logo abaixo do outro. Viraram um bloco: a chamada
+  com os botões em cima, as informações embaixo, cada uma uma vez.
+- **Código sem uso sai junto.** Com o número e o perfil virando botões de ícone, as funções que
+  os formatavam para leitura (`formatWhatsAppNumber`, `instagramHandle`) foram removidas.
+- **Botão só com ícone precisa de nome.** `aria-label` no link e `aria-hidden` no desenho; sem
+  isso o leitor de tela anuncia só "link".
