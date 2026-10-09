@@ -209,3 +209,19 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   os formatavam para leitura (`formatWhatsAppNumber`, `instagramHandle`) foram removidas.
 - **Botão só com ícone precisa de nome.** `aria-label` no link e `aria-hidden` no desenho; sem
   isso o leitor de tela anuncia só "link".
+
+## 2026-10-09 — Polimento para telas grandes
+
+- **"Tela cheia" sem teto vira vazio em monitor alto.** `min-height: 100dvh` deixava cada seção
+  com quase 1000 px para 500 px de conteúdo. O teto de `44rem` virou um token
+  (`--spacing-fullscreen`), usado pelo hero e por todas as seções de tela cheia.
+- **Enfeite preso à borda da tela foge do conteúdo em tela larga.** As folhagens do hero
+  passaram a ser posicionadas em relação à largura do conteúdo.
+- **`mix-blend-multiply` é um truque frágil para esconder fundo branco.** Funciona parado, e
+  falha quando algo em volta isola o elemento ou quando a imagem sai da própria área. Fundo
+  transparente de verdade ("cor para alfa") resolve de uma vez e dispensa as regras que existiam
+  só para proteger a mistura.
+- **Testar em uma tela só esconde defeito.** Tudo isso aparecia só acima de 1440 px de largura
+  e 900 px de altura; os testes e os prints iam até 1920×950.
+- **Menos é mais no fundo.** As folhagens no papel de parede competiam com as das seções; só
+  com as bonecas, o fundo voltou a ser discreto.
