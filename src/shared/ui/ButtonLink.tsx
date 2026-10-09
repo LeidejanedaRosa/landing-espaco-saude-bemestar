@@ -6,8 +6,8 @@ interface ButtonLinkProps {
   /** Link para fora do site: abre em nova aba e avisa disso ao leitor de tela. */
   external?: boolean;
   size?: 'sm' | 'md';
-  /** `light` é o botão cheio para fundo escuro (bloco verde-oliva). */
-  variant?: 'primary' | 'secondary' | 'light';
+  /** `light` e `outline-light` são o cheio e o vazado para fundo escuro (verde-oliva). */
+  variant?: 'primary' | 'secondary' | 'light' | 'outline-light';
   className?: string;
 }
 
@@ -21,7 +21,9 @@ const VARIANT_CLASSES = {
   primary: 'bg-olive-deep text-cream hover:bg-ink focus-visible:outline-olive-deep',
   secondary:
     'border-olive-deep text-olive-deep hover:bg-olive-deep hover:text-cream focus-visible:outline-olive-deep border',
-  light: 'bg-cream text-olive-deep hover:bg-blush focus-visible:outline-cream'
+  light: 'bg-cream text-olive-deep hover:bg-blush focus-visible:outline-cream',
+  'outline-light':
+    'border-cream text-cream hover:bg-cream hover:text-olive-deep focus-visible:outline-cream border'
 };
 
 const SIZE_CLASSES = {
