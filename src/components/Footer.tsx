@@ -73,7 +73,7 @@ export function Footer({ navItems, year }: Readonly<FooterProps>) {
           <div className="border-cream/25 grid gap-8 border-t pt-10 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_2fr]">
             {/* A parede da recepção, como no hero: o logo, a frase em duas linhas ("O movimento
                 cura" começa embaixo do "!") e a boneca em traço ao fundo. */}
-            <div className="relative isolate flex min-h-64 flex-col items-center justify-center gap-4 overflow-clip sm:col-span-2 lg:col-span-1">
+            <div className="@container relative isolate flex min-h-64 flex-col items-center justify-center gap-4 overflow-clip sm:col-span-2 lg:col-span-1">
               <DecorativeImage
                 src={guerreira}
                 width={1374}
@@ -89,9 +89,12 @@ export function Footer({ navItems, year }: Readonly<FooterProps>) {
                   className="h-28 w-auto"
                 />
               </div>
-              <p className="font-script text-rose-soft text-[clamp(1.75rem,8.5vw,2.75rem)] leading-[1.1] whitespace-nowrap">
+              {/* Sem `nowrap`, e com o recuo limitado a uma fração da coluna (30cqw): com a fonte
+                  do navegador aumentada em tela estreita, a frase quebra de linha em vez de
+                  passar da coluna e ser cortada. Em tamanho normal o recuo é o da parede. */}
+              <p className="font-script text-rose-soft max-w-full text-[clamp(1.75rem,8.5vw,2.75rem)] leading-[1.1]">
                 <span className="block">Acredite!</span>{' '}
-                <span className="ml-[2.57em] block">O movimento cura</span>
+                <span className="ml-[min(2.57em,30cqw)] block">O movimento cura</span>
               </p>
             </div>
 
