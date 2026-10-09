@@ -6,16 +6,20 @@ interface ButtonLinkProps {
   /** Link para fora do site: abre em nova aba e avisa disso ao leitor de tela. */
   external?: boolean;
   size?: 'sm' | 'md';
-  variant?: 'primary' | 'secondary';
+  /** `light` é o botão cheio para fundo escuro (bloco verde-oliva). */
+  variant?: 'primary' | 'secondary' | 'light';
   className?: string;
 }
 
 const BASE_CLASSES =
-  'focus-visible:outline-olive-deep inline-flex min-h-11 items-center justify-center rounded-full font-medium focus-visible:outline-2 focus-visible:outline-offset-2';
+  'inline-flex min-h-11 items-center justify-center rounded-full font-medium focus-visible:outline-2 focus-visible:outline-offset-2';
 
+// O contorno de foco muda com o fundo: escuro sobre fundo claro, claro sobre fundo escuro.
 const VARIANT_CLASSES = {
-  primary: 'bg-olive-deep text-cream hover:bg-ink',
-  secondary: 'border-olive-deep text-olive-deep hover:bg-olive-deep hover:text-cream border'
+  primary: 'bg-olive-deep text-cream hover:bg-ink focus-visible:outline-olive-deep',
+  secondary:
+    'border-olive-deep text-olive-deep hover:bg-olive-deep hover:text-cream focus-visible:outline-olive-deep border',
+  light: 'bg-cream text-olive-deep hover:bg-blush focus-visible:outline-cream'
 };
 
 const SIZE_CLASSES = {

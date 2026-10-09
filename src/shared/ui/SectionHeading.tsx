@@ -11,7 +11,15 @@ interface SectionHeadingProps {
   description?: string;
   /** `start` quando o cabeçalho vai dentro de um cartão, ao lado de uma foto. */
   align?: 'center' | 'start';
+  /** `dark` quando o cabeçalho fica sobre fundo escuro (bloco verde-oliva): cores claras. */
+  tone?: 'light' | 'dark';
 }
+
+// Em cada fundo, o rótulo (texto pequeno) precisa de 4,5:1 e o destaque (texto grande), de 3:1.
+const TONE_CLASSES = {
+  light: { eyebrow: 'text-rose-ink', highlight: 'text-rose-vivid' },
+  dark: { eyebrow: 'text-blush', highlight: 'text-rose-soft' }
+};
 
 const ALIGN_CLASSES = {
   center: 'mx-auto max-w-3xl items-center text-center',
@@ -36,14 +44,19 @@ export function SectionHeading({
   title,
   highlight,
   description,
-  align = 'center'
+  align = 'center',
+  tone = 'light'
 }: Readonly<SectionHeadingProps>) {
   const { before, highlighted, after } = splitTitle(title, highlight);
 
   return (
     <div className={`flex flex-col gap-2 ${ALIGN_CLASSES[align]}`}>
       {eyebrow && (
-        <p className="text-rose-ink text-sm font-semibold tracking-widest uppercase">{eyebrow}</p>
+        <p
+          className={`${TONE_CLASSES[tone].eyebrow} text-sm font-semibold tracking-widest uppercase`}
+        >
+          {eyebrow}
+        </p>
       )}
       <h2
         id={id}
@@ -53,7 +66,9 @@ export function SectionHeading({
         {highlighted && (
           // Mesmo gesto do hero: a manuscrita é mais miúda que a serifada, por isso é maior; a
           // altura de linha abaixo de 1 não deixa a linha do título crescer por causa dela.
-          <span className="font-script text-rose-vivid text-[1.4em] leading-[0.85] font-normal whitespace-nowrap">
+          <span
+            className={`${TONE_CLASSES[tone].highlight} font-script text-[1.4em] leading-[0.85] font-normal whitespace-nowrap`}
+          >
             {highlighted}
           </span>
         )}

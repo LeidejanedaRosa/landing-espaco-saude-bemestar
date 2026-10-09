@@ -60,4 +60,28 @@ describe('SectionHeading', () => {
     rerender(<SectionHeading id="t" title="Serviços do espaço" highlight="studio" />);
     expect(heading().querySelector('span')).toBeNull();
   });
+
+  it('sobre fundo escuro, rótulo e destaque usam as cores claras', () => {
+    render(
+      <SectionHeading
+        id="t"
+        eyebrow="Sobre"
+        title="Cuidado individual"
+        highlight="individual"
+        tone="dark"
+      />
+    );
+
+    expect(screen.getByText('Sobre')).toHaveClass('text-blush');
+    expect(screen.getByText('individual')).toHaveClass('text-rose-soft');
+  });
+
+  it('sobre fundo claro, que é o padrão, usam os rosas escuro e vivo', () => {
+    render(
+      <SectionHeading id="t" eyebrow="Sobre" title="Cuidado individual" highlight="individual" />
+    );
+
+    expect(screen.getByText('Sobre')).toHaveClass('text-rose-ink');
+    expect(screen.getByText('individual')).toHaveClass('text-rose-vivid');
+  });
 });

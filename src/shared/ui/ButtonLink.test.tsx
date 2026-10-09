@@ -53,4 +53,25 @@ describe('ButtonLink', () => {
     expect(link).toHaveClass('border', 'text-olive-deep');
     expect(link).not.toHaveClass('bg-olive-deep');
   });
+
+  it('a variante clara é o botão cheio para fundo escuro, com contorno de foco claro', () => {
+    render(
+      <ButtonLink href="#a" variant="light">
+        Agendar avaliação
+      </ButtonLink>
+    );
+
+    const link = screen.getByRole('link', { name: 'Agendar avaliação' });
+
+    expect(link).toHaveClass('bg-cream', 'text-olive-deep', 'focus-visible:outline-cream');
+    expect(link).not.toHaveClass('focus-visible:outline-olive-deep');
+  });
+
+  it('sobre fundo claro, o contorno de foco é escuro', () => {
+    render(<ButtonLink href="#a">Agendar</ButtonLink>);
+
+    expect(screen.getByRole('link', { name: 'Agendar' })).toHaveClass(
+      'focus-visible:outline-olive-deep'
+    );
+  });
 });

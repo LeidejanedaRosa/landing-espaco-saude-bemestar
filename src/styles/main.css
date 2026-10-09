@@ -24,6 +24,9 @@
   /* Rosa mais claro e vivo, só para texto grande (palavra em destaque dos títulos): 3,2:1
      sobre `blush`, acima dos 3:1 exigidos para texto grande e abaixo dos 4,5:1 do pequeno. */
   --color-rose-vivid: #be5a5f;
+  /* Rosa claro para texto grande sobre o bloco `olive-deep` (3,4:1). Os outros rosas somem
+     sobre o verde-escuro. */
+  --color-rose-soft: #e6a9a2;
   --color-teal: #688f90;
   --color-teal-deep: #3f6b6c;
   --color-olive: #737b5b;

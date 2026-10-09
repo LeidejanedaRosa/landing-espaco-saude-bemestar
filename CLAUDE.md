@@ -266,8 +266,8 @@ A Luiza é a figura principal da página. O espaço é dela, e a Dra. Veronika a
 Na versão de referência (Emergent) a seção da médica vinha em um bloco verde-escuro, o elemento
 mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contrário.
 
-- **O destaque mais forte da página é da Luiza.** Bloco escuro, foto maior e botão cheio são
-  dela.
+- **O destaque mais forte da página é da Luiza: o bloco verde-oliva.** É o único bloco escuro
+  no meio da página, com a foto maior e o botão cheio. Nenhuma outra seção usa bloco escuro.
 - **Atendimento médico é complementar, e não escondido:** tem foto e é bem acabado, mas em
   cartão claro, com foto menor que a da Luiza e botão vazado.
 - Em qualquer lugar onde as duas apareçam juntas (menu, abas de Serviços, footer), a Luiza e os
@@ -275,9 +275,16 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 
 ### Sobre a Luiza
 
-- Foto e apresentação lado a lado, e as certificações em grade logo abaixo. Não é carrossel nem
-  abas: aqui a pessoa só lê, e a seção pode ser mais alta que a tela.
-- A foto vai em moldura orgânica, com duas formas coloridas saindo de trás.
+- **Bloco `olive-deep` com texto claro**, que reúne o rótulo e o título da seção, a foto em
+  moldura orgânica, a apresentação em primeira pessoa, o nome com o registro e o botão. As seis
+  certificações ficam fora dele, em grade, no fundo claro: com tudo dentro, o bloco viraria uma
+  parede verde de mais de uma tela.
+- Não é carrossel nem abas: aqui a pessoa só lê, e a seção pode ser mais alta que a tela.
+- No HTML a ordem é título, foto, apresentação. No desktop a foto vai para a coluna da esquerda
+  só pela posição na grade.
+- **Sobre fundo escuro as cores mudam:** `SectionHeading` com `tone="dark"` (rótulo em `blush`,
+  destaque em `rose-soft`) e `ButtonLink` com `variant="light"` (creme, com contorno de foco
+  claro). O botão verde e os rosas escuros somem sobre o `olive-deep`.
 - As seis certificações ficam em `aboutCredentials.ts`. São seis, então a grade (1, 2 ou 3
   colunas) nunca tem linha incompleta; mudando a quantidade, rever as colunas.
 - A frase de destaque (`h2`) é um trecho da própria apresentação dela.
@@ -325,6 +332,8 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   mesma lista.
 - Botão com aparência de botão que leva a outro lugar é `ButtonLink` (`src/shared/ui`); com
   `external`, ele abre em nova aba, protege com `rel` e avisa o leitor de tela.
+  Três variantes: `primary` (cheio, verde), `secondary` (vazado) e `light` (cheio, creme, para
+  fundo escuro).
 - Abrir e fechar (menu, sanfona) usa o hook `useDisclosure` (`src/shared/hooks`), que já
   trata a tecla Esc.
 
@@ -417,6 +426,7 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
   | `rose-deep`  | `#9A4F4A` | títulos de destaque, links, texto em rosa (sobre `blush`: só título grande)             |
   | `rose-ink`   | `#8E4944` | texto pequeno em rosa sobre `blush`: o rótulo das seções (`SectionHeading`)             |
   | `rose-vivid` | `#BE5A5F` | só texto grande: palavra em destaque dos títulos e a frase do hero (3,2:1 em `blush`)   |
+  | `rose-soft`  | `#E6A9A2` | só texto grande sobre `olive-deep`: o destaque do título no bloco da Luiza (3,4:1)      |
   | `teal`       | `#688F90` | decorativo: ícones e detalhes (não usar em texto pequeno)                               |
   | `teal-deep`  | `#3F6B6C` | cor de apoio: botões secundários, texto em verde-água (sobre `blush`: só título grande) |
   | `olive`      | `#737B5B` | decorativo: blocos e ondas (texto só se for grande)                                     |
