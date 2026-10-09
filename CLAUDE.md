@@ -168,6 +168,8 @@ Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading
   frase do hero: é a prop `highlight` do `SectionHeading`. Uma palavra ou expressão curta por
   título, a que carrega a promessa da seção, de preferência no fim da linha. Não muda o texto
   (o leitor de tela lê o título normalmente) e não vai em parágrafo nem em cartão.
+  Enquanto couber, o destaque fica inteiro na mesma linha (`inline-block`); só se parte se
+  for mais largo que o espaço.
 - **Seções vizinhas não repetem o mesmo arranjo.** Duas grades de cartões iguais em sequência
   deixam a página monótona e a pessoa não percebe que mudou de assunto.
 - Os dados de uma seção com vários itens ficam em um arquivo próprio ao lado do componente
@@ -321,13 +323,19 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 
 ### Metodologia
 
-- Ilustração à esquerda e as quatro etapas à direita, em cartões numerados (2 × 2), com o
-  compromisso do espaço fechando a seção. Cabe em uma tela em notebook, desktop e tablet
-  (`fullScreen`); no celular as quatro etapas, com o texto aprovado, não cabem, e a seção cresce.
+- **Ilustração grande à esquerda, de cima a baixo;** à direita, o rótulo e o título
+  (`align="start"`), as quatro etapas em cartões numerados (2 × 2) e o compromisso do espaço.
+  Com o título acima das duas colunas, a ilustração ficava espremida na altura das etapas.
+- Cabe em uma tela em notebook, desktop e tablet (`fullScreen`); no celular as quatro etapas,
+  com o texto aprovado, não cabem, e a seção cresce.
+- No HTML a ordem é título, ilustração, etapas, compromisso; no desktop a ilustração vai para
+  a esquerda só pela posição na grade.
+- A ilustração se apoia em três formas orgânicas (duas coloridas e uma clara por cima), usa
+  `mix-blend-multiply` e uma máscara que esfuma só a borda. O arquivo é aparado rente à cena.
+- **O compromisso vai em um quadro próprio** (fundo rosado, borda, ícone), e não em uma linha
+  solta de texto pequeno: é a promessa da seção.
 - As etapas são uma lista ordenada (`<ol>`): a ordem importa. O número grande em manuscrita é
   só enfeite (`aria-hidden`), porque a lista já informa a posição. Ficam em `methodologySteps.ts`.
-- A ilustração usa `mix-blend-multiply` e uma máscara que esfuma a borda: o fundo do arquivo
-  não é branco puro até o limite.
 - O título ("Técnica científica com cuidado humano") é um trecho do compromisso aprovado.
 
 ### Para quem o pilates é indicado

@@ -179,3 +179,13 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   um divisor, passam a ser lidas como parte da apresentação dela.
 - **Enfeite repetido vira componente.** O divisor com losango dourado nasceu na seção médica e
   foi pedido de novo aqui: virou o `OrnamentDivider`, com tom e largura por opção.
+
+## 2026-10-09 — Metodologia: ilustração e compromisso em destaque
+
+- **Para um elemento crescer sem a seção crescer, dê a ele outra dimensão.** A ilustração
+  estava presa à altura das etapas. Com o título indo para a coluna do texto, ela passou a
+  ocupar a altura inteira da seção, e a seção continua cabendo em uma tela.
+- **Texto pequeno e centralizado no fim da seção é lido como rodapé.** O compromisso só ganhou
+  peso quando virou um quadro, com fundo, borda e ícone.
+- **Margem dentro do arquivo, de novo:** a cena ocupava 77% da altura da imagem. Aparar o
+  arquivo aumentou a figura sem mudar o layout.
