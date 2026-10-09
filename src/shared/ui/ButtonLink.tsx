@@ -11,8 +11,10 @@ interface ButtonLinkProps {
   className?: string;
 }
 
+// `text-center`, `py` e `leading-snug`: em tela muito estreita o texto pode quebrar em duas
+// linhas, e aí ele fica centralizado e com respiro, em vez de encostado à esquerda.
 const BASE_CLASSES =
-  'inline-flex min-h-11 items-center justify-center rounded-full font-medium focus-visible:outline-2 focus-visible:outline-offset-2';
+  'inline-flex min-h-11 items-center justify-center rounded-full py-1.5 text-center leading-snug font-medium focus-visible:outline-2 focus-visible:outline-offset-2';
 
 // O contorno de foco muda com o fundo: escuro sobre fundo claro, claro sobre fundo escuro.
 const VARIANT_CLASSES = {

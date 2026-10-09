@@ -13,15 +13,16 @@ function medicalCare(page: Page) {
   };
 }
 
-// Área útil do navegador em notebook, desktop, tablet e no celular de referência.
+// Área útil do navegador em notebook, desktop e tablet. No celular a foto é grande e a seção
+// passa de uma tela.
 const FULL_SCREEN_SIZES = [
   { width: 1280, height: 600 },
   { width: 1366, height: 625 },
   { width: 1440, height: 780 },
   { width: 1920, height: 950 },
   { width: 1024, height: 650 },
-  { width: 768, height: 950 },
-  { width: 390, height: 664 }
+  { width: 820, height: 1100 },
+  { width: 768, height: 950 }
 ];
 
 test.describe('seção Atendimento médico', () => {
@@ -108,6 +109,65 @@ test.describe('seção Atendimento médico', () => {
     expect(buttonBox?.y ?? 0).toBeGreaterThan(termBoxes[0].y);
   });
 
+  for (const size of [
+    { width: 768, height: 950 },
+    { width: 820, height: 1100 }
+  ]) {
+    test(`no tablet (${size.width}px), título, foto e botão ficam à esquerda, e as três especialidades à direita`, async ({
+      page
+    }) => {
+      await page.setViewportSize(size);
+      await page.goto('/');
+      const { section, photo, terms, button } = medicalCare(page);
+      await section.scrollIntoViewIfNeeded();
+
+      const title = await page
+        .getByRole('heading', { level: 2, name: /consultas integrativas/i })
+        .boundingBox();
+      const photoBox = await photo.boundingBox();
+      const buttonBox = await button.boundingBox();
+      const termBoxes = await terms.evaluateAll((list) =>
+        list.map((term) => {
+          const rect = term.getBoundingClientRect();
+          return { x: rect.x, y: rect.y };
+        })
+      );
+      if (!title || !photoBox || !buttonBox) throw new Error('seção incompleta');
+
+      // coluna da esquerda, de cima para baixo, com o mesmo eixo à esquerda
+      expect(photoBox.y).toBeGreaterThanOrEqual(title.y + title.height);
+      expect(buttonBox.y).toBeGreaterThanOrEqual(photoBox.y + photoBox.height);
+      // a foto fica dentro de uma moldura de 4px, por isso a folga
+      expect(Math.abs(photoBox.x - title.x)).toBeLessThanOrEqual(5);
+      expect(Math.abs(buttonBox.x - title.x)).toBeLessThanOrEqual(2);
+      // coluna da direita: as especialidades, uma embaixo da outra
+      const leftEdge = Math.max(photoBox.x + photoBox.width, buttonBox.x + buttonBox.width);
+      for (const term of termBoxes) expect(term.x).toBeGreaterThanOrEqual(leftEdge);
+      expect(termBoxes.map((term) => term.y)).toEqual(
+        [...termBoxes.map((term) => term.y)].sort((first, second) => first - second)
+      );
+      expect(new Set(termBoxes.map((term) => Math.round(term.y))).size).toBe(3);
+    });
+  }
+
+  test('no celular, a foto é grande e fica centralizada, com o crachá sobreposto', async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 390, height: 664 });
+    await page.goto('/');
+    const { section, photo, name } = medicalCare(page);
+    await section.scrollIntoViewIfNeeded();
+
+    const photoBox = await photo.boundingBox();
+    const nameBox = await name.boundingBox();
+    if (!photoBox || !nameBox) throw new Error('seção incompleta');
+
+    expect(photoBox.width).toBeGreaterThanOrEqual(140);
+    expect(Math.abs(photoBox.x + photoBox.width / 2 - 195)).toBeLessThanOrEqual(2);
+    // o crachá começa antes do fim da foto
+    expect(nameBox.y).toBeLessThan(photoBox.y + photoBox.height);
+  });
+
   for (const width of [390, 320]) {
     test(`no celular (${width}px), vêm o título, a foto com o nome, as especialidades e por último o botão, sem rolagem horizontal`, async ({
       page
@@ -146,6 +206,23 @@ test.describe('seção Atendimento médico', () => {
       /\.(avif|webp)$/
     );
   });
+
+  for (const width of [320, 360, 390]) {
+    test(`no celular (${width}px), o texto do botão fica em uma linha só`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 664 });
+      await page.goto('/');
+      const { button } = medicalCare(page);
+      await button.scrollIntoViewIfNeeded();
+
+      const lines = await button.evaluate((link) => {
+        const range = document.createRange();
+        range.selectNodeContents(link.firstChild as Node);
+        return new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size;
+      });
+
+      expect(lines).toBe(1);
+    });
+  }
 
   test('o botão abre o WhatsApp para agendar uma consulta médica', async ({ page }) => {
     await page.goto('/');
