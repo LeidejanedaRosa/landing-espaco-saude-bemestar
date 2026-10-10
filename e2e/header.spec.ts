@@ -9,9 +9,66 @@ test.describe('header no desktop', () => {
     const nav = page.getByRole('navigation', { name: 'Principal' });
 
     await expect(nav).toBeVisible();
-    await expect(nav.getByRole('link')).toHaveCount(6);
+    await expect(nav.getByRole('link')).toHaveCount(8);
     await expect(page.getByRole('button', { name: /menu/i })).toBeHidden();
   });
+
+  test('o menu lista as oito seções, na ordem em que aparecem na página', async ({ page }) => {
+    await page.setViewportSize({ width: 1366, height: 625 });
+    await page.goto('/');
+    const links = page.getByRole('navigation', { name: 'Principal' }).getByRole('link');
+
+    const labels = await links.allTextContents();
+    const targets = await links.evaluateAll((list) =>
+      list.map((link) => {
+        const id = (link.getAttribute('href') ?? '').slice(1);
+        const target = document.getElementById(id);
+        return target ? target.getBoundingClientRect().top + window.scrollY : -1;
+      })
+    );
+
+    expect(labels).toEqual([
+      'Studio',
+      'Serviços',
+      'Sobre a Luiza',
+      'Atendimento médico',
+      'Metodologia',
+      'Para quem é',
+      'Depoimentos',
+      'Contato'
+    ]);
+    expect(targets.every((top) => top > 0)).toBe(true);
+    expect(targets).toEqual([...targets].sort((first, second) => first - second));
+  });
+
+  for (const width of [1024, 1100, 1280, 1920]) {
+    test(`em ${width}px, os oito itens do menu cabem em uma linha, sem encostar no logo nem no botão`, async ({
+      page
+    }) => {
+      await page.setViewportSize({ width, height: 625 });
+      await page.goto('/');
+      await page.evaluate(() => document.fonts.ready);
+      const banner = page.getByRole('banner');
+      const links = banner.getByRole('navigation', { name: 'Principal' }).getByRole('link');
+
+      const boxes = await links.evaluateAll((list) =>
+        list.map((link) => {
+          const box = link.getBoundingClientRect();
+          return { top: Math.round(box.top), left: box.left, right: box.right };
+        })
+      );
+      const logo = await banner.getByRole('img').boundingBox();
+      const button = await banner.getByRole('link', { name: /^agendar/i }).boundingBox();
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      );
+
+      expect(new Set(boxes.map((box) => box.top)).size).toBe(1);
+      expect(boxes[0].left).toBeGreaterThanOrEqual((logo?.x ?? 0) + (logo?.width ?? 0) + 16);
+      expect(boxes[boxes.length - 1].right).toBeLessThanOrEqual((button?.x ?? 0) - 16);
+      expect(overflow).toBe(0);
+    });
+  }
 
   test('o botão Agendar leva ao WhatsApp com mensagem preenchida', async ({ page }) => {
     await page.goto('/');

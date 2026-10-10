@@ -8,6 +8,7 @@ import { Methodology } from '../components/Methodology';
 import { NAV_ITEMS } from '../components/navigation';
 import { Services } from '../components/Services';
 import { Studio } from '../components/Studio';
+import { Testimonials } from '../components/Testimonials';
 import { PageBackground } from '../shared/ui/PageBackground';
 
 const CONTENT_ID = 'inicio';
@@ -26,6 +27,7 @@ export function HomePage() {
         <MedicalCare />
         <Methodology />
         <Audience />
+        <Testimonials />
       </main>
       <Footer navItems={NAV_ITEMS} year={CURRENT_YEAR} />
     </PageBackground>

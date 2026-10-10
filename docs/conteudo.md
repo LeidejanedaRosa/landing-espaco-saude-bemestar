@@ -48,8 +48,8 @@ Ficam para depois da primeira entrega para aprovação da cliente:
   rótulo, e o título é "Técnica científica com cuidado humano", trecho do compromisso aprovado
   ("nossa abordagem combina técnica científica com cuidado humano"). Pede a confirmação da cliente.
 - **Seção "Para quem o pilates é indicado":** o site mostra só os nomes dos seis públicos. O
-  rótulo "Indicações" é novo, e os complementos da tabela abaixo (da versão da Emergent) ficam
-  de fora até a cliente aprovar.
+  rótulo "Indicações" (acima do título) e o item "Para quem é" (no menu) são novos, e os
+  complementos da tabela abaixo (da versão da Emergent) ficam de fora até a cliente aprovar.
 - **Chamada final da seção Contato:** "Priorize o que realmente importa: Você!" e "Agende sua
   consulta ou aula experimental e sinta a diferença de um cuidado verdadeiramente
   individualizado." vêm da versão da Emergent; a landing antiga não tinha chamada final. Pedem
@@ -69,13 +69,22 @@ Ficam para depois da primeira entrega para aprovação da cliente:
 
 ## Depoimentos
 
+- **Título:** "O que dizem sobre nós", da landing antiga.
 - **Fonte:** avaliações do perfil do studio no Google. Os depoimentos das versões antigas eram
   fictícios e não devem ser usados.
-- **Ainda falta:** a cliente escolher as avaliações e os textos serem copiados para cá. O link
-  do perfil que estava na landing antiga é `https://share.google/iis78GJjcBJA86a6h` (confirmar).
-- **Cuidado (LGPD):** relato de tratamento com o nome da pessoa é dado de saúde. Exibir só
-  primeiro nome e inicial, e com o consentimento de quem escreveu.
-- A seção traz um link "Ver todas as avaliações no Google".
+- **Perfil no Google Maps** (confirmado pela Leidejane em 2026-10-09), já na aba de avaliações:
+  é o endereço do botão "Ver todas as avaliações no Google", em `testimonialsList.ts`.
+- **Estado atual: provisório.** Os três cartões repetem a avaliação da Leidejane, com a foto
+  dela e um texto marcador entre colchetes, só para aprovar o layout. Falta o texto real dela.
+- **Ainda falta:** a Luiza escolher de três a seis avaliações e conseguir o ok de cada pessoa.
+  Para cada uma: o texto como está no Google, o nome, a nota e a foto em arquivo (ou "sem
+  foto", e aí entra um avatar ilustrado).
+- **Cuidado (LGPD):** relato de tratamento com o nome da pessoa é dado de saúde. A avaliação é
+  pública no Google, mas levá-la para o site da clínica é um novo uso: precisa do consentimento
+  de quem escreveu. Sem o ok para a foto, usar avatar; sem o ok para o nome completo, primeiro
+  nome e inicial.
+- **Não copiar as avaliações da página do Google por conta própria:** fere os termos deles, e
+  o texto precisa vir conferido pela cliente.
 
 ## Marca
 

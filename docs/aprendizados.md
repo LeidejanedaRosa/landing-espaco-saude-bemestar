@@ -225,3 +225,18 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   e 900 px de altura; os testes e os prints iam até 1920×950.
 - **Menos é mais no fundo.** As folhagens no papel de parede competiam com as das seções; só
   com as bonecas, o fundo voltou a ser discreto.
+
+## 2026-10-10 — Depoimentos e menu
+
+- **Efeito de mouse precisa de um caminho sem mouse.** O cartão que abre no hover também abre
+  com o foco do teclado, e no celular já vem aberto. O texto está sempre no HTML.
+- **Decoração "natural" é assimetria planejada.** Duas folhagens espelhadas parecem carimbo;
+  seis, cada uma com tamanho, giro e lugar próprios, parecem caídas ao acaso.
+- **Conteúdo provisório precisa de uma trava visível.** As avaliações de teste ficam marcadas
+  no arquivo de dados, no backlog e em um `it.todo`, para não irem ao ar por esquecimento.
+- **Avaliação pública não é avaliação liberada.** Estar no Google não autoriza levar nome, foto
+  e relato de saúde para o site da clínica; é um novo uso e pede consentimento.
+- **Nome de menu é a pergunta do visitante.** "Para quem é" responde o que a pessoa se pergunta;
+  "Indicações" é o nome que a gente dá por dentro.
+- **Lista que cresce pede tamanho fluido.** Com oito itens, o menu só cabe em 1024px porque o
+  espaço e a letra encolhem com a tela.

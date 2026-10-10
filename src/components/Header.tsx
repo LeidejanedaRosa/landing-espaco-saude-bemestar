@@ -49,13 +49,13 @@ export function Header({ navItems, contentId }: HeaderProps) {
           aria-label="Principal"
           className={`${menu.isOpen ? 'block' : 'hidden'} bg-cream border-blush absolute inset-x-0 top-full border-b lg:static lg:block lg:border-0 lg:bg-transparent`}
         >
-          <ul className="px-gutter flex flex-col py-2 lg:flex-row lg:gap-6 lg:p-0">
+          <ul className="px-gutter flex flex-col py-2 lg:flex-row lg:gap-[clamp(0.625rem,1.4vw,1.5rem)] lg:p-0">
             {navItems.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={menu.close}
-                  className="hover:text-rose-deep focus-visible:outline-olive-deep flex min-h-11 items-center rounded-lg text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2"
+                  className="hover:text-rose-deep focus-visible:outline-olive-deep flex min-h-11 items-center rounded-lg text-sm font-medium whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 lg:text-[clamp(0.75rem,1.1vw,0.875rem)]"
                 >
                   {item.label}
                 </a>

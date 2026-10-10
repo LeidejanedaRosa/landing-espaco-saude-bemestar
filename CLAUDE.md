@@ -351,7 +351,30 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - São seis, em 2, 3 ou 6 colunas, sempre sem linha incompleta. Ficam em `audienceList.ts`.
 - Só os nomes aparecem (aprovados na landing antiga). Os complementos de cada público vieram da
   versão de referência e só entram com a aprovação da cliente.
-- Não tem item no menu: o `id` é `para-quem`, para um link futuro.
+- No menu o item se chama "Para quem é" (o `id` é `para-quem`): é a pergunta de quem chega,
+  com as palavras dela. "Indicações" é termo da área e também quer dizer encaminhamento.
+
+### Depoimentos
+
+- Três cartões brancos lado a lado, com a foto em moldura de polaroide saltando para fora do
+  topo, levemente inclinada. Dentro: aspas decorativas, nome, estrelas e o depoimento em
+  `<blockquote>`. Embaixo, o botão "Ver todas as avaliações no Google".
+- **O depoimento nunca depende só do mouse.** No desktop o cartão mostra o começo do texto e
+  abre com o mouse ou com o foco (o cartão tem `tabIndex={0}`); no celular já vem aberto. O
+  efeito usa `group-focus`, e não `group-focus-visible`: o toque no tablet dá foco sem ativar o
+  `:focus-visible`. Só o contorno do cartão é exclusivo do teclado. O texto inteiro está sempre no HTML, para leitor de tela e buscadores.
+- **Folhagens espalhadas, sem simetria**, como se tivessem caído de uma árvore: cada uma com
+  tamanho, inclinação e lugar próprios (`FALLEN_LEAVES`), algumas pousadas sobre os cartões.
+  Ficam por cima, com `pointer-events-none`. Duas iguais e espelhadas perdem o efeito.
+- Sem fita nas fotos: não combinou com a seção.
+- Os dados ficam em `testimonialsList.ts`, com o endereço do perfil do studio no Google Maps
+  (`GOOGLE_REVIEWS_URL`, sem os parâmetros de rastreio).
+- **As avaliações são as do Google, escolhidas pela cliente, com o consentimento de cada
+  pessoa** (nome, texto e, se houver, foto). Não copiar o conteúdo da página do Google por
+  conta própria, nem apontar o site para a foto hospedada lá.
+- **Enquanto as avaliações forem provisórias, a landing não vai para a `main`.** Hoje os três
+  cartões repetem a da Leidejane, com um texto marcador entre colchetes; há um `it.todo` no
+  teste e um item no backlog lembrando disso.
 
 ### Footer e contato
 
@@ -386,6 +409,9 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 
 - Os links do menu vivem em `NAV_ITEMS` (`src/components/navigation.ts`). **Seção nova entra
   com o `id` igual ao `href` do seu item**; sem isso o link do menu não leva a lugar nenhum.
+- **O menu lista todas as seções, na ordem da página** (oito itens). Para caberem em uma
+  linha nas telas menores de desktop, o espaço entre eles e o tamanho da letra encolhem com a
+  largura (`clamp()` com `vw`): 12px em 1024px, 14px a partir de 1280px.
 - Os destinos ainda não construídos estão declarados em `PENDING_SECTIONS`
   (`e2e/navigation.spec.ts`). **Ao construir uma seção, tirar o destino dela dessa lista**; o
   teste falha se ficar. Link interno novo para um destino que não existe também falha.
