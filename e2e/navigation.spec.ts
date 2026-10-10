@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 // Seções que o menu e os botões já anunciam, mas que ainda não foram construídas.
 // Ao construir uma seção, tire o destino dela desta lista: o segundo teste falha enquanto
 // ela continuar aqui. A landing só pode ir para a `main` com esta lista vazia.
-const PENDING_SECTIONS = ['#depoimentos'];
+const PENDING_SECTIONS: string[] = [];
 
 async function collectInternalLinks(page: import('@playwright/test').Page) {
   return page
