@@ -9,5 +9,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Sobre a Luiza', href: '#sobre' },
   { label: 'Atendimento médico', href: '#atendimento-medico' },
   { label: 'Metodologia', href: '#metodologia' },
-  { label: 'Depoimentos', href: '#depoimentos' }
+  { label: 'Para quem é', href: '#para-quem' },
+  { label: 'Depoimentos', href: '#depoimentos' },
+  { label: 'Contato', href: '#contato' }
 ];
