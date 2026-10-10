@@ -56,12 +56,16 @@
 - [x] Atendimento médico (foto provisória; descrições das especialidades aguardam revisão)
 - [x] Metodologia
 - [x] Para quem é indicado (só os nomes; complementos aguardam aprovação)
-- [ ] Depoimentos (avaliações reais do Google, escolhidas pela cliente)
+- [x] Depoimentos: seção pronta, com avaliações provisórias (ver o bloqueio em "SEO e
+      publicação")
 - [x] Contato (sem formulário: tudo leva ao WhatsApp; chamada final aguarda revisão)
 - [x] Footer (frase do rodapé aguarda revisão)
 
 ## SEO e publicação
 
+- [ ] **Bloqueia a ida para a `main`:** trocar as avaliações provisórias da seção Depoimentos
+      pelas reais, com o consentimento de cada pessoa (`testimonialsList.ts`; há um `it.todo`
+      no teste da seção)
 - [ ] Canonical, Open Graph e imagem de compartilhamento
 - [ ] Dados estruturados (schema.org `LocalBusiness`/`MedicalBusiness`)
 - [ ] `robots.txt`, `sitemap.xml` e favicon
