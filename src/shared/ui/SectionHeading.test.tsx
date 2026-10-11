@@ -61,28 +61,36 @@ describe('SectionHeading', () => {
     expect(heading().querySelector('span')).toBeNull();
   });
 
-  it('sobre fundo escuro, rótulo e destaque usam as cores claras', () => {
-    render(
-      <SectionHeading
-        id="t"
-        eyebrow="Sobre"
-        title="Cuidado individual"
-        highlight="individual"
-        tone="dark"
-      />
-    );
+  it('o rótulo é o mesmo selo em qualquer fundo: letra branca sobre rosa-escuro', () => {
+    const { rerender } = render(<SectionHeading id="t" eyebrow="Sobre" title="Cuidado" />);
 
-    expect(screen.getByText('Sobre')).toHaveClass('text-blush');
+    for (const tone of ['light', 'dark', 'rose'] as const) {
+      rerender(<SectionHeading id="t" eyebrow="Sobre" title="Cuidado" tone={tone} />);
+      expect(screen.getByText('Sobre')).toHaveClass('bg-rose-deep', 'text-white', 'rounded-full');
+    }
+  });
+
+  it('o destaque muda com o fundo: rosa vivo no claro, rosa claro no escuro', () => {
+    const { rerender } = render(
+      <SectionHeading id="t" title="Cuidado individual" highlight="individual" />
+    );
+    expect(screen.getByText('individual')).toHaveClass('text-rose-vivid');
+    expect(screen.getByText('individual')).not.toHaveClass('before:bg-cream');
+
+    rerender(
+      <SectionHeading id="t" title="Cuidado individual" highlight="individual" tone="dark" />
+    );
     expect(screen.getByText('individual')).toHaveClass('text-rose-soft');
   });
 
-  it('sobre fundo claro, que é o padrão, usam os rosas escuro e vivo', () => {
-    render(
-      <SectionHeading id="t" eyebrow="Sobre" title="Cuidado individual" highlight="individual" />
-    );
+  it('sobre o rosa da página, o destaque ganha uma pincelada creme com dourado por trás', () => {
+    render(<SectionHeading id="t" title="Cuidado individual" highlight="individual" tone="rose" />);
 
-    expect(screen.getByText('Sobre')).toHaveClass('text-rose-ink');
-    expect(screen.getByText('individual')).toHaveClass('text-rose-vivid');
+    expect(screen.getByText('individual')).toHaveClass(
+      'text-rose-vivid',
+      'before:bg-cream',
+      'before:border-gold'
+    );
   });
 
   it('o destaque pode quebrar de linha: em tela estreita com fonte aumentada ele não some', () => {

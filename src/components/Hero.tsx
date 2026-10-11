@@ -117,6 +117,12 @@ export function Hero() {
             o tamanho de fonte do navegador, enquanto os 7.5cqw da frase não mudam. */}
         <div className="@container relative order-first mx-auto w-full max-w-3xl md:max-lg:self-center lg:@container-size lg:order-0 lg:flex lg:max-w-none lg:items-center lg:justify-end lg:self-stretch lg:[--art-h:min(100cqh,91cqw)] lg:[--phrase:clamp(1.5rem,calc(var(--art-h)*0.085),3.25rem)]">
           <div className="relative w-full pt-[4cqw] lg:w-auto lg:pt-0">
+            {/* Arco dourado fino atrás da boneca, como o que emoldura a foto nos posts da
+                cliente. A máscara deixa só um trecho do círculo. Só no desktop. */}
+            <span
+              aria-hidden="true"
+              className="border-gold absolute right-[calc(var(--art-h)*-0.03)] bottom-[calc(var(--art-h)*0.02)] hidden size-[calc(var(--art-h)*0.92)] rounded-full border-2 [mask-image:conic-gradient(from_300deg,black_0_230deg,transparent_230deg)] lg:block"
+            />
             <p className="font-script text-rose-ink @min-[320px]:text-rose-vivid absolute top-0 left-[6cqw] text-[clamp(1.25rem,7.5cqw,3rem)] leading-[1.15] whitespace-nowrap lg:right-[calc(var(--art-h)*0.42)] lg:left-auto lg:text-(length:--phrase) lg:leading-[1.1]">
               <span className="motion-safe:animate-write block w-fit motion-safe:[animation-delay:0.2s]">
                 Acredite!

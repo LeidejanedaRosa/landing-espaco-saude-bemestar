@@ -15,14 +15,24 @@ interface SectionHeadingProps {
    * empilhado com ela, fica centralizado.
    */
   align?: 'center' | 'start' | 'center-then-start';
-  /** `dark` quando o cabeçalho fica sobre fundo escuro (bloco verde-oliva): cores claras. */
-  tone?: 'light' | 'dark';
+  /**
+   * `dark` quando o cabeçalho fica sobre fundo escuro (bloco verde-oliva): destaque claro.
+   * `rose` quando fica direto sobre o trecho rosa do degradê da página: o destaque ganha
+   * fundo próprio.
+   */
+  tone?: 'light' | 'dark' | 'rose';
 }
 
-// Em cada fundo, o rótulo (texto pequeno) precisa de 4,5:1 e o destaque (texto grande), de 3:1.
-const TONE_CLASSES = {
-  light: { eyebrow: 'text-rose-ink', highlight: 'text-rose-vivid' },
-  dark: { eyebrow: 'text-blush', highlight: 'text-rose-soft' }
+// O rótulo é igual em toda seção: um selo rosa-escuro com letra branca (5,9:1), que funciona
+// sobre o creme, o rosa e o verde. Só o destaque muda com o fundo; ele é texto grande e
+// precisa de 3:1.
+const HIGHLIGHT_CLASSES = {
+  light: 'text-rose-vivid',
+  dark: 'text-rose-soft',
+  // Sobre o rosa da página nenhum rosa chega ao contraste mínimo. O destaque ganha uma
+  // pincelada creme por trás, com contorno e sombra chapada em dourado: o rosa vivo passa a
+  // ser lido sobre creme (3,8:1), e não sobre rosa.
+  rose: 'text-rose-vivid before:bg-cream before:border-gold relative isolate ml-[0.15em] px-[0.2em] before:absolute before:inset-x-0 before:inset-y-[0.02em] before:-z-10 before:-rotate-2 before:rounded-[45%_55%_50%_50%/60%_45%_55%_40%] before:border-2 before:shadow-[0.1em_0.1em_0_var(--color-gold)]'
 };
 
 const ALIGN_CLASSES = {
@@ -57,9 +67,7 @@ export function SectionHeading({
   return (
     <div className={`flex flex-col gap-2 ${ALIGN_CLASSES[align]}`}>
       {eyebrow && (
-        <p
-          className={`${TONE_CLASSES[tone].eyebrow} text-sm font-semibold tracking-widest uppercase`}
-        >
+        <p className="bg-rose-deep rounded-full px-3 py-0.5 text-sm font-semibold tracking-widest text-white uppercase">
           {eyebrow}
         </p>
       )}
@@ -76,7 +84,7 @@ export function SectionHeading({
           // `inline-block`: enquanto couber, o destaque desce inteiro para a linha seguinte, em
           // vez de se partir ao meio ("cuidado" em uma linha e "humano" na outra).
           <span
-            className={`${TONE_CLASSES[tone].highlight} font-script inline-block text-[1.4em] leading-[0.85] font-normal`}
+            className={`${HIGHLIGHT_CLASSES[tone]} font-script inline-block text-[1.4em] leading-[0.85] font-normal`}
           >
             {highlighted}
           </span>

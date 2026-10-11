@@ -43,8 +43,8 @@
 - [x] Conteúdo surgindo de leve ao entrar na tela, respeitando redução de movimento
 - [x] Bloco verde-oliva na seção "Sobre a Luiza" (título, foto, apresentação, botão claro e as
       certificações, todos dentro dele), para ela ter o destaque mais forte da página
-- [ ] Degradê da página começando a escurecer já nas seções do meio; na faixa de transição,
-      texto pequeno só dentro de cartão
+- [x] Degradê da página nas cores dos posts: creme, rosa e verde-oliva, com o verde subindo
+      por trás dos Depoimentos; rótulo das seções em selo e detalhes dourados e ramos claros
 
 ## Seções da landing (uma branch por seção, a partir de `feat/landing`)
 

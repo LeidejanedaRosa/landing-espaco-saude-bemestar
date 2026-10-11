@@ -37,4 +37,12 @@ describe('OrnamentDivider', () => {
     expect(divider).not.toHaveClass('w-28');
     expect(firstLine).toHaveClass('bg-rose-soft/60');
   });
+
+  it('sobre o trecho rosa da página, linha e losango são creme: o dourado some ali', () => {
+    const { firstLine, ornament } = renderDivider({ tone: 'cream' });
+
+    expect(firstLine).toHaveClass('bg-cream');
+    expect(ornament).toHaveClass('bg-cream');
+    expect(ornament).not.toHaveClass('bg-gold');
+  });
 });
