@@ -99,14 +99,21 @@ test.describe('seção Depoimentos', () => {
     await page.mouse.move(2, 2);
     const quote = cards.first().locator('blockquote');
 
-    await cards.first().focus();
-    await page.keyboard.press('Shift+Tab');
-    await page.keyboard.press('Tab');
+    // No WebKit o `:focus` só casa quando a janela está ativa. Com vários navegadores abertos
+    // em paralelo ela pode não estar; por isso traz a janela para a frente e tenta de novo.
+    await expect(async () => {
+      await page.bringToFront();
+      await cards.first().focus();
+      await page.keyboard.press('Shift+Tab');
+      await page.keyboard.press('Tab');
 
-    await expect(cards.first()).toBeFocused();
-    await expect
-      .poll(() => quote.evaluate((element) => element.scrollHeight > element.clientHeight + 1))
-      .toBe(false);
+      await expect(cards.first()).toBeFocused();
+      await expect
+        .poll(() => quote.evaluate((element) => element.scrollHeight > element.clientHeight + 1), {
+          timeout: 3000
+        })
+        .toBe(false);
+    }).toPass();
   });
 
   test('o cartão fica aberto depois de um toque ou clique, sem depender do mouse em cima', async ({
