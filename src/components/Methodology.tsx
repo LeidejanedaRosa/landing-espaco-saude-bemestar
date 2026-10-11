@@ -1,4 +1,6 @@
 import ilustracao from '../../design/originais/metodologia-acompanhamento.png?w=333;665&format=avif;webp&as=picture';
+import eucaliptoClaro from '../assets/folhagens/eucalipto-claro.svg';
+import { DecorativeImage } from '../shared/ui/DecorativeImage';
 import { LineIcon } from '../shared/ui/LineIcon';
 import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
@@ -6,6 +8,13 @@ import { SectionHeading } from '../shared/ui/SectionHeading';
 import { METHODOLOGY_STEPS } from './methodologySteps';
 
 const HEADING_ID = 'metodologia-titulo';
+// Ramos claros em leque, em dois cantos opostos, como em "Para quem é".
+const FRONDS = [
+  '-top-20 -left-8 h-64 rotate-[152deg] lg:h-80',
+  '-top-28 left-14 hidden h-52 rotate-[118deg] opacity-70 md:block',
+  '-right-8 -bottom-20 h-64 -rotate-[28deg] lg:h-80',
+  'right-14 -bottom-28 hidden h-52 -rotate-[62deg] opacity-70 md:block'
+];
 // Desktop: coluna estreita. Tablet (duas colunas): metade da tela. Celular: figura pequena.
 const IMAGE_SIZES = '(min-width: 64rem) 28rem, (min-width: 40rem) 50vw, 16rem';
 const SPARKLE_ICON = [
@@ -25,7 +34,16 @@ export function Methodology() {
             quatro etapas, uma embaixo da outra. A ilustração ocupa a altura que sobra;
           - desktop: a ilustração ocupa a coluna da esquerda de cima a baixo. É assim que ela
             fica grande sem a seção passar de uma tela. */}
-      <div className="grid items-center gap-x-6 gap-y-[clamp(0.5rem,1.6dvh,1.25rem)] sm:grid-cols-2 sm:grid-rows-[auto_1fr_auto] lg:grid-cols-[1fr_2fr] lg:grid-rows-none xl:grid-cols-[4fr_7fr] xl:gap-x-10">
+      <div className="relative isolate grid items-center gap-x-6 gap-y-[clamp(0.5rem,1.6dvh,1.25rem)] sm:grid-cols-2 sm:grid-rows-[auto_1fr_auto] lg:grid-cols-[1fr_2fr] lg:grid-rows-none xl:grid-cols-[4fr_7fr] xl:gap-x-10">
+        {FRONDS.map((className) => (
+          <DecorativeImage
+            key={className}
+            src={eucaliptoClaro}
+            width={160}
+            height={320}
+            className={`pointer-events-none absolute -z-10 w-auto ${className}`}
+          />
+        ))}
         <div className="sm:col-start-1 sm:row-start-1 lg:col-start-2">
           <SectionHeading
             id={HEADING_ID}
@@ -33,6 +51,7 @@ export function Methodology() {
             title="Técnica científica com cuidado humano"
             highlight="cuidado humano"
             align="center-then-start"
+            tone="rose"
           />
         </div>
 

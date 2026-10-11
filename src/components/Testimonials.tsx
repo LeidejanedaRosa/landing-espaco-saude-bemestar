@@ -127,8 +127,9 @@ export function Testimonials() {
           eyebrow="Depoimentos"
           title="O que dizem sobre nós"
           highlight="sobre nós"
+          tone="rose"
         />
-        <OrnamentDivider className="w-40" />
+        <OrnamentDivider tone="cream" className="w-40" />
       </div>
 
       <div className="relative">
@@ -151,7 +152,12 @@ export function Testimonials() {
         ))}
       </div>
 
-      <ButtonLink href={GOOGLE_REVIEWS_URL} external variant="secondary" className="self-center">
+      <ButtonLink
+        href={GOOGLE_REVIEWS_URL}
+        external
+        variant="outline-light"
+        className="self-center"
+      >
         Ver todas as avaliações no Google
       </ButtonLink>
     </Section>
