@@ -12,7 +12,7 @@ export interface Testimonial {
 // PROVISÓRIO: os três cartões repetem a avaliação da Leidejane, só para aprovar o layout.
 // As avaliações definitivas são as do Google, escolhidas pela cliente, cada uma com o
 // consentimento de quem escreveu (ver docs/conteudo.md). O texto abaixo é um marcador, e não
-// uma avaliação: trocar pelo texto real antes de publicar.
+// uma avaliação. Foi ao ar assim para a cliente aprovar a landing; trocar pelo texto real.
 const PLACEHOLDER: Testimonial = {
   name: 'Leidejane da Rosa',
   rating: 5,
