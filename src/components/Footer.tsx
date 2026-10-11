@@ -43,10 +43,15 @@ export function Footer({ navItems, year }: Readonly<FooterProps>) {
   return (
     <footer>
       {/* A passagem do fundo da página para o verde do rodapé fica nesta faixa, que é do
-          próprio rodapé e não tem texto: no meio dela nenhuma cor de texto teria contraste. */}
+          próprio rodapé. Ela sobe por trás do fim da seção anterior (margem negativa e `-z-10`),
+          em curva: o verde aparece atrás dos cartões de Depoimentos, em qualquer tela. */}
       <div
         aria-hidden="true"
-        className="to-olive-deep h-[clamp(5rem,14dvh,10rem)] bg-linear-to-b from-transparent"
+        className="pointer-events-none relative -z-10 -mt-[clamp(14rem,40dvh,24rem)] h-[clamp(19rem,54dvh,34rem)]"
+        style={{
+          backgroundImage:
+            'radial-gradient(ellipse 125% 100% at 72% 100%, var(--color-olive-deep) 46%, transparent 100%), linear-gradient(to bottom, transparent 45%, var(--color-olive-deep) 100%)'
+        }}
       />
 
       <div className="bg-olive-deep text-cream">
