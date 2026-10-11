@@ -412,9 +412,10 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - **As avaliações são as do Google, escolhidas pela cliente, com o consentimento de cada
   pessoa** (nome, texto e, se houver, foto). Não copiar o conteúdo da página do Google por
   conta própria, nem apontar o site para a foto hospedada lá.
-- **Enquanto as avaliações forem provisórias, a landing não vai para a `main`.** Hoje os três
-  cartões repetem a da Leidejane, com um texto marcador entre colchetes; há um `it.todo` no
-  teste e um item no backlog lembrando disso.
+- **As avaliações no ar são provisórias.** Os três cartões repetem a da Leidejane, com um
+  texto marcador entre colchetes. Em 2026-10-11 a landing foi para a `main` assim, por decisão
+  dela, para a cliente aprovar pelo endereço de produção (o preview da Vercel pede login). A
+  troca pelas reais continua pendente: há um `it.todo` no teste e um item no backlog.
 
 ### Footer e contato
 

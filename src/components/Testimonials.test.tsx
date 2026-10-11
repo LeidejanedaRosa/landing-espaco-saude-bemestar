@@ -84,7 +84,7 @@ describe('Testimonials', () => {
     expect([...url.searchParams.keys()]).toEqual(['hl']);
   });
 
-  // As avaliações atuais repetem a da Leidejane, com um texto marcador, só para aprovar o
-  // layout. A landing não vai para a `main` com elas (ver docs/backlog.md).
+  // As avaliações atuais repetem a da Leidejane, com um texto marcador. A landing foi para a
+  // `main` com elas, para a cliente aprovar; a troca continua pendente (ver docs/backlog.md).
   it.todo('trocar as avaliações provisórias pelas reais, com o consentimento de cada pessoa');
 });

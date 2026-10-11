@@ -56,30 +56,49 @@
 - [x] Atendimento médico (foto provisória; descrições das especialidades aguardam revisão)
 - [x] Metodologia
 - [x] Para quem é indicado (só os nomes; complementos aguardam aprovação)
-- [x] Depoimentos: seção pronta, com avaliações provisórias (ver o bloqueio em "SEO e
-      publicação")
+- [x] Depoimentos: seção pronta, com avaliações provisórias (a troca pelas reais está em
+      "SEO e publicação")
 - [x] Contato (sem formulário: tudo leva ao WhatsApp; chamada final aguarda revisão)
 - [x] Footer (frase do rodapé aguarda revisão)
 
+## Depois da reunião com a Luiza
+
+Itens que dependem da conversa com a cliente; ficam parados até lá.
+
+- [ ] Texto da avaliação da Leidejane no Google, para trocar o marcador entre colchetes dos
+      cartões de Depoimentos (`testimonialsList.ts`)
+- [ ] Avaliações reais escolhidas pela Luiza, com o consentimento de cada pessoa (nome, texto
+      e foto). Até lá, a seção está no ar com as provisórias (ver "SEO e publicação")
+- [ ] Cartão de depoimento aberto tem teto de altura (`max-h-[40em]`): uma avaliação mais
+      longa que isso teria o final cortado. Rever com os textos reais em mãos, porque a
+      correção troca a técnica da animação de abertura (apontamento do CodeRabbit no PR #37)
+- [ ] Crédito no footer, pequeno: "Criado por Leidejane da Rosa", com link para o portfólio ou
+      para o LinkedIn (decidir qual). Abre em nova aba; conferir o contraste sobre o
+      `olive-deep` e combinar com a cliente antes de publicar
+
 ## SEO e publicação
 
-- [ ] **Bloqueia a ida para a `main`:** trocar as avaliações provisórias da seção Depoimentos
-      pelas reais, com o consentimento de cada pessoa (`testimonialsList.ts`; há um `it.todo`
-      no teste da seção)
+- [ ] Trocar as avaliações provisórias da seção Depoimentos pelas reais, com o consentimento
+      de cada pessoa (`testimonialsList.ts`; há um `it.todo` no teste da seção). **Em
+      2026-10-11 a Leidejane decidiu publicar na `main` com as provisórias** (a foto dela e um
+      texto marcador), para a Luiza aprovar a landing pelo endereço de produção: o preview da
+      Vercel pede login. Deixou de bloquear a ida para a `main`; continua pendente
 - [ ] Canonical, Open Graph e imagem de compartilhamento
 - [ ] Dados estruturados (schema.org `LocalBusiness`/`MedicalBusiness`)
 - [ ] `robots.txt`, `sitemap.xml` e favicon
-- [ ] Variáveis de ambiente configuradas na Vercel (Production e Preview) — sem elas o build
-      da Vercel falha
-- [ ] Na entrega: merge na `main`, voltar a branch padrão do GitHub para a `main` e rodar de
-      novo o `setup-github.mjs` (decisão 0007)
+- [x] Variáveis de ambiente configuradas na Vercel (Production e Preview) — sem elas o build
+      da Vercel falha. Conferido pela Leidejane em 2026-10-11
+- [ ] Primeira ida para a `main` (2026-10-11): é para a cliente aprovar pelo endereço de
+      produção, e não a entrega. A `feat/landing` continua sendo a branch de trabalho e a
+      branch padrão do GitHub
+- [ ] Na entrega, depois da aprovação da cliente: último merge na `main`, voltar a branch
+      padrão do GitHub para a `main` e rodar de novo o `setup-github.mjs` (decisão 0007)
 - [ ] Religar a análise: conferir os alertas do Dependabot e do CodeQL depois do merge final
-- [ ] Decidir o que fazer com o GitHub Pages: ele serve a raiz da `main` sem build e vai
-      quebrar quando a versão React chegar lá (desligar ou trocar para o build)
+- [x] GitHub Pages desligado em 2026-10-11: ele servia a raiz da `main` sem build e mostraria
+      uma página em branco com a versão React. O site oficial é o da Vercel
 - [ ] Auditoria manual de a11y (teclado e leitor de tela) antes de publicar
-- [ ] Esvaziar a lista `PENDING_SECTIONS` de `e2e/navigation.spec.ts`: cada seção construída
-      sai da lista, e a landing só vai para a `main` com ela vazia (hoje o menu e o botão
-      "Conhecer o studio" apontam para seções que ainda não existem)
+- [x] Esvaziar a lista `PENDING_SECTIONS` de `e2e/navigation.spec.ts`: todo link do menu tem
+      destino
 
 ## Pendências técnicas
 
