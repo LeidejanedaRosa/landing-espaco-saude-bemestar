@@ -60,7 +60,7 @@ Ficam para depois da primeira entrega para aprovação da cliente:
   Emergent (`design/originais/dra-veronika-retrato.png`, 279×416 px). É provisória: resolução
   baixa, e falta confirmar com a cliente que a foto pode ser usada. Trocar por uma em retrato,
   com pelo menos 500 px de largura, do Instagram ou enviada por ela.
-- **Foto da Luiza:** a seção "Sobre a Luiza" usa um recorte de `src/assets/images/Luiza.png`
+- **Foto da Luiza:** a seção "Sobre a Luiza" usa um recorte de `design/originais/luiza-foto-original.png`
   (372×496 px). É provisória: a resolução é baixa para telas de alta densidade. Trocar por uma
   foto em retrato, com pelo menos 800 px de largura, do Instagram dela ou enviada por ela.
 - **Frase de destaque da seção "Sobre a Luiza":** "Atendimento individualizado, com foco na

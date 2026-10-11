@@ -7,7 +7,7 @@ formatos na [decisão 0004](../decisoes/0004-formatos-de-imagem.md).
 ## Como gerar
 
 1. Anexe a imagem de referência ao gerador, se ele aceitar imagem como referência de estilo:
-   `src/assets/images/movimento-cura-centralizado.png`.
+   `docs/identidade/referencia-parede-recepcao.png`.
 2. Cole o **prompt base** e, logo depois, a **linha da pose** do desenho que quer gerar.
 3. Gere todos na mesma conversa ou sessão, um por vez. Isso ajuda o traço a sair parecido
    entre eles.
