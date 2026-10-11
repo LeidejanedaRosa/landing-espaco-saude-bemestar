@@ -1,0 +1,183 @@
+@import 'tailwindcss';
+
+/* Só o subconjunto latin (cobre o português) e só os pesos usados: cada arquivo a mais é
+   download a mais para o visitante. */
+@import '@fontsource/poppins/latin-400.css';
+@import '@fontsource/poppins/latin-500.css';
+@import '@fontsource/poppins/latin-600.css';
+@import '@fontsource/playfair-display/latin-500.css';
+@import '@fontsource/playfair-display/latin-600.css';
+@import '@fontsource/great-vibes/latin-400.css';
+
+@theme {
+  /* Remove a paleta padrão do Tailwind: só existem as cores da marca, então classe como
+     `text-blue-500` nem compila. Regras de uso e contraste de cada token: CLAUDE.md. */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-cream: #f9ede6;
+  --color-blush: #f2d5cd;
+  --color-rose: #cb847c;
+  --color-rose-deep: #9a4f4a;
+  /* O `rose-deep` 8% mais escuro: para texto pequeno em rosa sobre o fundo `blush`, onde o
+     `rose-deep` fica abaixo de 4,5:1. */
+  --color-rose-ink: #8e4944;
+  /* Rosa mais claro e vivo, só para texto grande (palavra em destaque dos títulos): 3,2:1
+     sobre `blush`, acima dos 3:1 exigidos para texto grande e abaixo dos 4,5:1 do pequeno. */
+  --color-rose-vivid: #be5a5f;
+  /* Rosa claro para texto grande sobre o bloco `olive-deep` (3,4:1). Os outros rosas somem
+     sobre o verde-escuro. */
+  --color-rose-soft: #e6a9a2;
+  --color-teal: #688f90;
+  --color-teal-deep: #3f6b6c;
+  --color-olive: #737b5b;
+  --color-olive-deep: #565e42;
+  --color-gold: #dbb67b;
+  --color-ink: #3f3532;
+
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Playfair Display', ui-serif, Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+
+  /* 80rem = 1280px no tamanho de fonte padrão; em rem acompanha a preferência do visitante.
+     Em telas de 1440px para cima sobram margens laterais, onde ficam as folhagens. */
+  --container-page: 80rem;
+  /* Respiro lateral fluido: 1rem no celular, cresce com a tela, para em 4rem. */
+  --spacing-gutter: clamp(1rem, 5vw, 4rem);
+  /* Altura do header fixo. As seções de tela cheia descontam este valor. */
+  --spacing-header: 5rem;
+  /* Altura das seções de tela cheia (hero, abas, carrossel): a tela menos o header, com teto.
+     Em monitor alto, sem o teto, o conteúdo ficava no meio de um vazio entre as seções. */
+  --spacing-fullscreen: min(calc(100dvh - var(--spacing-header)), 44rem);
+  /* Respiro vertical padrão de toda seção. Encolhe em telas baixas, para o conteúdo caber. */
+  --spacing-section: clamp(1rem, 4dvh, 3.5rem);
+
+  /* "Riscado a lápis": o desenho e a frase do hero surgem aos poucos, como se estivessem
+     sendo traçados. O recorte final é negativo para não cortar as pontas das letras cursivas,
+     que passam da caixa do texto. Só roda com `motion-safe:`. */
+  --animate-write: reveal-right 0.9s ease-out both;
+  --animate-draw-right: reveal-right 2.4s cubic-bezier(0.4, 0, 0.2, 1) both;
+  --animate-draw-down: reveal-down 2.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+  /* Troca de painel (abas): o conteúdo sobe de leve, depressa. A ilustração entra junto, já
+     inteira: revelada aos poucos, ela parecia uma imagem demorando para carregar. */
+  /* `backwards`, e não `both`: terminada a animação, o cartão não guarda `opacity` nem
+     `translate`, e volta a ser um elemento comum, sem contexto de empilhamento próprio. */
+  --animate-panel-in: panel-in 0.3s ease-out backwards;
+  /* As formas atrás da ilustração crescem uma vez, ao abrir a aba. Nada fica em movimento
+     contínuo: animação sem fim distrai e exigiria um botão de pausa (WCAG 2.2.2). */
+  --animate-blob-in: blob-in 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+
+  @keyframes reveal-right {
+    from {
+      clip-path: inset(-0.5em 100% -0.5em -0.5em);
+    }
+    to {
+      clip-path: inset(-0.5em -0.5em -0.5em -0.5em);
+    }
+  }
+
+  @keyframes panel-in {
+    from {
+      opacity: 0;
+      translate: 0 0.75rem;
+    }
+  }
+
+  @keyframes blob-in {
+    from {
+      opacity: 0;
+      scale: 0.6;
+      rotate: -12deg;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+      rotate: 0deg;
+    }
+  }
+
+  @keyframes reveal-down {
+    from {
+      clip-path: inset(-0.5em -0.5em 100% -0.5em);
+    }
+    to {
+      clip-path: inset(-0.5em -0.5em -0.5em -0.5em);
+    }
+  }
+}
+
+/* Carrossel: a rolagem lateral existe, a barra não aparece (há setas e marcadores). */
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* O conteúdo surge de leve quando a seção entra na tela. É CSS puro, ligado à rolagem
+   (`animation-timeline: view()`): sem JavaScript, e onde o navegador não tem o recurso o
+   conteúdo simplesmente já está lá. `backwards`, e não `both`: passada a entrada, nada fica
+   aplicado, e a seção volta a ser um elemento comum. */
+@utility reveal-on-scroll {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: reveal-up linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 25%;
+    }
+  }
+}
+
+/* Elemento pequeno que merece atenção (botões de rede do rodapé): cresce ao entrar na tela.
+   Ligado à rolagem, como o `reveal-on-scroll`: não fica se mexendo, e some para quem pediu
+   redução de movimento. */
+@utility pop-on-scroll {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: pop-in linear backwards;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+
+  70% {
+    scale: 1.15;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    translate: 0 2rem;
+  }
+}
+
+@layer base {
+  html {
+    /* O header é fixo no topo: sem esta folga ele cobriria o início da seção de destino. */
+    scroll-padding-top: calc(var(--spacing-header) + 0.5rem);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+}

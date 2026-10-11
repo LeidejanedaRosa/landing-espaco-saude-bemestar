@@ -1,0 +1,7 @@
+npx lint-staged
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "gitleaks não encontrado. Instale: https://github.com/gitleaks/gitleaks#installing"
+  exit 1
+fi
+gitleaks git --pre-commit --staged --redact --no-banner

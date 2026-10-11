@@ -1,39 +1,30 @@
 import js from '@eslint/js';
-import typescript from '@typescript-eslint/eslint-plugin';
-import typescriptParser from '@typescript-eslint/parser';
+import prettier from 'eslint-config-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-export default [
+export default tseslint.config(
   {
-    files: ['**/*.{js,ts}'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      parser: typescriptParser,
-      globals: {
-        ...globals.browser,
-        ...globals.es2021
-      }
-    },
-    plugins: {
-      '@typescript-eslint': typescript
-    },
-    rules: {
-      ...js.configs.recommended.rules,
-      '@typescript-eslint/no-unused-vars': ['warn'],
-      semi: ['error', 'always'],
-      quotes: ['error', 'single'],
-      indent: ['error', 2],
-      'no-trailing-spaces': 'error',
-      'no-console': 'off' // Permitir console.log para desenvolvimento
-    }
+    ignores: ['dist', 'dist-ssr', 'coverage', 'playwright-report', 'test-results', '.lighthouseci']
+  },
+  js.configs.recommended,
+  tseslint.configs.recommended,
+  {
+    files: ['src/**/*.{ts,tsx}'],
+    extends: [
+      jsxA11y.flatConfigs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite
+    ],
+    languageOptions: { globals: globals.browser },
+    rules: { 'no-console': 'error' }
   },
   {
-    files: ['**/*.ts'],
-    rules: {
-      // Regras específicas para TypeScript
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/no-explicit-any': 'warn'
-    }
-  }
-];
+    files: ['scripts/**', '*.config.{ts,js}'],
+    languageOptions: { globals: globals.node }
+  },
+  prettier
+);
