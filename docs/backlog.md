@@ -30,7 +30,11 @@
       Médico), por [docs/identidade/prompts-ilustracoes-servicos.md](identidade/prompts-ilustracoes-servicos.md)
 - [ ] Vetorizar os demais desenhos em traço para SVG (prontos em `src/assets/tracos`: guerreira,
       alongamento e criança)
-- [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
+- [x] Limpar `src/assets/images`: a pasta saiu. Nenhum código usava as 30 imagens. Duas foram
+      guardadas: a foto inteira da Luiza (`design/originais/luiza-foto-original.png`) e a
+      referência da parede da recepção (`docs/identidade/referencia-parede-recepcao.png`). A
+      cópia do logo (`logo-espaco.png`) foi apagada; a documentação passou a apontar para o
+      logo que o site já usava, `design/originais/logo.png`
 - [x] Rótulo das seções (`SectionHeading`) sobre fundo `blush`: passou a usar `rose-ink`
 - [ ] Texto do navegador em 200% numa tela de 320px (WCAG 1.4.4 e 1.4.10): o título de "Sobre a
       Luiza" já se ajusta, mas o header passa 35px da tela e outras seções têm conteúdo que

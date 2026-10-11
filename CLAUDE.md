@@ -558,7 +558,7 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 ## Identidade visual
 
 - A paleta é a da cliente: Instagram [@lufisio.pilates](https://www.instagram.com/lufisio.pilates/),
-  logo (`src/assets/images/logo-espaco.png`) e os prints de referência.
+  logo (`design/originais/logo.png`) e os prints de referência.
 - **Paleta escolhida: opção C** de [docs/identidade/paleta-opcoes.png](docs/identidade/paleta-opcoes.png)
   — base rosa e oliva do post da Dra. Veronika, com o verde-água do logo como apoio. Não usar a
   paleta da versão da Emergent.
@@ -692,7 +692,7 @@ a lado, sobre uma linha de chão contínua, da faixa que a landing antiga usava)
 primeiras compõem o papel de parede.
 
 Referência escolhida: o traço da parede da recepção do studio, "Acredite! O movimento cura"
-(`src/assets/images/movimento-cura-centralizado.png`). Características a manter em todos os
+(`docs/identidade/referencia-parede-recepcao.png`). Características a manter em todos os
 desenhos novos: uma única linha contínua e fina, cor única, sem preenchimento nem
 sombra; mulher sem rosto, cabelo em coque, top e legging; linha solta e simples, sem detalhe anatômico; pequenos laços onde a linha se cruza;
 pose de movimento de pilates ou alongamento; fundo transparente; sem texto.
