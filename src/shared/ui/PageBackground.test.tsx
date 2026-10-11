@@ -26,4 +26,18 @@ describe('PageBackground', () => {
     expect(wallpaper).toHaveClass('pointer-events-none');
     expect(wallpaper).toBeEmptyDOMElement();
   });
+
+  it('o degradê é só enfeite e fica em uma camada própria, que não captura cliques', () => {
+    const { container } = render(
+      <PageBackground>
+        <p>conteúdo</p>
+      </PageBackground>
+    );
+
+    const wash = container.querySelector('[data-wash]');
+
+    expect(wash).toHaveAttribute('aria-hidden', 'true');
+    expect(wash).toHaveClass('pointer-events-none');
+    expect(wash).toBeEmptyDOMElement();
+  });
 });

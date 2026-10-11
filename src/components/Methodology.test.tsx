@@ -88,4 +88,14 @@ describe('Methodology', () => {
     expect(follows(image, list)).toBe(true);
     expect(follows(list, commitment)).toBe(true);
   });
+
+  it('os ramos dos cantos são só enfeite: a única imagem com descrição é a ilustração', () => {
+    const { container } = render(<Methodology />);
+
+    const decorative = [...container.querySelectorAll('img[alt=""]')];
+
+    expect(decorative).toHaveLength(4);
+    for (const frond of decorative) expect(frond).toHaveClass('pointer-events-none', '-z-10');
+    expect(container.querySelectorAll('img:not([alt=""])')).toHaveLength(1);
+  });
 });

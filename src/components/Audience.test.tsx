@@ -35,4 +35,16 @@ describe('Audience', () => {
       expect(item.querySelector('svg')).toHaveAttribute('aria-hidden', 'true');
     }
   });
+
+  it('os ramos dos cantos são só enfeite e ficam atrás do conteúdo, sem receber cliques', () => {
+    const { container } = render(<Audience />);
+
+    const fronds = [...container.querySelectorAll('img')];
+
+    expect(fronds).toHaveLength(4);
+    for (const frond of fronds) {
+      expect(frond).toHaveAttribute('alt', '');
+      expect(frond).toHaveClass('pointer-events-none', '-z-10');
+    }
+  });
 });
