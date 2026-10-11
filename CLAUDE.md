@@ -477,11 +477,12 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 
 ## Imagens
 
-| Tipo                                | Formato servido                          |
-| ----------------------------------- | ---------------------------------------- |
-| Desenhos em traço, logo, ícones     | SVG                                      |
-| Fotos e ilustrações com muitos tons | AVIF, com WebP de reserva (`<picture>`)  |
-| PNG e JPEG                          | só como arquivo original, nunca servidos |
+| Tipo                                 | Formato servido                          |
+| ------------------------------------ | ---------------------------------------- |
+| Desenhos em traço, logo, ícones      | SVG                                      |
+| Fotos e ilustrações com muitos tons  | AVIF, com WebP de reserva (`<picture>`)  |
+| PNG e JPEG                           | só como arquivo original, nunca servidos |
+| Favicon e imagem de compartilhamento | PNG e JPEG, em `public/` (ver "SEO")     |
 
 - **No código, foto e ilustração sempre passam pelo componente `Picture`** (`src/shared/ui`),
   nunca por `<img>` solta. O original é importado com a query do `vite-imagetools`, que gera
@@ -531,6 +532,38 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
   bonecas do hero: desenho é decorativo e não tem exigência de contraste de texto).
 - Prompts e especificações dos desenhos em traço:
   [docs/identidade/prompts-desenhos.md](docs/identidade/prompts-desenhos.md).
+
+## SEO
+
+Tudo o que depende do endereço do site é gerado no build, a partir de `VITE_SITE_URL`: o
+endereço muda quando a cliente tiver domínio próprio, e nada precisa ser reescrito.
+
+```
+index.html  ── título e descrição (único lugar onde existem)
+     │
+     ▼  scripts/prerender.mjs lê os dois e chama renderSeo (src/entry-server.tsx)
+src/shared/seo/seo.ts ──┬─ tags do <head>: canonical, Open Graph, favicon e dados estruturados
+                        ├─ dist/robots.txt
+                        └─ dist/sitemap.xml
+```
+
+- **Título e descrição só existem no `index.html`.** As tags de compartilhamento repetem o que
+  está lá; não escrever o texto de novo em outro arquivo.
+- As funções de `seo.ts` são puras (recebem os dados, devolvem texto), por isso têm teste
+  unitário; quem lê as variáveis de ambiente é o `renderSeo`.
+- **Dados estruturados:** `MedicalBusiness` do schema.org, com nome, endereço, telefone (o do
+  WhatsApp), mapa e Instagram. Só entra o que está confirmado em `docs/conteudo.md`; horário
+  de funcionamento, por exemplo, fica de fora até a cliente informar.
+- O endereço do studio é um objeto só (`ADDRESS`, em `contactInfo.ts`): o rodapé, o link do
+  mapa e os dados estruturados saem dele.
+- **Arquivos em `public/`** (copiados para a raiz do site, sem passar pelo build):
+  `favicon.png`, `apple-touch-icon.png` e `og-image.jpg`. São a exceção à regra de não servir
+  PNG nem JPEG: navegadores e aplicativos de mensagem só aceitam esses formatos ali.
+  - Os ícones saem do símbolo do logo (`design/originais/logo-simbolo.png`) sobre um quadrado
+    `cream`, gerados com o `sharp`.
+  - A imagem de compartilhamento (1200 × 630) é um print da primeira tela do build. **Mudou o
+    hero, refazer o print.**
+- Seção nova não muda o sitemap: a landing é uma página só.
 
 ## Resiliência
 
