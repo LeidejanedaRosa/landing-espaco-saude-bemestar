@@ -240,3 +240,29 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   "Indicações" é o nome que a gente dá por dentro.
 - **Lista que cresce pede tamanho fluido.** Com oito itens, o menu só cabe em 1024px porque o
   espaço e a letra encolhem com a tela.
+
+## 2026-10-10 — Degradê da página
+
+- **"Degradê" tem um significado preciso para quem pede.** Manchas de cor espalhadas não são
+  degradê. Só acertei quando parti da referência dela: uma cor em cima, outra embaixo, e a
+  passagem visível no meio.
+- **Cor de marca muda de nome conforme o vizinho.** O verde-água do logo, em área grande sobre
+  creme, parece azul. As cores do fundo saíram dos posts da cliente: creme, rosa e oliva.
+- **Enfeite só aparece se tiver claridade diferente do fundo.** Dourado sobre rosa some, porque
+  os dois têm quase a mesma luminância; dourado sobre creme e sobre verde aparece. Antes de
+  escolher a cor de um detalhe, comparar a claridade, e não o matiz.
+- **Ramo decorativo precisa de âncora.** Solto no meio da seção parece jogado; grande, saindo
+  de um canto, emoldura. É o que os posts da cliente fazem.
+- **Fundo vivo cobra do texto.** Sobre o rosa cheio só o texto escuro passa; rosa, branco e
+  creme ficam abaixo de 3:1. A saída foi dar fundo próprio a quem precisava de outra cor: selo
+  no rótulo, pincelada creme atrás da palavra em destaque.
+- **Uma regra em um lugar vale mais que três cores para lembrar.** O rótulo virou o mesmo selo
+  em toda seção: passa no contraste em qualquer fundo e dispensou uma cor por fundo.
+- **Fundo em porcentagem da página não serve para o que tem de ficar atrás de um elemento.** A
+  página tem alturas muito diferentes no celular e no desktop. O verde sobe a partir do rodapé,
+  e por isso fica sempre atrás dos cartões de Depoimentos.
+- **O axe não mede texto sobre degradê.** Ele marca como "não deu para avaliar" e segue. O
+  teste novo tira um print do fundo real atrás de cada título e calcula o contraste; foi ele
+  que achou o botão dos Depoimentos com 4,25:1 no celular.
+- **Testar a ideia mais simples antes de discutir.** Borda dourada em todos os destaques
+  parecia boa no papel; vista na tela, só funcionou no trecho rosa.

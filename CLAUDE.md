@@ -106,19 +106,36 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
 
 ### Fundo da página
 
-- **Uma única cor de fundo para a página inteira**, em degradê vertical: a cor mais clara no
-  topo, a mais escura no footer. Fica no elemento raiz da página, não nas seções.
+- **Um único fundo para a página inteira, em degradê nas cores dos posts da cliente:** creme
+  no topo, rosa no meio e verde-oliva no fim. Fica no elemento raiz da página, não nas seções.
+
+  ```
+  topo   creme        hero e Studio
+         creme→rosa   o rosa entra em diagonal, pela esquerda (Serviços)
+  meio   rosa         da Luiza até os Depoimentos
+  fim    verde-oliva  sobe a partir do rodapé, por trás dos cartões de Depoimentos
+  ```
+
+- **O degradê é nítido de propósito.** A primeira tentativa foram manchas de cor espalhadas, e
+  não se parecia com degradê; a segunda usava verde-água no topo, que sobre o creme parece
+  azul. Verde-água não entra no fundo.
 - **Seções têm fundo transparente** e não definem `background-color`.
 - **Exceção: o header.** Ele fica fixo no topo e passa por cima do conteúdo, então precisa de
   fundo próprio para o texto continuar legível (`cream` quase opaco, a cor do topo do degradê).
-- No código: o degradê vive só em `PageBackground` (`src/shared/ui`), usado pela página e
-  pela tela de erro. Não repetir as classes do degradê em outro lugar.
+- No código: o creme e o rosa vivem só em `PageBackground` (`src/shared/ui`), em uma camada
+  própria (`data-wash`) atrás do papel de parede. É usado pela página e pela tela de erro. Não
+  repetir o degradê em outro lugar.
 - **Exceção: o footer.** Ele tem fundo próprio (`olive-deep`) e, logo acima, uma faixa que vai do
-  transparente ao verde. A faixa é do footer, e não do degradê da página, porque o degradê é
-  medido em porcentagem da altura e mudaria de lugar a cada seção nova; a faixa fica sempre
-  colada ao footer.
-- Como o fundo escurece ao longo da página, conferir o contraste do texto (WCAG AA, 4.5:1) em
-  cada seção, principalmente nas últimas e no footer.
+  transparente ao verde, em curva. **A faixa sobe por trás do fim da seção anterior** (margem
+  negativa e `-z-10`): o verde aparece atrás dos cartões brancos de Depoimentos e do botão. Ela
+  é do footer, e não do degradê da página, porque o degradê é medido em porcentagem da altura
+  e cairia em lugares diferentes no celular e no desktop; a faixa fica sempre colada ao footer.
+- **O que fica sobre a faixa verde usa cores de fundo escuro.** Hoje é só o botão "Ver todas as
+  avaliações no Google" (`variant="outline-light"`).
+- **Dourado só aparece sobre creme ou sobre verde.** Sobre o rosa, dourado e rosa têm quase a
+  mesma claridade e um apaga o outro; ali o detalhe é creme (ramos claros, divisor creme).
+- Como o fundo muda ao longo da página, o contraste é medido sobre a cor real do fundo, em
+  desktop, tablet e celular (`e2e/gradient.spec.ts`). O axe não mede texto sobre degradê.
 
 ### Papel de parede: bonecas em traço e folhagens
 
@@ -166,6 +183,9 @@ Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading
   mesmo token.
 - **Cabeçalho de seção: o nome da seção (rótulo pequeno, em maiúsculas) e uma frase de
   destaque (`h2`).** Só isso; sem parágrafo de apoio.
+- **O rótulo é um selo, igual em todas as seções:** letra branca sobre `rose-deep` (5,9:1),
+  como o selo do CRM e os selos dos posts da cliente. Por ter fundo próprio, é o mesmo sobre o
+  creme, o rosa e o verde.
   Fica centralizado acima do conteúdo; quando a seção é um cartão único com foto, vai dentro
   do cartão, alinhado à esquerda (`align="start"`).
 - **Todo título de seção tem um trecho em destaque**, na fonte manuscrita e em rosa vivo, como a
@@ -174,6 +194,20 @@ Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading
   (o leitor de tela lê o título normalmente) e não vai em parágrafo nem em cartão.
   Enquanto couber, o destaque fica inteiro na mesma linha (`inline-block`); só se parte se
   for mais largo que o espaço.
+- **A cor do destaque depende do fundo** (prop `tone` do `SectionHeading`):
+
+  | `tone`  | Onde                                                | Destaque                                           |
+  | ------- | --------------------------------------------------- | -------------------------------------------------- |
+  | `light` | creme e cartões claros (Studio, Serviços, médico)   | `rose-vivid`                                       |
+  | `dark`  | bloco verde e rodapé (Luiza, Contato)               | `rose-soft`                                        |
+  | `rose`  | trecho rosa (Metodologia, Para quem é, Depoimentos) | `rose-vivid` sobre uma pincelada creme com dourado |
+
+  Sobre o rosa do fundo nenhum rosa chega a 3:1 (o `rose-vivid` dá 1,8:1). A pincelada creme
+  atrás da palavra resolve: o rosa vivo passa a ser lido sobre creme (3,8:1). A moldura dourada
+  foi testada nas outras seções e não funcionou; fica só onde é necessária.
+
+- **Seção nova direto sobre o fundo da página:** conferir em que trecho do degradê ela cai e
+  escolher o `tone`; o `e2e/gradient.spec.ts` lista as seções e mede o contraste.
 - **Seções vizinhas não repetem o mesmo arranjo.** Duas grades de cartões iguais em sequência
   deixam a página monótona e a pessoa não percebe que mudou de assunto.
 - Os dados de uma seção com vários itens ficam em um arquivo próprio ao lado do componente
@@ -343,12 +377,17 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - As etapas são uma lista ordenada (`<ol>`): a ordem importa. O número grande em manuscrita é
   só enfeite (`aria-hidden`), porque a lista já informa a posição. Ficam em `methodologySteps.ts`.
 - O título ("Técnica científica com cuidado humano") é um trecho do compromisso aprovado.
+- Ramos claros em leque em dois cantos opostos, atrás do conteúdo, como em "Para quem é".
 
 ### Para quem o pilates é indicado
 
 - Seis medalhões: ícone de linha dentro de um círculo, com o nome do público embaixo. É uma
   seção curta, de respiro entre duas mais densas; não é tela cheia.
 - São seis, em 2, 3 ou 6 colunas, sempre sem linha incompleta. Ficam em `audienceList.ts`.
+- **Ramos claros grandes, em leque, saem de dois cantos opostos e emolduram a seção**, atrás
+  do conteúdo, como as folhas claras nos cantos dos posts. Ramo pequeno solto no meio não
+  compõe nada. O anel dos medalhões é dourado e o divisor sob o título é creme
+  (`OrnamentDivider` com `tone="cream"`).
 - Só os nomes aparecem (aprovados na landing antiga). Os complementos de cada público vieram da
   versão de referência e só entram com a aprovação da cliente.
 - No menu o item se chama "Para quem é" (o `id` é `para-quem`): é a pergunta de quem chega,
@@ -358,7 +397,8 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 
 - Três cartões brancos lado a lado, com a foto em moldura de polaroide saltando para fora do
   topo, levemente inclinada. Dentro: aspas decorativas, nome, estrelas e o depoimento em
-  `<blockquote>`. Embaixo, o botão "Ver todas as avaliações no Google".
+  `<blockquote>`. Embaixo, o botão "Ver todas as avaliações no Google", em `outline-light`,
+  porque fica sobre o verde que sobe do rodapé.
 - **O depoimento nunca depende só do mouse.** No desktop o cartão mostra o começo do texto e
   abre com o mouse ou com o foco (o cartão tem `tabIndex={0}`); no celular já vem aberto. O
   efeito usa `group-focus`, e não `group-focus-visible`: o toque no tablet dá foco sem ativar o
@@ -527,8 +567,8 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
   | `cream`      | `#F9EDE6` | topo do degradê da página                                                               |
   | `blush`      | `#F2D5CD` | meio do degradê, cartões                                                                |
   | `rose`       | `#CB847C` | decorativo: selos, ícones, detalhes (não usar em texto)                                 |
-  | `rose-deep`  | `#9A4F4A` | títulos de destaque, links, texto em rosa (sobre `blush`: só título grande)             |
-  | `rose-ink`   | `#8E4944` | texto pequeno em rosa sobre `blush`: o rótulo das seções (`SectionHeading`)             |
+  | `rose-deep`  | `#9A4F4A` | fundo do selo do rótulo das seções; títulos, links e texto em rosa sobre `cream`        |
+  | `rose-ink`   | `#8E4944` | texto pequeno em rosa sobre `blush`: a frase do hero em tela muito estreita             |
   | `rose-vivid` | `#BE5A5F` | só texto grande: palavra em destaque dos títulos e a frase do hero (3,2:1 em `blush`)   |
   | `rose-soft`  | `#E6A9A2` | só texto grande sobre `olive-deep`: o destaque do título no bloco da Luiza (3,4:1)      |
   | `teal`       | `#688F90` | decorativo: ícones e detalhes (não usar em texto pequeno)                               |
@@ -538,9 +578,11 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
   | `gold`       | `#DBB67B` | detalhe pontual (estrelas, ornamentos)                                                  |
   | `ink`        | `#3F3532` | texto corrido                                                                           |
 
-- **Degradê da página:** `cream` no topo → `blush`, e daí para o `olive-deep` do footer. A
-  passagem do `blush` para o verde acontece em uma faixa sem texto, no topo do próprio footer.
-  No footer o texto é claro (`cream`).
+- **Degradê da página:** `cream` no topo → rosa (o token `rose` a 80%, misturado com `cream`)
+  no meio → `olive-deep` no fim. Ver "Fundo da página". No footer o texto é claro (`cream`).
+- **Sobre o rosa cheio do degradê só o `ink` serve para texto** (5,0:1). Os rosas, o branco e
+  o `cream` ficam abaixo de 3:1; quem precisa de outra cor ali leva fundo próprio (selo,
+  pincelada, cartão).
 - **Fontes:** Playfair Display nos títulos, Poppins no texto e Great
   Vibes só em palavras de destaque. As fontes são servidas pelo próprio site (pacotes
   `@fontsource`), nunca por CDN.
@@ -566,10 +608,9 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
     texto grande (3,2:1 sobre `blush`, 3,8:1 sobre `cream`) e nunca vai em texto pequeno. Com o
     `rose-deep` os destaques ficavam escuros e a página perdia vida.
   - **Texto pequeno em rosa sobre `blush` usa `rose-ink`** (4,8:1), o `rose-deep` 8% mais escuro.
-    É a cor do rótulo de todas as seções, para ele ser igual do topo ao fim da página.
-  - **A passagem de `blush` para `olive-deep` não pode ter texto em cima.** No meio dessa faixa
-    nem `ink` nem `cream` chegam a 4,5:1. A transição fica concentrada num trecho curto e sem
-    texto logo antes do footer.
+  - **A passagem do rosa para o `olive-deep` não pode ter texto solto em cima.** No meio dessa
+    faixa nem `ink` nem `cream` chegam a 4,5:1. Ela passa por trás dos cartões brancos de
+    Depoimentos; o botão abaixo deles já fica sobre o verde cheio.
 
 ### De onde vem cada ilustração
 
@@ -602,6 +643,9 @@ Cada família de desenho remete a um lugar físico do studio e tem um papel só 
 O hero reproduz a parede da recepção do studio: "Acredite!" na primeira linha e "O movimento
 cura" na segunda, começando embaixo do "!". A frase é texto, em `font-script` e `rose-vivid`. O recuo da
 segunda linha é `2.57em`, a largura de "Acredite" nessa fonte; trocar a fonte exige medir de novo.
+
+No desktop, um arco dourado fino passa por trás da boneca, como o que emoldura a foto nos
+posts da cliente. É um círculo com máscara (só um trecho aparece), do tamanho do desenho.
 
 Há dois desenhos, e o navegador baixa só o que a tela usa (`DecorativeImage` com `alternate`):
 
