@@ -96,8 +96,9 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
   (`<section>`, `<header>`, `<footer>`), com largura total; o Container fica dentro e limita só
   o conteúdo. Em telas maiores que 1280px o fundo continua indo de borda a borda.
 - **Sem valores fixos.** Nada de `px` em largura, altura, espaçamento ou tamanho de fonte. Usar
-  `rem`, `%`, `fr`, `dvh`, `clamp()`, `min()`/`max()` e `aspect-ratio`. Exceção: detalhes de
-  1px, como bordas.
+  `rem`, `%`, `fr`, `dvh`, `clamp()`, `min()`/`max()` e `aspect-ratio`. Exceções: detalhes de
+  1px, como bordas; e o limite `@min-[320px]` da frase do hero, que é em `px` de propósito
+  (o comentário no código explica, e um teste e2e reprova a troca por `rem`).
 - Espaçamento lateral do Container é fluido (cresce com a tela), nunca um número fixo.
 - No código: `<Container>` aplica `max-w-page` (token `--container-page: 80rem`) e `px-gutter`
   (token `--spacing-gutter: clamp(1rem, 5vw, 4rem)`). Classes extras (`flex`, `grid`...) entram
@@ -208,6 +209,20 @@ Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading
 
 - **Seção nova direto sobre o fundo da página:** conferir em que trecho do degradê ela cai e
   escolher o `tone`; o `e2e/gradient.spec.ts` lista as seções e mede o contraste.
+- **O que se repete entre seções tem um lugar só:**
+
+  | O quê                                                | Onde                                 |
+  | ---------------------------------------------------- | ------------------------------------ |
+  | nome do studio                                       | `SITE_NAME`, em `src/shared/site.ts` |
+  | nome e registro das profissionais                    | `src/components/professionals.ts`    |
+  | endereço                                             | `ADDRESS`, em `contactInfo.ts`       |
+  | ramos claros nos cantos de uma seção                 | `CornerFronds` (`src/shared/ui`)     |
+  | contorno das formas orgânicas atrás de foto e figura | `ORGANIC_SHAPE` (`src/shared/ui`)    |
+  | esperar a rolagem terminar, no e2e                   | `e2e/support/scroll.ts`              |
+
+  As formas orgânicas compartilham só o contorno: posição, cor e animação mudam em cada seção,
+  e um componente único precisaria de tantas opções que seria pior que a repetição.
+
 - **Seções vizinhas não repetem o mesmo arranjo.** Duas grades de cartões iguais em sequência
   deixam a página monótona e a pessoa não percebe que mudou de assunto.
 - Os dados de uma seção com vários itens ficam em um arquivo próprio ao lado do componente
@@ -269,7 +284,8 @@ escolher, abas). É o `Carousel` (`src/shared/ui`) com o hook `useCarousel` (`sr
   alto que a tela, e embaixo dele ninguém os encontraria.
 - Nas pontas a seta usa `aria-disabled`, e não `disabled`: botão desabilitado perde o foco e
   joga quem navega pelo teclado para fora do carrossel.
-- A área que rola tem `tabIndex={0}` (é a única exceção à regra de lint, comentada no código):
+- A área que rola tem `tabIndex={0}` (exceção à regra de lint, comentada no código; a outra é
+  o cartão de depoimento):
   sem foco, o axe reprova e o teclado não desliza em navegador que não foca áreas de rolagem.
 - Todos os slides têm a altura do maior, então a página não pula ao trocar. No desktop a seção
   inteira cabe na tela (`fullScreen`).
@@ -322,8 +338,8 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - Não é carrossel nem abas: aqui a pessoa só lê, e a seção pode ser mais alta que a tela.
 - No HTML a ordem é título, foto, apresentação. No desktop a foto vai para a coluna da esquerda
   só pela posição na grade.
-- **Sobre fundo escuro as cores mudam:** `SectionHeading` com `tone="dark"` (rótulo em `blush`,
-  destaque em `rose-soft`) e `ButtonLink` com `variant="light"` (creme, com contorno de foco
+- **Sobre fundo escuro as cores mudam:** `SectionHeading` com `tone="dark"` (destaque em
+  `rose-soft`; o rótulo é o mesmo selo de toda seção) e `ButtonLink` com `variant="light"` (creme, com contorno de foco
   claro). O botão verde e os rosas escuros somem sobre o `olive-deep`.
 - As seis certificações ficam em `aboutCredentials.ts`. São seis, então a grade (1, 2 ou 3
   colunas) nunca tem linha incompleta; mudando a quantidade, rever as colunas.
@@ -421,6 +437,10 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 
 O contato e o rodapé são um bloco só, em `Footer` (`src/components`). Antes havia um cartão de
 contato e, logo abaixo, o rodapé com as mesmas informações.
+
+`Footer` monta a página do rodapé e delega cada coluna a um componente: `FooterBrand` (a
+marca), `FooterNav` (os links) e `FooterContact` (endereço, redes e os dois botões). As classes
+que as colunas repetem ficam em `footerClasses.ts`.
 
 - Fundo `olive-deep` com texto `cream`. De cima para baixo: a chamada final (a seção
   `#contato`); três colunas (a marca, a navegação e o endereço com as redes e os dois botões);
