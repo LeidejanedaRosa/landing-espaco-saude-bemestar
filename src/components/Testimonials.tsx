@@ -118,7 +118,12 @@ function TestimonialCard({
   );
 }
 
-export function Testimonials() {
+interface TestimonialsProps {
+  /** Por padrão, as avaliações do studio. Quem monta a página não precisa passar. */
+  testimonials?: Testimonial[];
+}
+
+export function Testimonials({ testimonials = TESTIMONIALS }: Readonly<TestimonialsProps>) {
   return (
     <Section id="depoimentos" labelledBy={HEADING_ID}>
       <div className="flex flex-col items-center gap-3">
@@ -134,7 +139,7 @@ export function Testimonials() {
 
       <div className="relative">
         <ul className="grid items-start gap-x-8 gap-y-4 md:grid-cols-3">
-          {TESTIMONIALS.map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <TestimonialCard key={testimonial.name} testimonial={testimonial} index={index} />
           ))}
         </ul>
