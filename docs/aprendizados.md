@@ -266,3 +266,19 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   que achou o botão dos Depoimentos com 4,25:1 no celular.
 - **Testar a ideia mais simples antes de discutir.** Borda dourada em todos os destaques
   parecia boa no papel; vista na tela, só funcionou no trecho rosa.
+
+## 2026-10-11 — Auditoria: SEO
+
+- **Variável obrigatória sem uso é dívida escondida.** `VITE_SITE_URL` barrava o build havia
+  semanas e nenhum código a lia. Ou a variável é usada, ou não é obrigatória.
+- **Texto que aparece em dois lugares precisa de um dono.** Título e descrição ficam no
+  `index.html`; o build copia para as tags de compartilhamento.
+- **Função pura é fácil de testar.** Montar as tags a partir de dados recebidos (e não lendo o
+  ambiente lá dentro) deixou o teste sem nenhum truque.
+- **Texto dentro de `<script>` também precisa de escape.** Um `</script>` em uma descrição
+  fecharia o bloco de dados estruturados; o `<` vira `\u003c`.
+- **Regra boa tem exceção documentada.** "Nenhum PNG servido" continua valendo para o
+  conteúdo; favicon e imagem de compartilhamento só funcionam em PNG e JPEG. O teste que
+  proíbe PNG passou a liberar exatamente os dois ícones, e nada além.
+- **Apagar arquivo "sem uso" pede um segundo olhar.** O símbolo do logo estava entre as
+  imagens removidas na limpeza e era a origem ideal do favicon; voltou do histórico do git.

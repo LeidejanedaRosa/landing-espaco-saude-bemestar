@@ -87,9 +87,13 @@ Itens que dependem da conversa com a cliente; ficam parados até lá.
       2026-10-11 a Leidejane decidiu publicar na `main` com as provisórias** (a foto dela e um
       texto marcador), para a Luiza aprovar a landing pelo endereço de produção: o preview da
       Vercel pede login. Deixou de bloquear a ida para a `main`; continua pendente
-- [ ] Canonical, Open Graph e imagem de compartilhamento
-- [ ] Dados estruturados (schema.org `LocalBusiness`/`MedicalBusiness`)
-- [ ] `robots.txt`, `sitemap.xml` e favicon
+- [x] Canonical, Open Graph e imagem de compartilhamento
+- [x] Dados estruturados (schema.org `MedicalBusiness`). Falta o horário de funcionamento,
+      quando a cliente informar
+- [x] `robots.txt`, `sitemap.xml` e favicon
+- [ ] Quando a cliente tiver domínio próprio: trocar `VITE_SITE_URL` na Vercel e fazer um novo
+      deploy; canonical, sitemap e imagem de compartilhamento acompanham sozinhos
+- [ ] Cadastrar o site no Google Search Console e enviar o sitemap
 - [x] Variáveis de ambiente configuradas na Vercel (Production e Preview) — sem elas o build
       da Vercel falha. Conferido pela Leidejane em 2026-10-11
 - [ ] Primeira ida para a `main` (2026-10-11): é para a cliente aprovar pelo endereço de
