@@ -565,6 +565,33 @@ src/shared/seo/seo.ts ──┬─ tags do <head>: canonical, Open Graph, favico
     hero, refazer o print.**
 - Seção nova não muda o sitemap: a landing é uma página só.
 
+## Segurança
+
+Os cabeçalhos de segurança ficam em `vercel.json`: é a Vercel que os envia, em toda resposta.
+
+| Cabeçalho                    | O que faz                                                         |
+| ---------------------------- | ----------------------------------------------------------------- |
+| `Content-Security-Policy`    | diz de onde a página pode carregar script, estilo, imagem e fonte |
+| `X-Frame-Options`            | impede o site de ser embutido em outra página (clickjacking)      |
+| `X-Content-Type-Options`     | o navegador não adivinha o tipo do arquivo                        |
+| `Referrer-Policy`            | ao sair do site, só o domínio vai como origem                     |
+| `Cross-Origin-Opener-Policy` | isola a aba das páginas que ela abre                              |
+| `Permissions-Policy`         | desliga câmera, microfone, localização e pagamento                |
+
+- **A política de conteúdo só aceita o próprio site** (`'self'`): nenhum domínio de fora,
+  nenhum script inline, nenhum `eval`. Recurso de terceiros (mapa embutido, vídeo, script de
+  métricas) vai ser bloqueado até o domínio dele entrar na política. É de propósito.
+- **Duas folgas, e por quê:** `img-src` aceita `data:` porque o Vite embute os SVGs pequenos
+  (folhagens) como `data:`; `style-src` aceita `'unsafe-inline'` porque o degradê e o papel de
+  parede usam `style` no próprio elemento. Para tirar a segunda, esses três estilos teriam de
+  virar classes.
+- **O servidor local não envia esses cabeçalhos.** O `e2e/security-headers.spec.ts` lê o
+  `vercel.json` e os aplica à página do build; mexeu na política, é ele que diz se algo foi
+  bloqueado. No teste a diretiva `upgrade-insecure-requests` sai, porque `localhost` é http.
+- No preview da Vercel, a barra de comentários da própria Vercel é bloqueada pela política e
+  aparece como erro no console. Em produção ela não existe.
+- O HSTS (`Strict-Transport-Security`) já é enviado pela Vercel; não se repete aqui.
+
 ## Resiliência
 
 - **`ErrorBoundary` na raiz do app.** Se um componente quebrar, a pessoa vê uma mensagem

@@ -110,6 +110,13 @@ Itens que dependem da conversa com a cliente; ficam parados até lá.
 
 ## Pendências técnicas
 
+- [x] Cabeçalhos de segurança em `vercel.json` (auditoria de 2026-10-11)
+- [ ] Depois de publicar: conferir os cabeçalhos no endereço de produção
+      (`curl -sI <endereço>`) e a nota em um verificador como o securityheaders.com
+- [ ] Tirar o `'unsafe-inline'` do `style-src`: passar o degradê e o papel de parede de
+      `style` no elemento para classes
+- [ ] Cache longo para `/assets/*` (os nomes já têm hash): hoje a Vercel revalida a cada visita
+
 - [ ] Ativar o SonarCloud: criar o projeto, cadastrar o segredo `SONAR_TOKEN` no GitHub,
       conferir `sonar.organization` e `sonar.projectKey` em `sonar-project.properties` e ver a
       primeira análise passar no CI

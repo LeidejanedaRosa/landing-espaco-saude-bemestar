@@ -282,3 +282,19 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   proíbe PNG passou a liberar exatamente os dois ícones, e nada além.
 - **Apagar arquivo "sem uso" pede um segundo olhar.** O símbolo do logo estava entre as
   imagens removidas na limpeza e era a origem ideal do favicon; voltou do histórico do git.
+
+## 2026-10-12 — Auditoria: cabeçalhos de segurança
+
+- **Política de conteúdo se escreve a partir do que a página carrega de verdade.** Antes de
+  escrever, olhei o build: script e fonte só do próprio site, SVG embutido como `data:`,
+  três estilos no elemento. A política lista isso e nada além.
+- **Configuração que só vale na hospedagem precisa de teste local.** O `vercel.json` não é
+  lido pelo servidor de preview; sem um teste que aplique os cabeçalhos, o primeiro aviso de
+  erro seria o site quebrado em produção.
+- **Teste novo também se testa.** Apertei a política de propósito de três jeitos (imagem,
+  estilo e fonte) e o teste reprovou nos três. Na primeira versão ele reprovava por um motivo
+  que não era a política: imagem de carregamento lento que o navegador nem tinha pedido.
+- **O ambiente de teste não é a produção.** `upgrade-insecure-requests` é inofensiva em https
+  e derruba tudo em `http://localhost`.
+- **Folga em regra de segurança tem de vir com o motivo.** `'unsafe-inline'` em estilo é uma
+  concessão; fica anotado o que a justifica e o que fazer para tirá-la.
