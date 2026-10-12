@@ -26,14 +26,27 @@ describe('Testimonials', () => {
     }
   });
 
-  it('desenha uma estrela por ponto da nota, só de enfeite', () => {
-    render(<Testimonials />);
+  it('desenha uma estrela por ponto da nota, e diz a nota a quem não vê as estrelas', () => {
+    // Notas diferentes entre si e diferentes de 5: com todas iguais, um código que desenhasse
+    // sempre cinco estrelas passaria no teste.
+    const ratings = [3, 5, 1];
+    const reviews = ratings.map((rating, index) => ({
+      ...TESTIMONIALS[0],
+      name: `Pessoa ${index + 1}`,
+      rating
+    }));
 
-    const first = within(screen.getAllByRole('list')[0]).getAllByRole('listitem')[0];
-    const stars = first.querySelectorAll('p svg');
+    render(<Testimonials testimonials={reviews} />);
 
-    expect(stars).toHaveLength(TESTIMONIALS[0].rating);
-    for (const star of stars) expect(star).toHaveAttribute('aria-hidden', 'true');
+    const cards = within(screen.getAllByRole('list')[0]).getAllByRole('listitem');
+    expect(cards).toHaveLength(ratings.length);
+    for (const [index, card] of cards.entries()) {
+      const stars = card.querySelectorAll('p svg');
+
+      expect(stars).toHaveLength(ratings[index]);
+      expect(within(card).getByText(`Nota ${ratings[index]} de 5`)).toBeInTheDocument();
+      for (const star of stars) expect(star).toHaveAttribute('aria-hidden', 'true');
+    }
   });
 
   it('o cartão recebe foco, para abrir pelo teclado e não só com o mouse', () => {
