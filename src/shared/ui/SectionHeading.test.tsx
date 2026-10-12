@@ -11,16 +11,16 @@ describe('SectionHeading', () => {
     expect(heading).toHaveAttribute('id', 'servicos-titulo');
   });
 
-  it('mostra o rótulo acima do título e a descrição abaixo', () => {
-    render(
-      <SectionHeading id="t" eyebrow="Nosso studio" title="Aparelhos" description="Conheça." />
-    );
+  it('mostra o rótulo antes do título', () => {
+    render(<SectionHeading id="t" eyebrow="Nosso studio" title="Aparelhos" />);
 
-    expect(screen.getByText('Nosso studio')).toBeInTheDocument();
-    expect(screen.getByText('Conheça.')).toBeInTheDocument();
+    const label = screen.getByText('Nosso studio');
+    const heading = screen.getByRole('heading', { level: 2, name: 'Aparelhos' });
+
+    expect(label.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  it('rótulo e descrição são opcionais e não deixam parágrafo vazio', () => {
+  it('o rótulo é opcional e não deixa parágrafo vazio', () => {
     const { container } = render(<SectionHeading id="t" title="Título" />);
 
     expect(container.querySelectorAll('p')).toHaveLength(0);

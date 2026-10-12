@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
+import { SITE_NAME } from '../site';
 import {
   buildHeadTags,
   buildRobotsTxt,
   buildSitemapXml,
   buildStructuredData,
-  SITE_NAME,
   type SeoInput
 } from './seo';
 

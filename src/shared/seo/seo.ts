@@ -1,4 +1,5 @@
-export const SITE_NAME = 'Luiza — Espaço Saúde e Bem-estar';
+import { SITE_NAME } from '../site';
+
 // O token `cream` do tema. A meta tag não lê variável de CSS, por isso o valor se repete aqui.
 const THEME_COLOR = '#f9ede6';
 const SHARE_IMAGE = { path: '/og-image.jpg', width: 1200, height: 630 };

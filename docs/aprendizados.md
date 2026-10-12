@@ -298,3 +298,23 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   e derruba tudo em `http://localhost`.
 - **Folga em regra de segurança tem de vir com o motivo.** `'unsafe-inline'` em estilo é uma
   concessão; fica anotado o que a justifica e o que fazer para tirá-la.
+
+## 2026-10-12 — Auditoria: duplicação e teste falho
+
+- **Cobertura mede o que roda, não o que é usado.** A prop `description` do `SectionHeading`
+  tinha 100% de cobertura e nenhum uso: só o teste a exercitava. Código morto com teste
+  continua sendo código morto.
+- **Teste com dados todos iguais não distingue certo de errado.** O das estrelas passava com o
+  código quebrado porque toda nota era 5. O jeito de descobrir foi quebrar o código de
+  propósito e ver se o teste reclamava.
+- **Componente que recebe os dados é mais fácil de testar** do que o que os busca sozinho:
+  `Testimonials` passou a aceitar a lista por prop, e o teste controla as notas sem truque.
+- **Nem toda repetição pede um componente.** Os ramos dos cantos eram o mesmo bloco em duas
+  seções e viraram `CornerFronds`. As formas orgânicas só repetiam o contorno; ali bastou dar
+  nome às três formas.
+- **Regra geral não vence comentário específico.** A auditoria apontou um `320px` como
+  violação da regra de não usar `px`. Troquei por `rem` e dois testes reprovaram: o limite é
+  em `px` de propósito, e o comentário ao lado já dizia isso. Antes de "corrigir" uma exceção,
+  ler por que ela existe.
+- **Dividir um arquivo é dar nome às partes.** O `Footer` fazia seis coisas em 186 linhas; com
+  três componentes, cada um diz no nome o que é, e os testes do rodapé não mudaram.

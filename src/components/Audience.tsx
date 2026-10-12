@@ -1,5 +1,4 @@
-import eucaliptoClaro from '../assets/folhagens/eucalipto-claro.svg';
-import { DecorativeImage } from '../shared/ui/DecorativeImage';
+import { CornerFronds } from '../shared/ui/CornerFronds';
 import { LineIcon } from '../shared/ui/LineIcon';
 import { OrnamentDivider } from '../shared/ui/OrnamentDivider';
 import { Section } from '../shared/ui/Section';
@@ -18,17 +17,7 @@ export function Audience() {
   return (
     <Section id="para-quem" labelledBy={HEADING_ID}>
       <div className="relative isolate flex flex-col gap-[clamp(0.75rem,2.5dvh,2rem)]">
-        {/* Ramos claros saem de dois cantos opostos, em leque, e emolduram a seção, como as
-          folhas claras nos cantos dos posts da cliente. Ficam atrás do conteúdo. */}
-        {FRONDS.map((className) => (
-          <DecorativeImage
-            key={className}
-            src={eucaliptoClaro}
-            width={160}
-            height={320}
-            className={`pointer-events-none absolute -z-10 w-auto ${className}`}
-          />
-        ))}
+        <CornerFronds positions={FRONDS} />
         <div className="flex flex-col items-center gap-3">
           <SectionHeading
             id={HEADING_ID}
