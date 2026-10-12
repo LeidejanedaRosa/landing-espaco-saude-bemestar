@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
+import { waitForScrollToSettle } from './support/scroll';
 
 const SERVICE_NAMES = [
   'Fisioterapia',
@@ -38,19 +39,7 @@ async function goToServices(page: Page) {
   await expect(
     page.getByRole('heading', { level: 2, name: /o que luiza espaço/i })
   ).toBeInViewport();
-  // espera a rolagem suave da página terminar: um teste que passa o mouse com a página ainda
-  // andando acerta o lugar onde o elemento estava, e não onde ele está
-  await expect
-    .poll(
-      () =>
-        page.locator('#servicos').evaluate(async (section) => {
-          const before = section.getBoundingClientRect().top;
-          await new Promise((resolve) => setTimeout(resolve, 100));
-          return section.getBoundingClientRect().top === before;
-        }),
-      { timeout: 15_000 }
-    )
-    .toBe(true);
+  await waitForScrollToSettle(page, '#servicos');
 }
 
 test.describe('seção Serviços', () => {
