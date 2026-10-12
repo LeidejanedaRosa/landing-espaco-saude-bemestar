@@ -108,6 +108,23 @@ Itens que dependem da conversa com a cliente; ficam parados até lá.
 - [x] Esvaziar a lista `PENDING_SECTIONS` de `e2e/navigation.spec.ts`: todo link do menu tem
       destino
 
+## Auditoria de outubro de 2026
+
+Relatório completo em [auditoria-2026-10.md](auditoria-2026-10.md). O que ficou para depois:
+
+- [ ] Cartão de depoimento: trocar o `tabIndex` no `<li>` por um botão "ver depoimento
+      completo" (padrão de sanfona), com nome para o leitor de tela. Fazer junto com as
+      avaliações reais e com o teto de altura do cartão
+- [ ] Testes presos a nomes de classe (55 `toHaveClass`): trocar, onde fizer sentido, por
+      verificação do resultado; o comportamento já é coberto pelo e2e
+- [ ] Classes com mais de 300 caracteres em `MedicalCare`, `Testimonials`, `Services` e `Hero`:
+      decidir se vale quebrar em constantes com nome
+- [ ] `.coderabbit.yaml`, a partir do repositório-modelo `react-vite-template`
+- [ ] CI roda duas vezes quando há push na `feat/landing` com PR aberto para a `main`
+- [ ] Repetir o "teste dos testes" (defeitos injetados de propósito) nos próximos módulos
+- [ ] Lighthouse contra o endereço de produção
+- [ ] Decidir se as fotos apagadas no PR #41 precisam sair também do histórico do git
+
 ## Pendências técnicas
 
 - [x] Cabeçalhos de segurança em `vercel.json` (auditoria de 2026-10-11)
@@ -116,7 +133,7 @@ Itens que dependem da conversa com a cliente; ficam parados até lá.
 - [ ] Tirar o `'unsafe-inline'` do `style-src`: passar o degradê e o papel de parede de
       `style` no elemento para classes
 - [ ] Cache longo para `/assets/*` (os nomes já têm hash): hoje a Vercel revalida a cada visita
-
+- [x] Limite de cobertura do CI em 100%, que é o que o projeto tem
 - [ ] Ativar o SonarCloud: criar o projeto, cadastrar o segredo `SONAR_TOKEN` no GitHub,
       conferir `sonar.organization` e `sonar.projectKey` em `sonar-project.properties` e ver a
       primeira análise passar no CI
