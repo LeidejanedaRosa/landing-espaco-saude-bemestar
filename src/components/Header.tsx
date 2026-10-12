@@ -1,5 +1,6 @@
 import { useCallback, useRef } from 'react';
 import logo from '../../design/originais/logo.png?w=64;128;192&format=avif;webp&as=picture';
+import { SITE_NAME } from '../shared/site';
 import { useDisclosure } from '../shared/hooks/useDisclosure';
 import { ButtonLink } from '../shared/ui/ButtonLink';
 import { Container } from '../shared/ui/Container';
@@ -37,7 +38,7 @@ export function Header({ navItems, contentId }: HeaderProps) {
         >
           <Picture
             image={logo}
-            alt="Luiza — Espaço Saúde e Bem-estar, ir para o início"
+            alt={`${SITE_NAME}, ir para o início`}
             sizes="3.5rem"
             priority
             className="h-14 w-auto"

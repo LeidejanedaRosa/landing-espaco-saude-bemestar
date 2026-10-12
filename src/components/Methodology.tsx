@@ -1,7 +1,7 @@
 import ilustracao from '../../design/originais/metodologia-acompanhamento.png?w=333;665&format=avif;webp&as=picture';
-import eucaliptoClaro from '../assets/folhagens/eucalipto-claro.svg';
-import { DecorativeImage } from '../shared/ui/DecorativeImage';
+import { CornerFronds } from '../shared/ui/CornerFronds';
 import { LineIcon } from '../shared/ui/LineIcon';
+import { ORGANIC_SHAPE } from '../shared/ui/organicShapes';
 import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
 import { SectionHeading } from '../shared/ui/SectionHeading';
@@ -35,15 +35,7 @@ export function Methodology() {
           - desktop: a ilustração ocupa a coluna da esquerda de cima a baixo. É assim que ela
             fica grande sem a seção passar de uma tela. */}
       <div className="relative isolate grid items-center gap-x-6 gap-y-[clamp(0.5rem,1.6dvh,1.25rem)] sm:grid-cols-2 sm:grid-rows-[auto_1fr_auto] lg:grid-cols-[1fr_2fr] lg:grid-rows-none xl:grid-cols-[4fr_7fr] xl:gap-x-10">
-        {FRONDS.map((className) => (
-          <DecorativeImage
-            key={className}
-            src={eucaliptoClaro}
-            width={160}
-            height={320}
-            className={`pointer-events-none absolute -z-10 w-auto ${className}`}
-          />
-        ))}
+        <CornerFronds positions={FRONDS} />
         <div className="sm:col-start-1 sm:row-start-1 lg:col-start-2">
           <SectionHeading
             id={HEADING_ID}
@@ -60,15 +52,15 @@ export function Methodology() {
               ilustração se apoia sem perder as cores. */}
           <div
             aria-hidden="true"
-            className="bg-rose/40 absolute inset-[4%_26%_18%_2%] rounded-[58%_42%_55%_45%/48%_56%_44%_52%]"
+            className={`${ORGANIC_SHAPE.back} bg-rose/40 absolute inset-[4%_26%_18%_2%]`}
           />
           <div
             aria-hidden="true"
-            className="bg-teal/35 absolute inset-[26%_2%_2%_30%] rounded-[45%_55%_42%_58%/55%_45%_55%_45%]"
+            className={`${ORGANIC_SHAPE.front} bg-teal/35 absolute inset-[26%_2%_2%_30%]`}
           />
           <div
             aria-hidden="true"
-            className="absolute inset-[6%_8%] rounded-[52%_48%_46%_54%/55%_47%_53%_45%] bg-white/85"
+            className={`${ORGANIC_SHAPE.top} absolute inset-[6%_8%] bg-white/85`}
           />
           {/* A máscara esfuma só a borda: o halo verde do desenho vai até o limite do arquivo, e
               sem ela terminaria em uma linha reta. */}
