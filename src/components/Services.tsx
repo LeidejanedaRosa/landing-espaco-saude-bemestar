@@ -1,6 +1,7 @@
 import { useTabs } from '../shared/hooks/useTabs';
 import { ButtonLink } from '../shared/ui/ButtonLink';
 import { CheckList } from '../shared/ui/CheckList';
+import { ORGANIC_SHAPE } from '../shared/ui/organicShapes';
 import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
 import { SectionHeading } from '../shared/ui/SectionHeading';
@@ -33,15 +34,15 @@ function ServicePanel({ service, index }: Readonly<{ service: Service; index: nu
             cores. Mudam de contorno quando o mouse passa. */}
         <div
           aria-hidden="true"
-          className={`${blobs.back} ${BLOB} inset-[2%_30%_22%_2%] rounded-[58%_42%_55%_45%/48%_56%_44%_52%] group-hover:rounded-[45%_55%_48%_52%/56%_44%_56%_44%]`}
+          className={`${blobs.back} ${BLOB} inset-[2%_30%_22%_2%] ${ORGANIC_SHAPE.back} group-hover:rounded-[45%_55%_48%_52%/56%_44%_56%_44%]`}
         />
         <div
           aria-hidden="true"
-          className={`${blobs.front} ${BLOB} inset-[28%_2%_2%_34%] rounded-[45%_55%_42%_58%/55%_45%_55%_45%] group-hover:rounded-[56%_44%_58%_42%/44%_56%_44%_56%]`}
+          className={`${blobs.front} ${BLOB} inset-[28%_2%_2%_34%] ${ORGANIC_SHAPE.front} group-hover:rounded-[56%_44%_58%_42%/44%_56%_44%_56%]`}
         />
         <div
           aria-hidden="true"
-          className={`${BLOB} inset-[7%_9%] rounded-[52%_48%_46%_54%/55%_47%_53%_45%] bg-white/80 group-hover:rounded-[46%_54%_53%_47%/48%_55%_45%_52%]`}
+          className={`${BLOB} inset-[7%_9%] ${ORGANIC_SHAPE.top} bg-white/80 group-hover:rounded-[46%_54%_53%_47%/48%_55%_45%_52%]`}
         />
         <Picture
           image={service.image}

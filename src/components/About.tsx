@@ -1,6 +1,7 @@
 import retrato from '../../design/originais/luiza-retrato.png?w=186;372&format=avif;webp&as=picture';
 import eucalipto from '../assets/folhagens/eucalipto-claro.svg';
 import ramoDourado from '../assets/folhagens/ramo-traco-dourado.svg';
+import { ORGANIC_SHAPE } from '../shared/ui/organicShapes';
 import { ButtonLink } from '../shared/ui/ButtonLink';
 import { DecorativeImage } from '../shared/ui/DecorativeImage';
 import { LineIcon } from '../shared/ui/LineIcon';
@@ -9,6 +10,7 @@ import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
 import { SectionHeading } from '../shared/ui/SectionHeading';
 import { buildWhatsAppUrl } from '../shared/utils/whatsapp';
+import { LUIZA } from './professionals';
 import { CREDENTIALS } from './aboutCredentials';
 import { SCHEDULE_MESSAGE } from './whatsappMessages';
 
@@ -64,11 +66,11 @@ export function About() {
         <div className="relative mx-auto w-[min(65vw,19rem)] lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:w-full lg:max-w-88">
           <div
             aria-hidden="true"
-            className="bg-rose/60 absolute -top-4 -left-5 size-3/4 rounded-[58%_42%_55%_45%/48%_56%_44%_52%]"
+            className={`${ORGANIC_SHAPE.back} bg-rose/60 absolute -top-4 -left-5 size-3/4`}
           />
           <div
             aria-hidden="true"
-            className="bg-cream/25 absolute -right-5 -bottom-4 size-2/3 rounded-[45%_55%_42%_58%/55%_45%_55%_45%]"
+            className={`${ORGANIC_SHAPE.front} bg-cream/25 absolute -right-5 -bottom-4 size-2/3`}
           />
           <div className="border-cream relative aspect-3/4 overflow-hidden rounded-[52%_48%_46%_54%/40%_42%_58%_60%] border-4 shadow-lg">
             <Picture
@@ -94,10 +96,8 @@ export function About() {
             na melhora da qualidade de vida.
           </p>
           <p className="border-rose-soft flex flex-col border-l-2 pl-4">
-            <span className="font-display text-xl font-medium">
-              Dra. Luiza Rafaela de Castro Dolabella
-            </span>
-            <span className="text-sm">CREFITO 4 MG 213042-F</span>
+            <span className="font-display text-xl font-medium">{LUIZA.name}</span>
+            <span className="text-sm">{LUIZA.registration}</span>
           </p>
           <ButtonLink href={buildWhatsAppUrl(SCHEDULE_MESSAGE)} external variant="light">
             Agendar avaliação

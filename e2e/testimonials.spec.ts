@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
+import { waitForScrollToSettle } from './support/scroll';
 
 function testimonials(page: Page) {
   const section = page.locator('#depoimentos');
@@ -9,21 +10,6 @@ function testimonials(page: Page) {
     cards: section.getByRole('list').first().getByRole('listitem'),
     reviews: section.getByRole('link', { name: /ver todas as avaliações no google/i })
   };
-}
-
-async function settle(page: Page) {
-  // espera a rolagem suave da página terminar, para o mouse não chegar com ela andando
-  await expect
-    .poll(
-      () =>
-        page.locator('#depoimentos').evaluate(async (section) => {
-          const before = section.getBoundingClientRect().top;
-          await new Promise((resolve) => setTimeout(resolve, 100));
-          return section.getBoundingClientRect().top === before;
-        }),
-      { timeout: 15_000 }
-    )
-    .toBe(true);
 }
 
 test.describe('seção Depoimentos', () => {
@@ -37,7 +23,7 @@ test.describe('seção Depoimentos', () => {
       .click();
     const title = page.getByRole('heading', { level: 2, name: 'O que dizem sobre nós' });
     await expect(title).toBeInViewport({ ratio: 1 });
-    await settle(page);
+    await waitForScrollToSettle(page, '#depoimentos');
 
     const header = await page.getByRole('banner').boundingBox();
     const eyebrow = await page
@@ -76,7 +62,7 @@ test.describe('seção Depoimentos', () => {
     await page.goto('/');
     const { section, cards } = testimonials(page);
     await section.scrollIntoViewIfNeeded();
-    await settle(page);
+    await waitForScrollToSettle(page, '#depoimentos');
     const quote = cards.nth(1).locator('blockquote');
     const isCut = () =>
       quote.evaluate((element) => element.scrollHeight > element.clientHeight + 1);
@@ -94,7 +80,7 @@ test.describe('seção Depoimentos', () => {
     await page.goto('/');
     const { section, cards } = testimonials(page);
     await section.scrollIntoViewIfNeeded();
-    await settle(page);
+    await waitForScrollToSettle(page, '#depoimentos');
     // tira o mouse de cima dos cartões: o teste é só do teclado
     await page.mouse.move(2, 2);
     const quote = cards.first().locator('blockquote');
@@ -124,7 +110,7 @@ test.describe('seção Depoimentos', () => {
     await page.goto('/');
     const { section, cards } = testimonials(page);
     await section.scrollIntoViewIfNeeded();
-    await settle(page);
+    await waitForScrollToSettle(page, '#depoimentos');
     const card = cards.first();
     const quote = card.locator('blockquote');
 

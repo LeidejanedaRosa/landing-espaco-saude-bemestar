@@ -266,3 +266,55 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   que achou o botão dos Depoimentos com 4,25:1 no celular.
 - **Testar a ideia mais simples antes de discutir.** Borda dourada em todos os destaques
   parecia boa no papel; vista na tela, só funcionou no trecho rosa.
+
+## 2026-10-11 — Auditoria: SEO
+
+- **Variável obrigatória sem uso é dívida escondida.** `VITE_SITE_URL` barrava o build havia
+  semanas e nenhum código a lia. Ou a variável é usada, ou não é obrigatória.
+- **Texto que aparece em dois lugares precisa de um dono.** Título e descrição ficam no
+  `index.html`; o build copia para as tags de compartilhamento.
+- **Função pura é fácil de testar.** Montar as tags a partir de dados recebidos (e não lendo o
+  ambiente lá dentro) deixou o teste sem nenhum truque.
+- **Texto dentro de `<script>` também precisa de escape.** Um `</script>` em uma descrição
+  fecharia o bloco de dados estruturados; o `<` vira `\u003c`.
+- **Regra boa tem exceção documentada.** "Nenhum PNG servido" continua valendo para o
+  conteúdo; favicon e imagem de compartilhamento só funcionam em PNG e JPEG. O teste que
+  proíbe PNG passou a liberar exatamente os dois ícones, e nada além.
+- **Apagar arquivo "sem uso" pede um segundo olhar.** O símbolo do logo estava entre as
+  imagens removidas na limpeza e era a origem ideal do favicon; voltou do histórico do git.
+
+## 2026-10-12 — Auditoria: cabeçalhos de segurança
+
+- **Política de conteúdo se escreve a partir do que a página carrega de verdade.** Antes de
+  escrever, olhei o build: script e fonte só do próprio site, SVG embutido como `data:`,
+  três estilos no elemento. A política lista isso e nada além.
+- **Configuração que só vale na hospedagem precisa de teste local.** O `vercel.json` não é
+  lido pelo servidor de preview; sem um teste que aplique os cabeçalhos, o primeiro aviso de
+  erro seria o site quebrado em produção.
+- **Teste novo também se testa.** Apertei a política de propósito de três jeitos (imagem,
+  estilo e fonte) e o teste reprovou nos três. Na primeira versão ele reprovava por um motivo
+  que não era a política: imagem de carregamento lento que o navegador nem tinha pedido.
+- **O ambiente de teste não é a produção.** `upgrade-insecure-requests` é inofensiva em https
+  e derruba tudo em `http://localhost`.
+- **Folga em regra de segurança tem de vir com o motivo.** `'unsafe-inline'` em estilo é uma
+  concessão; fica anotado o que a justifica e o que fazer para tirá-la.
+
+## 2026-10-12 — Auditoria: duplicação e teste falho
+
+- **Cobertura mede o que roda, não o que é usado.** A prop `description` do `SectionHeading`
+  tinha 100% de cobertura e nenhum uso: só o teste a exercitava. Código morto com teste
+  continua sendo código morto.
+- **Teste com dados todos iguais não distingue certo de errado.** O das estrelas passava com o
+  código quebrado porque toda nota era 5. O jeito de descobrir foi quebrar o código de
+  propósito e ver se o teste reclamava.
+- **Componente que recebe os dados é mais fácil de testar** do que o que os busca sozinho:
+  `Testimonials` passou a aceitar a lista por prop, e o teste controla as notas sem truque.
+- **Nem toda repetição pede um componente.** Os ramos dos cantos eram o mesmo bloco em duas
+  seções e viraram `CornerFronds`. As formas orgânicas só repetiam o contorno; ali bastou dar
+  nome às três formas.
+- **Regra geral não vence comentário específico.** A auditoria apontou um `320px` como
+  violação da regra de não usar `px`. Troquei por `rem` e dois testes reprovaram: o limite é
+  em `px` de propósito, e o comentário ao lado já dizia isso. Antes de "corrigir" uma exceção,
+  ler por que ela existe.
+- **Dividir um arquivo é dar nome às partes.** O `Footer` fazia seis coisas em 186 linhas; com
+  três componentes, cada um diz no nome o que é, e os testes do rodapé não mudaram.
