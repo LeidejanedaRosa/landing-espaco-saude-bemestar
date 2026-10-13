@@ -9,6 +9,7 @@ import { Picture } from '../shared/ui/Picture';
 import { Section } from '../shared/ui/Section';
 import { SectionHeading } from '../shared/ui/SectionHeading';
 import { buildWhatsAppUrl } from '../shared/utils/whatsapp';
+import { VERONIKA } from './professionals';
 import { MEDICAL_SPECIALTIES } from './medicalSpecialties';
 import { MEDICAL_APPOINTMENT_MESSAGE } from './whatsappMessages';
 
@@ -76,10 +77,10 @@ export function MedicalCare() {
             {/* Crachá: nome em destaque e o registro em um selo. Branco, para se soltar do
                 cartão creme, e sobreposto à base da foto. */}
             <div className="relative -mt-8 flex w-max flex-col items-center gap-1.5 rounded-2xl bg-white px-4 py-2.5 text-center shadow-lg lg:-mt-10 lg:px-5 lg:py-3">
-              <h3 className="text-lg font-semibold lg:text-xl">Dra. Veronika Baptista</h3>
+              <h3 className="text-lg font-semibold lg:text-xl">{VERONIKA.name}</h3>
               <p className="bg-rose-deep text-cream inline-flex items-center gap-1.5 rounded-full px-3 py-0.5 text-xs font-semibold tracking-wide">
                 <LineIcon paths={VERIFIED_ICON} className="size-3.5" />
-                CRM MG 98407
+                {VERONIKA.registration}
               </p>
             </div>
           </div>

@@ -8,7 +8,6 @@ interface SectionHeadingProps {
    * expressão curta, escrita exatamente como aparece no título.
    */
   highlight?: string;
-  description?: string;
   /**
    * `start` quando o cabeçalho vai dentro de um cartão, ao lado de uma foto.
    * `center-then-start` quando ele só fica ao lado da imagem a partir do tablet: no celular,
@@ -58,7 +57,6 @@ export function SectionHeading({
   eyebrow,
   title,
   highlight,
-  description,
   align = 'center',
   tone = 'light'
 }: Readonly<SectionHeadingProps>) {
@@ -91,7 +89,6 @@ export function SectionHeading({
         )}
         {after}
       </h2>
-      {description && <p className="text-lg">{description}</p>}
     </div>
   );
 }

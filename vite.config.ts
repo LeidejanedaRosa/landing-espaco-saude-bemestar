@@ -38,7 +38,9 @@ export default defineConfig(({ mode }) => {
         exclude: ['src/entry-client.tsx', 'src/test/**', 'src/**/*.test.{ts,tsx}', 'src/**/*.d.ts'],
         // lcov é o formato que o SonarCloud lê para mostrar a cobertura.
         reporter: ['text', 'html', 'lcov'],
-        thresholds: { statements: 90, branches: 90, functions: 90, lines: 90 }
+        // 100% é o que o projeto já tem: código novo sem teste reprova o CI. Cobertura não
+        // prova que o teste é bom (ver docs/auditoria-2026-10.md), só que o código foi exercitado.
+        thresholds: { statements: 100, branches: 100, functions: 100, lines: 100 }
       }
     }
   };

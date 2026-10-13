@@ -30,7 +30,11 @@
       Médico), por [docs/identidade/prompts-ilustracoes-servicos.md](identidade/prompts-ilustracoes-servicos.md)
 - [ ] Vetorizar os demais desenhos em traço para SVG (prontos em `src/assets/tracos`: guerreira,
       alongamento e criança)
-- [ ] Limpar `src/assets/images` (21 MB, nomes soltos)
+- [x] Limpar `src/assets/images`: a pasta saiu. Nenhum código usava as 30 imagens. Duas foram
+      guardadas: a foto inteira da Luiza (`design/originais/luiza-foto-original.png`) e a
+      referência da parede da recepção (`docs/identidade/referencia-parede-recepcao.png`). A
+      cópia do logo (`logo-espaco.png`) foi apagada; a documentação passou a apontar para o
+      logo que o site já usava, `design/originais/logo.png`
 - [x] Rótulo das seções (`SectionHeading`) sobre fundo `blush`: passou a usar `rose-ink`
 - [ ] Texto do navegador em 200% numa tela de 320px (WCAG 1.4.4 e 1.4.10): o título de "Sobre a
       Luiza" já se ajusta, mas o header passa 35px da tela e outras seções têm conteúdo que
@@ -83,9 +87,13 @@ Itens que dependem da conversa com a cliente; ficam parados até lá.
       2026-10-11 a Leidejane decidiu publicar na `main` com as provisórias** (a foto dela e um
       texto marcador), para a Luiza aprovar a landing pelo endereço de produção: o preview da
       Vercel pede login. Deixou de bloquear a ida para a `main`; continua pendente
-- [ ] Canonical, Open Graph e imagem de compartilhamento
-- [ ] Dados estruturados (schema.org `LocalBusiness`/`MedicalBusiness`)
-- [ ] `robots.txt`, `sitemap.xml` e favicon
+- [x] Canonical, Open Graph e imagem de compartilhamento
+- [x] Dados estruturados (schema.org `MedicalBusiness`). Falta o horário de funcionamento,
+      quando a cliente informar
+- [x] `robots.txt`, `sitemap.xml` e favicon
+- [ ] Quando a cliente tiver domínio próprio: trocar `VITE_SITE_URL` na Vercel e fazer um novo
+      deploy; canonical, sitemap e imagem de compartilhamento acompanham sozinhos
+- [ ] Cadastrar o site no Google Search Console e enviar o sitemap
 - [x] Variáveis de ambiente configuradas na Vercel (Production e Preview) — sem elas o build
       da Vercel falha. Conferido pela Leidejane em 2026-10-11
 - [ ] Primeira ida para a `main` (2026-10-11): é para a cliente aprovar pelo endereço de
@@ -100,8 +108,32 @@ Itens que dependem da conversa com a cliente; ficam parados até lá.
 - [x] Esvaziar a lista `PENDING_SECTIONS` de `e2e/navigation.spec.ts`: todo link do menu tem
       destino
 
+## Auditoria de outubro de 2026
+
+Relatório completo em [auditoria-2026-10.md](auditoria-2026-10.md). O que ficou para depois:
+
+- [ ] Cartão de depoimento: trocar o `tabIndex` no `<li>` por um botão "ver depoimento
+      completo" (padrão de sanfona), com nome para o leitor de tela. Fazer junto com as
+      avaliações reais e com o teto de altura do cartão
+- [ ] Testes presos a nomes de classe (55 `toHaveClass`): trocar, onde fizer sentido, por
+      verificação do resultado; o comportamento já é coberto pelo e2e
+- [ ] Classes com mais de 300 caracteres em `MedicalCare`, `Testimonials`, `Services` e `Hero`:
+      decidir se vale quebrar em constantes com nome
+- [ ] `.coderabbit.yaml`, a partir do repositório-modelo `react-vite-template`
+- [ ] CI roda duas vezes quando há push na `feat/landing` com PR aberto para a `main`
+- [ ] Repetir o "teste dos testes" (defeitos injetados de propósito) nos próximos módulos
+- [ ] Lighthouse contra o endereço de produção
+- [ ] Decidir se as fotos apagadas no PR #41 precisam sair também do histórico do git
+
 ## Pendências técnicas
 
+- [x] Cabeçalhos de segurança em `vercel.json` (auditoria de 2026-10-11)
+- [ ] Depois de publicar: conferir os cabeçalhos no endereço de produção
+      (`curl -sI <endereço>`) e a nota em um verificador como o securityheaders.com
+- [ ] Tirar o `'unsafe-inline'` do `style-src`: passar o degradê e o papel de parede de
+      `style` no elemento para classes
+- [ ] Cache longo para `/assets/*` (os nomes já têm hash): hoje a Vercel revalida a cada visita
+- [x] Limite de cobertura do CI em 100%, que é o que o projeto tem
 - [ ] Ativar o SonarCloud: criar o projeto, cadastrar o segredo `SONAR_TOKEN` no GitHub,
       conferir `sonar.organization` e `sonar.projectKey` em `sonar-project.properties` e ver a
       primeira análise passar no CI

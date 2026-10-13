@@ -96,8 +96,9 @@ Toda seção usa o mesmo `Container` (`src/shared/ui`). Nenhuma seção define l
   (`<section>`, `<header>`, `<footer>`), com largura total; o Container fica dentro e limita só
   o conteúdo. Em telas maiores que 1280px o fundo continua indo de borda a borda.
 - **Sem valores fixos.** Nada de `px` em largura, altura, espaçamento ou tamanho de fonte. Usar
-  `rem`, `%`, `fr`, `dvh`, `clamp()`, `min()`/`max()` e `aspect-ratio`. Exceção: detalhes de
-  1px, como bordas.
+  `rem`, `%`, `fr`, `dvh`, `clamp()`, `min()`/`max()` e `aspect-ratio`. Exceções: detalhes de
+  1px, como bordas; e o limite `@min-[320px]` da frase do hero, que é em `px` de propósito
+  (o comentário no código explica, e um teste e2e reprova a troca por `rem`).
 - Espaçamento lateral do Container é fluido (cresce com a tela), nunca um número fixo.
 - No código: `<Container>` aplica `max-w-page` (token `--container-page: 80rem`) e `px-gutter`
   (token `--spacing-gutter: clamp(1rem, 5vw, 4rem)`). Classes extras (`flex`, `grid`...) entram
@@ -208,6 +209,20 @@ Toda seção depois do hero usa a casca `Section` e o cabeçalho `SectionHeading
 
 - **Seção nova direto sobre o fundo da página:** conferir em que trecho do degradê ela cai e
   escolher o `tone`; o `e2e/gradient.spec.ts` lista as seções e mede o contraste.
+- **O que se repete entre seções tem um lugar só:**
+
+  | O quê                                                | Onde                                 |
+  | ---------------------------------------------------- | ------------------------------------ |
+  | nome do studio                                       | `SITE_NAME`, em `src/shared/site.ts` |
+  | nome e registro das profissionais                    | `src/components/professionals.ts`    |
+  | endereço                                             | `ADDRESS`, em `contactInfo.ts`       |
+  | ramos claros nos cantos de uma seção                 | `CornerFronds` (`src/shared/ui`)     |
+  | contorno das formas orgânicas atrás de foto e figura | `ORGANIC_SHAPE` (`src/shared/ui`)    |
+  | esperar a rolagem terminar, no e2e                   | `e2e/support/scroll.ts`              |
+
+  As formas orgânicas compartilham só o contorno: posição, cor e animação mudam em cada seção,
+  e um componente único precisaria de tantas opções que seria pior que a repetição.
+
 - **Seções vizinhas não repetem o mesmo arranjo.** Duas grades de cartões iguais em sequência
   deixam a página monótona e a pessoa não percebe que mudou de assunto.
 - Os dados de uma seção com vários itens ficam em um arquivo próprio ao lado do componente
@@ -269,7 +284,8 @@ escolher, abas). É o `Carousel` (`src/shared/ui`) com o hook `useCarousel` (`sr
   alto que a tela, e embaixo dele ninguém os encontraria.
 - Nas pontas a seta usa `aria-disabled`, e não `disabled`: botão desabilitado perde o foco e
   joga quem navega pelo teclado para fora do carrossel.
-- A área que rola tem `tabIndex={0}` (é a única exceção à regra de lint, comentada no código):
+- A área que rola tem `tabIndex={0}` (exceção à regra de lint, comentada no código; a outra é
+  o cartão de depoimento):
   sem foco, o axe reprova e o teclado não desliza em navegador que não foca áreas de rolagem.
 - Todos os slides têm a altura do maior, então a página não pula ao trocar. No desktop a seção
   inteira cabe na tela (`fullScreen`).
@@ -322,8 +338,8 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 - Não é carrossel nem abas: aqui a pessoa só lê, e a seção pode ser mais alta que a tela.
 - No HTML a ordem é título, foto, apresentação. No desktop a foto vai para a coluna da esquerda
   só pela posição na grade.
-- **Sobre fundo escuro as cores mudam:** `SectionHeading` com `tone="dark"` (rótulo em `blush`,
-  destaque em `rose-soft`) e `ButtonLink` com `variant="light"` (creme, com contorno de foco
+- **Sobre fundo escuro as cores mudam:** `SectionHeading` com `tone="dark"` (destaque em
+  `rose-soft`; o rótulo é o mesmo selo de toda seção) e `ButtonLink` com `variant="light"` (creme, com contorno de foco
   claro). O botão verde e os rosas escuros somem sobre o `olive-deep`.
 - As seis certificações ficam em `aboutCredentials.ts`. São seis, então a grade (1, 2 ou 3
   colunas) nunca tem linha incompleta; mudando a quantidade, rever as colunas.
@@ -422,6 +438,10 @@ mais forte da página, e chamava mais atenção que a da Luiza. Aqui é o contr�
 O contato e o rodapé são um bloco só, em `Footer` (`src/components`). Antes havia um cartão de
 contato e, logo abaixo, o rodapé com as mesmas informações.
 
+`Footer` monta a página do rodapé e delega cada coluna a um componente: `FooterBrand` (a
+marca), `FooterNav` (os links) e `FooterContact` (endereço, redes e os dois botões). As classes
+que as colunas repetem ficam em `footerClasses.ts`.
+
 - Fundo `olive-deep` com texto `cream`. De cima para baixo: a chamada final (a seção
   `#contato`); três colunas (a marca, a navegação e o endereço com as redes e os dois botões);
   as duas profissionais com os registros e o aviso de direitos.
@@ -477,11 +497,12 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 
 ## Imagens
 
-| Tipo                                | Formato servido                          |
-| ----------------------------------- | ---------------------------------------- |
-| Desenhos em traço, logo, ícones     | SVG                                      |
-| Fotos e ilustrações com muitos tons | AVIF, com WebP de reserva (`<picture>`)  |
-| PNG e JPEG                          | só como arquivo original, nunca servidos |
+| Tipo                                 | Formato servido                          |
+| ------------------------------------ | ---------------------------------------- |
+| Desenhos em traço, logo, ícones      | SVG                                      |
+| Fotos e ilustrações com muitos tons  | AVIF, com WebP de reserva (`<picture>`)  |
+| PNG e JPEG                           | só como arquivo original, nunca servidos |
+| Favicon e imagem de compartilhamento | PNG e JPEG, em `public/` (ver "SEO")     |
 
 - **No código, foto e ilustração sempre passam pelo componente `Picture`** (`src/shared/ui`),
   nunca por `<img>` solta. O original é importado com a query do `vite-imagetools`, que gera
@@ -532,6 +553,65 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 - Prompts e especificações dos desenhos em traço:
   [docs/identidade/prompts-desenhos.md](docs/identidade/prompts-desenhos.md).
 
+## SEO
+
+Tudo o que depende do endereço do site é gerado no build, a partir de `VITE_SITE_URL`: o
+endereço muda quando a cliente tiver domínio próprio, e nada precisa ser reescrito.
+
+```
+index.html  ── título e descrição (único lugar onde existem)
+     │
+     ▼  scripts/prerender.mjs lê os dois e chama renderSeo (src/entry-server.tsx)
+src/shared/seo/seo.ts ──┬─ tags do <head>: canonical, Open Graph, favicon e dados estruturados
+                        ├─ dist/robots.txt
+                        └─ dist/sitemap.xml
+```
+
+- **Título e descrição só existem no `index.html`.** As tags de compartilhamento repetem o que
+  está lá; não escrever o texto de novo em outro arquivo.
+- As funções de `seo.ts` são puras (recebem os dados, devolvem texto), por isso têm teste
+  unitário; quem lê as variáveis de ambiente é o `renderSeo`.
+- **Dados estruturados:** `MedicalBusiness` do schema.org, com nome, endereço, telefone (o do
+  WhatsApp), mapa e Instagram. Só entra o que está confirmado em `docs/conteudo.md`; horário
+  de funcionamento, por exemplo, fica de fora até a cliente informar.
+- O endereço do studio é um objeto só (`ADDRESS`, em `contactInfo.ts`): o rodapé, o link do
+  mapa e os dados estruturados saem dele.
+- **Arquivos em `public/`** (copiados para a raiz do site, sem passar pelo build):
+  `favicon.png`, `apple-touch-icon.png` e `og-image.jpg`. São a exceção à regra de não servir
+  PNG nem JPEG: navegadores e aplicativos de mensagem só aceitam esses formatos ali.
+  - Os ícones saem do símbolo do logo (`design/originais/logo-simbolo.png`) sobre um quadrado
+    `cream`, gerados com o `sharp`.
+  - A imagem de compartilhamento (1200 × 630) é um print da primeira tela do build. **Mudou o
+    hero, refazer o print.**
+- Seção nova não muda o sitemap: a landing é uma página só.
+
+## Segurança
+
+Os cabeçalhos de segurança ficam em `vercel.json`: é a Vercel que os envia, em toda resposta.
+
+| Cabeçalho                    | O que faz                                                         |
+| ---------------------------- | ----------------------------------------------------------------- |
+| `Content-Security-Policy`    | diz de onde a página pode carregar script, estilo, imagem e fonte |
+| `X-Frame-Options`            | impede o site de ser embutido em outra página (clickjacking)      |
+| `X-Content-Type-Options`     | o navegador não adivinha o tipo do arquivo                        |
+| `Referrer-Policy`            | ao sair do site, só o domínio vai como origem                     |
+| `Cross-Origin-Opener-Policy` | isola a aba das páginas que ela abre                              |
+| `Permissions-Policy`         | desliga câmera, microfone, localização e pagamento                |
+
+- **A política de conteúdo só aceita o próprio site** (`'self'`): nenhum domínio de fora,
+  nenhum script inline, nenhum `eval`. Recurso de terceiros (mapa embutido, vídeo, script de
+  métricas) vai ser bloqueado até o domínio dele entrar na política. É de propósito.
+- **Duas folgas, e por quê:** `img-src` aceita `data:` porque o Vite embute os SVGs pequenos
+  (folhagens) como `data:`; `style-src` aceita `'unsafe-inline'` porque o degradê e o papel de
+  parede usam `style` no próprio elemento. Para tirar a segunda, esses três estilos teriam de
+  virar classes.
+- **O servidor local não envia esses cabeçalhos.** O `e2e/security-headers.spec.ts` lê o
+  `vercel.json` e os aplica à página do build; mexeu na política, é ele que diz se algo foi
+  bloqueado. No teste a diretiva `upgrade-insecure-requests` sai, porque `localhost` é http.
+- No preview da Vercel, a barra de comentários da própria Vercel é bloqueada pela política e
+  aparece como erro no console. Em produção ela não existe.
+- O HSTS (`Strict-Transport-Security`) já é enviado pela Vercel; não se repete aqui.
+
 ## Resiliência
 
 - **`ErrorBoundary` na raiz do app.** Se um componente quebrar, a pessoa vê uma mensagem
@@ -558,7 +638,7 @@ contato e, logo abaixo, o rodapé com as mesmas informações.
 ## Identidade visual
 
 - A paleta é a da cliente: Instagram [@lufisio.pilates](https://www.instagram.com/lufisio.pilates/),
-  logo (`src/assets/images/logo-espaco.png`) e os prints de referência.
+  logo (`design/originais/logo.png`) e os prints de referência.
 - **Paleta escolhida: opção C** de [docs/identidade/paleta-opcoes.png](docs/identidade/paleta-opcoes.png)
   — base rosa e oliva do post da Dra. Veronika, com o verde-água do logo como apoio. Não usar a
   paleta da versão da Emergent.
@@ -692,7 +772,7 @@ a lado, sobre uma linha de chão contínua, da faixa que a landing antiga usava)
 primeiras compõem o papel de parede.
 
 Referência escolhida: o traço da parede da recepção do studio, "Acredite! O movimento cura"
-(`src/assets/images/movimento-cura-centralizado.png`). Características a manter em todos os
+(`docs/identidade/referencia-parede-recepcao.png`). Características a manter em todos os
 desenhos novos: uma única linha contínua e fina, cor única, sem preenchimento nem
 sombra; mulher sem rosto, cabelo em coque, top e legging; linha solta e simples, sem detalhe anatômico; pequenos laços onde a linha se cruza;
 pose de movimento de pilates ou alongamento; fundo transparente; sem texto.
