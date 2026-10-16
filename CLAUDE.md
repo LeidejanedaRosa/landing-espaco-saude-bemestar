@@ -581,8 +581,12 @@ src/shared/seo/seo.ts ──┬─ tags do <head>: canonical, Open Graph, favico
   PNG nem JPEG: navegadores e aplicativos de mensagem só aceitam esses formatos ali.
   - Os ícones saem do símbolo do logo (`design/originais/logo-simbolo.png`) sobre um quadrado
     `cream`, gerados com o `sharp`.
-  - A imagem de compartilhamento (1200 × 630) é um print da primeira tela do build. **Mudou o
-    hero, refazer o print.**
+  - A imagem de compartilhamento (1200 × 630) é uma arte própria, e não um print do site: no
+    tamanho do cartão do WhatsApp, o texto pequeno de um print fica ilegível. O desenho está
+    em `design/og-image.html` (fundo `olive-deep`, o símbolo do logo com o nome, o título do
+    hero em letra grande, um selo e a boneca dentro do arco dourado) e `npm run og-image` gera
+    o arquivo. **O título e o nome se repetem ali: mudou o hero ou o nome, mudar na arte e
+    gerar de novo.** A imagem fica versionada; o build não a gera.
 - Seção nova não muda o sitemap: a landing é uma página só.
 
 ## Segurança

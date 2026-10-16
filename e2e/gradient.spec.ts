@@ -63,7 +63,12 @@ async function headingColors(page: Page, id: string) {
  */
 async function backgroundBehind(page: Page, selector: string): Promise<Rgb[]> {
   const target = page.locator(selector).first();
-  await target.scrollIntoViewIfNeeded();
+  // Rolagem direta, e não `scrollIntoViewIfNeeded`: aquela espera o elemento "ficar parado"
+  // antes de rolar e, com a máquina ocupada, gastava ali o tempo do teste inteiro. `instant`
+  // ignora a rolagem suave do site, para a medida não pegar a página no meio do caminho.
+  await target.evaluate((element) =>
+    element.scrollIntoView({ block: 'center', behavior: 'instant' })
+  );
   const box = await target.boundingBox();
   if (!box) throw new Error(`${selector} não está na tela`);
 
@@ -92,6 +97,10 @@ async function backgroundBehind(page: Page, selector: string): Promise<Rgb[]> {
 }
 
 test.describe('degradê da página', () => {
+  // Cada teste mede vários pontos do fundo, e cada medida é um print: são os mais demorados da
+  // suíte. O triplo do tempo padrão evita reprovar por lentidão da máquina, e não por defeito.
+  test.slow();
+
   for (const screen of SCREENS) {
     test(`${screen.name}: o texto escuro continua legível sobre o degradê, do creme ao rosa`, async ({
       page

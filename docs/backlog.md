@@ -140,8 +140,10 @@ Relatório completo em [auditoria-2026-10.md](auditoria-2026-10.md). O que ficou
       `priceRange` (faixa de preço), que não foi preenchido porque a cliente não informou
 - [ ] Perguntar à cliente o horário de funcionamento e se quer divulgar faixa de preço, para
       completar os dados estruturados (`openingHours` e `priceRange`)
-- [ ] Imagem de compartilhamento: no tamanho do cartão do WhatsApp o texto pequeno do print
-      fica ilegível. Avaliar uma arte própria (logo, título e boneca) em `public/og-image.jpg`
+- [x] Imagem de compartilhamento: arte própria no lugar do print, que tinha o texto pequeno
+      ilegível no cartão do WhatsApp (`design/og-image.html`, gerada com `npm run og-image`)
+- [ ] Depois de publicar a arte nova: colar o link de novo no WhatsApp. Ele guarda a
+      miniatura antiga por um tempo; se não atualizar, testar com `?v=2` no fim do endereço
 - [ ] Tirar o `'unsafe-inline'` do `style-src`: passar o degradê e o papel de parede de
       `style` no elemento para classes
 - [ ] Cache longo para `/assets/*` (os nomes já têm hash): hoje a Vercel revalida a cada visita
