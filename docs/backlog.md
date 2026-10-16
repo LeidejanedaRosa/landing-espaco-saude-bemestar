@@ -128,8 +128,22 @@ Relatório completo em [auditoria-2026-10.md](auditoria-2026-10.md). O que ficou
 ## Pendências técnicas
 
 - [x] Cabeçalhos de segurança em `vercel.json` (auditoria de 2026-10-11)
-- [ ] Depois de publicar: conferir os cabeçalhos no endereço de produção
-      (`curl -sI <endereço>`) e a nota em um verificador como o securityheaders.com
+- [x] Auditoria publicada na `main` em 2026-10-13 (PR #48) e conferida em produção: os seis
+      cabeçalhos chegam; `robots.txt`, `sitemap.xml`, favicon e imagem de compartilhamento
+      respondem 200; canonical e dados estruturados corretos; a página carrega sem nada
+      bloqueado pela política de conteúdo no Chromium, no Firefox e no WebKit
+- [ ] Nota dos cabeçalhos em um verificador como o securityheaders.com
+- [x] Miniatura ao colar o link no WhatsApp: imagem, título, descrição e endereço aparecem
+      (conferido pela Leidejane em 2026-10-13)
+- [x] Dados estruturados no teste de resultados do Google: item "Empresas locais" válido, sem
+      erro crítico (conferido pela Leidejane em 2026-10-13). O único aviso é o campo opcional
+      `priceRange` (faixa de preço), que não foi preenchido porque a cliente não informou
+- [ ] Perguntar à cliente o horário de funcionamento e se quer divulgar faixa de preço, para
+      completar os dados estruturados (`openingHours` e `priceRange`)
+- [x] Imagem de compartilhamento: arte própria no lugar do print, que tinha o texto pequeno
+      ilegível no cartão do WhatsApp (`design/og-image.html`, gerada com `npm run og-image`)
+- [ ] Depois de publicar a arte nova: colar o link de novo no WhatsApp. Ele guarda a
+      miniatura antiga por um tempo; se não atualizar, testar com `?v=2` no fim do endereço
 - [ ] Tirar o `'unsafe-inline'` do `style-src`: passar o degradê e o papel de parede de
       `style` no elemento para classes
 - [ ] Cache longo para `/assets/*` (os nomes já têm hash): hoje a Vercel revalida a cada visita

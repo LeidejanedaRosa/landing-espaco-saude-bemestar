@@ -20,6 +20,7 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "e2e": "playwright test",
+    "og-image": "node scripts/og-image.mjs",
     "prepare": "husky"
   },
   "dependencies": {

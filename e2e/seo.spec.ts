@@ -31,6 +31,20 @@ test.describe('SEO', () => {
     const response = await request.get(image.pathname);
     expect(response.ok()).toBe(true);
     expect(response.headers()['content-type']).toContain('image/jpeg');
+
+    // o tamanho declarado nas tags é o tamanho real do arquivo
+    const declared = {
+      width: Number(await content('og:image:width')),
+      height: Number(await content('og:image:height'))
+    };
+    const actual = await page.evaluate(async (path) => {
+      const file = new Image();
+      file.src = path;
+      await file.decode();
+      return { width: file.naturalWidth, height: file.naturalHeight };
+    }, image.pathname);
+    expect(actual).toEqual(declared);
+    expect(declared).toEqual({ width: 1200, height: 630 });
   });
 
   test('os dados estruturados descrevem o studio, com endereço e telefone', async ({ page }) => {

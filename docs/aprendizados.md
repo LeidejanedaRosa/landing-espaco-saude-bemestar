@@ -318,3 +318,15 @@ Registro do que foi aprendido no caminho, em ordem cronológica.
   ler por que ela existe.
 - **Dividir um arquivo é dar nome às partes.** O `Footer` fazia seis coisas em 186 linhas; com
   três componentes, cada um diz no nome o que é, e os testes do rodapé não mudaram.
+
+## 2026-10-13 — Imagem de compartilhamento
+
+- **Miniatura se desenha para o tamanho em que é vista.** O print da primeira tela era fiel ao
+  site e inútil no cartão do WhatsApp, onde tem 340 px de largura: só o título se lia. A arte
+  nova tem pouco texto, em letra grande, e foi conferida nesse tamanho antes de ser escolhida.
+- **Em uma conversa, quem contrasta com o resto é notado.** Das duas opções, a verde-escura
+  ganhou da clara porque quase nada no WhatsApp tem essa cor.
+- **Arquivo gerado precisa da receita ao lado.** A arte fica em um HTML e um comando a
+  refaz; sem isso, a próxima mudança de título exigiria redesenhar do zero.
+- **Protótipo fora do repositório.** As duas opções foram mostradas como imagens soltas;
+  só a escolhida entrou no projeto.
