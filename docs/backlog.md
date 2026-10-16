@@ -142,8 +142,9 @@ Relatório completo em [auditoria-2026-10.md](auditoria-2026-10.md). O que ficou
       completar os dados estruturados (`openingHours` e `priceRange`)
 - [x] Imagem de compartilhamento: arte própria no lugar do print, que tinha o texto pequeno
       ilegível no cartão do WhatsApp (`design/og-image.html`, gerada com `npm run og-image`)
-- [ ] Depois de publicar a arte nova: colar o link de novo no WhatsApp. Ele guarda a
-      miniatura antiga por um tempo; se não atualizar, testar com `?v=2` no fim do endereço
+- [x] Arte nova publicada na `main` em 2026-10-16 (PR #51) e conferida no WhatsApp pela
+      Leidejane. O WhatsApp guarda a miniatura antiga por um tempo; para ver a nova num link
+      já compartilhado, colar com `?v=2` no fim do endereço
 - [ ] Tirar o `'unsafe-inline'` do `style-src`: passar o degradê e o papel de parede de
       `style` no elemento para classes
 - [ ] Cache longo para `/assets/*` (os nomes já têm hash): hoje a Vercel revalida a cada visita
