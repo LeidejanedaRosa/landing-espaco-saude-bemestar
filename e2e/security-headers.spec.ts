@@ -60,13 +60,23 @@ test.describe('cabeçalhos de segurança', () => {
     expect(policy.get('script-src')).toEqual(["'self'"]);
     expect(policy.get('object-src')).toEqual(["'none'"]);
     expect(policy.get('base-uri')).toEqual(["'self'"]);
-    expect(policy.get('frame-ancestors')).toEqual(["'none'"]);
+    // 'self' + o portfólio da Leidejane: único site autorizado a embutir
+    // este em iframe (preview ao vivo dos projetos, ver leidejanedarosa.dev.br)
+    // — qualquer outra origem continua bloqueada (prevenção de clickjacking).
+    expect(policy.get('frame-ancestors')).toEqual(["'self'", 'https://leidejanedarosa.dev.br']);
     expect(headerValue('Content-Security-Policy')).not.toContain('unsafe-eval');
-    expect(headerValue('Content-Security-Policy')).not.toMatch(/https?:|\*/);
+
+    // Nenhuma OUTRA diretiva pode ter URL http(s) nem curinga — só
+    // frame-ancestors tem exceção, e só pro portfólio (checado acima).
+    for (const [name, sources] of policy) {
+      if (name === 'frame-ancestors') continue;
+      for (const source of sources) {
+        expect(source).not.toMatch(/https?:|\*/);
+      }
+    }
   });
 
-  test('o site não pode ser embutido em outra página nem ter o tipo de arquivo adivinhado', () => {
-    expect(headerValue('X-Frame-Options')).toBe('DENY');
+  test('o site não pode ter o tipo de arquivo adivinhado', () => {
     expect(headerValue('X-Content-Type-Options')).toBe('nosniff');
     expect(headerValue('Referrer-Policy')).toBe('strict-origin-when-cross-origin');
     expect(headerValue('Cross-Origin-Opener-Policy')).toBe('same-origin');
